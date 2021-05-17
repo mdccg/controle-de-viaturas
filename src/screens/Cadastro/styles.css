@@ -1,0 +1,88 @@
+.cadastro {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  flex-direction: column;
+  flex: 1;
+}
+
+.cadastro span {
+  margin-left:  16px;
+  margin-right: 16px;
+
+  font-family: 'OswaldLight';
+  color: var(--american-river);
+
+  text-align: justify;
+  font-size: x-large;
+
+  margin-bottom: 16px;
+}
+
+.cadastro .form {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  width: 80%;
+}
+
+.cadastro .form .input {
+  height: 64px;
+  
+  background-color: white;
+  border: 1px solid var(--soothing-breeze);
+  border-radius: 4px;
+  
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+}
+
+.cadastro .form .input input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+
+  padding-left:  16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+
+  font-family: 'OswaldLight';
+  font-size: large;
+  color: var(--dracula-orchid);
+
+  width: 100%;
+}
+
+.cadastro .form .input input::placeholder {
+  color: var(--soothing-breeze);
+}
+
+.cadastro .botao {
+  margin-left: 16px;
+  
+  background-color: var(--emerald);
+  border-radius: 4px;
+  
+  width:  64px;
+  height: 64px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
+  cursor: pointer;
+}
+
+.cadastro .botao.vazio {
+  background-color: var(--american-river);
+  cursor: default;
+}
+
+.cadastro .botao svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}

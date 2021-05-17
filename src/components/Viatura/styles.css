@@ -1,0 +1,150 @@
+.viatura {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}
+
+.viatura .cabecalho-viatura {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.viatura .cabecalho-viatura .prefixo,
+.viatura .cabecalho-viatura .botoes {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.viatura .cabecalho-viatura .botoes .botao {
+  margin-left: 16px;
+
+  width:  32px;
+  height: 32px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.viatura .cabecalho-viatura svg {
+  width:  24px;
+  height: 24px;
+
+  fill: var(--american-river);
+}
+
+.viatura .cabecalho-viatura .prefixo svg { margin-right: 16px; }
+
+.viatura .cabecalho-viatura .prefixo span {
+  font-size: x-large;
+  color: var(--dracula-orchid);
+}
+
+.viatura .info-viatura {
+  padding: 12px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  background-color: var(--city-lights);
+  border-radius: 4px;
+
+  flex-direction: column;
+  display: flex;
+}
+
+.viatura .info-viatura .linha {
+  min-height: 48px;
+
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  display: flex;
+}
+
+.viatura .info-viatura .linha > * {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  flex: 1;
+
+  color: var(--american-river);
+}
+
+.viatura input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.viatura input,
+.viatura .info-viatura .km span,
+.viatura .info-viatura .nivel-combustivel span,
+.viatura .info-viatura .comentario span {
+  font-family: 'OswaldRegular';
+  font-size: medium;
+  color: var(--american-river);
+}
+
+.viatura .info-viatura .comentario span {
+  text-align: justify;
+}
+
+.viatura .cabecalho-viatura input {
+  padding-left:  4px;
+  padding-right: 4px;
+
+  background-color: var(--city-lights);
+  border-radius: 2px;
+  
+  color: var(--dracula-orchid);
+  font-size: large;
+}
+
+.viatura .info-viatura-input {
+  align-items: center;
+  display: flex;
+}
+
+.viatura .info-viatura-input.editando-viatura {
+  padding-left:  4px;
+  padding-right: 4px;
+
+  margin-right: 8px;
+
+  background-color: white;
+  border-radius: 2px;
+  
+  color: var(--american-river);
+
+  max-width: 154px;
+  flex: 1;
+}
+
+.viatura .cabecalho-viatura input:disabled,
+.viatura .info-viatura input:disabled {
+  background-color: transparent;
+}
+
+.viatura .info-viatura .icone {
+  align-self: flex-start;
+
+  position: relative;
+  top: 2px;
+}
+
+.viatura .info-viatura svg {
+  margin-right: 8px;
+
+  width:  24px;
+  height: 24px;
+
+  fill: var(--american-river);
+}

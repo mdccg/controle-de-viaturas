@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'OswaldExtraLight';
+  src: url(./../assets/fonts/Oswald/static/Oswald-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: 'OswaldLight';
+  src: url(./../assets/fonts/Oswald/static/Oswald-Light.ttf);
+}
+
+@font-face {
+  font-family: 'OswaldRegular';
+  src: url(./../assets/fonts/Oswald/static/Oswald-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'OswaldMedium';
+  src: url(./../assets/fonts/Oswald/static/Oswald-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'OswaldSemiBold';
+  src: url(./../assets/fonts/Oswald/static/Oswald-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: 'OswaldBold';
+  src: url(./../assets/fonts/Oswald/static/Oswald-Bold.ttf);
+}

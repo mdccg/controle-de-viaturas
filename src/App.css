@@ -1,0 +1,20 @@
+@import './stylesheets/fonts.css';
+
+:root {
+  --emerald: #2ecc71;
+
+  --chi-gong: #d63031;
+
+  --city-lights: #dfe6e9;
+  --soothing-breeze: #b2bec3;
+  --american-river: #636e72;
+  --dracula-orchid: #2d3436;
+}
+
+html, body, #root, .App {
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+
+  font-family: 'OswaldRegular';
+}

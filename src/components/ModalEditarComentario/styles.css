@@ -1,0 +1,55 @@
+.modal-editar-comentario {
+  flex-direction: column;
+  display: flex;
+}
+
+.modal-editar-comentario .titulo {
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+  font-size: large;
+}
+
+.modal-editar-comentario textarea {
+  margin-top: 16px;
+
+  border: none;
+  outline: none;
+
+  background-color: var(--city-lights);
+  border-radius: 4px;
+  
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+  font-size: medium;
+
+  min-height: 64px;
+
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.modal-editar-comentario .btn-salvar {
+  margin-top: 16px;
+  
+  background-color: var(--emerald);
+  border-radius: 4px;
+
+  width: 128px;
+  height: 32px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
+  align-self: flex-end;
+
+  cursor: pointer;
+}
+
+.modal-editar-comentario .btn-salvar span {
+  text-transform: uppercase;
+
+  font-family: 'OswaldBold';
+  color: white;
+  font-size: medium;
+}
