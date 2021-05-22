@@ -1,0 +1,91 @@
+.modal-deletar-viatura {
+  background-color: white;
+  border-radius: 16px;
+
+  max-width: 75vw;
+  width: 384px;
+
+  flex-direction: column;
+  display: flex;
+}
+
+.hitbox-btn-fechar-modal-deletar-viatura {
+  position: absolute;
+
+  max-width: 75vw;
+  width: 384px;
+
+  justify-content: flex-end;
+  display: flex;
+}
+
+.btn-fechar-modal-deletar-viatura {
+  position: relative;
+
+  bottom: 15px;
+  left:   15px;
+
+  background-color: var(--dracula-orchid);
+  fill: white;
+  border-radius: 32px;
+
+  width:  32px;
+  height: 32px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.btn-fechar-modal-deletar-viatura svg {
+  width:  16px;
+  height: 16px;
+}
+
+.modal-deletar-viatura-header {
+  background-color: var(--chi-gong);
+  
+  text-transform: uppercase;
+  font-size: large;
+  color: white;
+
+  border-top-left-radius:  16px;
+  border-top-right-radius: 16px;
+
+  padding: 16px;
+  padding-top: 32px;
+}
+
+.modal-deletar-viatura-body {
+  padding: 16px;
+}
+
+.modal-deletar-viatura-body .btn {
+  margin-top: 16px;
+
+  background-color: var(--chi-gong);
+  border-radius: 2px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+
+  height: 32px;
+
+  cursor: pointer;
+}
+
+.modal-deletar-viatura-body .btn span {
+  font-family: 'OswaldLight';
+  color: white;
+}
+
+.modal-deletar-viatura-body .btn svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}

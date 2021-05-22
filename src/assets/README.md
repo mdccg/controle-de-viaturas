@@ -8,6 +8,7 @@
 - [Speedometer - Free time and date icons](https://www.flaticon.com/free-icon/speedometer_3564796)
 - [Gas station - Free industry icons](https://www.flaticon.com/free-icon/gas-station_565374)
 - [Chat - Free interface icons](https://www.flaticon.com/free-icon/chat_134718)
+- [Cancel - Free signs icons](https://www.flaticon.com/free-icon/cancel_271203)
 
 # Imagens
 

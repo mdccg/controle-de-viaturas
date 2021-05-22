@@ -22,7 +22,7 @@
   color: var(--dracula-orchid);
   font-size: medium;
 
-  min-height: 64px;
+  height: 128px;
 
   box-sizing: border-box;
   padding: 8px;

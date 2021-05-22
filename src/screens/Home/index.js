@@ -8,6 +8,9 @@ import Viatura from './../../components/Viatura';
 import Modal from './../../components/Modal';
 import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
 import ModalEditarComentario from './../../components/ModalEditarComentario';
+import ModalAdicionarViatura from './../../components/ModalAdicionarViatura';
+import ModalDeletarViatura from './../../components/ModalDeletarViatura';
+import TransitionsModal from './../../components/TransitionsModal';
 
 import moment from 'moment';
 
@@ -25,8 +28,18 @@ function Home() {
   const [viaturas, setViaturas] = useState([]);
   const [viatura, setViatura] = useState({});
 
+  const encarrilharViatura = viatura => setViaturas(state => {
+    return [...state, viatura];
+  });
+
+  const desencarrilharViatura = _id => setViaturas(state => {
+    return state.filter(viatura => viatura._id !== _id);
+  });
+
   const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
   const [editandoComentario, setEditandoComentario] = useState(false);
+  const [adicionandoViatura, setAdicionandoViatura] = useState(false);
+  const [deletandoViatura, setDeletandoViatura] = useState(false);
 
   async function editarNome() {
     await setEditandoNome(!editandoNome);
@@ -37,14 +50,28 @@ function Home() {
       localStorage.setItem('nome', nome);
   }
 
-  function atualizarViatura(viatura, index) {
-    let _viaturas = [...viaturas];
-    _viaturas[index] = viatura;
-    setViaturas(_viaturas);
+  function atualizarData(data) {
+    let horario = moment(data).format('HH:mm');
+    let dia = moment(data).format('DD [de] MMMM [de] YYYY');
+    
+    setHorario(horario);
+    setDia(dia);
   }
 
-  function adicionarNovaViatura() {
+  function atualizarCheckpoint() {
+    // TODO back-end aqui
+    
+    let checkpoint = {
+      ultimoMilitar: nome,
+      data: new Date().toISOString()
+    };
 
+    setCheckpoint(checkpoint);
+    atualizarData(checkpoint.data);
+  }
+
+  function adicionarViatura() {
+    setAdicionandoViatura(true);
   }
 
   function exportarPdf() {
@@ -54,18 +81,13 @@ function Home() {
   function buscarDados() {
     // TODO back-end aqui
     setCheckpoint(checkpointMock);
-    
-    let horario = moment(checkpointMock.data).format('HH:mm');
-    let dia     = moment(checkpointMock.data).format('DD [de] MMMM [de] YYYY');
-    
-    setHorario(horario);
-    setDia(dia);
-
+    atualizarData(checkpointMock.data);
     setViaturas(viaturasMock);
   }
 
   useEffect(() => {
     buscarDados();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -77,11 +99,11 @@ function Home() {
               {editandoNome ? <Check /> : <Pen />}
             </div>
             
-            <input  
+            <input
               type="text"
               value={nome}
-              placeholder="Informe a sua patente e o seu nome"
-              onChange={({ target }) => setNome(target.value)}
+              placeholder="Patente + nome"
+              onChange={event => setNome(event.target.value)}
               disabled={!editandoNome}
               ref={nomeRef} />
           </div>
@@ -94,13 +116,14 @@ function Home() {
           </div>
 
           <div className="viaturas">
-            {viaturas.map((viatura, index) => (
-              <Fragment key={viatura.prefixo}>
+            {viaturas.map(viatura => (
+              <Fragment key={viatura._id}>
                 <Viatura
                   setViatura={setViatura}
-                  atualizarViatura={atualizarViatura}
+                  atualizarCheckpoint={atualizarCheckpoint}
                   setEditandoNivelCombustivel={setEditandoNivelCombustivel}
                   setEditandoComentario={setEditandoComentario}
+                  setDeletandoViatura={setDeletandoViatura}
                   {...viatura} />
                 <div className="divider"></div>
               </Fragment>
@@ -108,7 +131,7 @@ function Home() {
           </div>
 
           <div className="operacoes">
-            <div className="botao" onClick={adicionarNovaViatura}>
+            <div className="botao" onClick={adicionarViatura}>
               <span>Adicionar nova viatura</span>
             </div>
             
@@ -128,6 +151,21 @@ function Home() {
           viatura={viatura}
           setEditandoComentario={setEditandoComentario} />
       </Modal>
+      
+      <Modal open={adicionandoViatura} setOpen={setAdicionandoViatura}>
+        <ModalAdicionarViatura
+          atualizarCheckpoint={atualizarCheckpoint}
+          setAdicionandoViatura={setAdicionandoViatura}
+          encarrilharViatura={encarrilharViatura} />
+      </Modal>
+
+      <TransitionsModal open={deletandoViatura} setOpen={setDeletandoViatura}>
+        <ModalDeletarViatura
+          viatura={viatura}
+          atualizarCheckpoint={atualizarCheckpoint}
+          setDeletandoViatura={setDeletandoViatura}
+          desencarrilharViatura={desencarrilharViatura} />
+      </TransitionsModal>
     </>
   );
 }

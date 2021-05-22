@@ -24,7 +24,7 @@
   position: absolute;
 
   background-color: var(--chi-gong);
-  opacity: 37.5%;
+  opacity: .375;
 }
 
 .header img.imagem-de-fundo {

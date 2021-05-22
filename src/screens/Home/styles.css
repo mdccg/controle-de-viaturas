@@ -59,6 +59,8 @@
 .home .viaturas {
   margin-top: 16px;
   margin-bottom: 16px;
+
+  min-height: 37.5vh;
 }
 
 .home .divider {

@@ -18,7 +18,8 @@ function ModalEditarComentario({ viatura = {}, setEditandoComentario }) {
       <textarea
         autoFocus
         value={comentario}
-        onChange={event => setComentario(event.target.value)}>
+        onChange={event => setComentario(event.target.value)}
+        placeholder="Sem comentários">
       </textarea>
 
       <div className="btn-salvar" onClick={salvarComentario}>

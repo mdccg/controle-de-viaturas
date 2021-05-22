@@ -60,8 +60,6 @@
 }
 
 .viatura .info-viatura .linha {
-  min-height: 48px;
-
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: row;

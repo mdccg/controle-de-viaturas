@@ -1,0 +1,69 @@
+.modal-adicionar-viatura {
+  max-width: 75vw;
+  min-width: 256px;
+
+  flex-direction: column;
+  display: flex;
+}
+
+.modal-adicionar-viatura > * {
+  margin-bottom: 16px;
+}
+
+.modal-adicionar-viatura > *:last-child {
+  margin-bottom: 0;
+}
+
+.modal-adicionar-viatura .titulo {
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+  font-size: medium;
+}
+
+.modal-adicionar-viatura input,
+.modal-adicionar-viatura select,
+.modal-adicionar-viatura textarea {
+  outline: none;
+  
+  border: 1px solid var(--soothing-breeze);
+  border-radius: 2px;
+
+  padding-left:  8px;
+  padding-right: 8px;
+
+  font-family: 'OswaldLight';
+
+  min-height: 32px;
+
+  transition: all .125s;
+}
+
+.modal-adicionar-viatura textarea {
+  padding: 8px;
+}
+
+.modal-adicionar-viatura .obrigatorio::placeholder,
+.modal-adicionar-viatura .obrigatorio {
+  border-color: red;
+}
+
+.modal-adicionar-viatura .btn-adicionar-viatura {
+  background-color: var(--emerald);
+  border-radius: 2px;
+  color: white;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  height: 32px;
+
+  cursor: pointer;
+}
+
+.modal-adicionar-viatura .btn-adicionar-viatura svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}
