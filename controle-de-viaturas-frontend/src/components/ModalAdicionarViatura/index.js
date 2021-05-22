@@ -46,7 +46,10 @@ function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, enc
     const viatura = { prefixo, km: Number(km), nivelCombustivel, comentario };
     
     api.post('/viaturas', viatura)
-      .then(() => {
+      .then(res => {
+        const { _id } = res.data;
+        viatura._id = _id;
+
         atualizarCheckpoint();
         encarrilharViatura(viatura);
         setEfetuandoRequisicao(false);
