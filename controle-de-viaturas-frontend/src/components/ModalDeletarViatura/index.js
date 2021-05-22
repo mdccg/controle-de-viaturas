@@ -4,6 +4,8 @@ import './styles.css';
 import Cancel from './../../assets/icons/Cancel';
 import Spinner from './../../assets/icons/Spinner';
 
+import api from './../../services/api';
+
 function ModalDeletarViatura({ viatura = {}, atualizarCheckpoint, setDeletandoViatura, desencarrilharViatura }) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
@@ -14,16 +16,14 @@ function ModalDeletarViatura({ viatura = {}, atualizarCheckpoint, setDeletandoVi
   function deletarViatura() {
     setEfetuandoRequisicao(true);
 
-    setTimeout(() => {
-      // TODO requisição aqui
-
-      console.log(viatura._id);
-      
-      atualizarCheckpoint();
-      desencarrilharViatura(viatura._id);
-      setEfetuandoRequisicao(false);
-      setDeletandoViatura(false);
-    }, 3e3);
+    api.delete(`/viaturas/${viatura._id}`)
+      .then(() => {
+        atualizarCheckpoint();
+        desencarrilharViatura(viatura._id);
+        setEfetuandoRequisicao(false);
+        setDeletandoViatura(false);
+      })
+      .catch(err => console.error(err));
   }
 
   return (

@@ -3,6 +3,8 @@ import './styles.css';
 
 import Spinner from './../../assets/icons/Spinner';
 
+import api from './../../services/api';
+
 function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, encarrilharViatura }) {
   const [prefixo, setPrefixo] = useState('');
   const [km, setKm] = useState('');
@@ -41,17 +43,16 @@ function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, enc
       }
     }
 
+    const viatura = { prefixo, km: Number(km), nivelCombustivel, comentario };
     
-    setTimeout(() => {
-      // TODO back-end aqui
-      const viatura = { prefixo, km: Number(km), nivelCombustivel, comentario };
-      console.table(viatura);
-      
-      atualizarCheckpoint();
-      encarrilharViatura(viatura);
-      setEfetuandoRequisicao(false);
-      setAdicionandoViatura(false);
-    }, 3e3);
+    api.post('/viaturas', viatura)
+      .then(() => {
+        atualizarCheckpoint();
+        encarrilharViatura(viatura);
+        setEfetuandoRequisicao(false);
+        setAdicionandoViatura(false);
+      })
+      .catch(err => console.error(err));
   }
   
   return (

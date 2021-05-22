@@ -10,6 +10,8 @@ import Speedometer from './../../assets/icons/Speedometer';
 import GasStation from './../../assets/icons/GasStation';
 import Chat from './../../assets/icons/Chat';
 
+import api from './../../services/api';
+
 function Viatura(props) {
   const _id = props._id;
   const [prefixo, setPrefixo] = useState(props.prefixo);
@@ -25,17 +27,16 @@ function Viatura(props) {
   async function editarViatura() {
     if(editandoViatura) {
       setAtualizandoViatura(true);
-  
-      await setTimeout(() => {
-        // TODO requisição para salvar viatura
-        let viatura = { _id, prefixo, km: Number(km), nivelCombustivel, comentario };
-        console.table(viatura);
-  
-        props.atualizarCheckpoint();
-
-        setAtualizandoViatura(false);
-        setEditandoViatura(!editandoViatura);
-      }, 1e3);
+      
+      let viatura = { _id, prefixo, km: Number(km), nivelCombustivel, comentario };
+      
+      api.put(`/viaturas/${_id}`, viatura)
+        .then(() => {
+          props.atualizarCheckpoint();
+          setAtualizandoViatura(false);
+          setEditandoViatura(!editandoViatura);
+        })
+        .catch(err => console.error(err));
 
       return;
     }

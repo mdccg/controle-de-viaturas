@@ -126,6 +126,7 @@ function Home() {
             {viaturas.map(viatura => (
               <Fragment key={viatura._id}>
                 <Viatura
+                  key={viatura._id}
                   setViatura={setViatura}
                   atualizarCheckpoint={atualizarCheckpoint}
                   setEditandoNivelCombustivel={setEditandoNivelCombustivel}
