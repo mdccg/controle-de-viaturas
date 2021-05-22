@@ -10,10 +10,8 @@ module.exports = app => {
       var checkpoint;
 
       if(!docs.length) {
-        checkpoint = { ultimoMilitar: '', data: new Date().toISOString() };
-        Checkpoint.create(checkpoint, function(err, doc) {
-          if(err) return res.status(500).json(err);
-        });
+        checkpoint = { ultimoMilitar: 'A atualizar', data: new Date().toISOString() };
+        Checkpoint.create(checkpoint);
       } else
         checkpoint = docs.shift();
       
