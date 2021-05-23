@@ -22,15 +22,15 @@
 .btn-fechar-modal-deletar-viatura {
   position: relative;
 
-  bottom: 15px;
-  left:   15px;
+  bottom: 8px;
+  left:   8px;
 
-  background-color: var(--dracula-orchid);
+  background-color: var(--american-river);
   fill: white;
-  border-radius: 32px;
 
-  width:  32px;
-  height: 32px;
+  border-radius: 24px;
+  width:  24px;
+  height: 24px;
 
   justify-content: center;
   align-items: center;
@@ -40,8 +40,8 @@
 }
 
 .btn-fechar-modal-deletar-viatura svg {
-  width:  16px;
-  height: 16px;
+  width:  8px;
+  height: 8px;
 }
 
 .modal-deletar-viatura-header {

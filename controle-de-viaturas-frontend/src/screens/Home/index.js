@@ -3,6 +3,7 @@ import './styles.css';
 
 import Pen from './../../assets/icons/Pen';
 import Check from './../../assets/icons/Check';
+import Spinner from './../../assets/icons/Spinner';
 
 import Viatura from './../../components/Viatura';
 import Modal from './../../components/Modal';
@@ -22,8 +23,8 @@ function Home() {
   const nomeRef = useRef();
 
   const [checkpoint, setCheckpoint] = useState({});
-  const [horario, setHorario] = useState('');
-  const [dia, setDia] = useState('');
+  const [horario, setHorario] = useState('Carregando hora...');
+  const [dia, setDia] = useState('Carregando data...');
 
   const [viaturas, setViaturas] = useState([]);
   const [viatura, setViatura] = useState({});
@@ -36,6 +37,7 @@ function Home() {
     return state.filter(viatura => viatura._id !== _id);
   });
 
+  const [buscandoViaturas, setBuscandoViaturas] = useState(true);
   const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
   const [editandoComentario, setEditandoComentario] = useState(false);
   const [adicionandoViatura, setAdicionandoViatura] = useState(false);
@@ -85,11 +87,13 @@ function Home() {
         setCheckpoint(res.data);
         atualizarData(res.data.data);
       })
-      .catch(err => console.error(err));
-
-    api.get('/viaturas')
-      .then(res => setViaturas(res.data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => {
+        api.get('/viaturas')
+          .then(res => setViaturas(res.data))
+          .catch(err => console.error(err))
+          .finally(() => setBuscandoViaturas(false));
+      });
   }
 
   useEffect(() => {
@@ -123,7 +127,7 @@ function Home() {
           </div>
 
           <div className="viaturas">
-            {viaturas.map(viatura => (
+            {buscandoViaturas ? <Spinner /> : viaturas.map(viatura => (
               <Fragment key={viatura._id}>
                 <Viatura
                   key={viatura._id}

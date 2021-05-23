@@ -1,6 +1,6 @@
 import './styles.css';
 
-import FireTruckMin from './../../assets/images/fire-truck-min.jpg';
+import FireTruckMin from './../../assets/images/fire-truck-min-5-per-1.jpg';
 
 function Header() {
   return (

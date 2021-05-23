@@ -63,6 +63,10 @@
   min-height: 37.5vh;
 }
 
+.home .viaturas > svg {
+  fill: var(--soothing-breeze);
+}
+
 .home .divider {
   margin-top: 16px;
   margin-bottom: 32px;
