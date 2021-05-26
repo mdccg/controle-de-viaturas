@@ -1,0 +1,11 @@
+.tabela {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tabela table, .tabela th, .tabela td {
+  border: 1px solid black;
+}
+
+.tabela th, .tabela td {
+  padding: 8px;
+}

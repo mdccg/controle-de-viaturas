@@ -19,20 +19,24 @@ function Viatura(props) {
   const [nivelCombustivel, setNivelCombustivel] = useState(props.nivelCombustivel);
   const [comentario, setComentario] = useState(props.comentario);
 
+  const [desatualizada, setDesatualizada] = useState(JSON.stringify({ _id, prefixo, km, nivelCombustivel, comentario }));
+
   const kmRef = useRef();
 
   const [editandoViatura, setEditandoViatura] = useState(false);
   const [atualizandoViatura, setAtualizandoViatura] = useState(false);
 
   async function editarViatura() {
-    if(editandoViatura) {
+    var viatura = { _id, prefixo, km: Number(km), nivelCombustivel, comentario };
+    
+    if(editandoViatura && JSON.stringify(viatura) !== desatualizada) {
       setAtualizandoViatura(true);
-      
-      let viatura = { _id, prefixo, km: Number(km), nivelCombustivel, comentario };
       
       api.put(`/viaturas/${_id}`, viatura)
         .then(() => {
           props.atualizarCheckpoint();
+          setDesatualizada(JSON.stringify(viatura));
+          
           setAtualizandoViatura(false);
           setEditandoViatura(!editandoViatura);
         })

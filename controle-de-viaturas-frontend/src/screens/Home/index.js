@@ -5,6 +5,7 @@ import Pen from './../../assets/icons/Pen';
 import Check from './../../assets/icons/Check';
 import Spinner from './../../assets/icons/Spinner';
 
+import Header from './../../components/Header';
 import Viatura from './../../components/Viatura';
 import Modal from './../../components/Modal';
 import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
@@ -78,7 +79,7 @@ function Home() {
   }
 
   function exportarPdf() {
-    window.print();
+    window.location.pathname = '/tabela';
   }
 
   function buscarDados() {
@@ -103,6 +104,8 @@ function Home() {
 
   return (
     <>
+      <Header />
+      
       <div className="home">
         <div className="container">
           <div className="nome">
