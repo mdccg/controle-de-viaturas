@@ -1,0 +1,22 @@
+.historico .mes {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.historico .mes span {
+  font-family: 'OswaldRegular';
+  color: var(--american-river);
+  font-size: xx-large;
+}
+
+.historico .mes .divider {
+  background-color: var(--soothing-breeze);
+
+  margin-left: 16px;
+  display: flex;
+  height: 1px;
+  flex: 1;
+}

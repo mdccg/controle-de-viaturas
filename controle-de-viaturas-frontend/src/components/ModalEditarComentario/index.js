@@ -12,14 +12,14 @@ function ModalEditarComentario({ viatura = {}, setEditandoComentario }) {
   return (
     <div className="modal-editar-comentario">
       <span className="titulo">
-        Adicione um comentário sobre a viatura <span style={{ fontFamily: 'OswaldRegular' }}>{viatura.prefixo}</span>
+        Adicione uma observação sobre a viatura <span style={{ fontFamily: 'OswaldRegular' }}>{viatura.prefixo}</span>
       </span>
 
       <textarea
         autoFocus
         value={comentario}
         onChange={event => setComentario(event.target.value)}
-        placeholder="Sem comentários">
+        placeholder="Sem observações">
       </textarea>
 
       <div className="btn-salvar" onClick={salvarComentario}>

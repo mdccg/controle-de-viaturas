@@ -5,13 +5,15 @@ import Spinner from './../../assets/icons/Spinner';
 
 import api from './../../services/api';
 
-function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, encarrilharViatura }) {
+function ModalAdicionarViatura({ registrando, setRegistrando, atualizarCheckpoint, setAdicionandoViatura, encarrilharViatura }) {
   const [prefixo, setPrefixo] = useState('');
+  const [categoria, setCategoria] = useState('');
   const [km, setKm] = useState('');
   const [nivelCombustivel, setNivelCombustivel] = useState('');
   const [comentario, setComentario] = useState('');
 
   const prefixoRef = useRef();
+  const categoriaRef = useRef();
   const kmRef = useRef();
   const nivelCombustivelRef = useRef();
   const comentarioRef = useRef();
@@ -23,6 +25,7 @@ function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, enc
 
     let campos = [
       { campo: prefixo, ref: prefixoRef },
+      { campo: categoria, ref: categoriaRef },
       { campo: km, ref: kmRef },
       { campo: nivelCombustivel, ref: nivelCombustivelRef }
     ];
@@ -43,15 +46,17 @@ function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, enc
       }
     }
 
-    const viatura = { prefixo, km: Number(km), nivelCombustivel, comentario };
+    const viatura = { prefixo, categoria, km: Number(km), nivelCombustivel, comentario };
     
     api.post('/viaturas', viatura)
-      .then(res => {
+      .then(async res => {
         const { _id } = res.data;
         viatura._id = _id;
-
+        
+        await encarrilharViatura(viatura);
+        
+        setRegistrando(!registrando);
         atualizarCheckpoint();
-        encarrilharViatura(viatura);
         setEfetuandoRequisicao(false);
         setAdicionandoViatura(false);
       })
@@ -70,6 +75,14 @@ function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, enc
         onChange={event => setPrefixo(event.target.value)}
         ref={prefixoRef} />
 
+      <select
+        ref={categoriaRef}
+        onChange={event => setCategoria(event.target.value)}>
+        <option value="">Tipo de viatura</option>
+        <option value="Trem de S.O.S">Trem de S.O.S</option>
+        <option value="No pátio">No pátio</option>
+      </select>
+
       <input
         type="number"
         placeholder="KM"
@@ -83,14 +96,14 @@ function ModalAdicionarViatura({ atualizarCheckpoint, setAdicionandoViatura, enc
         onChange={event => setNivelCombustivel(event.target.value)}>
         <option value="">Nível de combustível</option>
         <option value="Cheio">Cheio</option>
-        <option value="Abaixo de cheio">Abaixo de cheio</option>
-        <option value="Meio">Meio</option>
-        <option value="Abaixo de meio">Abaixo de meio</option>
+        <option value="¾">¾</option>
+        <option value="½">½</option>
+        <option value="¼">¼</option>
         <option value="Reserva">Reserva</option>
       </select>
 
       <textarea
-        placeholder="Comentário"
+        placeholder="Observação"
         value={comentario}
         onChange={event => setComentario(event.target.value)}
         ref={comentarioRef}>

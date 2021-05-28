@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 import Pen from './../../assets/icons/Pen';
@@ -8,6 +9,7 @@ import Spinner from './../../assets/icons/Spinner';
 import Header from './../../components/Header';
 import Viatura from './../../components/Viatura';
 import Modal from './../../components/Modal';
+import ModalEditarCategoria from './../../components/ModalEditarCategoria';
 import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
 import ModalEditarComentario from './../../components/ModalEditarComentario';
 import ModalAdicionarViatura from './../../components/ModalAdicionarViatura';
@@ -39,10 +41,12 @@ function Home() {
   });
 
   const [buscandoViaturas, setBuscandoViaturas] = useState(true);
+  const [editandoCategoria, setEditandoCategoria] = useState(false);
   const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
   const [editandoComentario, setEditandoComentario] = useState(false);
   const [adicionandoViatura, setAdicionandoViatura] = useState(false);
   const [deletandoViatura, setDeletandoViatura] = useState(false);
+  const [registrando, setRegistrando] = useState(false);
 
   async function editarNome() {
     await setEditandoNome(!editandoNome);
@@ -51,6 +55,24 @@ function Home() {
       nomeRef.current.focus();
     else
       localStorage.setItem('nome', nome);
+  }
+
+  function atualizarStateViaturas(viatura) {
+    desencarrilharViatura(viatura._id);
+    encarrilharViatura(viatura);
+  }
+
+  function registrar(viaturas) {
+
+    const registro = {
+      data: new Date().toISOString(),
+      ultimoMilitar: nome,
+      viaturas
+    };
+
+    api.post('/registros', registro)
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err));
   }
 
   function atualizarData(data) {
@@ -63,7 +85,7 @@ function Home() {
 
   function atualizarCheckpoint() {
     let checkpoint = {
-      ultimoMilitar: nome,
+      ultimoMilitar: !nome ? 'Anônimo' : nome,
       data: new Date().toISOString()
     };
 
@@ -76,10 +98,6 @@ function Home() {
 
   function adicionarViatura() {
     setAdicionandoViatura(true);
-  }
-
-  function exportarPdf() {
-    window.location.pathname = '/tabela';
   }
 
   function buscarDados() {
@@ -98,9 +116,22 @@ function Home() {
   }
 
   useEffect(() => {
+    document.title = 'CONTROLE DE VTR ― 1º SGBM/IND';
+    
     buscarDados();
     // eslint-disable-next-line
   }, []);
+
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      // Your useEffect code here to be run on update
+      registrar(viaturas);
+    }
+  }, [registrando]);
 
   return (
     <>
@@ -130,19 +161,51 @@ function Home() {
           </div>
 
           <div className="viaturas">
-            {buscandoViaturas ? <Spinner /> : viaturas.map(viatura => (
-              <Fragment key={viatura._id}>
-                <Viatura
-                  key={viatura._id}
-                  setViatura={setViatura}
-                  atualizarCheckpoint={atualizarCheckpoint}
-                  setEditandoNivelCombustivel={setEditandoNivelCombustivel}
-                  setEditandoComentario={setEditandoComentario}
-                  setDeletandoViatura={setDeletandoViatura}
-                  {...viatura} />
-                <div className="divider"></div>
-              </Fragment>
-            ))}
+            {buscandoViaturas ? <Spinner /> : (
+              <>
+                <h2>Trem de S.O.S</h2>
+                {viaturas
+                  .filter(({ categoria }) => categoria === 'Trem de S.O.S')
+                  .map(viatura => (
+                  <Fragment key={viatura._id}>
+                    <Viatura
+                      key={viatura._id}
+                      registrando={registrando}
+                      setRegistrando={setRegistrando}
+                      setViatura={setViatura}
+                      atualizarCheckpoint={atualizarCheckpoint}
+                      atualizarStateViaturas={atualizarStateViaturas}
+                      setEditandoCategoria={setEditandoCategoria}
+                      setEditandoNivelCombustivel={setEditandoNivelCombustivel}
+                      setEditandoComentario={setEditandoComentario}
+                      setDeletandoViatura={setDeletandoViatura}
+                      {...viatura} />
+                    <div className="divider"></div>
+                  </Fragment>
+                ))}
+
+                <h2>No pátio</h2>
+                {viaturas
+                  .filter(({ categoria }) => categoria === 'No pátio')
+                  .map(viatura => (
+                  <Fragment key={viatura._id}>
+                    <Viatura
+                      key={viatura._id}
+                      registrando={registrando}
+                      setRegistrando={setRegistrando}
+                      setViatura={setViatura}
+                      atualizarCheckpoint={atualizarCheckpoint}
+                      atualizarStateViaturas={atualizarStateViaturas}
+                      setEditandoCategoria={setEditandoCategoria}
+                      setEditandoNivelCombustivel={setEditandoNivelCombustivel}
+                      setEditandoComentario={setEditandoComentario}
+                      setDeletandoViatura={setDeletandoViatura}
+                      {...viatura} />
+                    <div className="divider"></div>
+                  </Fragment>
+                ))}
+              </>
+            )}
           </div>
 
           <div className="operacoes">
@@ -150,12 +213,20 @@ function Home() {
               <span>Adicionar nova viatura</span>
             </div>
             
-            <div className="botao" onClick={exportarPdf}>
+            <Link to="/historico" className="botao">
+              <span>Histórico</span>
+            </Link>
+
+            <a href="/tabela" target="_blank" className="botao">
               <span>Exportar para PDF</span>
-            </div>
+            </a>
           </div>
         </div>
       </div>
+
+      <Modal open={editandoCategoria} setOpen={setEditandoCategoria}>
+        <ModalEditarCategoria viatura={viatura} />
+      </Modal>
 
       <Modal open={editandoNivelCombustivel} setOpen={setEditandoNivelCombustivel}>
         <ModalEditarNivelCombustivel viatura={viatura} />
@@ -169,6 +240,8 @@ function Home() {
       
       <Modal open={adicionandoViatura} setOpen={setAdicionandoViatura}>
         <ModalAdicionarViatura
+          registrando={registrando}
+          setRegistrando={setRegistrando}
           atualizarCheckpoint={atualizarCheckpoint}
           setAdicionandoViatura={setAdicionandoViatura}
           encarrilharViatura={encarrilharViatura} />
@@ -177,6 +250,8 @@ function Home() {
       <TransitionsModal open={deletandoViatura} setOpen={setDeletandoViatura}>
         <ModalDeletarViatura
           viatura={viatura}
+          registrando={registrando}
+          setRegistrando={setRegistrando}
           atualizarCheckpoint={atualizarCheckpoint}
           setDeletandoViatura={setDeletandoViatura}
           desencarrilharViatura={desencarrilharViatura} />

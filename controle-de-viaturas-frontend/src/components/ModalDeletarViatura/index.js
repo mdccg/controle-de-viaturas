@@ -6,7 +6,7 @@ import Spinner from './../../assets/icons/Spinner';
 
 import api from './../../services/api';
 
-function ModalDeletarViatura({ viatura = {}, atualizarCheckpoint, setDeletandoViatura, desencarrilharViatura }) {
+function ModalDeletarViatura({ viatura = {}, registrando, setRegistrando, atualizarCheckpoint, setDeletandoViatura, desencarrilharViatura }) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
   function cancelar() {
@@ -17,9 +17,11 @@ function ModalDeletarViatura({ viatura = {}, atualizarCheckpoint, setDeletandoVi
     setEfetuandoRequisicao(true);
 
     api.delete(`/viaturas/${viatura._id}`)
-      .then(() => {
+      .then(async () => {
+        await desencarrilharViatura(viatura._id);
+        
+        setRegistrando(!registrando);
         atualizarCheckpoint();
-        desencarrilharViatura(viatura._id);
         setEfetuandoRequisicao(false);
         setDeletandoViatura(false);
       })

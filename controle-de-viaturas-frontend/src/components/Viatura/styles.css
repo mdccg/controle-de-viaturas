@@ -99,7 +99,7 @@
   padding-left:  4px;
   padding-right: 4px;
 
-  background-color: var(--city-lights);
+  background-color: var(--clouds);
   border-radius: 2px;
   
   color: var(--dracula-orchid);
@@ -122,6 +122,7 @@
   
   color: var(--american-river);
 
+  min-height: 32px;
   max-width: 154px;
   flex: 1;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
 import Check from './../../assets/icons/Check';
@@ -10,6 +10,10 @@ function Cadastro() {
     localStorage.setItem('nome', nome);
     window.location.pathname = '/';
   }
+
+  useEffect(() => {
+    document.title = 'CONTROLE DE VTR ― 1º SGBM/IND';
+  }, []);
 
   return (
     <div className="cadastro">

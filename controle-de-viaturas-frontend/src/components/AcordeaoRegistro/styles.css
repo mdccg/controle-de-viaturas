@@ -1,0 +1,107 @@
+.acordeao-registro {
+  margin-bottom: 8px;
+}
+
+.acordeao-registro-header {
+  background-color: var(--city-lights);
+  color: var(--dracula-orchid);
+
+  padding: 8px;
+  padding-right: 16px;
+
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  border-top-left-radius:  4px;
+  border-top-right-radius: 4px;
+
+  cursor: pointer;
+}
+
+.acordeao-registro-header svg {
+  width:  16px;
+  height: 16px;
+
+  fill: var(--dracula-orchid);
+}
+
+.acordeao-registro-body {
+  background-color: var(--clouds);
+
+  flex-direction: column;
+  display: flex;
+
+  padding: 16px;
+}
+
+.acordeao-registro-body .categoria {
+  color: var(--dracula-orchid);
+  font-size: xx-large;
+  
+  text-transform: uppercase;
+  text-align: center;
+  align-self: center;
+  display: flex;
+  
+  margin-bottom: 16px;
+}
+
+.viatura-textual {
+  color: var(--dracula-orchid);
+  font-size: large;
+
+  text-transform: uppercase;
+
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+
+  border-bottom: 1px solid var(--city-lights);
+}
+
+.viatura-textual > * {
+  display: flex;
+  flex: 1;
+}
+
+.viatura-textual svg {
+  width:  32px;
+  height: 32px;
+}
+
+.viatura-textual .comentada {
+  opacity: 1;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 430px) {
+  .viatura-textual {
+    flex-direction: column;
+    align-items: flex-start;
+
+    background-color: var(--city-lights);
+    border-radius: 4px;
+
+    padding: 16px;
+  }
+
+  .viatura-textual > span { margin-bottom: 16px; }
+
+  .viatura-textual > span {
+    background-color: var(--clouds);
+    border-radius: 1px;
+
+    box-sizing: border-box;
+    padding: 8px;
+    width: 100%;
+  }
+
+  .viatura-textual > *:first-child {
+    background-color: var(--american-river);
+    color: white;
+  }
+}

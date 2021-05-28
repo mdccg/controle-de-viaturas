@@ -6,10 +6,6 @@
   display: flex;
 }
 
-.tabela h1 {
-  text-transform: uppercase;
-}
-
 .tabela table, .tabela th, .tabela td {
   border: 1px solid black;
 }

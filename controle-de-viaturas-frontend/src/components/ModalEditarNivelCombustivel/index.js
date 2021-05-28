@@ -3,9 +3,9 @@ import './styles.css';
 
 const niveisCombustivel = [
   'Cheio',
-  'Abaixo de cheio',
-  'Meio',
-  'Abaixo de meio',
+  '¾',
+  '½',
+  '¼',
   'Reserva'
 ];
 

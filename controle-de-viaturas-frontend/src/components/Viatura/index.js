@@ -9,17 +9,20 @@ import Delete from './../../assets/icons/Delete';
 import Speedometer from './../../assets/icons/Speedometer';
 import GasStation from './../../assets/icons/GasStation';
 import Chat from './../../assets/icons/Chat';
+import Communications from './../../assets/icons/Communications';
+import PrivateGarage from './../../assets/icons/PrivateGarage';
 
 import api from './../../services/api';
 
 function Viatura(props) {
   const _id = props._id;
   const [prefixo, setPrefixo] = useState(props.prefixo);
+  const [categoria, setCategoria] = useState(props.categoria);
   const [km, setKm] = useState(props.km);
   const [nivelCombustivel, setNivelCombustivel] = useState(props.nivelCombustivel);
   const [comentario, setComentario] = useState(props.comentario);
 
-  const [desatualizada, setDesatualizada] = useState(JSON.stringify({ _id, prefixo, km, nivelCombustivel, comentario }));
+  const [desatualizada, setDesatualizada] = useState(JSON.stringify({ _id, prefixo, categoria, km, nivelCombustivel, comentario }));
 
   const kmRef = useRef();
 
@@ -27,18 +30,23 @@ function Viatura(props) {
   const [atualizandoViatura, setAtualizandoViatura] = useState(false);
 
   async function editarViatura() {
-    var viatura = { _id, prefixo, km: Number(km), nivelCombustivel, comentario };
+    const { atualizarStateViaturas, registrando, setRegistrando, atualizarCheckpoint } = props;
+    
+    var viatura = { _id, prefixo, categoria, km: Number(km), nivelCombustivel, comentario };
     
     if(editandoViatura && JSON.stringify(viatura) !== desatualizada) {
       setAtualizandoViatura(true);
       
       api.put(`/viaturas/${_id}`, viatura)
-        .then(() => {
-          props.atualizarCheckpoint();
-          setDesatualizada(JSON.stringify(viatura));
-          
+        .then(async () => {
+          await atualizarStateViaturas(viatura);
+
+          setRegistrando(!registrando);
+          atualizarCheckpoint();
           setAtualizandoViatura(false);
           setEditandoViatura(!editandoViatura);
+
+          setDesatualizada(JSON.stringify(viatura));
         })
         .catch(err => console.error(err));
 
@@ -59,11 +67,22 @@ function Viatura(props) {
     props.setDeletandoViatura(true);
   }
 
+  async function editarCategoria() {
+    if(!editandoViatura)
+      return;
+
+    let viatura = { _id, prefixo, categoria, km, nivelCombustivel, comentario, setCategoria };
+
+    await props.setViatura(viatura);
+
+    props.setEditandoCategoria(true);
+  }
+
   async function editarNivelCombustivel() {
     if(!editandoViatura)
       return;
 
-    let viatura = { _id, prefixo, km, nivelCombustivel, comentario, setNivelCombustivel };
+    let viatura = { _id, prefixo, categoria, km, nivelCombustivel, comentario, setNivelCombustivel };
 
     await props.setViatura(viatura);
 
@@ -74,7 +93,7 @@ function Viatura(props) {
     if(!editandoViatura)
       return;
 
-    let viatura = { _id, prefixo, km, nivelCombustivel, comentario, setComentario };
+    let viatura = { _id, prefixo, categoria, km, nivelCombustivel, comentario, setComentario };
 
     await props.setViatura(viatura);
 
@@ -123,10 +142,8 @@ function Viatura(props) {
             </div>
           </div>
 
-          <div
-            className="nivel-combustivel"
-            onClick={editarNivelCombustivel}
-            style={{ cursor: editandoViatura ? 'pointer' : 'text' }}>
+          <div className="nivel-combustivel" onClick={editarNivelCombustivel}
+            style={{ cursor: editandoViatura ? 'pointer' : 'inherit' }}>
             <div className="icone">
               <GasStation />
             </div>
@@ -135,31 +152,43 @@ function Viatura(props) {
             </div>
           </div>
         </div>
+        
         <div style={{ height: '8px' }}></div>
+
         <div className="linha">
+          <div className="comentario" onClick={editarComentario}
+            style={{ cursor: editandoViatura ? 'pointer' : 'inherit' }}>
+            <div className="icone">
+              <Chat />
+            </div>
             <div
-              className="comentario"
-              onClick={editarComentario}
-              style={{ cursor: editandoViatura ? 'pointer' : 'text' }}>
-              <div className="icone">
-                <Chat />
-              </div>
-              <div
-                style={{ maxWidth: 'none' }}
-                className={'info-viatura-input ' + (editandoViatura ? 'editando-viatura' : '')}>
-                {!comentario ? (
-                  <span
-                    className="vazio"
-                    style={{
-                      fontFamily: 'monospace',
-                      fontSize: 'large',
-                    }}>&Oslash;</span>
-                ) : (
-                  <span>{comentario}</span>
-                )}
-              </div>
+              style={{ maxWidth: 'none' }}
+              className={'info-viatura-input ' + (editandoViatura ? 'editando-viatura' : '')}>
+              {!comentario ? (
+                <span
+                  className="vazio"
+                  style={{
+                    fontFamily: 'monospace',
+                    fontSize: 'large',
+                  }}>&Oslash;</span>
+              ) : (
+                <span>{comentario}</span>
+              )}
             </div>
           </div>
+        </div>
+
+        <div style={{ height: '8px' }}></div>
+
+        <div className="linha">
+          <div onClick={editarCategoria} style={{ cursor: editandoViatura ? 'pointer' : 'inherit' }}>
+            {categoria === 'Trem de S.O.S' ? <Communications /> : <PrivateGarage />}
+            
+            <div className={'info-viatura-input ' + (editandoViatura ? 'editando-viatura' : '')} style={{ maxWidth: 'none' }}>
+              <span>{categoria}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

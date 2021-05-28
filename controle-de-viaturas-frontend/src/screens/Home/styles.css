@@ -1,4 +1,4 @@
-.home .container {
+.container {
   margin-left:  16px;
   margin-right: 16px;
 
@@ -56,6 +56,19 @@
   color: var(--soothing-breeze);
 }
 
+.home h2 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  
+  font-family: 'OswaldLight';
+  font-size: xx-large;
+  color: var(--american-river);
+
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--city-lights);
+}
+
 .home .viaturas {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -92,4 +105,8 @@
   margin-bottom: 16px;
 
   cursor: pointer;
+}
+
+.home .operacoes a.botao {
+  text-decoration: none;
 }
