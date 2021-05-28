@@ -8,6 +8,7 @@ import Spinner from './../../assets/icons/Spinner';
 
 import Header from './../../components/Header';
 import Viatura from './../../components/Viatura';
+import Vazio from './../../components/Vazio';
 import Modal from './../../components/Modal';
 import ModalEditarCategoria from './../../components/ModalEditarCategoria';
 import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
@@ -19,6 +20,10 @@ import TransitionsModal from './../../components/TransitionsModal';
 import api from './../../services/api';
 
 import moment from 'moment';
+
+function filtrarPorCategoria(viaturas, categoria) {
+  return viaturas.filter(({ categoria: _categoria }) => _categoria === categoria);
+}
 
 function Home() {
   const [nome, setNome] = useState(localStorage.getItem('nome'));
@@ -131,6 +136,7 @@ function Home() {
       // Your useEffect code here to be run on update
       registrar(viaturas);
     }
+    // eslint-disable-next-line
   }, [registrando]);
 
   return (
@@ -164,46 +170,46 @@ function Home() {
             {buscandoViaturas ? <Spinner /> : (
               <>
                 <h2>Trem de S.O.S</h2>
-                {viaturas
-                  .filter(({ categoria }) => categoria === 'Trem de S.O.S')
-                  .map(viatura => (
-                  <Fragment key={viatura._id}>
-                    <Viatura
-                      key={viatura._id}
-                      registrando={registrando}
-                      setRegistrando={setRegistrando}
-                      setViatura={setViatura}
-                      atualizarCheckpoint={atualizarCheckpoint}
-                      atualizarStateViaturas={atualizarStateViaturas}
-                      setEditandoCategoria={setEditandoCategoria}
-                      setEditandoNivelCombustivel={setEditandoNivelCombustivel}
-                      setEditandoComentario={setEditandoComentario}
-                      setDeletandoViatura={setDeletandoViatura}
-                      {...viatura} />
-                    <div className="divider"></div>
-                  </Fragment>
-                ))}
+                {filtrarPorCategoria(viaturas, 'Trem de S.O.S').length > 0 ? (
+                  filtrarPorCategoria(viaturas, 'Trem de S.O.S').map(viatura => (
+                    <Fragment key={viatura._id}>
+                      <Viatura
+                        key={viatura._id}
+                        setViatura={setViatura}
+                        registrando={registrando}
+                        setRegistrando={setRegistrando}
+                        atualizarCheckpoint={atualizarCheckpoint}
+                        atualizarStateViaturas={atualizarStateViaturas}
+                        setEditandoCategoria={setEditandoCategoria}
+                        setEditandoNivelCombustivel={setEditandoNivelCombustivel}
+                        setEditandoComentario={setEditandoComentario}
+                        setDeletandoViatura={setDeletandoViatura}
+                        {...viatura} />
+                      <div className="divider"></div>
+                    </Fragment>
+                  ))
+                ) : <Vazio>Nenhuma viatura cadastrada</Vazio>}
 
                 <h2>No pátio</h2>
-                {viaturas
-                  .filter(({ categoria }) => categoria === 'No pátio')
-                  .map(viatura => (
-                  <Fragment key={viatura._id}>
-                    <Viatura
-                      key={viatura._id}
-                      registrando={registrando}
-                      setRegistrando={setRegistrando}
-                      setViatura={setViatura}
-                      atualizarCheckpoint={atualizarCheckpoint}
-                      atualizarStateViaturas={atualizarStateViaturas}
-                      setEditandoCategoria={setEditandoCategoria}
-                      setEditandoNivelCombustivel={setEditandoNivelCombustivel}
-                      setEditandoComentario={setEditandoComentario}
-                      setDeletandoViatura={setDeletandoViatura}
-                      {...viatura} />
-                    <div className="divider"></div>
-                  </Fragment>
-                ))}
+                {filtrarPorCategoria(viaturas, 'No pátio').length > 0 ? (
+                  filtrarPorCategoria(viaturas, 'No pátio').map(viatura => (
+                    <Fragment key={viatura._id}>
+                      <Viatura
+                        key={viatura._id}
+                        setViatura={setViatura}
+                        registrando={registrando}
+                        setRegistrando={setRegistrando}
+                        atualizarCheckpoint={atualizarCheckpoint}
+                        atualizarStateViaturas={atualizarStateViaturas}
+                        setEditandoCategoria={setEditandoCategoria}
+                        setEditandoNivelCombustivel={setEditandoNivelCombustivel}
+                        setEditandoComentario={setEditandoComentario}
+                        setDeletandoViatura={setDeletandoViatura}
+                        {...viatura} />
+                      <div className="divider"></div>
+                    </Fragment>
+                  ))
+                ) : <Vazio>Nenhuma viatura cadastrada</Vazio>}
               </>
             )}
           </div>
@@ -217,7 +223,7 @@ function Home() {
               <span>Histórico</span>
             </Link>
 
-            <a href="/tabela" target="_blank" className="botao">
+            <a href="/tabela-diaria" target="_blank" className="botao">
               <span>Exportar para PDF</span>
             </a>
           </div>

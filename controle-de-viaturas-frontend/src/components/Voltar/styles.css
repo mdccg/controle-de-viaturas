@@ -1,0 +1,27 @@
+a.voltar-tela {
+  text-decoration: none;
+}
+
+.voltar-tela {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.voltar-tela svg {
+  width:  32px;
+  height: 32px;
+  
+  fill: var(--soothing-breeze);
+
+  transform: rotate(90deg);
+}
+
+.voltar-tela span {
+  margin-left: 16px;
+
+  color: var(--american-river);
+  font-size: x-large;
+}

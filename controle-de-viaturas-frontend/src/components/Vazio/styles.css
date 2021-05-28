@@ -1,0 +1,28 @@
+.componente-vazio {
+  margin-top: 16px;
+
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.componente-vazio svg {
+  max-width: 100%;
+
+  width:  128px;
+  height: 128px;
+
+  fill: var(--soothing-breeze);
+}
+
+.componente-vazio span {
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: x-large;
+
+  color: var(--soothing-breeze);
+}

@@ -13,10 +13,13 @@
 - [Arrow down sign to navigate - Free arrows icons](https://www.flaticon.com/free-icon/arrow-down-sign-to-navigate_32195)
 - [Communications - Free signs icons](https://www.flaticon.com/free-icon/communications_1786490)
 - [Private Garage - Free transport icons](https://www.flaticon.com/free-icon/private-garage_75751)
+- [Empty - Free education icons](https://www.flaticon.com/free-icon/empty_2039083)
+- [Down arrow - Free arrows icons](https://www.flaticon.com/free-icon/down-arrow_626013)
 
 # Imagens
 
-- [How to Proceed in a Fire Truck Accident | Fried Goldberg](https://www.friedgoldberg.com/blog/fire-truck-accident/)
+- [RV trailer on road photo – Free Vehicle Image on Unsplash](https://unsplash.com/photos/QK6Iwzd5MhE)
+- [red and white truck on road during daytime photo – Free Vehicle Image on Unsplash](https://unsplash.com/photos/gYUcz34aQ6A)
 
 # Bibliotecas
 

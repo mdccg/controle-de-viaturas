@@ -2,6 +2,8 @@ import { useState, useEffect, Fragment } from 'react';
 import './styles.css';
 
 import Header from './../../components/Header';
+import Voltar from './../../components/Voltar';
+import Vazio from './../../components/Vazio';
 import AcordeaoRegistro from './../../components/AcordeaoRegistro';
 
 import api from './../../services/api';
@@ -26,10 +28,12 @@ function Historico() {
 
   return (
     <div className="historico">
-      <Header titulo="Histórico" />
-
+      <Header titulo="Histórico ― 1º SGBM/IND" />
+      
       <div className="container">
-        {Object.keys(registros).map(mes => {
+        <Voltar />
+
+        {JSON.stringify(registros) !== '{}' ? Object.keys(registros).map(mes => {
           const acordeoes = registros[mes];
           
           return (
@@ -41,7 +45,7 @@ function Historico() {
               {acordeoes.map(acordeao => <AcordeaoRegistro key={acordeao._id} {...acordeao} />)}
             </Fragment>
           );
-        })}
+        }) : <Vazio>Histórico vazio</Vazio>}
       </div>
     </div>
   );

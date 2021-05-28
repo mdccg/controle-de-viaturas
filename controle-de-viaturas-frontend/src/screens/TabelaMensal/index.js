@@ -3,7 +3,7 @@ import './styles.css';
 
 import moment from 'moment';
 
-function Tabela() {
+function TabelaMensal() {
   function buscarViaturas() {
 
   }
@@ -13,9 +13,9 @@ function Tabela() {
   }, []);
 
   return (
-    <div className="tabela">
+    <div className="tabela-mensal">
     </div>
   );
 }
 
-export default Tabela;
+export default TabelaMensal;
