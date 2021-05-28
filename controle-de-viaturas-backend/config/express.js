@@ -4,10 +4,12 @@ const config     = require('config');
 const cors       = require('cors');
 const consign    = require('consign');
 
+
 module.exports = () => {
   const app = express();
-
+  
   require('./../database');
+  require('moment/locale/pt-br');
 
   // SETANDO VARIÁVEIS DA APLICAÇÃO
   app.set('port', process.env.PORT || config.get('server.port'));
