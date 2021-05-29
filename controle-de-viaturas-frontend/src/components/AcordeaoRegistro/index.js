@@ -41,6 +41,14 @@ function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
     setAberto(!aberto);
   }
 
+  function exportarPdf() {
+    let militar = ultimoMilitar;
+    
+    var url = `/tabela-diaria?data=${data}&militar=${militar}&viaturas=${JSON.stringify(viaturas)}`;
+
+    window.open(url, '_blank');
+  }
+
   return (
     <div className="acordeao-registro" key={_id}>
       <div
@@ -69,6 +77,10 @@ function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
             filtrarPorCategoria(viaturas, 'No pátio')
               .map(viatura => <ViaturaTextual key={viatura._id} {...viatura} />)
           ) : <Vazio>Nenhuma viatura encontrada</Vazio>}
+
+          <div className="botao" onClick={exportarPdf}>
+            <span>Exportar tabela para PDF</span>
+          </div>
         </div>
       ) : <></>}
     </div>

@@ -77,8 +77,25 @@
   height: 32px;
 }
 
-.viatura-textual .comentada {
-  opacity: 1;
+.acordeao-registro-body .botao {
+  margin-top: 32px;
+
+  background-color: var(--emerald);
+  border-radius: 2px;
+
+  width: 256px;
+  height: 48px;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  text-transform: uppercase;
+  font-family: 'OswaldBold';
+  color: white;
+  font-size: large;
+
   cursor: pointer;
 }
 
@@ -103,8 +120,6 @@
 
     margin-bottom: 16px;
   }
-
-  .viatura-textual .nao-comentada { margin-bottom: 0; }
 
   .viatura-textual > *:first-child {
     background-color: var(--american-river);

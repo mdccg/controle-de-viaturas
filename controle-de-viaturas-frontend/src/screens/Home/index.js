@@ -223,7 +223,11 @@ function Home() {
               <span>Histórico</span>
             </Link>
 
-            <a href="/tabela-diaria" target="_blank" className="botao">
+            <a
+              href={`/tabela-diaria?data=${checkpoint.data}&militar=${checkpoint.ultimoMilitar}&viaturas=${JSON.stringify(viaturas)}`}
+              target="_blank"
+              without rel="noreferrer"
+              className="botao">
               <span>Exportar para PDF</span>
             </a>
           </div>
