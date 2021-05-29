@@ -20,3 +20,61 @@
   height: 1px;
   flex: 1;
 }
+
+.historico .botao-exportar {
+  margin-top: 16px;
+
+  background-color: var(--emerald);
+  border-radius: 2px;
+
+  padding: 8px;
+  padding-left:  16px;
+  padding-right: 16px;
+
+  min-height: 48px;
+  min-width: 256px;
+  max-width: 100%;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  font-family: 'OswaldBold';
+  color: white;
+  font-size: large;
+  text-align: left;
+  line-height: 1.5;
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.historico .botao-exportar svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+
+  margin-right: 16px;
+}
+
+.historico .divider-botao-exportar-mensal {
+  background-color: var(--soothing-breeze);
+  
+  margin: 16px;
+
+  align-self: center;
+  display: flex;
+
+  height: 48px;
+  width: 1px;
+}
+
+.historico .botao-exportar.mensal {
+  background-color: var(--nephritis);
+  
+  font-size: medium;
+
+  margin-bottom: 64px;
+}

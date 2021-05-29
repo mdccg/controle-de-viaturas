@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './styles.css';
 
 import ArrowDownSignToNavigate from './../../assets/icons/ArrowDownSignToNavigate';
+import Clipboard from './../../assets/icons/Clipboard';
 
 import Vazio from './../Vazio';
 
@@ -59,7 +60,7 @@ function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
         }} 
         onClick={abrir}>
         <span>{diaSemana}, {dataFormatada} &bull; {ultimoMilitar.toUpperCase()}</span>
-        <ArrowDownSignToNavigate />
+        <ArrowDownSignToNavigate className={aberto ? 'aberto' : ''} />
       </div>
 
       {aberto ? (
@@ -78,7 +79,8 @@ function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
               .map(viatura => <ViaturaTextual key={viatura._id} {...viatura} />)
           ) : <Vazio>Nenhuma viatura encontrada</Vazio>}
 
-          <div className="botao" onClick={exportarPdf}>
+          <div className="botao-exportar" onClick={exportarPdf}>
+            <Clipboard />
             <span>Exportar tabela para PDF</span>
           </div>
         </div>

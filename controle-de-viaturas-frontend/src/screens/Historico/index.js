@@ -1,6 +1,8 @@
 import { useState, useEffect, Fragment } from 'react';
 import './styles.css';
 
+import Clipboard from './../../assets/icons/Clipboard';
+
 import Header from './../../components/Header';
 import Voltar from './../../components/Voltar';
 import Vazio from './../../components/Vazio';
@@ -19,6 +21,11 @@ function Historico() {
         console.log(res.data);
       })
       .catch(err => console.error(err));
+  }
+
+  function exportarPdfMensal(mes) {
+    var url = `/tabela-mensal?mes=${mes}&registros=${JSON.stringify(registros[mes])}`;
+    window.open(url, '_blank');
   }
 
   useEffect(() => {
@@ -42,7 +49,15 @@ function Historico() {
                 <span>{mes}</span>
                 <div className="divider"></div>
               </div>
+              
               {acordeoes.map(acordeao => <AcordeaoRegistro key={acordeao._id} {...acordeao} />)}
+              
+              <div className="divider-botao-exportar-mensal"></div>
+
+              <div className="botao-exportar mensal" onClick={() => exportarPdfMensal(mes)}>
+                <Clipboard />
+                <span>Exportar tabela de {mes} para PDF</span>
+              </div>
             </Fragment>
           );
         }) : <Vazio>Histórico vazio</Vazio>}

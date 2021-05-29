@@ -6,7 +6,7 @@ import randomDate from './../../functions/randomDate';
 import api from './../../services/api';
 
 function Teste() {
-  const [viaturas, setViaturas] = useState({});
+  const [viaturas, setViaturas] = useState([]);
 
   const [tremDeSos, setTremDeSos] = useState([]);
   const [noPatio, setNoPatio] = useState([]);
@@ -62,7 +62,7 @@ function Teste() {
 
     registro.ultimoMilitar = militares[indice];
     registro.data = randomDate();
-    registro.viaturas = [...viaturas['Trem de S.O.S'], ...viaturas['No pátio']];
+    registro.viaturas = viaturas;
 
     api.post('/registros', registro)
       .then(res => {
