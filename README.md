@@ -51,10 +51,11 @@ window.addEventListener('afterprint', function() {
 - [Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons](https://www.flaticon.com/)
 - [Playground - SVGR](https://react-svgr.com/playground/)
 - [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
-- [Timestamp Converter](https://www.timestamp-converter.com/)/
+- [Timestamp Converter](https://www.timestamp-converter.com/)
 - [Firebase](https://firebase.google.com/?hl=pt-br)
 - [MongoDB Cloud | MongoDB](https://www.mongodb.com/cloud)
 - [Cloud Application Platform | Heroku](https://www.heroku.com/)
 - [PWA Manifest Generator | SimiCart](https://www.simicart.com/manifest-generator.html/)
+- [Símbolos – CBMMS](https://www.bombeiros.ms.gov.br/simbolos/)
 
 Outros créditos disponívels em [`controle-de-viaturas-frontend/src/assets/README.md`](https://github.com/mdccg/controle-de-viaturas/tree/master/controle-de-viaturas-frontend/src/assets).
