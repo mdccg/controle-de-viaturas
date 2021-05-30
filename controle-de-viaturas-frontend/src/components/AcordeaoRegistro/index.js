@@ -6,6 +6,8 @@ import Clipboard from './../../assets/icons/Clipboard';
 
 import Vazio from './../Vazio';
 
+import api from './../../services/api';
+
 import moment from 'moment';
 
 const diasSemana = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
@@ -43,11 +45,18 @@ function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
   }
 
   function exportarPdf() {
-    let militar = ultimoMilitar;
-    
-    var url = `/tabela-diaria?data=${data}&militar=${militar}&viaturas=${JSON.stringify(viaturas)}`;
+    const relatorio = {
+      tipo: 'diario',
+      relatorio: {
+        data: data,
+        militar: ultimoMilitar,
+        viaturas
+      }
+    };
 
-    window.open(url, '_blank');
+    api.put('/relatorio', relatorio)
+      .then(() => window.open('/tabela-diaria', '_blank'))
+      .catch(err => console.error(err));
   }
 
   return (

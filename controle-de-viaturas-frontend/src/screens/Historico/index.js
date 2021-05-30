@@ -24,8 +24,14 @@ function Historico() {
   }
 
   function exportarPdfMensal(mes) {
-    var url = `/tabela-mensal?mes=${mes}&registros=${JSON.stringify(registros[mes])}`;
-    window.open(url, '_blank');
+    const relatorio = {
+      tipo: 'mensal',
+      relatorio: { mes, registros: registros[mes] }
+    };
+
+    api.put('/relatorio', relatorio)
+      .then(() => window.open('/tabela-mensal', '_blank'))
+      .catch(err => console.error(err));
   }
 
   useEffect(() => {

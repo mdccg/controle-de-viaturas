@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
 
+import api from './../../services/api';
+
 import moment from 'moment';
 
 const diasSemana = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
@@ -87,24 +89,16 @@ function TabelaMensal() {
   const [registros, setRegistros] = useState([]);
 
   async function montarRegistros() {
-    var params = {};
-    var stringParams = window.location.href.split('?').pop();
+    await api.get('/relatorio')
+      .then(res => {
+        let { mes, registros } = res.data.relatorio;
 
-    for(var stringParam of stringParams.split('&')) {
-      var [key, value] = stringParam.split('=');
+        setMes(mes);
+        setRegistros(registros);
 
-      value = decodeURIComponent(value);
-
-      if(key === 'registros')
-        value = JSON.parse(value);
-      
-      params[key] = value;
-    }
-
-    await setMes(params.mes);
-    await setRegistros(params.registros);
-
-    document.title = `${params.mes.toUpperCase()} - 1.o SGBM-IND`;
+        document.title = `${mes.toUpperCase()} - 1.o SGBM-IND`;
+      })
+      .catch(err => console.error(err));
 
     window.print();
     window.addEventListener('afterprint', function() {

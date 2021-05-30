@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
 
+import api from './../../services/api';
+
 import moment from 'moment';
 
 const diasSemana = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
@@ -16,31 +18,21 @@ function TabelaDiaria() {
   const [viaturas, setViaturas] = useState([]);
 
   async function montarRegistro() {
-    var params = {};
-    var stringParams = window.location.href.split('?').pop();
+    await api.get('/relatorio')
+      .then(res => {
+        let { data, militar, viaturas } = res.data.relatorio;
+        
+        let dia = moment(data).format('DD.MM.YYYY');
+        let diaSemana = diasSemana[moment(data).isoWeekday() - 1];
 
-    for(var stringParam of stringParams.split('&')) {
-      var [key, value] = stringParam.split('=');
+        setDia(dia);
+        setDiaSemana(diaSemana);
+        setMilitar(militar);
+        setViaturas(viaturas);
 
-      value = decodeURIComponent(value);
-
-      if(key === 'viaturas')
-        value = JSON.parse(value);
-      
-      params[key] = value;
-    }
-
-    console.log(params);
-
-    let dia = moment(params.data).format('DD.MM.YYYY');
-    let diaSemana = diasSemana[moment(params.data).isoWeekday() - 1];
-
-    await setDia(dia);
-    await setDiaSemana(diaSemana);
-    await setMilitar(params.militar);
-    await setViaturas(params.viaturas);
-
-    document.title = `${dia} - ${params.militar.toUpperCase()} - 1.o SGBM-IND`;
+        document.title = `${dia} - ${militar.toUpperCase()} - 1.o SGBM-IND`;
+      })
+      .catch(err => console.error(err));
 
     window.print();
     window.addEventListener('afterprint', function() {

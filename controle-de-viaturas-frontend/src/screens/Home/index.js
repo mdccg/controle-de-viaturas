@@ -34,8 +34,17 @@ function Home() {
   const [horario, setHorario] = useState('Carregando hora...');
   const [dia, setDia] = useState('Carregando data...');
 
-  const [viaturas, setViaturas] = useState([]);
   const [viatura, setViatura] = useState({});
+
+  const [buscandoViaturas, setBuscandoViaturas] = useState(true);
+  const [editandoCategoria, setEditandoCategoria] = useState(false);
+  const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
+  const [editandoComentario, setEditandoComentario] = useState(false);
+  const [adicionandoViatura, setAdicionandoViatura] = useState(false);
+  const [deletandoViatura, setDeletandoViatura] = useState(false);
+  const [registrando, setRegistrando] = useState(false);
+  
+  const [viaturas, setViaturas] = useState([]);
 
   const encarrilharViatura = viatura => setViaturas(state => {
     return [...state, viatura];
@@ -45,30 +54,12 @@ function Home() {
     return state.filter(viatura => viatura._id !== _id);
   });
 
-  const [buscandoViaturas, setBuscandoViaturas] = useState(true);
-  const [editandoCategoria, setEditandoCategoria] = useState(false);
-  const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
-  const [editandoComentario, setEditandoComentario] = useState(false);
-  const [adicionandoViatura, setAdicionandoViatura] = useState(false);
-  const [deletandoViatura, setDeletandoViatura] = useState(false);
-  const [registrando, setRegistrando] = useState(false);
-
-  async function editarNome() {
-    await setEditandoNome(!editandoNome);
-
-    if(!editandoNome)
-      nomeRef.current.focus();
-    else
-      localStorage.setItem('nome', nome);
-  }
-
   function atualizarStateViaturas(viatura) {
     desencarrilharViatura(viatura._id);
     encarrilharViatura(viatura);
   }
 
   function registrar(viaturas) {
-
     const registro = {
       data: new Date().toISOString(),
       ultimoMilitar: nome,
@@ -78,6 +69,15 @@ function Home() {
     api.post('/registros', registro)
       .then(res => console.log(res.data))
       .catch(err => console.error(err));
+  }
+
+  async function editarNome() {
+    await setEditandoNome(!editandoNome);
+
+    if(!editandoNome)
+      nomeRef.current.focus();
+    else
+      localStorage.setItem('nome', nome);
   }
 
   function atualizarData(data) {
@@ -103,6 +103,21 @@ function Home() {
 
   function adicionarViatura() {
     setAdicionandoViatura(true);
+  }
+
+  function exportarPdf() {
+    const relatorio = {
+      tipo: 'diario',
+      relatorio: {
+        data: checkpoint.data,
+        militar: checkpoint.ultimoMilitar,
+        viaturas
+      }
+    };
+
+    api.put('/relatorio', relatorio)
+      .then(() => window.open('/tabela-diaria', '_blank'))
+      .catch(err => console.error(err));
   }
 
   function buscarDados() {
@@ -223,13 +238,9 @@ function Home() {
               <span>Histórico</span>
             </Link>
 
-            <a
-              href={`/tabela-diaria?data=${checkpoint.data}&militar=${checkpoint.ultimoMilitar}&viaturas=${JSON.stringify(viaturas)}`}
-              target="_blank"
-              without rel="noreferrer"
-              className="botao">
-              <span>Exportar para PDF</span>
-            </a>
+            <div className="botao" onClick={exportarPdf}>
+              <span>Exportar formulário atual para PDF</span>
+            </div>
           </div>
         </div>
       </div>
