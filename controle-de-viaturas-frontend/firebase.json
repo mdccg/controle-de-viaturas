@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "com-aq",
+    "site": "controle-de-viaturas-mock",
     "public": "build",
     "ignore": [
       "firebase.json",
