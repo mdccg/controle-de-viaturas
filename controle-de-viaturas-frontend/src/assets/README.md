@@ -19,6 +19,9 @@
 - [Visibility - Free interface icons](https://www.flaticon.com/free-icon/visibility_633887)
 - [Bell - Free Tools and utensils icons](https://www.flaticon.com/free-icon/bell_1827347)
 - [Menu - Free multimedia icons](https://www.flaticon.com/free-icon/menu_1828859)
+- [User - Free social icons](https://www.flaticon.com/free-icon/user_709722)
+- [Add - Free signs icons](https://www.flaticon.com/free-icon/add_1237946)
+- [Like - Free gestures icons](https://www.flaticon.com/free-icon/like_2087973)
 
 # Imagens
 

@@ -9,7 +9,8 @@
  - Senha.
 - [ ] Vincular o modelo de dados dos militares aos formulários preenchidos;
 - [ ] Adicionar um modelo de dados para tipos de viaturas;
-- [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas.
+- [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
+- [ ] Trocar ponto por vírgula na atualização do odômetro das viaturas.
 
 ## Motivação
 
