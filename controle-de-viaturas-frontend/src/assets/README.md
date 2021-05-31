@@ -15,6 +15,10 @@
 - [Empty - Free education icons](https://www.flaticon.com/free-icon/empty_2039083)
 - [Down arrow - Free arrows icons](https://www.flaticon.com/free-icon/down-arrow_626013)
 - [Clipboard - Free interface icons](https://www.flaticon.com/free-icon/clipboard_446977)
+- [Visibility - Free medical icons](https://www.flaticon.com/free-icon/visibility_633865)
+- [Visibility - Free interface icons](https://www.flaticon.com/free-icon/visibility_633887)
+- [Bell - Free Tools and utensils icons](https://www.flaticon.com/free-icon/bell_1827347)
+- [Menu - Free multimedia icons](https://www.flaticon.com/free-icon/menu_1828859)
 
 # Imagens
 

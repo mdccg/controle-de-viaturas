@@ -1,10 +1,23 @@
 # controle-de-viaturas
 
+## _To-do list_
+
+- [ ] Adicionar um modelo de dados para militares contendo os seguintes atributos;
+ - Patente;
+ - Primeiro nome;
+ - E-mail;
+ - Senha.
+- [ ] Vincular o modelo de dados dos militares aos formulários preenchidos;
+- [ ] Adicionar um modelo de dados para tipos de viaturas;
+- [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas.
+
+## Motivação
+
 Este app foi desenvolvido para o 1º Subgrupamento de Bombeiros Militar Independente (1º SGBM/Ind) do município de Aquidauana - MS. Seu objetivo é inspecionar e gerar relatórios diários e mensais sobre as viaturas de combate ao incêndio, armazenando informações como prefixo, tipo de viatura (trem de S.O.S ou pátio), distância marcada pelo odômetro, nível de combustível e observações facultativas.
 
-Para o desenvolvimento do app, foi utilizada a página [Flat UI Colors](https://flatuicolors.com/) para composição da [paleta de cores](https://github.com/mdccg/controle-de-viaturas/blob/master/controle-de-viaturas-frontend/src/App.css), o editor gráfico [Figma](https://figma.com/) para prototipagem, a biblioteca [React.js](https://pt-br.reactjs.org/) para criação das interfaces visuais, o framework [Express.js](https://expressjs.com/pt-br/) para criação da API e o serviço de banco de dados em nuvem global [MongoDB Atlas](https://cloud.mongodb.com/) para gestão e hospedagem do banco de dados. O protótipo visual do app está disponível no endereço https://figma.fun/L1OsQL. É digno de nota que algumas mudanças foram solicitadas pelo _stakeholder_ durante o desenvolvimento e não foram desenhadas no protótipo, apenas especificadas por escrito.
+Para o desenvolvimento do app, foi utilizada a página [Flat UI Colors](https://flatuicolors.com/) para composição da [paleta de cores](https://github.com/mdccg/controle-de-viaturas/blob/master/controle-de-viaturas-frontend/src/App.css), o editor gráfico [Figma](https://figma.com/) para prototipagem, a biblioteca [React.js](https://pt-br.reactjs.org/) para criação das interfaces visuais, o framework [Express.js](https://expressjs.com/pt-br/) para criação da API e o serviço de banco de dados em nuvem global [MongoDB Atlas](https://cloud.mongodb.com/) para gestão e hospedagem do banco de dados. O protótipo visual do app está disponível no endereço https://figma.fun/L1OsQL. O acesso ao app é protegido por meio de autenticação com login e senha. Assim, o acesso é restrito aos bombeiros smilitares do 1º SGBM/Ind, por meio da supervisão do _stakeholder_. Por conseguinte, o app oferece também a consulta aos formulários previamente preenchidos.
 
-Ademais, este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva (do inglês _Progressive Web App_ – PWA) é um app web que, quando utilizado em dispositivo móvel como um _smartphone_, por exemplo, se comporta como um app nativo da plataforma do dispositivo - Android ou iOS, por exemplo. Por sua vez, quando visualizado em um dispositivo _desktop_, como um computador pessoal, por exemplo, se comporta como um web site. As vantagens de se implementar o app com esta abordagem é o baixo custo de implementação, associado a todos os benefícios que um app para dispositivos móveis oferece ao usuário. (PONTES, 2018)
+Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva (do inglês _Progressive Web App_ – PWA) é um app web que, quando utilizado em dispositivo móvel como um _smartphone_, por exemplo, se comporta como um app nativo da plataforma do dispositivo - Android ou iOS, por exemplo. Por sua vez, quando visualizado em um dispositivo _desktop_, como um computador pessoal, por exemplo, se comporta como um web site. As vantagens de se implementar o app com esta abordagem é o baixo custo de implementação, associado a todos os benefícios que um app para dispositivos móveis oferece ao usuário. (PONTES, 2018)
 
 Para organização das datas de cada relatório, foi utilizada a [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601), uma norma internacional para representação de data e hora e a biblioteca [Moment.js](https://momentjs.com/), tanto no front-end como no back-end. Para disposição e conversão em PDF dos relatórios diários e mensais, foram utilizados os seguintes retalhos de código:
 
@@ -46,6 +59,8 @@ window.addEventListener('afterprint', function() {
   <img src="https://i.imgur.com/RcYl9g9.png" alt="Relatório do dia 29 de março de 2021, preenchido pelo Grande Almirante Thrawn" />
 </div>
 
+---
+
 ## Créditos
 
 - [Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons](https://www.flaticon.com/)
@@ -55,7 +70,9 @@ window.addEventListener('afterprint', function() {
 - [Firebase](https://firebase.google.com/?hl=pt-br)
 - [MongoDB Cloud | MongoDB](https://www.mongodb.com/cloud)
 - [Cloud Application Platform | Heroku](https://www.heroku.com/)
-- [PWA Manifest Generator | SimiCart](https://www.simicart.com/manifest-generator.html/)
 - [Símbolos – CBMMS](https://www.bombeiros.ms.gov.br/simbolos/)
+- [PWA Manifest Generator | SimiCart](https://www.simicart.com/manifest-generator.html/)
+- [Convertio — Conversor de Ficheiros](https://convertio.co/pt/)
+- [CloudConvert](https://cloudconvert.com/)
 
 Outros créditos disponívels em [`controle-de-viaturas-frontend/src/assets/README.md`](https://github.com/mdccg/controle-de-viaturas/tree/master/controle-de-viaturas-frontend/src/assets).
