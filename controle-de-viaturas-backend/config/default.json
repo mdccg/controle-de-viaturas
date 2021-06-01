@@ -1,5 +1,6 @@
 {
   "server": {
     "port": "3001"
-  }
+  },
+  "secret": "7aaeec40ffe4c14d98fe9d0d81fc9aea"
 }

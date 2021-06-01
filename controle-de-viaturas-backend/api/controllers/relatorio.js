@@ -22,21 +22,18 @@ module.exports = app => {
   };
 
   controller.atualizarRelatorio = (req, res) => {
-    const { tipo, relatorio } = req.body;
-    var relatorioAtualizado = { tipo, relatorio };
-
     Relatorio.find({}, async function(err, docs) {
       if(err) return res.status(500).json(err);
 
       if(!docs.length)
-        await Relatorio.create(relatorioAtualizado);
+        await Relatorio.create(req.body);
 
       else {
         var { _id } = docs.pop();
         var options = { useFindAndModify: false };
-        relatorioAtualizado._id = _id;
+        req.body._id = _id;
 
-        Relatorio.findByIdAndUpdate(_id, relatorioAtualizado, options, function(err, result) {
+        Relatorio.findByIdAndUpdate(_id, { $set: req.body }, options, function(err, result) {
           if(err) return res.status(500).json(err);
         });
       };

@@ -3,7 +3,8 @@ module.exports = app => {
 
   app.route('/api/v1/viaturas')
     .post(controller.adicionarViatura)
-    .get(controller.listarViaturas);
+    .get(controller.listarViaturas)
+    .delete(controller.truncate);
 
   app.route('/api/v1/viaturas/:id')
     .put(controller.atualizarViatura)

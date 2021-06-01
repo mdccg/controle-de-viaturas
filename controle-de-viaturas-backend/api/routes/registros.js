@@ -1,10 +1,13 @@
 module.exports = app => {
   const controller = app.controllers.registros;
 
+  app.route('/api/v1/historico')
+    .get(controller.buscarHistorico);
+
   app.route('/api/v1/registros')
-    .get(controller.buscarHistorico)
+    .get(controller.buscarRegistros)
     .post(controller.registrar)
-    .delete(controller.limparHistorico);
+    .delete(controller.truncate);
   
   app.route('/api/v1/registros/:id')
     .delete(controller.deletarRegistro);

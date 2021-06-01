@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const uris = process.env.MONGODB_URL || 'mongodb://localhost/controle-de-viaturas-db';
-// const uris = 'mongodb://localhost/controle-de-viaturas-db';
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);

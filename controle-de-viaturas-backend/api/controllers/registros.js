@@ -1,5 +1,7 @@
 const Registro = require('./../models/Registro');
 
+const Militar = require('./../models/Militar');
+
 const capitalize = require('./../functions/capitalize');
 
 const moment = require('moment');
@@ -7,25 +9,61 @@ const moment = require('moment');
 module.exports = app => {
   const controller = {};
 
+  controller.buscarRegistros = (req, res) => {
+    Registro.find(req.query, async function(err, docs) {
+      if(err) return res.status(500).json(err);
+
+      var registros = [];
+
+      for(var registro of docs) {
+        var signatario;
+  
+        await Militar.findById(registro.signatario, function(err, result) {
+          if(err) return res.status(500).json(err);
+          signatario = result;
+        });
+  
+        registro.signatario = signatario;
+        registros.push(registro);
+      }
+
+      return res.status(200).json(registros);
+    });
+  }
+  
   controller.buscarHistorico = (req, res) => {
-    Registro.find(req.query, function(err, docs) {
+    Registro.find(req.query, async function(err, docs) {
       if(err) return res.status(500).json(err);
 
       const datas = {};
+      
+      var registros = [];
 
-      var datasIso8601 = docs.map(doc => ({ _id: doc._id, data: doc.data }));
+      for(var registro of docs) {
+        var signatario;
+  
+        await Militar.findById(registro.signatario, function(err, result) {
+          if(err) return res.status(500).json(err);
+          signatario = result;
+        });
+  
+        registro.signatario = signatario;
+        registros.push(registro);
+      }
+
+      var datasIso8601 = registros.map(doc => ({ _id: doc._id, data: doc.createdAt }));
+
       datasIso8601.sort(function(a, b) {
         return (a.data > b.data) ? - 1 : ((a.data < b.data) ? 1 : 0);
       });
 
-      datasIso8601.map(({ _id, data: dataIso8601 }) => {
-        const mes = capitalize(`${moment(dataIso8601).format('MMMM [de] YYYY')}`);
-        const data = moment(dataIso8601).format('DD/MM/YYYY');
+      datasIso8601.map(({ _id, data }) => {
+        const mes = capitalize(`${moment(data).format('MMMM [de] YYYY')}`);
 
         if(datas[mes] === undefined)
           datas[mes] = [];
         
-        datas[mes].push(docs.filter(doc => doc._id === _id).pop());
+        datas[mes].push(registros.filter(registro => registro._id === _id).pop());
       });
 
       return res.status(200).json(datas);
@@ -33,13 +71,29 @@ module.exports = app => {
   }
 
   controller.registrar = (req, res) => {
-    const { data, ultimoMilitar, viaturas } = req.body;
-    const registro = { data, ultimoMilitar, viaturas };
-
-    Registro.create(registro, function(err, result) {
+    Registro.create(req.body, async function(err, result) {
       if(err) return res.status(500).json(err);
 
+      var signatario;
+      
+      await Militar.findById(result.signatario, function(err, result) {
+        if(err) return res.status(500).json(err);
+        signatario = result;
+      });
+      
+      result.signatario = signatario;
+
       return res.status(200).json(result);
+    });
+  }
+
+  controller.truncate = (req, res) => {
+    const options = { useFindAndModify: false };
+
+    Registro.deleteMany({}, options, function(err, result) {
+      if(err) return res.status(500).json(err);
+
+      return res.status(200).send('Registros deletados com sucesso.');
     });
   }
 
@@ -51,16 +105,6 @@ module.exports = app => {
       if(err) return res.status(500).json(err);
 
       return res.status(200).send('Registro deletado com sucesso.');
-    })
-  }
-
-  controller.limparHistorico = (req, res) => {
-    const options = { useFindAndModify: false };
-
-    Registro.deleteMany({}, options, function(err, result) {
-      if(err) return res.status(500).json(err);
-
-      return res.status(200).send('Histórico limpado com sucesso.');
     })
   }
 
