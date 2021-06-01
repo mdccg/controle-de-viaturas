@@ -1,0 +1,48 @@
+.pendente {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.pendente .card {
+  margin-top: 64px;
+  margin-bottom: 128px;
+
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+
+  border: 1px solid var(--soothing-breeze);
+
+  max-width: 70vw;
+
+  padding: 32px;
+}
+
+.pendente .card svg {
+  width:  64px;
+  height: 64px;
+
+  fill: var(--chi-gong);
+}
+
+.pendente .card h3 {
+  margin-top: 16px;
+  margin-bottom: 32px;
+
+  font-family: 'OswaldBold';
+  color: var(--dracula-orchid);
+  font-size: 110%;
+
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.pendente .card p {
+  color: var(--american-river);
+  font-size: 90%;
+
+  text-align: justify;
+  line-height: 1.5;
+}

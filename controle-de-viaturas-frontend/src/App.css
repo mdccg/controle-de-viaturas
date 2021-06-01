@@ -1,3 +1,4 @@
+@import './stylesheets/reset.css';
 @import './stylesheets/fonts.css';
 
 :root {
@@ -48,4 +49,72 @@ html, body, #root, .App {
 
 .tabela th, .tabela td {
   padding: 8px;
+}
+
+hgroup h1 {
+  margin-top: 32px;
+
+  font-family: 'OswaldBold';
+  font-size: 200%;
+
+  text-transform: uppercase;
+  text-align: center;
+
+  color: var(--dracula-orchid);
+}
+
+hgroup h2 {
+  margin-top: 16px;
+
+  font-family: 'OswaldBold';
+  font-size: 175%;
+  
+  text-align: center;
+  
+  color: var(--american-river);
+}
+
+input.input-form {
+  outline: none;
+
+  border: 1px solid var(--soothing-breeze);
+  min-height: 32px;
+
+  padding-left:  8px;
+  padding-right: 8px;
+
+  display: flex;
+  flex: 1;
+
+  font-family: 'OswaldLight';
+  font-size: 90%;
+}
+
+input.input-form::placeholder {
+  color: var(--soothing-breeze);
+}
+
+button.botao-form {
+  border: none;
+
+  background-color: var(--chi-gong);
+
+  font-family: 'OswaldLight';
+  color: white;
+  font-size: 100%;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  min-height: 32px;
+
+  cursor: pointer;
+}
+
+button.botao-form svg {
+  width:  24px;
+  height: 24px;
+
+  fill: white;
 }

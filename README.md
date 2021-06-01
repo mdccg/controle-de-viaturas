@@ -10,7 +10,9 @@
 - [X] Vincular o modelo de dados dos militares aos formulários preenchidos;
 - [X] Adicionar um modelo de dados para tipos de viaturas;
 - [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
-- [ ] Trocar ponto por vírgula na atualização do odômetro das viaturas.
+- [ ] Trocar ponto por vírgula na atualização do odômetro das viaturas;
+- [X] Detectar mudança de rota no app;
+- [ ] Detectar mudança no localStorage.
 
 ## Motivação
 
@@ -75,5 +77,7 @@ window.addEventListener('afterprint', function() {
 - [PWA Manifest Generator | SimiCart](https://www.simicart.com/manifest-generator.html/)
 - [Convertio — Conversor de Ficheiros](https://convertio.co/pt/)
 - [CloudConvert](https://cloudconvert.com/)
+- [dbdiagram.io - Database Relationship Diagrams Design Tool](https://dbdiagram.io/home)
+- [react-toastify - npm](https://www.npmjs.com/package/react-toastify)
 
 Outros créditos disponívels em [`controle-de-viaturas-frontend/src/assets/README.md`](https://github.com/mdccg/controle-de-viaturas/tree/master/controle-de-viaturas-frontend/src/assets).

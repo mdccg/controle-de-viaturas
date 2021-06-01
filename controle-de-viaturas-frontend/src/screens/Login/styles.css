@@ -1,0 +1,73 @@
+.login {
+  background-image: url(./../../assets/images/connor-betts-QK6Iwzd5MhE-unsplash.png);
+  background-position: center;
+  background-size: cover;
+
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}
+
+.login .conteudo-login {
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.login hgroup {
+  margin-bottom: 32px;
+}
+
+.login h1 {
+  color: white;
+}
+
+.login h2 {
+  color: var(--clouds);
+}
+
+.login .card {
+  border: 1px solid var(--soothing-breeze);
+  background-color: white;
+
+  padding: 24px;
+
+  flex-direction: column;
+  display: flex;
+
+  max-width: 60vw;
+  width: 384px;
+}
+
+.login .card > * {
+  margin-bottom: 16px;
+}
+
+.login .card > *:last-child {
+  margin-bottom: 0;
+}
+
+.login .card a {
+  font-family: 'OswaldLight';
+  color: var(--chi-gong);
+  font-size: 90%;
+
+  align-self: center;
+  display: flex;
+
+  text-decoration: none;
+}
+
+.login .logotipo {
+  margin-top:    32px;
+  margin-bottom: 16px;
+}
+
+.login .logotipo svg {
+  width:  64px;
+  height: 64px;
+
+  fill: white;
+}

@@ -1,0 +1,17 @@
+.footer {
+  width: 100%;
+
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.footer svg {
+  width:  64px;
+  height: 64px;
+
+  fill: var(--dracula-orchid);
+}

@@ -1,0 +1,112 @@
+.container {
+  margin-left:  16px;
+  margin-right: 16px;
+
+  flex-direction: column;
+  display: flex;
+}
+
+.home .nome {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.home .nome .icone { cursor: pointer; }
+
+.home .nome svg {
+  width:  32px;
+  height: 32px;
+
+  fill: var(--american-river);
+
+  margin-right: 16px;
+}
+
+.home .nome input {
+  background-color: white;
+  border: none;
+
+  font-family: 'OswaldRegular';
+  font-size: x-large;
+  color: var(--dracula-orchid);
+
+  flex: 1;
+}
+
+.home .checkpoint {
+  flex-direction: column;
+  display: flex;  
+}
+
+.home .checkpoint-label {
+  font-family: 'OswaldLight';
+  color: var(--american-river);
+}
+
+.home .checkpoint-value {
+  font-family: 'OswaldRegular';
+  color: var(--dracula-orchid);
+}
+
+.home .checkpoint-date {
+  font-family: 'OswaldLight';
+  color: var(--soothing-breeze);
+}
+
+.home h2 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  
+  font-family: 'OswaldLight';
+  font-size: xx-large;
+  color: var(--american-river);
+
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--city-lights);
+}
+
+.home .viaturas {
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  min-height: 37.5vh;
+}
+
+.home .viaturas > svg {
+  fill: var(--soothing-breeze);
+}
+
+.home .divider {
+  margin-top: 16px;
+  margin-bottom: 32px;
+
+  flex: 1;
+  height: 1px;
+
+  background-color: var(--city-lights);
+}
+
+.home .operacoes .botao {
+  background-color: var(--emerald);
+  border-radius: 4px;
+
+  font-size: large;
+  color: white;
+  
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 48px;
+
+  margin-bottom: 16px;
+
+  cursor: pointer;
+}
+
+.home .operacoes a.botao {
+  text-decoration: none;
+}
