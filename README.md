@@ -2,13 +2,13 @@
 
 ## _To-do list_
 
-- [ ] Adicionar um modelo de dados para militares contendo os seguintes atributos;
+- [X] Adicionar um modelo de dados para militares contendo os seguintes atributos;
  - Patente;
  - Primeiro nome;
  - E-mail;
  - Senha.
-- [ ] Vincular o modelo de dados dos militares aos formulários preenchidos;
-- [ ] Adicionar um modelo de dados para tipos de viaturas;
+- [X] Vincular o modelo de dados dos militares aos formulários preenchidos;
+- [X] Adicionar um modelo de dados para tipos de viaturas;
 - [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
 - [ ] Trocar ponto por vírgula na atualização do odômetro das viaturas.
 
