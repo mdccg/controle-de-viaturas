@@ -22,6 +22,8 @@
 - [User - Free social icons](https://www.flaticon.com/free-icon/user_709722)
 - [Add - Free signs icons](https://www.flaticon.com/free-icon/add_1237946)
 - [Like - Free gestures icons](https://www.flaticon.com/free-icon/like_2087973)
+- [Firefighter - Free people icons](https://www.flaticon.com/free-icon/firefighter_1843892)
+- [Switch - Free multimedia icons](https://www.flaticon.com/free-icon/switch_786385)
 
 # Imagens
 
@@ -31,3 +33,4 @@
 # Bibliotecas
 
 - [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
+- [Componente React Drawer - Material-UI](https://material-ui.com/pt/components/drawers/)

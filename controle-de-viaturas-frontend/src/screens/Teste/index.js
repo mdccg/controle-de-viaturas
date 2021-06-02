@@ -31,7 +31,13 @@ function Teste() {
     viatura.categoria = Math.floor(Math.random() * 2) ? 'Trem de S.O.S' : 'No pátio';
     viatura.km = Math.floor(Math.random() * 1e5) + 1e4;
 
-    let niveisCombustivel = ['Cheio', '¾', '½', '¼', 'Reserva'];
+    let niveisCombustivel = [
+      'Tanque cheio',
+      'Combustível acima de ¾',
+      'Combustível acima de ½',
+      'Combustível acima de ¼',
+      'Reserva'
+    ];
     let indice = Math.floor(Math.random() * niveisCombustivel.length);
 
     viatura.nivelCombustivel = niveisCombustivel[indice];
@@ -49,19 +55,11 @@ function Teste() {
     const registro = {};
 
     let militares = [
-      'Soldado Fulano',
-      'Cabo Loso',
-      'Sargento Beltrano',
-      'Sargento Fahür',
-      'Tenente Ciclano',
-      'Comandante Hamilton',
-      'Grande Almirante Thrawn', 
-      'Anspeçada Eren Jaeger'
+      '60b78239b09f1a1053e6ae4a'
     ];
     let indice = Math.floor(Math.random() * militares.length);
 
-    registro.ultimoMilitar = militares[indice];
-    registro.data = randomDate();
+    registro.signatario = militares[indice];
     registro.viaturas = viaturas;
 
     api.post('/registros', registro)

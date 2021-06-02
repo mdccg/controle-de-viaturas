@@ -118,3 +118,12 @@ button.botao-form svg {
 
   fill: white;
 }
+
+.container {
+  margin-left:  16px;
+  margin-right: 16px;
+
+  flex-direction: column;
+  align-self: center;
+  display: flex;
+}

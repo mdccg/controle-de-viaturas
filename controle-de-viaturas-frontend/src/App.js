@@ -40,6 +40,7 @@ function App() {
 
     var localStorageSetHandler = function (e) {
       window.location.pathname = '/';
+      atualizarUsuario(); // FIXME remover caso dê erro
     }
 
     document.addEventListener('itemInserted', localStorageSetHandler, false);

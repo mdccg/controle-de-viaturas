@@ -16,15 +16,8 @@ module.exports = app => {
       var registros = [];
 
       for(var registro of docs) {
-        var signatario;
-  
-        await Militar.findById(registro.signatario, function(err, result) {
-          if(err) return res.status(500).json(err);
-          signatario = result;
-        });
-  
-        registro.signatario = signatario;
-        registros.push(registro);
+        var militar = await Militar.findById(registro.signatario);
+        registros.push({ ...registro._doc, signatario: militar });
       }
 
       return res.status(200).json(registros);
@@ -40,15 +33,8 @@ module.exports = app => {
       var registros = [];
 
       for(var registro of docs) {
-        var signatario;
-  
-        await Militar.findById(registro.signatario, function(err, result) {
-          if(err) return res.status(500).json(err);
-          signatario = result;
-        });
-  
-        registro.signatario = signatario;
-        registros.push(registro);
+        var militar = await Militar.findById(registro.signatario);
+        registros.push({ ...registro._doc, signatario: militar });
       }
 
       var datasIso8601 = registros.map(doc => ({ _id: doc._id, data: doc.createdAt }));
