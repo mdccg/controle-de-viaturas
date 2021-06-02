@@ -2,73 +2,115 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 import getUsuario from './functions/getUsuario';
+import putUsuario from './functions/putUsuario';
 import getToken   from './functions/getToken';
 
-import Routes from './routes';
+import api from './services/api';
+
+import Routes from './Routes';
 
 import { useLocation } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function App() {
   const [buscandoDados, setBuscandoDados] = useState(true);
 
+  const [usuario, setUsuario] = useState({});
   const [token, setToken]     = useState('');
 
   const location = useLocation();
+
+  /** https://forums.asp.net/t/2164818.aspx?How+to+detect+if+localstorage+has+been+changed */
+  function detectarMudancaLocalStorage() {
+    var originalSetItem = localStorage.setItem;
+
+    localStorage.setItem = function (key, value) {
+      var event = new Event('itemInserted');
+
+      event.value = value; 
+      event.key = key; 
+
+      document.dispatchEvent(event);
+
+      originalSetItem.apply(this, arguments);
+    }
+
+    var localStorageSetHandler = function (e) {
+      window.location.pathname = '/';
+    }
+
+    document.addEventListener('itemInserted', localStorageSetHandler, false);
+  }
 
   function atualizarUsuario() {
     let usuario = getUsuario();
     let token   = getToken();
     
+    setUsuario(usuario);
     setToken(token);
-
-    if(usuario.ativo === true) {
-      // redirecionar para /viaturas
-      console.log('Usuário logado e admitido.');
-    
-    } else if(usuario.ativo === false) {
-      // redirecionar para /pendente
-      console.log('Usuário logado e pendente.');
-    
-    } else if(usuario.ativo === undefined) {
-      console.log('Nenhum usuário logado.');
-
-    }
 
     setBuscandoDados(false);
   }
 
+  function encerrarSessao() {
+    localStorage.removeItem('@usuario');
+    localStorage.removeItem('@token');
+    setUsuario({});
+    setToken('');
+  }
+
   function verificarToken() {
-    /*
-    console.log('Verificar token aqui!');
-    console.log(token);
-    */
+    let usuario = getUsuario();
+    let token   = getToken();
 
+    let usuarioEncontrado = JSON.stringify(usuario) !== '{}';
 
-    localStorage.setItem('@teste', '123');
+    // eslint-disable-next-line
+    if(!token && usuarioEncontrado || !usuarioEncontrado && token) {
+      encerrarSessao();
+      return;
+    }
+
+    if(!token) return;
+
+    const config = { headers: { authorization: `Bearer ${token}` } };
+
+    api.get('/login', config)
+      .then(res => {
+        const { _id } = res.data;
+
+        api.get(`/militares?_id=${_id}`)
+          .then(res => {
+            let militar = res.data.pop();
+            
+            if(JSON.stringify(usuario) !== JSON.stringify(militar)) {
+              setUsuario(militar);
+              putUsuario(militar);
+            }
+
+          }).catch(() => encerrarSessao());
+      })
+      .catch(() => encerrarSessao());
   }
 
   useEffect(() => {
-    // FIXME detectar mudança na variável localStorage 
-    window.addEventListener('storage', (function(e) {
-      console.log('Testando...');
-
-    }).bind(this));
-
+    verificarToken();
     atualizarUsuario();
+    detectarMudancaLocalStorage();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    if(token)
-      verificarToken();
-
+    verificarToken();
+    // eslint-disable-next-line
   }, [location.pathname]);
 
   return !buscandoDados ? (
     <div className="App">
-      <Routes />
+      <Routes usuario={usuario} token={token} />
       <ToastContainer />
     </div>
   ) : <></>;

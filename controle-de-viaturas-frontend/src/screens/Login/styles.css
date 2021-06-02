@@ -5,7 +5,8 @@
 
   flex-direction: column;
   display: flex;
-  flex: 1;
+
+  min-height: 100vh;
 }
 
 .login .conteudo-login {
@@ -13,7 +14,8 @@
   flex-direction: column;
   align-items: center;
   display: flex;
-  flex: 1;
+
+  min-height: 100vh;
 }
 
 .login hgroup {
@@ -29,6 +31,9 @@
 }
 
 .login .card {
+  margin-top:    92px;
+  margin-bottom: 92px;
+
   border: 1px solid var(--soothing-breeze);
   background-color: white;
 

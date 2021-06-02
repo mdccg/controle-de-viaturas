@@ -12,7 +12,7 @@
 - [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
 - [ ] Trocar ponto por vírgula na atualização do odômetro das viaturas;
 - [X] Detectar mudança de rota no app;
-- [ ] Detectar mudança no localStorage.
+- [X] Detectar mudança no localStorage.
 
 ## Motivação
 
