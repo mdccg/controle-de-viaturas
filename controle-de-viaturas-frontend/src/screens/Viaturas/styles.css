@@ -27,13 +27,8 @@
   display: flex;
 }
 
-.viaturas .lista-viaturas .categoria {
-  font-family: 'OswaldBold';
-  color: var(--dracula-orchid);
-  font-size: 200%;
-
-  text-transform: uppercase;
-  text-align: center;
+.viaturas .footer {
+  margin-top: 64px;
 }
 
 .btn-adicionar-nova-viatura {

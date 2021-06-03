@@ -2,6 +2,8 @@
 @import './stylesheets/fonts.css';
 
 :root {
+  --sun-flower: #f1c40f;
+
   --emerald: #2ecc71;
   --nephritis: #27ae60;
 

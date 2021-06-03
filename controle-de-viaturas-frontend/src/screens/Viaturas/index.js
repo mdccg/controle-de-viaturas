@@ -1,9 +1,12 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
 import Add from './../../assets/icons/Add';
 
 import Header from './../../components/Header';
+import Footer from './../../components/Footer';
+import SearchBar from './../../components/SearchBar';
+import Categoria from './../../components/Categoria';
 
 import api from './../../services/api';
 
@@ -14,6 +17,8 @@ function Viaturas() {
   const [categorias, setCategorias] = useState([]);
 
   const [ultimoRegistro, setUltimoRegistro] = useState({ signatario: {}, data: '' });
+
+  const [pesquisa, setPesquisa] = useState('');
 
   function buscarUltimoRegistro() {
     api.get('/historico')
@@ -43,6 +48,11 @@ function Viaturas() {
       .catch(err => console.error(err));
   }
 
+  function pesquisarViaturas(pesquisa) {
+    console.log(pesquisa);
+    setPesquisa(pesquisa);
+  }
+
   function abrirModalAdicionarViatura() {
     console.log('Hora de adicionar nova viatura...');
   }
@@ -67,19 +77,19 @@ function Viaturas() {
             <span className="data">{ultimoRegistro.horario} &bull; {ultimoRegistro.dia}</span>
           </div>
 
-          {categorias.map(({ _id, nome }) => (
-            <div className="lista-viaturas" key={_id}>
-              <span className="categoria">{nome}</span>
-              
-              {viaturas.filter(viatura => viatura.categoria._id === _id)
-                .map(viatura => (
-                  // TODO componente da viatura aqui
-                  <span>{viatura.prefixo}</span>
-                ))}
-            </div>
+          <SearchBar 
+            pesquisa={pesquisa}
+            setPesquisa={pesquisarViaturas}
+            placeholder="Prefixo da viatura" />
+
+          {categorias.map(categoria => (
+            <Categoria
+              {...categoria}
+              key={categoria._id}
+              viaturas={viaturas} />
           ))}
 
-          {Array(50).fill(<span>Lacrimosa</span>).map(span => span)}
+          <Footer />
         </div>
       </div>
 

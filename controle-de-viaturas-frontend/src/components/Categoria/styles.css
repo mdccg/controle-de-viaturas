@@ -1,0 +1,42 @@
+.viaturas .lista-viaturas .categoria {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  min-height: 64px;
+}
+
+.viaturas .lista-viaturas .categoria span {
+  font-family: 'OswaldBold';
+  color: var(--dracula-orchid);
+  font-size: 200%;
+
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.viaturas .lista-viaturas .categoria > *:first-child,
+.viaturas .lista-viaturas .categoria .icone {
+  width:  32px;
+  height: 32px;
+}
+
+.viaturas .lista-viaturas .categoria .icone {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.viaturas .lista-viaturas .categoria .icone svg {
+  width:  16px;
+  height: 16px;
+
+  fill: var(--soothing-breeze);
+}
+
+.viaturas .lista-viaturas .categoria .icone.aberto {
+  transform: rotate(180deg);
+}

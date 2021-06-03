@@ -10,8 +10,6 @@
 - [Chat - Free interface icons](https://www.flaticon.com/free-icon/chat_134718)
 - [Cancel - Free signs icons](https://www.flaticon.com/free-icon/cancel_271203)
 - [Arrow down sign to navigate - Free arrows icons](https://www.flaticon.com/free-icon/arrow-down-sign-to-navigate_32195)
-- [Communications - Free signs icons](https://www.flaticon.com/free-icon/communications_1786490)
-- [Private Garage - Free transport icons](https://www.flaticon.com/free-icon/private-garage_75751)
 - [Empty - Free education icons](https://www.flaticon.com/free-icon/empty_2039083)
 - [Down arrow - Free arrows icons](https://www.flaticon.com/free-icon/down-arrow_626013)
 - [Clipboard - Free interface icons](https://www.flaticon.com/free-icon/clipboard_446977)
@@ -21,9 +19,13 @@
 - [Menu - Free multimedia icons](https://www.flaticon.com/free-icon/menu_1828859)
 - [User - Free social icons](https://www.flaticon.com/free-icon/user_709722)
 - [Add - Free signs icons](https://www.flaticon.com/free-icon/add_1237946)
-- [Like - Free gestures icons](https://www.flaticon.com/free-icon/like_2087973)
 - [Firefighter - Free people icons](https://www.flaticon.com/free-icon/firefighter_1843892)
 - [Switch - Free multimedia icons](https://www.flaticon.com/free-icon/switch_786385)
+- [Settings - Free Tools and utensils icons](https://www.flaticon.com/free-icon/settings_565591)
+- [Crown - Free fashion icons](https://www.flaticon.com/free-icon/crown_91202)
+- [On/off button - Free technology icons](https://www.flaticon.com/free-icon/onoff-button_1228#)
+- [Tag - Free commerce and shopping icons](https://www.flaticon.com/free-icon/tag_617418)
+- [Magnifying glass - Free miscellaneous icons](https://www.flaticon.com/free-icon/magnifying-glass_1086933)
 
 # Imagens
 
