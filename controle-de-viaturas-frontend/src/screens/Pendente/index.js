@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './styles.css';
 
 import Bell from './../../assets/icons/Bell';
@@ -5,6 +6,9 @@ import Bell from './../../assets/icons/Bell';
 import Footer from './../../components/Footer';
 
 function Pendente() {
+  useEffect(() => {
+    document.title = 'PENDENTE ― 1º SGBM/IND';
+  }, []);
 
   return (
     <div className="pendente">

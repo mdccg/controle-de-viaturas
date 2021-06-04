@@ -6,40 +6,30 @@ import Clipboard from './../../assets/icons/Clipboard';
 
 import Vazio from './../Vazio';
 
+import { diasSemana } from './../../config/default.json';
+
 import api from './../../services/api';
 
 import moment from 'moment';
 
-const diasSemana = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
-
-function filtrarPorCategoria(viaturas, categoria) {
-  return viaturas.filter(({ categoria: _categoria }) => _categoria === categoria);
-}
-
-function ViaturaTextual({ _id, prefixo, categoria, km, nivelCombustivel, comentario = '' }) {
-  const nivelCombustivelComplemento = 'Combustível acima de ';
-  const comentado = comentario.split('').length > 0;
-
+function ViaturaTextual({ _id, prefixo, km, nivelCombustivel, comentario = '' }) {
   return (
-    <div className="viatura-textual">
+    <div className="viatura-textual" key={_id}>
       <span>{prefixo}</span>
       <span>KM {km}</span>
-      <span className={!comentado ? 'nao-comentada' : ''}>
-        {nivelCombustivel === 'Cheio' ? 'Tanque cheio'
-        : nivelCombustivel === 'Reserva' ? 'Reserva' : 
-          nivelCombustivelComplemento + nivelCombustivel}
-      </span>
+      <span>{nivelCombustivel}</span>
       {comentario ? <span>{comentario}</span> : <div></div>}
     </div>
   );
 }
 
-function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
+function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data, categorias = [] }) {
   const [aberto, setAberto] = useState(false);
   
-  const diaSemana = diasSemana[moment(data).isoWeekday() - 1];
+  const diaSemana     = diasSemana[moment(data).isoWeekday() - 1];
   const dataFormatada = moment(data).format('DD/MM/YYYY HH[:]mm');
-  
+  const nomeMilitar   = `${signatario.patente} ${signatario.nome}`;
+
   function abrir() {
     setAberto(!aberto);
   }
@@ -49,7 +39,7 @@ function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
       tipo: 'diario',
       relatorio: {
         data: data,
-        militar: ultimoMilitar,
+        militar: nomeMilitar,
         viaturas
       }
     };
@@ -68,25 +58,24 @@ function AcordeaoRegistro({ _id, data, ultimoMilitar = '', viaturas = [] }) {
           borderBottomRightRadius: !aberto ? '4px' : '0',
         }} 
         onClick={abrir}>
-        <span>{diaSemana}, {dataFormatada} &bull; {ultimoMilitar.toUpperCase()}</span>
+        <span>{diaSemana}, {dataFormatada} &bull; {nomeMilitar.toUpperCase()}</span>
         <ArrowDownSignToNavigate className={aberto ? 'aberto' : ''} />
       </div>
 
       {aberto ? (
         <div className="acordeao-registro-body">
-          <span className="categoria">Trem de S.O.S</span>
-          {filtrarPorCategoria(viaturas, 'Trem de S.O.S').length > 0 ? (
-            filtrarPorCategoria(viaturas, 'Trem de S.O.S')
-              .map(viatura => <ViaturaTextual key={viatura._id} {...viatura} />)
-          ) : <Vazio>Nenhuma viatura encontrada</Vazio>}
+          {viaturas.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
 
-          <div style={{ height: '16px' }}></div>
+          {categorias.map(({ _id, nome }) => {
+            let tuplas = viaturas.filter(({ categoria }) => categoria._id === _id);
 
-          <span className="categoria">No pátio</span>
-          {filtrarPorCategoria(viaturas, 'No pátio').length > 0 ? (
-            filtrarPorCategoria(viaturas, 'No pátio')
-              .map(viatura => <ViaturaTextual key={viatura._id} {...viatura} />)
-          ) : <Vazio>Nenhuma viatura encontrada</Vazio>}
+            return tuplas.length > 0 ? (
+              <div key={_id}>
+                <span className="categoria">{nome}</span>
+                {tuplas.map(tupla => <ViaturaTextual {...tupla} />)}
+              </div>
+            ) : <></>;
+          })}
 
           <div className="botao-exportar" onClick={exportarPdf}>
             <Clipboard />

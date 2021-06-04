@@ -32,10 +32,10 @@ function Viaturas() {
 
   const [ultimoRegistro, setUltimoRegistro] = useState({ signatario: {}, data: '' });
 
-  const [filtros, setFiltros] = useState(niveisCombustivel);
-  const filtrar = filtro => setFiltros(state => {
-    return state.includes(filtro) ? state.filter(value => value !== filtro) : [...state, filtro];
-  });
+  const [filtro, setFiltro] = useState('');
+  const filtrar = novoFiltro => {
+    setFiltro(novoFiltro === filtro ? '' : novoFiltro);
+  }
 
   const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
   const [editandoCategoria, setEditandoCategoria] = useState(false);
@@ -68,7 +68,7 @@ function Viaturas() {
     api.get(`/viaturas`)
       .then(res => {
         let viaturas = res.data.filter(viatura => {
-          return filtros.includes(viatura.nivelCombustivel);
+          return filtro ? filtro === viatura.nivelCombustivel : true;
         });
 
         console.log(viaturas);
@@ -108,14 +108,15 @@ function Viaturas() {
 
   useEffect(() => {
     // IMPEDIR QUE SEJA EXECUTADO PELA PRIMEIRA VEZ
-    registrar();
+    // registrar();
   }, [viaturas]);
 
   useEffect(() => {
+    document.title = 'FORMULÁRIO ― 1º SGBM/IND';
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
-  }, [reload, filtros]);
+  }, [reload, filtro]);
 
   return (
     <>
@@ -135,7 +136,7 @@ function Viaturas() {
             <GasStation />
             {Object.keys(filtroNiveisCombustivel).map(filtroNivelCombustivel => {
               const porExtenso = filtroNiveisCombustivel[filtroNivelCombustivel];
-              const selecionado = filtros.includes(porExtenso);
+              const selecionado = filtro === porExtenso;
 
               return (
                 <div

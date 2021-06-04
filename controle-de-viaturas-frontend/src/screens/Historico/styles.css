@@ -1,4 +1,8 @@
-.historico .mes {
+.historico .search-bar {
+  margin-top: 16px;
+}
+
+.historico .mes-label {
   flex-direction: row;
   align-items: center;
   display: flex;
@@ -6,16 +10,17 @@
   margin-bottom: 16px;
 }
 
-.historico .mes span {
+.historico .mes-label span {
   font-family: 'OswaldRegular';
   color: var(--american-river);
   font-size: xx-large;
+
+  padding-right: 16px;
 }
 
-.historico .mes .divider {
+.historico .divider {
   background-color: var(--soothing-breeze);
 
-  margin-left: 16px;
   display: flex;
   height: 1px;
   flex: 1;
@@ -75,6 +80,12 @@
   background-color: var(--nephritis);
   
   font-size: medium;
+}
 
-  margin-bottom: 64px;
+.historico .mes > *:last-child {
+  margin-top: 16px;
+}
+
+.historico .footer {
+  margin-top: 64px;
 }

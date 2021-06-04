@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
@@ -52,6 +52,10 @@ function Login() {
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));
   }
+
+  useEffect(() => {
+    document.title = 'CONTROLE DE VIATURAS - 1º SGBM/IND';
+  }, []);
 
   return (
     <>

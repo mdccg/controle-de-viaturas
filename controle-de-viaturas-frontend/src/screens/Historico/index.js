@@ -1,32 +1,36 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
 import Clipboard from './../../assets/icons/Clipboard';
 
 import Header from './../../components/Header';
-import Voltar from './../../components/Voltar';
+import Footer from './../../components/Footer';
+import SearchBar from './../../components/SearchBar';
 import Vazio from './../../components/Vazio';
 import AcordeaoRegistro from './../../components/AcordeaoRegistro';
 
 import api from './../../services/api';
 
 function Historico() {
-  const [registros, setRegistros] = useState({});
+  const [categorias, setCategorias] = useState([]);
+  const [historico, setHistorico] = useState({});
 
-  function buscarDados() {
-    api.get('/registros')
-      //.then(res => setRegistros(res.data))
-      .then(res => {
-        setRegistros(res.data);
-        console.log(res.data);
-      })
+  function buscarCategorias() {
+    api.get('/categorias')
+      .then(res => setCategorias(res.data))
+      .catch(err => console.error(err));
+  }
+
+  function buscarHistorico() {
+    api.get('/historico')
+      .then(res => setHistorico(res.data))
       .catch(err => console.error(err));
   }
 
   function exportarPdfMensal(mes) {
     const relatorio = {
       tipo: 'mensal',
-      relatorio: { mes, registros: registros[mes] }
+      relatorio: { mes, historico: historico[mes] }
     };
 
     api.put('/relatorio', relatorio)
@@ -36,38 +40,48 @@ function Historico() {
 
   useEffect(() => {
     document.title = 'HISTÓRICO ― 1º SGBM/IND';
-    buscarDados();
+    buscarCategorias();
+    buscarHistorico();
   }, []);
 
   return (
     <div className="historico">
-      <Header titulo="Histórico ― 1º SGBM/IND" />
-      
-      <div className="container">
-        <Voltar />
+      <Header />
 
-        {JSON.stringify(registros) !== '{}' ? Object.keys(registros).map(mes => {
-          const acordeoes = registros[mes];
+      <div className="container">
+        {/* <SearchBar /> */}
+
+        {JSON.stringify(historico) !== '{}' ? Object.keys(historico).map(mes => {
+          const registrosMensais = historico[mes];
           
           return (
-            <Fragment key={mes}>
-              <div className="mes">
+            <div className="mes" key={mes}>
+              <div className="mes-label">
                 <span>{mes}</span>
                 <div className="divider"></div>
               </div>
               
-              {acordeoes.map(acordeao => <AcordeaoRegistro key={acordeao._id} {...acordeao} />)}
+              {registrosMensais.map(acordeao => (
+                <AcordeaoRegistro
+                  {...acordeao}
+                  key={acordeao._id}
+                  categorias={categorias} />
+              ))}
               
-              <div className="divider-botao-exportar-mensal"></div>
-
               <div className="botao-exportar mensal" onClick={() => exportarPdfMensal(mes)}>
                 <Clipboard />
                 <span>Exportar tabela de {mes} para PDF</span>
               </div>
-            </Fragment>
+
+              <div className="mes">
+                <div className="divider"></div>
+              </div>
+            </div>
           );
         }) : <Vazio>Histórico vazio</Vazio>}
       </div>
+
+      <Footer />
     </div>
   );
 }
