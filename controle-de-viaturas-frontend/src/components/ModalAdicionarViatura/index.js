@@ -3,118 +3,122 @@ import './styles.css';
 
 import Spinner from './../../assets/icons/Spinner';
 
+import ModalGenerico from './../ModalGenerico';
+
+import { niveisCombustivel } from './../../config/default.json';
+
 import api from './../../services/api';
 
-function ModalAdicionarViatura({ registrando, setRegistrando, atualizarCheckpoint, setAdicionandoViatura, encarrilharViatura }) {
+import { toast } from 'react-toastify';
+
+function ModalAdicionarViatura({ recarregar, categorias = [], aberto, setAberto }) {
   const [prefixo, setPrefixo] = useState('');
-  const [categoria, setCategoria] = useState('');
   const [km, setKm] = useState('');
   const [nivelCombustivel, setNivelCombustivel] = useState('');
   const [comentario, setComentario] = useState('');
+  const [categoria, setCategoria] = useState('');
 
   const prefixoRef = useRef();
-  const categoriaRef = useRef();
   const kmRef = useRef();
   const nivelCombustivelRef = useRef();
-  const comentarioRef = useRef();
+  const categoriaRef = useRef();
 
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
-  function adicionarViatura() {
+  function adicionarViatura(event) {
+    event.preventDefault();
     setEfetuandoRequisicao(true);
 
-    let campos = [
-      { campo: prefixo, ref: prefixoRef },
-      { campo: categoria, ref: categoriaRef },
-      { campo: km, ref: kmRef },
-      { campo: nivelCombustivel, ref: nivelCombustivelRef }
+    let obrigatorios = [
+      { valor: prefixo, ref: prefixoRef, msg: 'Prefixo' },
+      { valor: km, ref: kmRef, msg: 'Prefixo' },
+      { valor: nivelCombustivel, ref: nivelCombustivelRef, msg: 'Prefixo' },
+      { valor: categoria, ref: categoriaRef, msg: 'Prefixo' },
     ];
 
-    for(let { campo, ref } of campos) {
-      if(!campo) {
-        let input = ref.current;
-        
-        input.focus();
-        input.classList.add('obrigatorio');
-  
-        setTimeout(() => {
-          input.classList.remove('obrigatorio');
-        }, 3e3);
-        
+    for(let { valor, ref, msg } of obrigatorios) {
+      if(!valor) {
         setEfetuandoRequisicao(false);
+        ref.current.focus();
+        toast.error(msg + ' é obrigatório.');
         return;
       }
     }
 
-    const viatura = { prefixo, categoria, km: Number(km), nivelCombustivel, comentario };
-    
+    let viatura = { prefixo, km: Number(km), nivelCombustivel, comentario, categoria: JSON.parse(categoria)._id };
+    console.table(viatura);
+
     api.post('/viaturas', viatura)
-      .then(async res => {
-        const { _id } = res.data;
-        viatura._id = _id;
-        
-        await encarrilharViatura(viatura);
-        
-        setRegistrando(!registrando);
-        atualizarCheckpoint();
-        setEfetuandoRequisicao(false);
-        setAdicionandoViatura(false);
+      .then(() => {
+        toast.success(`Viatura ${prefixo} adicionada com sucesso.`);
+
+        setAberto(false);
+        recarregar();
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => setEfetuandoRequisicao(false));
   }
-  
+
   return (
-    <div className="modal-adicionar-viatura">
-      <span className="titulo">Adicione uma nova viatura</span>
+    <ModalGenerico aberto={aberto} setAberto={setAberto} className="modal-adicionar-viatura">
+      <form onSubmit={adicionarViatura}>
+        <span>Adicione uma nova viatura</span>
 
-      <input
-        autoFocus
-        type="text"
-        placeholder="Prefixo"
-        value={prefixo}
-        onChange={event => setPrefixo(event.target.value)}
-        ref={prefixoRef} />
+        <input
+          type="text"
+          name="prefixo"
+          value={prefixo}
+          onChange={event => setPrefixo(event.target.value)}
+          placeholder="Prefixo"
+          ref={prefixoRef}
+          autoComplete="off" />
 
-      <select
-        ref={categoriaRef}
-        onChange={event => setCategoria(event.target.value)}>
-        <option value="">Tipo de viatura</option>
-        <option value="Trem de S.O.S">Trem de S.O.S</option>
-        <option value="No pátio">No pátio</option>
-      </select>
+        <input
+          type="number"
+          name="km"
+          value={km}
+          onChange={event => setKm(event.target.value)}
+          placeholder="KM"
+          inputMode="numeric"
+          ref={kmRef}
+          autoComplete="off" />
+          
+        <select
+          name="nivelCombustivel"
+          value={nivelCombustivel}
+          onChange={event => setNivelCombustivel(event.target.value)}
+          ref={nivelCombustivelRef}>
 
-      <input
-        type="number"
-        placeholder="KM"
-        value={km}
-        onChange={event => setKm(event.target.value)}
-        inputMode="numeric"
-        ref={kmRef} />
+          <option value="">Nível de combustível</option>
+          {niveisCombustivel.map(nivelCombustivel => (
+            <option key={nivelCombustivel} value={nivelCombustivel}>{nivelCombustivel}</option>
+          ))}
+        </select>
+
+        <textarea
+          name="comentario"
+          value={comentario}
+          onChange={event => setComentario(event.target.value)}
+          placeholder="Observação"
+          autoComplete="off"></textarea>
         
-      <select
-        ref={nivelCombustivelRef}
-        onChange={event => setNivelCombustivel(event.target.value)}>
-        <option value="">Nível de combustível</option>
-        <option value="Cheio">Cheio</option>
-        <option value="¾">¾</option>
-        <option value="½">½</option>
-        <option value="¼">¼</option>
-        <option value="Reserva">Reserva</option>
-      </select>
+        <select
+          name="categoria"
+          value={categoria}
+          onChange={event => setCategoria(event.target.value)}
+          ref={categoriaRef}>
 
-      <textarea
-        placeholder="Observação"
-        value={comentario}
-        onChange={event => setComentario(event.target.value)}
-        ref={comentarioRef}>
-      </textarea>
+          <option value="">Categoria</option>
+          {categorias.map(categoria => (
+            <option key={categoria._id} value={JSON.stringify(categoria)}>{categoria.nome}</option>
+          ))}
+        </select>
 
-      <div
-        className="btn-adicionar-viatura"
-        onClick={efetuandoRequisicao ? undefined : adicionarViatura}>
-        {efetuandoRequisicao ? <Spinner /> : <span>Adicionar viatura</span>}
-      </div>
-    </div>
+        <button>
+          {efetuandoRequisicao ? <Spinner /> : <span>Adicionar viatura</span>}
+        </button>
+      </form>
+    </ModalGenerico>
   );
 }
 

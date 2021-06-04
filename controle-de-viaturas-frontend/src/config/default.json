@@ -1,0 +1,16 @@
+{
+  "niveisCombustivel": [
+    "Tanque cheio",
+    "Combustível acima de ¾",
+    "Combustível acima de ½",
+    "Combustível acima de ¼",
+    "Reserva"
+  ],
+  "filtroNiveisCombustivel": {
+    "4/4": "Tanque cheio",
+    "3/4": "Combustível acima de ¾",
+    "1/2": "Combustível acima de ½",
+    "1/4": "Combustível acima de ¼",
+    "0/4": "Reserva"
+  }
+}

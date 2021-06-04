@@ -1,71 +1,83 @@
 .modal-deletar-viatura {
-  background-color: white;
-  border-radius: 16px;
+  outline: none;
 
-  max-width: 75vw;
   width: 384px;
-
-  flex-direction: column;
-  display: flex;
-}
-
-.hitbox-btn-fechar-modal-deletar-viatura {
-  position: absolute;
-
   max-width: 75vw;
-  width: 384px;
-
-  justify-content: flex-end;
-  display: flex;
 }
 
-.btn-fechar-modal-deletar-viatura {
-  position: relative;
-
-  bottom: 8px;
-  left:   8px;
-
-  background-color: var(--american-river);
-  fill: white;
-
-  border-radius: 24px;
-  width:  24px;
-  height: 24px;
-
-  justify-content: center;
-  align-items: center;
-  display: flex;
-
-  cursor: pointer;
-}
-
-.btn-fechar-modal-deletar-viatura svg {
-  width:  8px;
-  height: 8px;
-}
-
-.modal-deletar-viatura-header {
+.modal-deletar-viatura .cabecalho {
   background-color: var(--chi-gong);
-  
-  text-transform: uppercase;
-  font-size: large;
-  color: white;
 
   border-top-left-radius:  16px;
   border-top-right-radius: 16px;
 
-  padding: 16px;
-  padding-top: 32px;
-}
+  flex-direction: column;
+  display: flex;
 
-.modal-deletar-viatura-body {
   padding: 16px;
 }
 
-.modal-deletar-viatura-body .btn {
+.modal-deletar-viatura .cabecalho .icone {
+  width:  32px;
+  height: 32px;
+
+  justify-content: center;
+  align-self: flex-end;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+
+  margin-bottom: 8px;
+}
+
+.modal-deletar-viatura .cabecalho .icone svg {
+  width:  16px;
+  height: 16px;
+
+  fill: white;
+}
+
+.modal-deletar-viatura .cabecalho span {
+  font-family: 'OswaldRegular';
+  color: white;
+  font-size: 125%;
+
+  text-transform: uppercase;
+}
+
+.modal-deletar-viatura .corpo {
+  background-color: white;
+
+  border-bottom-left-radius:  16px;
+  border-bottom-right-radius: 16px;
+
+  padding: 16px;
+}
+
+.modal-deletar-viatura .corpo span {
+  font-size: 105%;
+
+  line-height: 1.5;
+}
+
+.modal-deletar-viatura .corpo span.prefixo-viatura {
+  font-family: 'OswaldRegular';
+}
+
+.modal-deletar-viatura .corpo .botoes {
   margin-top: 16px;
 
-  background-color: var(--chi-gong);
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.modal-deletar-viatura .corpo .diastema {
+  width: 16px;
+}
+
+.modal-deletar-viatura .corpo .botao {
   border-radius: 2px;
 
   justify-content: center;
@@ -78,14 +90,16 @@
   cursor: pointer;
 }
 
-.modal-deletar-viatura-body .btn span {
-  font-family: 'OswaldLight';
-  color: white;
-}
-
-.modal-deletar-viatura-body .btn svg {
+.modal-deletar-viatura .corpo .botao svg {
   width:  32px;
   height: 32px;
 
   fill: white;
+}
+
+.modal-deletar-viatura .corpo .botao span {
+  color: white;
+  font-size: 90%;
+
+  text-transform: uppercase;
 }

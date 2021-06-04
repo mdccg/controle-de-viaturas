@@ -1,53 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
-const niveisCombustivel = [
-  'Cheio',
-  '¾',
-  '½',
-  '¼',
-  'Reserva'
-];
+import ModalGenerico from './../ModalGenerico';
+import ModalBotao from './../ModalBotao';
 
-function Botao({
-  nivelCombustivel,
-  setNivelCombustivel,
-  nivelCombustivelSelecionado,
-  setNivelCombustivelSelecionado }) {
-  const selecionado = nivelCombustivelSelecionado === nivelCombustivel;
+import { niveisCombustivel } from './../../config/default.json';
 
-  function selecionar() {
-    setNivelCombustivel(nivelCombustivel);
-    setNivelCombustivelSelecionado(nivelCombustivel);
-  }
-
-  return (
-    <div className={'btn ' + (selecionado ? 'selecionado' : '')} onClick={selecionar}>
-      <span>{nivelCombustivel}</span>
-    </div>
-  );
-}
-
-function ModalEditarNivelCombustivel({ viatura = {} }) {
+function ModalEditarNivelCombustivel({ viatura = {}, aberto, setAberto }) {
   const [nivelCombustivelSelecionado, setNivelCombustivelSelecionado] = useState(viatura.nivelCombustivel);
 
-  return (
-    <div className="modal-editar-nivel-combustivel">
-      <span className="titulo">
-        Selecione o nível de combustível da viatura <span style={{ fontFamily: 'OswaldRegular' }}>{viatura.prefixo}</span>
-      </span>
+  useEffect(() => {
+    setNivelCombustivelSelecionado(viatura.nivelCombustivel);
+  }, [viatura]);
 
-      <div className="botoes">
+  return (
+    <ModalGenerico aberto={aberto} setAberto={setAberto} className="modal-editar-nivel-combustivel">
+      <div className="modal-botoes">
         {niveisCombustivel.map(nivelCombustivel => (
-          <Botao
+          <ModalBotao
             key={nivelCombustivel}
-            nivelCombustivel={nivelCombustivel}
-            setNivelCombustivel={viatura.setNivelCombustivel}
-            nivelCombustivelSelecionado={nivelCombustivelSelecionado}
-            setNivelCombustivelSelecionado={setNivelCombustivelSelecionado} />
+            variavel={nivelCombustivel}
+            setVariavel={viatura.setNivelCombustivel}
+            variavelSelecionada={nivelCombustivelSelecionado}
+            setVariavelSelecionada={setNivelCombustivelSelecionado} />
         ))}
       </div>
-    </div>
+    </ModalGenerico>
   );
 }
 

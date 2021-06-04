@@ -27,7 +27,7 @@ export default function SwipeableTemporaryDrawer({ state, setState, children }) 
     <div
       className={clsx(classes.list)}
       role="presentation"
-      onClick={toggleDrawer(false)}
+      // onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       {children}

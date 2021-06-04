@@ -1,47 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
-const categorias = ['Trem de S.O.S', 'No pátio'];
+import ModalGenerico from './../ModalGenerico';
 
-function Botao({
-  categoria,
-  setCategoria,
-  categoriaSelecionada,
-  setCategoriaSelecionada }) {
-  const selecionada = categoriaSelecionada === categoria;
+function ModalBotao({ variavel = {}, setVariavel, variavelSelecionada = {}, setVariavelSelecionada }) {
+  const selecionada = variavel._id === variavelSelecionada._id;
 
   function selecionar() {
-    setCategoria(categoria);
-    setCategoriaSelecionada(categoria);
+    setVariavel(variavel);
+    setVariavelSelecionada(variavel);
   }
 
   return (
-    <div className={'btn ' + (selecionada ? 'selecionada' : '')} onClick={selecionar}>
-      <span>{categoria}</span>
+    <div onClick={selecionar} className={'modal-botao ' + (selecionada ? 'selecionada' : '')}>
+      <span>{variavel.nome}</span>
     </div>
   );
 }
 
-function ModalEditarCategoria({ viatura = {} }) {
+function ModalEditarCategoria({ viatura = {}, categorias = [], aberto, setAberto }) {
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(viatura.categoria);
 
-  return (
-    <div className="modal-editar-categoria">
-      <span className="titulo">
-        Selecione o tipo da viatura <span style={{ fontFamily: 'OswaldRegular' }}>{viatura.prefixo}</span>
-      </span>
+  useEffect(() => {
+    setCategoriaSelecionada(viatura.categoria);
+  }, [viatura]);
 
-      <div className="botoes">
+  return (
+    <ModalGenerico aberto={aberto} setAberto={setAberto} className="modal-editar-categoria">
+      <div className="modal-botoes">
         {categorias.map(categoria => (
-          <Botao
-            key={categoria}
-            categoria={categoria}
-            setCategoria={viatura.setCategoria}
-            categoriaSelecionada={categoriaSelecionada}
-            setCategoriaSelecionada={setCategoriaSelecionada} />
+          <ModalBotao
+            key={categoria._id}
+            variavel={categoria}
+            setVariavel={viatura.setCategoria}
+            variavelSelecionada={categoriaSelecionada}
+            setVariavelSelecionada={setCategoriaSelecionada} />
         ))}
       </div>
-    </div>
+    </ModalGenerico>
   );
 }
 

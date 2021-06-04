@@ -22,13 +22,61 @@
   color: var(--soothing-breeze);
 }
 
+.viaturas .filtro {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  margin-bottom: 32px;
+}
+
+.viaturas .filtro svg {
+  margin-right: 32px;
+
+  width:  32px;
+  height: 32px;
+
+  fill: var(--soothing-breeze);
+}
+
+.viaturas .filtro .fitro-nivel-combustivel {
+  margin-right: 16px;
+
+  width:  32px;
+  height: 32px;
+
+  border: 1px solid var(--soothing-breeze);
+  background-color: white;
+  color: var(--dracula-orchid);
+
+  font-size: 90%;
+  
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  border-radius: 2px;
+
+  cursor: pointer;
+}
+
+.viaturas .filtro .fitro-nivel-combustivel.selecionado {
+  border: 1px solid var(--chi-gong);
+  background-color: var(--chi-gong);
+  color: white;
+}
+
+.viaturas .filtro .fitro-nivel-combustivel span {
+  font-size: 90%;
+}
+
 .viaturas .lista-viaturas {
   flex-direction: column;
   display: flex;
 }
 
 .viaturas .footer {
-  margin-top: 64px;
+  margin-top: 192px;
 }
 
 .btn-adicionar-nova-viatura {

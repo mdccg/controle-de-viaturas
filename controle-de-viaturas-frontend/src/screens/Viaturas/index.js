@@ -2,24 +2,50 @@ import { useState, useEffect } from 'react';
 import './styles.css';
 
 import Add from './../../assets/icons/Add';
+import GasStation from './../../assets/icons/GasStation';
 
 import Header from './../../components/Header';
 import Footer from './../../components/Footer';
 import SearchBar from './../../components/SearchBar';
 import Categoria from './../../components/Categoria';
+import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
+import ModalEditarCategoria from './../../components/ModalEditarCategoria';
+import ModalAdicionarViatura from './../../components/ModalAdicionarViatura';
+import ModalDeletarViatura from './../../components/ModalDeletarViatura';
+
+import { niveisCombustivel, filtroNiveisCombustivel } from './../../config/default.json';
+
+import getUsuario from './../../functions/getUsuario';
 
 import api from './../../services/api';
 
 import moment from 'moment';
 
 function Viaturas() {
+  const [reload, setReload] = useState(false);
+
+  const [pesquisa, setPesquisa] = useState('');
+
+  const [viatura, setViatura] = useState({});
   const [viaturas, setViaturas] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
   const [ultimoRegistro, setUltimoRegistro] = useState({ signatario: {}, data: '' });
 
-  const [pesquisa, setPesquisa] = useState('');
+  const [filtros, setFiltros] = useState(niveisCombustivel);
+  const filtrar = filtro => setFiltros(state => {
+    return state.includes(filtro) ? state.filter(value => value !== filtro) : [...state, filtro];
+  });
 
+  const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
+  const [editandoCategoria, setEditandoCategoria] = useState(false);
+  const [adicionandoViatura, setAdicionandoViatura] = useState(false);
+  const [deletandoViatura, setDeletandoViatura] = useState(false);
+
+  function recarregar() {
+    setReload(!reload);
+  }
+  
   function buscarUltimoRegistro() {
     api.get('/historico')
       .then(res => {
@@ -37,8 +63,18 @@ function Viaturas() {
   }
 
   function buscarViaturas() {
-    api.get('/viaturas')
-      .then(res => setViaturas(res.data))
+    // TODO ajustar endpoint
+ // api.get(`/viaturas?prefixo=${pesquisa}`)
+    api.get(`/viaturas`)
+      .then(res => {
+        let viaturas = res.data.filter(viatura => {
+          return filtros.includes(viatura.nivelCombustivel);
+        });
+
+        console.log(viaturas);
+
+        setViaturas(viaturas);
+      })
       .catch(err => console.error(err));
   }
 
@@ -54,14 +90,32 @@ function Viaturas() {
   }
 
   function abrirModalAdicionarViatura() {
-    console.log('Hora de adicionar nova viatura...');
+    setAdicionandoViatura(true);
   }
+
+  function registrar() {
+    let usuario = getUsuario();
+
+    const registro = {
+      signatario: usuario._id,
+      viaturas
+    };
+
+    api.post('/registros', registro)
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err));
+  }
+
+  useEffect(() => {
+    // IMPEDIR QUE SEJA EXECUTADO PELA PRIMEIRA VEZ
+    registrar();
+  }, [viaturas]);
 
   useEffect(() => {
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
-  }, []);
+  }, [reload, filtros]);
 
   return (
     <>
@@ -77,6 +131,22 @@ function Viaturas() {
             <span className="data">{ultimoRegistro.horario} &bull; {ultimoRegistro.dia}</span>
           </div>
 
+          <div className="filtro">
+            <GasStation />
+            {Object.keys(filtroNiveisCombustivel).map(filtroNivelCombustivel => {
+              const porExtenso = filtroNiveisCombustivel[filtroNivelCombustivel];
+              const selecionado = filtros.includes(porExtenso);
+
+              return (
+                <div
+                  className={'noselect fitro-nivel-combustivel ' + (selecionado ? 'selecionado' : '')}
+                  onClick={() => filtrar(porExtenso)}>
+                  <span>{filtroNivelCombustivel}</span>
+                </div>
+              );
+            })}
+          </div>
+
           <SearchBar 
             pesquisa={pesquisa}
             setPesquisa={pesquisarViaturas}
@@ -86,7 +156,20 @@ function Viaturas() {
             <Categoria
               {...categoria}
               key={categoria._id}
-              viaturas={viaturas} />
+              recarregar={recarregar}
+              setViatura={setViatura}
+              setDeletandoViatura={setDeletandoViatura}
+              setEditandoCategoria={setEditandoCategoria}
+              setEditandoNivelCombustivel={setEditandoNivelCombustivel} 
+              viaturas={viaturas.filter(viatura => {
+                try {
+                  return viatura.categoria._id === categoria._id;
+
+                } catch(err) {
+                  console.table(viatura);
+
+                }
+              })} />
           ))}
 
           <Footer />
@@ -96,6 +179,29 @@ function Viaturas() {
       <div className="btn-adicionar-nova-viatura" onClick={abrirModalAdicionarViatura}>
         <Add />
       </div>
+
+      <ModalEditarNivelCombustivel
+        viatura={viatura}
+        aberto={editandoNivelCombustivel}
+        setAberto={setEditandoNivelCombustivel} />
+
+      <ModalEditarCategoria
+        viatura={viatura}
+        categorias={categorias}
+        aberto={editandoCategoria}
+        setAberto={setEditandoCategoria} />
+
+      <ModalAdicionarViatura
+        recarregar={recarregar}
+        categorias={categorias}
+        aberto={adicionandoViatura}
+        setAberto={setAdicionandoViatura} />
+
+      <ModalDeletarViatura
+        recarregar={recarregar}
+        viatura={viatura}
+        aberto={deletandoViatura}
+        setAberto={setDeletandoViatura} />
     </>
   );
 }

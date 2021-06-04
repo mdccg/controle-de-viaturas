@@ -4,52 +4,65 @@ import './styles.css';
 import Cancel from './../../assets/icons/Cancel';
 import Spinner from './../../assets/icons/Spinner';
 
+import TransitionsModal from './../TransitionsModal';
+
 import api from './../../services/api';
 
-function ModalDeletarViatura({ viatura = {}, registrando, setRegistrando, atualizarCheckpoint, setDeletandoViatura, desencarrilharViatura }) {
-  const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
+import { toast } from 'react-toastify';
 
-  function cancelar() {
-    setDeletandoViatura(false);
-  }
+function ModalDeletarViatura({ recarregar, viatura = {}, aberto, setAberto }) {
+  const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
   function deletarViatura() {
     setEfetuandoRequisicao(true);
 
     api.delete(`/viaturas/${viatura._id}`)
-      .then(async () => {
-        await desencarrilharViatura(viatura._id);
-        
-        setRegistrando(!registrando);
-        atualizarCheckpoint();
-        setEfetuandoRequisicao(false);
-        setDeletandoViatura(false);
+      .then(res => {
+        toast.success(res.data);
+
+        setAberto(false);
+        recarregar();
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => setEfetuandoRequisicao(false));
   }
-
+  
   return (
-    <div className="modal-deletar-viatura">
-      <div className="hitbox-btn-fechar-modal-deletar-viatura">
-        <div className="btn-fechar-modal-deletar-viatura" onClick={cancelar}>
-          <Cancel />
+    <TransitionsModal open={aberto} setOpen={setAberto}>
+      <div className="modal-deletar-viatura">
+        <div className="cabecalho">
+          <div className="icone" onClick={() => setAberto(false)}>
+            <Cancel />
+          </div>
+
+          <span>Deletar viatura {viatura.prefixo}</span>
+        </div>
+
+        <div className="corpo">
+          <span style={{ fontFamily: 'OswaldLight' }}>
+            Tem certeza que deseja deletar definitivamente a viatura <span className="prefixo-viatura">{viatura.prefixo}</span>?
+          </span>
+
+          <div className="botoes">
+            <div
+              onClick={deletarViatura}
+              className="botao"
+              style={{ backgroundColor: 'var(--chi-gong)' }}>
+              {efetuandoRequisicao ? <Spinner /> : <span>Deletar</span>}
+            </div>
+            
+            <div className="diastema"></div>
+
+            <div
+              onClick={() => setAberto(false)}
+              className="botao"
+              style={{ backgroundColor: 'var(--american-river)' }}>
+              <span>Cancelar</span>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="modal-deletar-viatura-header">
-        <span>Excluir a viatura {viatura.prefixo}</span>
-      </div>
-
-      <div className="modal-deletar-viatura-body">
-        <span style={{ fontFamily: 'OswaldLight' }}>
-          Tem certeza de deseja excluir a viatura <span style={{ fontFamily: 'OswaldRegular' }}>{viatura.prefixo}</span> permanentemente?
-        </span>
-
-        <div className="btn" onClick={efetuandoRequisicao ? undefined : deletarViatura}>
-          {efetuandoRequisicao ? <Spinner /> : <span>Confirmar exclusão</span>}
-        </div>
-      </div>
-    </div>
+    </TransitionsModal>
   );
 }
 

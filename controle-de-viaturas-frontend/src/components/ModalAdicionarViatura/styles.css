@@ -1,67 +1,60 @@
-.modal-adicionar-viatura {
-  max-width: 75vw;
-  min-width: 256px;
+.modal-adicionar-viatura { padding: 8px; }
 
+.modal-adicionar-viatura form {
   flex-direction: column;
   display: flex;
 }
 
-.modal-adicionar-viatura > * {
-  margin-bottom: 16px;
-}
+.modal-adicionar-viatura form > * { margin-bottom: 16px; }
 
-.modal-adicionar-viatura > *:last-child {
-  margin-bottom: 0;
-}
+.modal-adicionar-viatura form > *:last-child { margin-bottom: 0; }
 
-.modal-adicionar-viatura .titulo {
-  font-family: 'OswaldLight';
+.modal-adicionar-viatura form > span:first-child {
   color: var(--dracula-orchid);
-  font-size: medium;
+  font-size: 120%;
+
+  margin-bottom: 24px;
 }
 
 .modal-adicionar-viatura input,
 .modal-adicionar-viatura select,
-.modal-adicionar-viatura textarea {
-  outline: none;
-  
+.modal-adicionar-viatura textarea,
+.modal-adicionar-viatura button {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+
   border: 1px solid var(--soothing-breeze);
   border-radius: 2px;
 
-  padding-left:  8px;
-  padding-right: 8px;
+  box-sizing: border-box;
+  padding-left:  12px;
+  padding-right: 12px;
 
   font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
 
-  min-height: 32px;
+  height: 32px;
+}
 
-  transition: all .125s;
+.modal-adicionar-viatura input::placeholder {
+  color: var(--soothing-breeze);
 }
 
 .modal-adicionar-viatura textarea {
-  padding: 8px;
+  padding-top: 8px;
+
+  height: 64px;
 }
 
-.modal-adicionar-viatura .obrigatorio::placeholder,
-.modal-adicionar-viatura .obrigatorio {
-  border-color: red;
-}
-
-.modal-adicionar-viatura .btn-adicionar-viatura {
-  background-color: var(--emerald);
-  border-radius: 2px;
+.modal-adicionar-viatura button {
+  border: none;
+  
+  background-color: var(--chi-gong);
   color: white;
-
-  justify-content: center;
-  align-items: center;
-  display: flex;
-
-  height: 32px;
-
-  cursor: pointer;
 }
 
-.modal-adicionar-viatura .btn-adicionar-viatura svg {
+.modal-adicionar-viatura button svg {
   width:  32px;
   height: 32px;
 

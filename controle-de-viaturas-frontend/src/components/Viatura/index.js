@@ -9,187 +9,186 @@ import Delete from './../../assets/icons/Delete';
 import Speedometer from './../../assets/icons/Speedometer';
 import GasStation from './../../assets/icons/GasStation';
 import Chat from './../../assets/icons/Chat';
-import Communications from './../../assets/icons/Communications';
-import PrivateGarage from './../../assets/icons/PrivateGarage';
+import Tag from './../../assets/icons/Tag';
 
 import api from './../../services/api';
+
+import { toast } from 'react-toastify';
 
 function Viatura(props) {
   const _id = props._id;
   const [prefixo, setPrefixo] = useState(props.prefixo);
-  const [categoria, setCategoria] = useState(props.categoria);
   const [km, setKm] = useState(props.km);
   const [nivelCombustivel, setNivelCombustivel] = useState(props.nivelCombustivel);
   const [comentario, setComentario] = useState(props.comentario);
+  const [categoria, setCategoria] = useState(props.categoria);
 
-  const [desatualizada, setDesatualizada] = useState(JSON.stringify({ _id, prefixo, categoria, km, nivelCombustivel, comentario }));
-
+  const prefixoRef = useRef();
   const kmRef = useRef();
+  const comentarioRef = useRef();
 
   const [editandoViatura, setEditandoViatura] = useState(false);
-  const [atualizandoViatura, setAtualizandoViatura] = useState(false);
+  const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
+
+  const [viaturaDesatualizada, setViaturaDesatualizada] = useState(JSON.stringify({ prefixo, km, nivelCombustivel, comentario, categoria }));
 
   async function editarViatura() {
-    const { atualizarStateViaturas, registrando, setRegistrando, atualizarCheckpoint } = props;
-    
-    var viatura = { _id, prefixo, categoria, km: Number(km), nivelCombustivel, comentario };
-    
-    if(editandoViatura && JSON.stringify(viatura) !== desatualizada) {
-      setAtualizandoViatura(true);
-      
-      api.put(`/viaturas/${_id}`, viatura)
-        .then(async () => {
-          await atualizarStateViaturas(viatura);
-
-          setRegistrando(!registrando);
-          atualizarCheckpoint();
-          setAtualizandoViatura(false);
-          setEditandoViatura(!editandoViatura);
-
-          setDesatualizada(JSON.stringify(viatura));
-        })
-        .catch(err => console.error(err));
-
-      return;
-    }
+    const { recarregar } = props;
 
     await setEditandoViatura(!editandoViatura);
 
-    if(!editandoViatura)
+    if(editandoViatura) {
+      var viaturaAtualizada = JSON.stringify({ prefixo, km, nivelCombustivel, comentario, categoria });
+      
+      if(viaturaDesatualizada !== viaturaAtualizada) {
+        setEfetuandoRequisicao(true);
+        
+        let viatura = { prefixo, km: Number(km), nivelCombustivel, comentario, categoria: categoria._id };
+        // console.table(viatura);
+        api.put(`/viaturas/${_id}`, viatura)
+          .then(res => {
+            toast.success(res.data);
+            
+            setViaturaDesatualizada(viaturaAtualizada);
+            recarregar();
+          })
+          .catch(err => console.error(err))
+          .finally(() => setEfetuandoRequisicao(false));
+      }
+
+    } else
       kmRef.current.focus();
   }
 
-  async function deletarViatura() {
-    let viatura = { _id, prefixo };
-    
-    await props.setViatura(viatura);
+  async function editarNivelCombustivel() {
+    const { setViatura, setEditandoNivelCombustivel } = props;
 
-    props.setDeletandoViatura(true);
+    let viatura = { nivelCombustivel, setNivelCombustivel };
+
+    await setViatura(viatura);
+    setEditandoNivelCombustivel(true);
   }
 
   async function editarCategoria() {
-    if(!editandoViatura)
-      return;
+    const { setViatura, setEditandoCategoria } = props;
 
-    let viatura = { _id, prefixo, categoria, km, nivelCombustivel, comentario, setCategoria };
+    let viatura = { categoria, setCategoria };
 
-    await props.setViatura(viatura);
-
-    props.setEditandoCategoria(true);
+    await setViatura(viatura);
+    setEditandoCategoria(true);
   }
 
-  async function editarNivelCombustivel() {
-    if(!editandoViatura)
-      return;
+  async function deletarViatura() {
+    const { setViatura, setDeletandoViatura } = props;
 
-    let viatura = { _id, prefixo, categoria, km, nivelCombustivel, comentario, setNivelCombustivel };
+    let viatura = { _id, prefixo };
 
-    await props.setViatura(viatura);
-
-    props.setEditandoNivelCombustivel(true);
-  }
-
-  async function editarComentario() {
-    if(!editandoViatura)
-      return;
-
-    let viatura = { _id, prefixo, categoria, km, nivelCombustivel, comentario, setComentario };
-
-    await props.setViatura(viatura);
-
-    props.setEditandoComentario(true);
+    await setViatura(viatura);
+    setDeletandoViatura(true);
   }
 
   return (
     <div className="viatura">
-      <div className="cabecalho-viatura">
-        <div className="prefixo">
-          <div>
+      <div className="cabecalho">
+        <div>
+          <div className="icone">
             <FireTruck />
           </div>
-          <input
-            type="text"
-            value={prefixo}
-            onChange={event => setPrefixo(event.target.value)}
-            disabled={!editandoViatura} />
+
+          <div className="prefixo">
+            {editandoViatura ? (
+              <input
+                type="text"
+                value={prefixo}
+                onChange={event => setPrefixo(event.target.value)}
+                placeholder="Prefixo"
+                ref={prefixoRef} />
+            ) : <span>{prefixo}</span>}
+          </div>
         </div>
 
-        <div className="botoes">
-          <div className="botao" onClick={atualizandoViatura ? undefined : editarViatura}>
-            {editandoViatura ? (atualizandoViatura ? <Spinner /> : <Check />) : <Edit />}
+        <div className="painel">
+          <div className="icone clicavel" onClick={efetuandoRequisicao ? undefined : editarViatura}>
+            {efetuandoRequisicao ? <Spinner /> :  editandoViatura ? <Check /> : <Edit />}
           </div>
-          <div className="botao" onClick={deletarViatura}>
+
+          <div className="icone clicavel" onClick={efetuandoRequisicao ? undefined : deletarViatura}>
             <Delete />
           </div>
         </div>
       </div>
 
-      <div className="info-viatura">
-        <div className="linha">
-          <div className="km">
+      <div className="corpo">
+        <div key={_id + '-primeira-linha'}>
+          <div>
             <div className="icone">
               <Speedometer />
             </div>
-            <span style={{ color: 'var(--american-river)', marginRight: '4px' }}>KM</span>
-            <div className={'info-viatura-input ' + (editandoViatura ? 'editando-viatura' : '')}>
-              <input
-                type="number"
-                value={km}
-                onChange={event => setKm(event.target.value)}
-                disabled={!editandoViatura}
-                ref={kmRef}
-                inputMode="numeric" />
+            
+            <div className="km">
+              <span>KM</span>
+              <span>&nbsp;</span>
+              
+              {editandoViatura ? (
+                <input
+                  type="number"
+                  value={km}
+                  onChange={event => setKm(event.target.value)}
+                  placeholder="KM"
+                  inputMode="numeric"
+                  ref={kmRef} />
+              ) : <span>{km}</span>}
             </div>
           </div>
 
-          <div className="nivel-combustivel" onClick={editarNivelCombustivel}
-            style={{ cursor: editandoViatura ? 'pointer' : 'inherit' }}>
+          <div
+            className={editandoViatura ? 'clicavel' : ''}
+            onClick={editandoViatura ? editarNivelCombustivel : undefined}>
             <div className="icone">
               <GasStation />
             </div>
-            <div className={'info-viatura-input ' + (editandoViatura ? 'editando-viatura' : '')}>
+            
+            <div className="nivel-combustivel">
               <span>{nivelCombustivel}</span>
             </div>
           </div>
         </div>
-        
-        <div style={{ height: '8px' }}></div>
 
-        <div className="linha">
-          <div className="comentario" onClick={editarComentario}
-            style={{ cursor: editandoViatura ? 'pointer' : 'inherit' }}>
+        {editandoViatura || !editandoViatura && comentario !== '' ? (
+          <div key={_id + '-segunda-linha'}>
             <div className="icone">
               <Chat />
             </div>
-            <div
-              style={{ maxWidth: 'none' }}
-              className={'info-viatura-input ' + (editandoViatura ? 'editando-viatura' : '')}>
-              {!comentario ? (
-                <span
-                  className="vazio"
-                  style={{
-                    fontFamily: 'monospace',
-                    fontSize: 'large',
-                  }}>&Oslash;</span>
-              ) : (
-                <span>{comentario}</span>
-              )}
+
+            <div className="comentario">
+              {editandoViatura ? (
+                <textarea
+                  value={comentario}
+                  onChange={event => setComentario(event.target.value)}
+                  placeholder="Observação"
+                  ref={comentarioRef}></textarea>
+              ) : <span>{comentario}</span>}
             </div>
           </div>
-        </div>
+        ) : <></>}
 
-        <div style={{ height: '8px' }}></div>
+        {editandoViatura ? (
+          <div
+            key={_id + '-terceira-linha'}
+            className={editandoViatura ? 'clicavel' : ''}
+            onClick={editandoViatura ? editarCategoria : undefined}>
+            <div className="icone">
+              <Tag />
+            </div>
 
-        <div className="linha">
-          <div onClick={editarCategoria} style={{ cursor: editandoViatura ? 'pointer' : 'inherit' }}>
-            {categoria === 'Trem de S.O.S' ? <Communications /> : <PrivateGarage />}
-            
-            <div className={'info-viatura-input ' + (editandoViatura ? 'editando-viatura' : '')} style={{ maxWidth: 'none' }}>
-              <span>{categoria}</span>
+            <div className="categoria-label">
+              <span>{categoria.nome}</span>
             </div>
           </div>
-        </div>
+        ) : <></>}
       </div>
+
+      <div className="rodape"></div>
     </div>
   );
 }

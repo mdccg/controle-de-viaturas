@@ -1,0 +1,29 @@
+.modal-botao {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
+  height: 48px;
+
+  padding-left:  16px;
+  padding-right: 16px;
+
+  background-color: var(--clouds);
+  color: var(--dracula-orchid);
+  border-radius: 2px;
+
+  cursor: pointer;
+}
+
+.modal-botao.selecionada {
+  background-color: var(--emerald);
+  color: white;
+}
+
+.modal-botoes > * {
+  margin-bottom: 8px;
+}
+
+.modal-botoes > *:last-child {
+  margin-bottom: 0;
+}

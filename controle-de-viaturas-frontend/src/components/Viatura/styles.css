@@ -1,149 +1,125 @@
 .viatura {
   flex-direction: column;
   display: flex;
-  flex: 1;
 }
 
-.viatura .cabecalho-viatura {
+.viatura input,
+.viatura textarea {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+
+  width:  100%;
+  height: 32px;
+}
+
+.viatura input::placeholder,
+.viatura textarea::placeholder {
+  color: var(--soothing-breeze);
+}
+
+.viatura input,
+.viatura textarea,
+.viatura span {
+  font-family: 'OswaldRegular';
+  color: var(--dracula-orchid);
+  font-size: 125%;
+
+  line-height: 1.5;
+}
+
+.viatura .cabecalho input,
+.viatura .cabecalho textarea {
+  background-color: var(--clouds);
+}
+
+.viatura .cabecalho {
   justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  display: flex;
 
   margin-bottom: 16px;
 }
 
-.viatura .cabecalho-viatura .prefixo,
-.viatura .cabecalho-viatura .botoes {
+.viatura .cabecalho,
+.viatura .cabecalho > * {
   flex-direction: row;
   align-items: center;
   display: flex;
 }
 
-.viatura .cabecalho-viatura .botoes .botao {
-  margin-left: 16px;
-
-  width:  32px;
-  height: 32px;
-
-  justify-content: center;
+.viatura .km {
+  flex-direction: row;
   align-items: center;
   display: flex;
+}
 
+.viatura .prefixo,
+.viatura .km,
+.viatura .nivel-combustivel,
+.viatura .comentario,
+.viatura .categoria-label {
+  margin-left: 8px;
+
+  display: flex;
+  flex: 1;
+}
+
+.viatura .icone {
+  width:  48px;
+  height: 48px;
+
+  justify-content: center;
+  align-self: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.viatura .clicavel {
   cursor: pointer;
 }
 
-.viatura .cabecalho-viatura svg {
-  width:  24px;
-  height: 24px;
+.viatura .icone svg {
+  width:  32px;
+  height: 32px;
 
   fill: var(--american-river);
 }
 
-.viatura .cabecalho-viatura .prefixo svg { margin-right: 16px; }
-
-.viatura .cabecalho-viatura .prefixo span {
-  font-size: x-large;
-  color: var(--dracula-orchid);
-}
-
-.viatura .info-viatura {
-  padding: 12px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-
-  background-color: var(--city-lights);
-  border-radius: 4px;
-
-  flex-direction: column;
-  display: flex;
-}
-
-.viatura .info-viatura .linha {
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: row;
-  display: flex;
-}
-
-.viatura .info-viatura .linha > * {
-  flex-direction: row;
-  align-items: center;
-  display: flex;
-  flex: 1;
-
-  color: var(--american-river);
-}
-
-.viatura input {
-  background-color: transparent;
-  outline: none;
-  border: none;
-  width: 100%;
-}
-
-.viatura input,
-.viatura .info-viatura .km span,
-.viatura .info-viatura .nivel-combustivel span,
-.viatura .info-viatura .comentario span {
-  font-family: 'OswaldRegular';
-  font-size: medium;
-  color: var(--american-river);
-}
-
-.viatura .info-viatura .comentario span {
-  text-align: justify;
-}
-
-.viatura .cabecalho-viatura input {
-  padding-left:  4px;
-  padding-right: 4px;
-
+.viatura .corpo {
   background-color: var(--clouds);
   border-radius: 2px;
-  
-  color: var(--dracula-orchid);
-  font-size: large;
+
+  padding: 16px;
 }
 
-.viatura .info-viatura-input {
+.viatura .corpo span {
+  color: var(--american-river);
+}
+
+.viatura .corpo > * {
+  flex-direction: row;
   align-items: center;
   display: flex;
 }
 
-.viatura .info-viatura-input.editando-viatura {
-  padding-left:  4px;
-  padding-right: 4px;
-
-  margin-right: 8px;
-
-  background-color: white;
-  border-radius: 2px;
-  
-  color: var(--american-river);
-
-  min-height: 32px;
-  max-width: 154px;
+.viatura .corpo > *:first-child > * {
+  align-items: center;
+  display: flex;
   flex: 1;
 }
 
-.viatura .cabecalho-viatura input:disabled,
-.viatura .info-viatura input:disabled {
-  background-color: transparent;
+.viatura .rodape {
+  background-color: var(--city-lights);
+  
+  margin-top: 8px;
+  margin-bottom: 16px;
+
+  height: 1px;
 }
 
-.viatura .info-viatura .icone {
-  align-self: flex-start;
-
-  position: relative;
-  top: 2px;
-}
-
-.viatura .info-viatura svg {
-  margin-right: 8px;
-
-  width:  24px;
-  height: 24px;
-
-  fill: var(--american-river);
+@media only screen and (max-width: 525px) {
+  .viatura .km,
+  .viatura .nivel-combustivel {
+    font-size: 80%;
+  }
 }

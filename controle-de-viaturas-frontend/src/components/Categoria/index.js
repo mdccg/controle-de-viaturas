@@ -4,40 +4,46 @@ import './styles.css';
 import ArrowDownSignToNavigate from './../../assets/icons/ArrowDownSignToNavigate';
 
 import Vazio from './../Vazio';
+import Viatura from './../Viatura';
 
-function Categoria({ _id, nome, viaturas = [] }) {
-  const [viaturasFiltradas, setViaturasFiltradas] = useState([]);
-  const [listaVazia, setListaVazia] = useState(true);
-  const [aberto, setAberto] = useState(false);
+function Categoria({
+  _id,
+  nome,
+  recarregar,
+  setViatura,
+  setDeletandoViatura,
+  setEditandoCategoria,
+  setEditandoNivelCombustivel,
+  viaturas = []
+}) {
+
+  const listaVazia = viaturas.length === 0;
+  const [aberto, setAberto] = useState(viaturas.length !== 0);
 
   useEffect(() => {
-    var viaturasFiltradas = [];
-
-    if(viaturas.length > 0)
-      viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
-    
-    let listaVazia = viaturasFiltradas.length === 0;
-    let aberto = !listaVazia;
-
-    setViaturasFiltradas(viaturasFiltradas);
-    setListaVazia(listaVazia);
-    setAberto(aberto);
+    setAberto(viaturas.length !== 0);    
   }, [viaturas]);
 
   return (
     <div className="lista-viaturas" key={_id}>
-      <div className="categoria">
+      <div className="categoria" onClick={() => setAberto(!aberto)}>
         <div></div>
         <span>{nome}</span>
-        <div className={'icone ' + (aberto ? 'aberto' : '')} onClick={() => setAberto(!aberto)}>
+        <div className={'icone ' + (aberto ? 'aberto' : '')}>
           <ArrowDownSignToNavigate />
         </div>
       </div>
 
       {aberto && !listaVazia ? (
-        viaturasFiltradas.map(viatura => (
-          // TODO componente da viatura aqui
-          <span>{viatura.prefixo}</span>
+        viaturas.map(viatura => (
+          <Viatura
+            {...viatura}
+            key={viatura._id}
+            recarregar={recarregar}
+            setViatura={setViatura}
+            setDeletandoViatura={setDeletandoViatura}
+            setEditandoCategoria={setEditandoCategoria}
+            setEditandoNivelCombustivel={setEditandoNivelCombustivel} />
         ))
       ) : aberto && listaVazia ? (
         <Vazio>Sem viaturas</Vazio>

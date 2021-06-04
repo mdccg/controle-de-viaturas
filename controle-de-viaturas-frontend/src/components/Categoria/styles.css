@@ -4,7 +4,9 @@
   align-items: center;
   display: flex;
 
-  min-height: 64px;
+  min-height: 72px;
+
+  cursor: pointer;
 }
 
 .viaturas .lista-viaturas .categoria span {
@@ -26,8 +28,6 @@
   justify-content: center;
   align-items: center;
   display: flex;
-
-  cursor: pointer;
 }
 
 .viaturas .lista-viaturas .categoria .icone svg {

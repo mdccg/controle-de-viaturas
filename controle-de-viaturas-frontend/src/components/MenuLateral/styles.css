@@ -1,0 +1,57 @@
+.menu-lateral a {
+  text-decoration: none;
+
+  color: var(--dracula-orchid);
+}
+
+.menu-lateral li:first-child {
+  margin-top: 16px;
+}
+
+.menu-lateral .nome,
+.menu-lateral .logout {
+  align-items: center;
+  display: flex;
+
+  height: 48px;
+  
+  background-color: white;
+}
+
+.menu-lateral .nome {
+  border-bottom: 1px solid var(--soothing-breeze);
+}
+
+.menu-lateral .logout {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+
+  border-top: 1px solid var(--soothing-breeze);
+
+  cursor: pointer;
+}
+
+.menu-lateral .nome,
+.menu-lateral .rota,
+.menu-lateral .logout {
+  padding-left: 16px;
+}
+
+.menu-lateral .rota {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  height: 48px;
+}
+
+.menu-lateral svg {
+  margin-right: 16px;
+
+  width:  24px;
+  height: 24px;
+
+  fill: var(--dracula-orchid);
+}

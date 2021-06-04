@@ -2,14 +2,16 @@ import './styles.css';
 
 import TransitionsModal from './../TransitionsModal';
 
-function Modal({ open, setOpen, children }) {
+function ModalGenerico({ aberto, setAberto, children, className = '' }) {
   return (
-    <TransitionsModal open={open} setOpen={setOpen}>
+    <TransitionsModal open={aberto} setOpen={setAberto}>
       <div className="modal">
-        {children}
+        <div className={className}>
+          {children}
+        </div>
       </div>
     </TransitionsModal>
   );
 }
 
-export default Modal;
+export default ModalGenerico;
