@@ -33,7 +33,7 @@ function Viatura(props) {
   const [viaturaDesatualizada, setViaturaDesatualizada] = useState(JSON.stringify({ prefixo, km, nivelCombustivel, comentario, categoria }));
 
   async function editarViatura() {
-    const { recarregar } = props;
+    const { atualizarViatura, registrar, recarregar } = props;
 
     await setEditandoViatura(!editandoViatura);
 
@@ -46,11 +46,15 @@ function Viatura(props) {
         let viatura = { prefixo, km: Number(km), nivelCombustivel, comentario, categoria: categoria._id };
         // console.table(viatura);
         api.put(`/viaturas/${_id}`, viatura)
-          .then(res => {
+          .then(async res => {
             toast.success(res.data);
             
+            let viatura = { _id, prefixo, km: Number(km), nivelCombustivel, comentario, categoria };
+            await atualizarViatura(viatura);
+
             setViaturaDesatualizada(viaturaAtualizada);
             recarregar();
+            registrar();
           })
           .catch(err => console.error(err))
           .finally(() => setEfetuandoRequisicao(false));

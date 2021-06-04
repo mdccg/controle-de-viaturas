@@ -3,31 +3,34 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 import FireTruck from './../../assets/icons/FireTruck';
-//import User from './../../assets/icons/User';
+import User from './../../assets/icons/User';
 import Clipboard from './../../assets/icons/Clipboard';
 import Bell from './../../assets/icons/Bell';
+import _Bell from './../../assets/icons/_Bell';
 import Firefighter from './../../assets/icons/Firefighter';
-
-import Cancel from './../../assets/icons/Cancel'; // TODO remover depois
+import OnOffButton from './../../assets/icons/OnOffButton';
 
 import getUsuario from './../../functions/getUsuario';
 import encerrarSessao from './../../functions/encerrarSessao';
 
 import api from './../../services/api';
 
-var rotas = solicitando => ([
+var rotas = [
   { icone: FireTruck, tela: 'Viaturas', rota: '/' },
-  { icone: Cancel, tela: 'Meu perfil', rota: '/perfil' },
+  { icone: User, tela: 'Meu perfil', rota: '/perfil' }
+];
+
+var sudoRotas = solicitando => ([
   { icone: Clipboard, tela: 'Histórico de formulários', rota: '/historico' },
-  { icone: solicitando ? Cancel : Bell, tela: 'Solicitações', rota: '/solicitacoes' },
+  { icone: solicitando ? _Bell : Bell, tela: 'Solicitações', rota: '/solicitacoes' },
   { icone: Firefighter, tela: 'Militares', rota: '/usuarios' }
 ]);
 
-function Rota({ icone: _icone, tela, rota }) {
+function Rota({ icone: Icone, tela, rota }) {
   return (
     <li>
       <Link className="rota" to={rota}>
-        <_icone />
+        <Icone />
         <span>{tela}</span>
       </Link>
     </li>
@@ -56,11 +59,12 @@ function MenuLateral() {
       </div>
 
       <ul>
-        {rotas(solicitando).map(rota => <Rota key={rota.rota} {...rota} />)}
+        {rotas.map(rota => <Rota key={rota.rota} {...rota} />)}
+        {usuario.tipo === 'Administrador' ? sudoRotas(solicitando).map(rota => <Rota key={rota.rota} {...rota} />) : <></>}
       </ul>
 
       <div className="logout" onClick={encerrarSessao}>
-        <Cancel />
+        <OnOffButton />
         <span>Encerrar sessão</span>
       </div>
     </div>

@@ -11,7 +11,7 @@ import api from './../../services/api';
 
 import { toast } from 'react-toastify';
 
-function ModalAdicionarViatura({ recarregar, categorias = [], aberto, setAberto }) {
+function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, categorias = [], aberto, setAberto }) {
   const [prefixo, setPrefixo] = useState('');
   const [km, setKm] = useState('');
   const [nivelCombustivel, setNivelCombustivel] = useState('');
@@ -49,11 +49,14 @@ function ModalAdicionarViatura({ recarregar, categorias = [], aberto, setAberto 
     console.table(viatura);
 
     api.post('/viaturas', viatura)
-      .then(() => {
+      .then(async res => {
         toast.success(`Viatura ${prefixo} adicionada com sucesso.`);
+
+        await encarrilharViatura(res.data);
 
         setAberto(false);
         recarregar();
+        registrar();
       })
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));

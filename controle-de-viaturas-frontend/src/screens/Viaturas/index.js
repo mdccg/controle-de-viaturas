@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './styles.css';
 
 import Add from './../../assets/icons/Add';
@@ -13,7 +13,7 @@ import ModalEditarCategoria from './../../components/ModalEditarCategoria';
 import ModalAdicionarViatura from './../../components/ModalAdicionarViatura';
 import ModalDeletarViatura from './../../components/ModalDeletarViatura';
 
-import { niveisCombustivel, filtroNiveisCombustivel } from './../../config/default.json';
+import { filtroNiveisCombustivel } from './../../config/default.json';
 
 import getUsuario from './../../functions/getUsuario';
 
@@ -23,11 +23,13 @@ import moment from 'moment';
 
 function Viaturas() {
   const [reload, setReload] = useState(false);
+  const [registrando, setRegistrando] = useState(false);
 
   const [pesquisa, setPesquisa] = useState('');
 
-  const [viatura, setViatura] = useState({});
   const [viaturas, setViaturas] = useState([]);
+
+  const [viatura, setViatura] = useState({});
   const [categorias, setCategorias] = useState([]);
 
   const [ultimoRegistro, setUltimoRegistro] = useState({ signatario: {}, data: '' });
@@ -45,6 +47,27 @@ function Viaturas() {
   function recarregar() {
     setReload(!reload);
   }
+
+  function registrar() {
+    setRegistrando(!registrando);
+  }
+
+  function encarrilharViatura(viatura) {
+    setViaturas(state => {
+      return [...state, viatura];
+    });
+  }
+
+  function desencarrilharViatura(_id) {
+    setViaturas(state => {
+      return state.filter(value => value._id !== _id);
+    });
+  }
+
+  function atualizarViatura(viatura) {
+    desencarrilharViatura(viatura._id);
+    encarrilharViatura(viatura);
+  }
   
   function buscarUltimoRegistro() {
     api.get('/historico')
@@ -54,7 +77,7 @@ function Viaturas() {
         let { signatario, createdAt } = historico[ultimoMes].shift();
         
         let dia     = moment(createdAt).format('DD [de] MMMM [de] YYYY')
-        let horario = moment(createdAt).format('hh[:]mm');
+        let horario = moment(createdAt).format('HH[:]mm');
 
         let ultimoRegistro = { signatario, horario, dia };
         setUltimoRegistro(ultimoRegistro);
@@ -66,15 +89,7 @@ function Viaturas() {
     // TODO ajustar endpoint
  // api.get(`/viaturas?prefixo=${pesquisa}`)
     api.get(`/viaturas`)
-      .then(res => {
-        let viaturas = res.data.filter(viatura => {
-          return filtro ? filtro === viatura.nivelCombustivel : true;
-        });
-
-        console.log(viaturas);
-
-        setViaturas(viaturas);
-      })
+      .then(res => setViaturas(res.data))
       .catch(err => console.error(err));
   }
 
@@ -93,7 +108,7 @@ function Viaturas() {
     setAdicionandoViatura(true);
   }
 
-  function registrar() {
+  function enviarRegistro() {
     let usuario = getUsuario();
 
     const registro = {
@@ -102,21 +117,27 @@ function Viaturas() {
     };
 
     api.post('/registros', registro)
-      .then(res => console.log(res.data))
+      .then(() => console.log('Registro criado.'))
       .catch(err => console.error(err));
   }
 
+  const isInitialMount = useRef(true);
+
   useEffect(() => {
-    // IMPEDIR QUE SEJA EXECUTADO PELA PRIMEIRA VEZ
-    // registrar();
-  }, [viaturas]);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      enviarRegistro();
+    }
+    // eslint-disable-next-line
+  }, [registrando]);
 
   useEffect(() => {
     document.title = 'FORMULÁRIO ― 1º SGBM/IND';
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
-  }, [reload, filtro]);
+  }, [reload]);
 
   return (
     <>
@@ -140,6 +161,7 @@ function Viaturas() {
 
               return (
                 <div
+                  key={filtroNivelCombustivel}
                   className={'noselect fitro-nivel-combustivel ' + (selecionado ? 'selecionado' : '')}
                   onClick={() => filtrar(porExtenso)}>
                   <span>{filtroNivelCombustivel}</span>
@@ -157,18 +179,26 @@ function Viaturas() {
             <Categoria
               {...categoria}
               key={categoria._id}
+              registrar={registrar}
               recarregar={recarregar}
               setViatura={setViatura}
+              atualizarViatura={atualizarViatura}
               setDeletandoViatura={setDeletandoViatura}
               setEditandoCategoria={setEditandoCategoria}
               setEditandoNivelCombustivel={setEditandoNivelCombustivel} 
               viaturas={viaturas.filter(viatura => {
                 try {
-                  return viatura.categoria._id === categoria._id;
+                  if(!viatura.categoria)
+                    return false;
+
+                  return viatura.categoria._id === categoria._id
+                    && (filtro ? viatura.nivelCombustivel === filtro : true);
 
                 } catch(err) {
+                  console.table(viaturas);
                   console.table(viatura);
 
+                  return [];
                 }
               })} />
           ))}
@@ -193,13 +223,17 @@ function Viaturas() {
         setAberto={setEditandoCategoria} />
 
       <ModalAdicionarViatura
+        registrar={registrar}
         recarregar={recarregar}
+        encarrilharViatura={encarrilharViatura}
         categorias={categorias}
         aberto={adicionandoViatura}
         setAberto={setAdicionandoViatura} />
 
       <ModalDeletarViatura
+        registrar={registrar}
         recarregar={recarregar}
+        desencarrilharViatura={desencarrilharViatura}
         viatura={viatura}
         aberto={deletandoViatura}
         setAberto={setDeletandoViatura} />

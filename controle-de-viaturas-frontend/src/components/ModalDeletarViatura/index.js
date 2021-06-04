@@ -10,18 +10,21 @@ import api from './../../services/api';
 
 import { toast } from 'react-toastify';
 
-function ModalDeletarViatura({ recarregar, viatura = {}, aberto, setAberto }) {
+function ModalDeletarViatura({ registrar, recarregar, desencarrilharViatura, viatura = {}, aberto, setAberto }) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
   function deletarViatura() {
     setEfetuandoRequisicao(true);
 
     api.delete(`/viaturas/${viatura._id}`)
-      .then(res => {
+      .then(async res => {
         toast.success(res.data);
+
+        await desencarrilharViatura(viatura._id);
 
         setAberto(false);
         recarregar();
+        registrar();
       })
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));

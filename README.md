@@ -2,28 +2,20 @@
 
 ## _To-do list_
 
-- [X] Adicionar um modelo de dados para militares contendo os seguintes atributos;
- - Patente;
- - Primeiro nome;
- - E-mail;
- - Senha.
-- [X] Vincular o modelo de dados dos militares aos formulários preenchidos;
-- [X] Adicionar um modelo de dados para tipos de viaturas;
 - [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
   - [X] Formulário das viaturas;
   - [ ] Testes;
-  - [ ] Histórico;
+  - [X] Histórico;
   - [ ] Tabela diária;
   - [ ] Tabela mensal.
 - [ ] Trocar ponto por vírgula na atualização do odômetro das viaturas;
-- [X] Detectar mudança de rota no app;
-- [X] Detectar mudança no localStorage;
+- [ ] Detectar mudança no localStorage;
 - [ ] Interceptar exceções das requisições com mensagem de erro no formato _string_;
 - [ ] Retornar o militar em vez do identificador na rota de verificar token;
-- [X] Retornar o militar em vez do identificador na rota de registros;
 - [ ] Criar expressão regular na rota `/viaturas` [GET] para filtrar viaturas pelo prefixo; 
 - [ ] Criar expressão regular na rota `/militares` [GET] para filtrar militares pela patente ou pelo nome;
-- [ ] Converter os ícones do menu lateral para funções JSX.
+- [ ] Criar expressão regular na rota `/historico` [GET] para filtrar militares pela patente ou pelo nome;
+- [ ] Descobrir por que algumas viaturas não vêm com categoria.
 
 ## Motivação
 

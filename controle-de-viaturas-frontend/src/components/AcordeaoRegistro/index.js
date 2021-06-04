@@ -30,6 +30,8 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
   const dataFormatada = moment(data).format('DD/MM/YYYY HH[:]mm');
   const nomeMilitar   = `${signatario.patente} ${signatario.nome}`;
 
+  const vazio = viaturas.length === 0;
+
   function abrir() {
     setAberto(!aberto);
   }
@@ -64,10 +66,15 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
 
       {aberto ? (
         <div className="acordeao-registro-body">
-          {viaturas.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
+          {vazio ? <Vazio>Sem viaturas</Vazio> : <></>}
 
           {categorias.map(({ _id, nome }) => {
-            let tuplas = viaturas.filter(({ categoria }) => categoria._id === _id);
+            let tuplas = viaturas.filter(viatura => {
+              if(!viatura.categoria)
+                return false;
+
+              return viatura.categoria._id === _id;
+            });
 
             return tuplas.length > 0 ? (
               <div key={_id}>
@@ -77,10 +84,12 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
             ) : <></>;
           })}
 
-          <div className="botao-exportar" onClick={exportarPdf}>
-            <Clipboard />
-            <span>Exportar tabela para PDF</span>
-          </div>
+          {!vazio ? (
+            <div className="botao-exportar" onClick={exportarPdf}>
+              <Clipboard />
+              <span>Exportar tabela para PDF</span>
+            </div>
+          ) : <></>}
         </div>
       ) : <></>}
     </div>

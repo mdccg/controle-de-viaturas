@@ -9,8 +9,10 @@ import Viatura from './../Viatura';
 function Categoria({
   _id,
   nome,
+  registrar,
   recarregar,
   setViatura,
+  atualizarViatura,
   setDeletandoViatura,
   setEditandoCategoria,
   setEditandoNivelCombustivel,
@@ -39,8 +41,10 @@ function Categoria({
           <Viatura
             {...viatura}
             key={viatura._id}
+            registrar={registrar}
             recarregar={recarregar}
             setViatura={setViatura}
+            atualizarViatura={atualizarViatura}
             setDeletandoViatura={setDeletandoViatura}
             setEditandoCategoria={setEditandoCategoria}
             setEditandoNivelCombustivel={setEditandoNivelCombustivel} />
