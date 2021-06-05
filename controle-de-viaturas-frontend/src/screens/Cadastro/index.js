@@ -5,9 +5,6 @@ import Spinner from './../../assets/icons/Spinner';
 
 import Footer from './../../components/Footer';
 
-import putUsuario from './../../functions/putUsuario';
-import putToken   from './../../functions/putToken';
-
 import api from './../../services/api';
 
 import { toast } from 'react-toastify';

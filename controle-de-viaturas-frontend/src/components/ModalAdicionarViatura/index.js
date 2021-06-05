@@ -45,7 +45,7 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
       }
     }
 
-    var _km = km.replace(/\./g, '').replace(/\,/g, '.');
+    var _km = `${km}`.replace(/\./g, '').replace(/,/g, '.');
 
     let viatura = { prefixo, km: Number(_km), nivelCombustivel, comentario, categoria: JSON.parse(categoria)._id };
     console.table(viatura);

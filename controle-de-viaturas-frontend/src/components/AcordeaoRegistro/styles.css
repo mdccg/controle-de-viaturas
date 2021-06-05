@@ -14,6 +14,7 @@
   align-items: center;
   display: flex;
 
+  letter-spacing: .5px;
   line-height: 1.5;
 
   border-top-left-radius:  4px;
@@ -23,6 +24,8 @@
 }
 
 .acordeao-registro-header svg {
+  margin-left: 8px;
+
   width:  16px;
   height: 16px;
 
@@ -84,12 +87,34 @@
   height: 32px;
 }
 
+.acordeao-registro-body .botoes {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.acordeao-registro-body .botoes > * {
+  display: flex;
+  flex: 1;
+
+  margin-right: 16px;
+}
+
+.acordeao-registro-body .botoes > *:last-child { margin-right: 0; }
+
 @media only screen and (max-width: 500px) {
   .acordeao-registro-body {
     padding: 16px;
   }
 
-  .viatura-textual {
-    font-size: 80%;
+  .viatura-textual { font-size: 80%; }
+
+  .viatura-textual .nivelCombustivel { font-size: 70%; }
+
+  .acordeao-registro-body .botoes { flex-direction: column; }
+
+  .acordeao-registro-body .botoes > * {
+    margin-right: 0;
+    width: 90%;
   }
 }

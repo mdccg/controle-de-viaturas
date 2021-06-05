@@ -1,45 +1,47 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
 
+import { niveisCombustivel } from './../../config/default.json';
+
+import randomDate from './../../functions/randomDate';
+
 import api from './../../services/api';
 
 function Teste() {
   const [viaturas, setViaturas] = useState([]);
-
-  const [tremDeSos, setTremDeSos] = useState([]);
-  const [noPatio, setNoPatio] = useState([]);
-
-  const exibirViaturas = true;
+  const [categorias, setCategorias] = useState([]);
 
   function cadastrarViaturaAleatoria() {
     const viatura = {};
 
     viatura.prefixo = '';
 
-    for(let i = 0; i < 3; ++i) {
+    for(let i = 0; i < 3; ++i)
       viatura.prefixo += `${String.fromCharCode(Math.floor(Math.random() * 26) + 65)}`;
-    }
     
     viatura.prefixo += ' ';
     
-    for(let i = 0; i < 2; ++i) {
+    for(let i = 0; i < 2; ++i)
       viatura.prefixo += `${Math.floor(Math.random() * 9) + 1}`;
-    }
-    
-    viatura.categoria = Math.floor(Math.random() * 2) ? 'Trem de S.O.S' : 'No pátio';
+  
+
     viatura.km = Math.floor(Math.random() * 1e5) + 1e4;
 
-    let niveisCombustivel = [
-      'Tanque cheio',
-      'Combustível acima de ¾',
-      'Combustível acima de ½',
-      'Combustível acima de ¼',
-      'Reserva'
-    ];
-    let indice = Math.floor(Math.random() * niveisCombustivel.length);
 
-    viatura.nivelCombustivel = niveisCombustivel[indice];
+    let indiceNivelCombustivel = Math.floor(Math.random() * niveisCombustivel.length);
+    
+    viatura.nivelCombustivel = niveisCombustivel[indiceNivelCombustivel];
+
+
     viatura.comentario = '';
+
+
+    let _categorias = categorias.map(categoria => categoria._id);
+    
+    let indiceCategoria = Math.floor(Math.random() * _categorias.length);
+
+    viatura.categoria = _categorias[indiceCategoria];
+
 
     api.post('/viaturas', viatura)
       .then(res => {
@@ -53,12 +55,16 @@ function Teste() {
     const registro = {};
 
     let militares = [
-      '60b78239b09f1a1053e6ae4a'
+      '60bacf22cd73ff3ac49db70a' // admin admin
     ];
-    let indice = Math.floor(Math.random() * militares.length);
+    
+    let indiceMilitares = Math.floor(Math.random() * militares.length);
 
-    registro.signatario = militares[indice];
+    registro.signatario = militares[indiceMilitares];
+
     registro.viaturas = viaturas;
+
+    registro.createdAt = randomDate();
 
     api.post('/registros', registro)
       .then(res => {
@@ -70,17 +76,19 @@ function Teste() {
 
   function buscarViaturas() {
     api.get('/viaturas')
-      .then(res => {
-        let viaturas = res.data;
-        setViaturas(viaturas);
-        setTremDeSos(viaturas.filter(viatura => viatura.categoria === 'Trem de S.O.S'));
-        setNoPatio(viaturas.filter(viatura => viatura.categoria === 'No pátio'));
-      })
+      .then(res => setViaturas(res.data))
+      .catch(err => console.error(err));
+  }
+
+  function buscarCategorias() {
+    api.get('/categorias')
+      .then(res => setCategorias(res.data))
       .catch(err => console.error(err));
   }
 
   useEffect(() => {
     buscarViaturas();
+    buscarCategorias();
   }, []);
 
   return (
@@ -88,57 +96,36 @@ function Teste() {
       <button onClick={cadastrarViaturaAleatoria}>Cadastrar viatura randômica</button>
       <button onClick={cadastrarRegistroAleatoria}>Cadastrar registro randômico</button>
       
-      {exibirViaturas ? (
-        <div>
-          <h2>Trem de S.O.S</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Prefixo</th>
-                <th>KM</th>
-                <th>Nível de combustível</th>
-                <th>Comentário</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tremDeSos.map(({ _id, prefixo, km, nivelCombustivel, comentario }) => {
-                return (
-                  <tr key={_id}>
-                    <td>{prefixo}</td>
-                    <td>{km}</td>
-                    <td>{nivelCombustivel}</td>
-                    {comentario ? <td>{comentario}</td> : <td style={{ fontFamily: 'monospace' }}>&Oslash;</td>}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      {categorias.map(({ _id, nome }) => {
+        const viaturasFiltradas = viaturas.filter(viatura => viatura.categoria._id === _id);
+        
+        return viaturasFiltradas.length > 0 ? (
+          <div key={_id}>
+            <h2>{nome}</h2>
 
-          <h2>No pátio</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Prefixo</th>
-                <th>KM</th>
-                <th>Nível de combustível</th>
-                <th>Comentário</th>
-              </tr>
-            </thead>
-            <tbody>
-              {noPatio.map(({ _id, prefixo, km, nivelCombustivel, comentario }) => {
-                return (
-                  <tr key={_id}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Prefixo</th>
+                  <th>KM</th>
+                  <th>Nível de combustível</th>
+                  <th>Comentário</th>
+                </tr>
+              </thead>
+              <tbody>
+                {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
+                  <tr key={idViatura}>
                     <td>{prefixo}</td>
                     <td>{km}</td>
                     <td>{nivelCombustivel}</td>
-                    {comentario ? <td>{comentario}</td> : <td style={{ fontFamily: 'monospace' }}>&Oslash;</td>}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      ) : <></>}
+                    <td>{comentario}</td>
+                  </tr>  
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : <></>;
+      })}
     </div>
   );
 }

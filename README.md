@@ -3,29 +3,31 @@
 ## _To-do list_
 
 ### Front-end
-- [ ] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
+- [X] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
   - [X] Formulário das viaturas;
-  - [ ] Testes;
+  - [X] Testes;
   - [X] Histórico;
-  - [ ] Tabela diária;
-  - [ ] Tabela mensal.
+  - [X] Tabela diária;
+  - [X] Tabela mensal.
 - [X] Trocar ponto por vírgula na atualização do odômetro das viaturas;
 - [X] Detectar mudança no localStorage;
 - [ ] Interceptar exceções das requisições com mensagem de erro no formato _string_;
-- [ ] Adicionar botão de logout na tela de pendência;
+- [X] Adicionar botão de logout na tela de pendência;
 - [ ] Adicionar página customizada para status 404;
-- [ ] Adicionar botão para limpar um registro específico do histórico;
-- [ ] Adicionar botão para limpar um mês de registros;
-- [ ] Adicionar botão para limpar definitivamente o histórico.
+- [X] Adicionar botão para limpar um registro específico do histórico;
+- [X] Adicionar botão para limpar um mês de registros;
+- [X] Adicionar botão para limpar definitivamente o histórico;
+- [ ] Pesquisar como exportar para PDF no Android.
 
 ### Back-end
 
+- [ ] `BUG` Descobrir por que algumas viaturas não vêm com categoria;
 - [X] Retornar o militar em vez do identificador na rota de verificar token;
 - [X] Criar expressão regular na rota `/viaturas` [GET] para filtrar viaturas pelo prefixo; 
 - [X] Criar expressão regular na rota `/militares` [GET] para filtrar militares pela patente ou pelo nome;
 - [X] Criar expressão regular na rota `/historico` [GET] para filtrar militares pela patente ou pelo nome;
-- [ ] Descobrir por que algumas viaturas não vêm com categoria;
-- [ ] Adicionar _endpoint_ para excluir registros de um mês.
+- [ ] Criar expressão regular na rota `/historico` [GET] para filtrar militares por dia da semana e mês por extenso;
+- [X] Adicionar _endpoint_ para excluir registros de um mês.
 
 ## Motivação
 

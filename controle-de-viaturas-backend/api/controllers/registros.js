@@ -35,12 +35,23 @@ module.exports = app => {
       for(var registro of docs) {
         var militar = await Militar.findById(registro.signatario);
         
-        var encontrado = JSON.stringify(req.query) === '{}';
+        var encontrado = Object.values(req.query).join('') === '';
+
+        var { data: dataEsperada } = req.query;
+
+        var dataObtida    = moment(registro.createdAt).format('DD/MM/YYYY');
+        var horarioObtido = moment(registro.createdAt).format('HH[:]mm');
+
+        if(dataEsperada) {
+          let regExp = new RegExp(`\\b${dataEsperada}`, 'gm');
+          
+          encontrado = regExp.test(dataObtida) || regExp.test(horarioObtido);
+        }
 
         for(let chave of Object.keys(req.query)) {
           let regExp = new RegExp(`\\b${req.query[chave]}`, 'gim');
           
-          if(regExp.test(militar[chave])) {
+          if(!['data'].includes(chave) && regExp.test(militar[chave])) {
             encontrado = true;
             break;
           }
@@ -105,6 +116,32 @@ module.exports = app => {
 
       return res.status(200).send('Registro deletado com sucesso.');
     })
+  }
+
+  controller.deletarRegistrosMensais = async (req, res) => {
+    const { mes, ano } = req.params;
+
+    const primeiroDia = moment(`01/${mes}/${ano}`, 'DD/MM/YYYY');
+    const ultimoDia   = moment(primeiroDia).clone().endOf('month');
+
+    const filtro = {
+      createdAt: {
+        $gte: primeiroDia.toDate(),
+        $lte: ultimoDia.toDate()
+      }
+    };
+
+    Registro.find(filtro, function(err, docs) {
+      if(err) return res.status(500).json(err);
+
+      for(let registro of docs) {
+        Registro.findByIdAndDelete(registro._id, function(err, result) {
+          if(err) return res.status(500).json(err);
+        });
+      }
+
+      return res.status(200).send('Registros deletados com sucesso.');
+    });
   }
 
   return controller;

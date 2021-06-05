@@ -11,4 +11,7 @@ module.exports = app => {
   
   app.route('/api/v1/registros/:id')
     .delete(controller.deletarRegistro);
+  
+  app.route('/api/v1/registros/mensais/:mes/:ano')
+    .delete(controller.deletarRegistrosMensais);
 }

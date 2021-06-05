@@ -29,13 +29,13 @@ function Routes({ usuario = {}, token = '' }) {
           <Route exact path="/teste" component={Teste} />
           <Route exact path="/historico" component={Historico} />
           <Route exact path="/tabela-mensal" component={TabelaMensal} />
+          <Route exact path="/tabela-diaria" component={TabelaDiaria} />
         </>
       ) : <></>}
 
       {token !== '' ? (
         <>
           {/* Qualquer usuário logado */}
-          <Route exact path="/tabela-diaria" component={TabelaDiaria} />
         </>
       ) : <></>}
     </Switch>

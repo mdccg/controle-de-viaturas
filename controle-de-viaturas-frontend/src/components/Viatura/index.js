@@ -43,7 +43,7 @@ function Viatura(props) {
       if(viaturaDesatualizada !== viaturaAtualizada) {
         setEfetuandoRequisicao(true);
         
-        var _km = km.replace(/\./g, '').replace(/\,/g, '.');
+        var _km = `${km}`.replace(/\./g, '').replace(/,/g, '.');
 
         let viatura = { prefixo, km: Number(_km), nivelCombustivel, comentario, categoria: categoria._id };
         
@@ -159,6 +159,7 @@ function Viatura(props) {
           </div>
         </div>
 
+        {/* eslint-disable-next-line */}
         {editandoViatura || !editandoViatura && comentario !== '' ? (
           <div key={_id + '-segunda-linha'}>
             <div className="icone">

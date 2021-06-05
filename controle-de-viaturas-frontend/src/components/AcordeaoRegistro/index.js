@@ -3,6 +3,7 @@ import './styles.css';
 
 import ArrowDownSignToNavigate from './../../assets/icons/ArrowDownSignToNavigate';
 import Clipboard from './../../assets/icons/Clipboard';
+import Delete from './../../assets/icons/Delete';
 
 import Vazio from './../Vazio';
 
@@ -12,18 +13,20 @@ import api from './../../services/api';
 
 import moment from 'moment';
 
+import { toast } from 'react-toastify';
+
 function ViaturaTextual({ _id, prefixo, km, nivelCombustivel, comentario = '' }) {
   return (
     <div className="viatura-textual" key={_id}>
       <span>{prefixo}</span>
       <span>KM {km}</span>
-      <span>{nivelCombustivel}</span>
+      <span className="nivelCombustivel">{nivelCombustivel}</span>
       {comentario ? <span>{comentario}</span> : <div></div>}
     </div>
   );
 }
 
-function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data, categorias = [] }) {
+function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data, categorias = [], recarregar }) {
   const [aberto, setAberto] = useState(false);
   
   const diaSemana     = diasSemana[moment(data).isoWeekday() - 1];
@@ -38,8 +41,8 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
     const relatorio = {
       tipo: 'diario',
       relatorio: {
-        data: data,
-        militar: nomeMilitar,
+        data,
+        signatario,
         viaturas
       }
     };
@@ -47,6 +50,13 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
     api.put('/relatorio', relatorio)
       .then(() => window.open('/tabela-diaria', '_blank'))
       .catch(err => console.error(err));
+  }
+
+  function deletarRegistro() {
+    api.delete(`/registros/${_id}`)
+      .then(res => toast.success(res.data))
+      .catch(err => console.error(err))
+      .finally(() => recarregar());
   }
 
   return (
@@ -77,18 +87,31 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
             return tuplas.length > 0 ? (
               <div key={_id}>
                 <span className="categoria">{nome}</span>
-                {tuplas.map(tupla => <ViaturaTextual {...tupla} />)}
+                {tuplas.map(tupla => <ViaturaTextual key={tupla._id} {...tupla} />)}
               </div>
             ) : <></>;
           })}
 
-          {viaturas.length !== 0 ? (
-            <div className="botao-exportar" onClick={exportarPdf}>
-              <Clipboard />
-              <span>Exportar tabela para PDF</span>
+          <div className="botoes">
+            {viaturas.length !== 0 ? (
+              <div className="botao-exportar" onClick={exportarPdf}>
+                <div className="icone">
+                  <Clipboard />
+                </div>
+
+                <span>Exportar tabela para PDF</span>
+              </div>
+            ) : <></>}
+
+            <div className="botao-deletar" onClick={deletarRegistro}>
+              <div className="icone">
+                <Delete />
+              </div>
+              
+              <span>Deletar registro atual</span>
             </div>
-          ) : <></>}
-        </div>
+          </div>
+          </div>
       ) : <></>}
     </div>
   );

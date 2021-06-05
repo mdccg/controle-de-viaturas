@@ -135,6 +135,7 @@ function Viaturas() {
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
+    // eslint-disable-next-line
   }, [reload, pesquisa]);
 
   return (

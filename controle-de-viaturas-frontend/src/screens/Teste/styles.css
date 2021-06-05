@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   display: flex;
+
+  padding-bottom: 64px;
 }
 
 .teste button {
@@ -28,13 +30,23 @@
 }
 
 .teste button:active {
-  background-color: var(--dracula-orchid);
+  opacity: .5;
 }
 
 .teste h2 {
+  margin-top: 32px;
+  margin-bottom: 16px;
+
+  font-size: xx-large;
+
   text-align: center;
   align-self: center;
   display: flex;
+}
+
+.teste h2,
+.teste th {
+  font-weight: bold;
 }
 
 .teste table, .teste th, .teste td {
