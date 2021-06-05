@@ -56,23 +56,17 @@ window.addEventListener('afterprint', function() {
 ## Galeria
 
 <div style="flex-direction: row; display: flex;">
-  <img width="216px" src="https://i.imgur.com/6snIDkw.png" alt="Boas-vindas" />
-  <img width="216px" src="https://i.imgur.com/LUw004a.png" alt="Cadastro" />
-  <img width="216px" src="https://i.imgur.com/lqHO5xF.png" alt="Home" />
-  <img width="216px" src="https://i.imgur.com/Uq279Qo.png" alt="Editando odômetro da viatura"  />
-  <img width="216px" src="https://i.imgur.com/hUQoKbg.png" alt="Editando nível de combustível da viatura"  />
-  <img width="216px" src="https://i.imgur.com/C2OMM7L.png" alt="Editando observação sobre a viatura" />
-  <img width="216px" src="https://i.imgur.com/UT9BvOw.png" alt="Editando tipo de viatura" />
-  <img width="216px" src="https://i.imgur.com/Ejik6pe.png" alt="Modal de excluir viatura" />
-  <img width="216px" src="https://i.imgur.com/PDhgrSU.png" alt="Modal de adicionar viatura" />
-  <img width="216px" src="https://i.imgur.com/4GHg756.png" alt="Histórico de relatórios" />
-  <img width="216px" src="https://i.imgur.com/uXN9eVP.png" alt="Relatório do dia 29 de março de 2021, preenchido pelo Grande Almirante Thrawn" />
-  <img width="216px" src="https://i.imgur.com/exeWUZd.png" alt="Relatório convertido para PDF" />
-</div>
-
-<div style="flex-direction: row; display: flex;">
-  <img src="https://i.imgur.com/g5FKrBI.png" alt="Histórico de relatórios" />
-  <img src="https://i.imgur.com/RcYl9g9.png" alt="Relatório do dia 29 de março de 2021, preenchido pelo Grande Almirante Thrawn" />
+  <img width="216px" src="https://i.imgur.com/QWWvAyv.png" alt="Boas-vindas" />
+  <img width="216px" src="https://i.imgur.com/93sSK2j.png" alt="Login" />
+  <img width="216px" src="https://i.imgur.com/2xrKPNp.png" alt="Cadastro" />
+  <img width="216px" src="https://i.imgur.com/8Y84SmU.png" alt="Pendente" />
+  <img width="216px" src="https://i.imgur.com/cW0DzTq.png" alt="Formulário das viaturas"  />
+  <img width="216px" src="https://i.imgur.com/dJImAxA.png" alt="Histórico de edição do formulário"  />
+  <img width="216px" src="https://i.imgur.com/qUFSd0n.png" alt="Menu lateral" />
+  <img width="216px" src="https://i.imgur.com/JThhmCX.png" alt="Modal de adicionar viatura" />
+  <img width="216px" src="https://i.imgur.com/ulsqc1K.png" alt="Modal de editar nível de combustível" />
+  <img width="216px" src="https://i.imgur.com/HJ1Pigt.png" alt="Modal de editar tipo de viatura" />
+  
 </div>
 
 ---
