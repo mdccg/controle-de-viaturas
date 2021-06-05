@@ -43,13 +43,15 @@ function Viatura(props) {
       if(viaturaDesatualizada !== viaturaAtualizada) {
         setEfetuandoRequisicao(true);
         
-        let viatura = { prefixo, km: Number(km), nivelCombustivel, comentario, categoria: categoria._id };
-        // console.table(viatura);
+        var _km = km.replace(/\./g, '').replace(/\,/g, '.');
+
+        let viatura = { prefixo, km: Number(_km), nivelCombustivel, comentario, categoria: categoria._id };
+        
         api.put(`/viaturas/${_id}`, viatura)
           .then(async res => {
             toast.success(res.data);
             
-            let viatura = { _id, prefixo, km: Number(km), nivelCombustivel, comentario, categoria };
+            let viatura = { _id, prefixo, km: Number(_km), nivelCombustivel, comentario, categoria };
             await atualizarViatura(viatura);
 
             setViaturaDesatualizada(viaturaAtualizada);
@@ -135,7 +137,6 @@ function Viatura(props) {
               
               {editandoViatura ? (
                 <input
-                  type="number"
                   value={km}
                   onChange={event => setKm(event.target.value)}
                   placeholder="KM"

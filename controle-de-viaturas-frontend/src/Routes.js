@@ -19,8 +19,8 @@ function Routes({ usuario = {}, token = '' }) {
       <Route exact path="/cadastro" component={Cadastro} />
 
       <Route exact path="/" component={
-        token && usuario.ativo ? Viaturas :
-        token && !usuario.ativo ? Pendente : Login
+        token !== '' && usuario.ativo ? Viaturas :
+        token !== '' && !usuario.ativo ? Pendente : Login
       } />
 
       {/* Apenas administradores */}
@@ -32,7 +32,7 @@ function Routes({ usuario = {}, token = '' }) {
         </>
       ) : <></>}
 
-      {token ? (
+      {token !== '' ? (
         <>
           {/* Qualquer usuário logado */}
           <Route exact path="/tabela-diaria" component={TabelaDiaria} />

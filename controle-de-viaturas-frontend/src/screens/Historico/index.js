@@ -15,6 +15,8 @@ function Historico() {
   const [categorias, setCategorias] = useState([]);
   const [historico, setHistorico] = useState({});
 
+  const [pesquisa, setPesquisa] = useState('');
+
   function buscarCategorias() {
     api.get('/categorias')
       .then(res => setCategorias(res.data))
@@ -22,7 +24,7 @@ function Historico() {
   }
 
   function buscarHistorico() {
-    api.get('/historico')
+    api.get(`/historico?patente=${pesquisa}&nome=${pesquisa}`)
       .then(res => setHistorico(res.data))
       .catch(err => console.error(err));
   }
@@ -42,14 +44,17 @@ function Historico() {
     document.title = 'HISTÓRICO ― 1º SGBM/IND';
     buscarCategorias();
     buscarHistorico();
-  }, []);
+  }, [pesquisa]);
 
   return (
     <div className="historico">
       <Header />
 
       <div className="container">
-        {/* <SearchBar /> */}
+        <SearchBar
+          pesquisa={pesquisa}
+          setPesquisa={setPesquisa}
+          placeholder="Patente e nome do militar" /> 
 
         {JSON.stringify(historico) !== '{}' ? Object.keys(historico).map(mes => {
           const registrosMensais = historico[mes];

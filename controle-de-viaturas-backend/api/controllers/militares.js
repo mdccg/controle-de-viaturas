@@ -19,7 +19,32 @@ module.exports = app => {
   const controller = {};
 
   controller.buscarMilitares = (req, res) => {
-    Militar.find(req.query, function(err, docs) {
+    var filtro = [];
+    var chaves = Object.keys(req.query);
+    
+    for(let chave of chaves) {
+      var objeto = {};
+
+      /* 
+       * Quaisquer atributos booleanos
+       * que não precisem de expressão
+       * regular
+       * 
+       *   ||
+       *   ||
+       *   \/
+       */
+      if(['ativo'].includes(chave)) {
+        let objeto = { [chave]: req.query[chave] };
+        filtro.push(objeto);
+        continue;
+      }
+
+      objeto[chave] = new RegExp(`\\b${req.query[chave]}`, 'gim');
+      filtro.push(objeto);
+    }
+
+    Militar.find(filtro.length > 0 ? { $or: filtro } : {}, function(err, docs) {
       if(err) return res.status(500).json(err);
 
       return res.status(200).json(docs);
@@ -61,10 +86,12 @@ module.exports = app => {
     if(Bearer !== 'Bearer')
       return res.status(401).send('Token mal formatado.');
   
-    jwt.verify(token, process.env.SECRET || config.get('secret'), function(err, decoded) {
+    jwt.verify(token, process.env.SECRET || config.get('secret'), async function(err, decoded) {
       if(err) return res.status(401).send('Token inválido.');
   
-      return res.status(200).json({ _id: decoded._id });
+      const militar = await Militar.findById(decoded._id);
+
+      return res.status(200).json(militar);
     });
   }
 

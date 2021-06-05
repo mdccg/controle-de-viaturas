@@ -9,12 +9,7 @@ module.exports = app => {
     Viatura.create(req.body, async function(err, result) {
       if(err) return res.status(500).json(err);
 
-      var categoria;
-      
-      await Categoria.findById(result.categoria, function(err, doc) {
-        if(err) return res.status(500).json(err);
-        categoria = doc;
-      })
+      var categoria = await Categoria.findById(result.categoria);
 
       result.categoria = categoria;
 
@@ -23,18 +18,23 @@ module.exports = app => {
   }
 
   controller.listarViaturas = (req, res) => {
-    Viatura.find(req.query, async function(err, docs) {
+    var filtro = [];
+    var chaves = Object.keys(req.query);
+    
+    for(let chave of chaves) {
+      var objeto = {};
+      
+      objeto[chave] = new RegExp(`\\b${req.query[chave]}`, 'gim');
+      filtro.push(objeto);
+    }
+
+    Viatura.find(filtro.length > 0 ? { $or: filtro } : {}, async function(err, docs) {
       if(err) return res.status(500).json(err);
 
       var viaturas = [];
 
       for(let viatura of docs) {
-        var categoria;
-        
-        await Categoria.findById(viatura.categoria, function(err, doc) {
-          if(err) return res.status(500).json(err);
-          categoria = doc;
-        })
+        var categoria = await Categoria.findById(viatura.categoria);
         
         viatura.categoria = categoria;
         viaturas.push(viatura);

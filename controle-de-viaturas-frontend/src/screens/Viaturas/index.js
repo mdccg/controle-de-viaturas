@@ -86,9 +86,7 @@ function Viaturas() {
   }
 
   function buscarViaturas() {
-    // TODO ajustar endpoint
- // api.get(`/viaturas?prefixo=${pesquisa}`)
-    api.get(`/viaturas`)
+    api.get(`/viaturas?prefixo=${pesquisa}`)
       .then(res => setViaturas(res.data))
       .catch(err => console.error(err));
   }
@@ -137,7 +135,7 @@ function Viaturas() {
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
-  }, [reload]);
+  }, [reload, pesquisa]);
 
   return (
     <>

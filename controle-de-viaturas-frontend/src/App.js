@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+import encerrarSessao from './functions/encerrarSessao';
 import getUsuario from './functions/getUsuario';
 import putUsuario from './functions/putUsuario';
 import getToken   from './functions/getToken';
@@ -25,7 +26,8 @@ function App() {
 
   /** https://forums.asp.net/t/2164818.aspx?How+to+detect+if+localstorage+has+been+changed */
   function detectarMudancaLocalStorage() {
-    var originalSetItem = localStorage.setItem;
+    var originalSetItem    = localStorage.setItem;
+    var originalRemoveItem = localStorage.removeItem;
 
     localStorage.setItem = function (key, value) {
       var event = new Event('itemInserted');
@@ -38,12 +40,31 @@ function App() {
       originalSetItem.apply(this, arguments);
     }
 
+    localStorage.removeItem = function (key, value) {
+      var event = new Event('itemRemoved');
+
+      event.value = value;
+      event.key = key; 
+
+      document.dispatchEvent(event);
+
+      originalRemoveItem.apply(this, arguments);
+    }
+
     var localStorageSetHandler = function (e) {
+      // Ao inserir variável na local storage
+      atualizarUsuario();
       window.location.pathname = '/';
-      atualizarUsuario(); // FIXME remover caso dê erro
+    }
+
+    var localStorageRemoveHandler = function (e) {
+      // Ao remover variável da local storage
+      atualizarUsuario();
+      window.location.pathname = '/';
     }
 
     document.addEventListener('itemInserted', localStorageSetHandler, false);
+    document.addEventListener('itemRemoved',  localStorageRemoveHandler, false);
   }
 
   function atualizarUsuario() {
@@ -54,13 +75,6 @@ function App() {
     setToken(token);
 
     setBuscandoDados(false);
-  }
-
-  function encerrarSessao() {
-    localStorage.removeItem('@usuario');
-    localStorage.removeItem('@token');
-    setUsuario({});
-    setToken('');
   }
 
   function verificarToken() {
@@ -81,18 +95,12 @@ function App() {
 
     api.get('/login', config)
       .then(res => {
-        const { _id } = res.data;
+        var militar = res.data;
 
-        api.get(`/militares?_id=${_id}`)
-          .then(res => {
-            let militar = res.data.pop();
-            
-            if(JSON.stringify(usuario) !== JSON.stringify(militar)) {
-              setUsuario(militar);
-              putUsuario(militar);
-            }
-
-          }).catch(() => encerrarSessao());
+        if(JSON.stringify(usuario) !== JSON.stringify(militar)) {
+          setUsuario(militar);
+          putUsuario(militar);
+        }
       })
       .catch(() => encerrarSessao());
   }

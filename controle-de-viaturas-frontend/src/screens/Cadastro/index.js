@@ -59,7 +59,7 @@ function Cadastro() {
     let militar = { patente, nome, email, senha };
 
     api.post('/militares', militar)
-      .then(res => {
+      .then(() => {
         setPatente('');
         setNome('');
         setEmail('');
@@ -67,11 +67,6 @@ function Cadastro() {
         setSenha1('');
 
         toast.success(`${patente} ${nome} cadastrado(a) com êxito.`);
-
-        let { militar, token } = res.data;
-
-        putUsuario(militar);
-        putToken(token);
       })
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));

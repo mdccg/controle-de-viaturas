@@ -1,7 +1,5 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css';
-
-import randomDate from './../../functions/randomDate';
 
 import api from './../../services/api';
 

@@ -25,7 +25,7 @@ module.exports = app => {
   }
   
   controller.buscarHistorico = (req, res) => {
-    Registro.find(req.query, async function(err, docs) {
+    Registro.find({}, async function(err, docs) {
       if(err) return res.status(500).json(err);
 
       const datas = {};
@@ -34,7 +34,20 @@ module.exports = app => {
 
       for(var registro of docs) {
         var militar = await Militar.findById(registro.signatario);
-        registros.push({ ...registro._doc, signatario: militar });
+        
+        var encontrado = JSON.stringify(req.query) === '{}';
+
+        for(let chave of Object.keys(req.query)) {
+          let regExp = new RegExp(`\\b${req.query[chave]}`, 'gim');
+          
+          if(regExp.test(militar[chave])) {
+            encontrado = true;
+            break;
+          }
+        }
+
+        if(encontrado)
+          registros.push({ ...registro._doc, signatario: militar });
       }
 
       var datasIso8601 = registros.map(doc => ({ _id: doc._id, data: doc.createdAt }));

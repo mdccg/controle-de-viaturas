@@ -31,9 +31,9 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
 
     let obrigatorios = [
       { valor: prefixo, ref: prefixoRef, msg: 'Prefixo' },
-      { valor: km, ref: kmRef, msg: 'Prefixo' },
-      { valor: nivelCombustivel, ref: nivelCombustivelRef, msg: 'Prefixo' },
-      { valor: categoria, ref: categoriaRef, msg: 'Prefixo' },
+      { valor: km, ref: kmRef, msg: 'KM' },
+      { valor: nivelCombustivel, ref: nivelCombustivelRef, msg: 'Nível de combustível' },
+      { valor: categoria, ref: categoriaRef, msg: 'Categoria' },
     ];
 
     for(let { valor, ref, msg } of obrigatorios) {
@@ -45,7 +45,9 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
       }
     }
 
-    let viatura = { prefixo, km: Number(km), nivelCombustivel, comentario, categoria: JSON.parse(categoria)._id };
+    var _km = km.replace(/\./g, '').replace(/\,/g, '.');
+
+    let viatura = { prefixo, km: Number(_km), nivelCombustivel, comentario, categoria: JSON.parse(categoria)._id };
     console.table(viatura);
 
     api.post('/viaturas', viatura)
@@ -77,7 +79,6 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
           autoComplete="off" />
 
         <input
-          type="number"
           name="km"
           value={km}
           onChange={event => setKm(event.target.value)}
