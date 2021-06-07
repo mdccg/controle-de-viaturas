@@ -3,57 +3,17 @@
 ## _To-do list_
 
 ### Front-end
-- [X] Reescrever trechos de código substituindo "Trem de S.O.S" e "No pátio" por uma listagem de todos os tipos de viaturas;
-  - [X] Formulário das viaturas;
-  - [X] Testes;
-  - [X] Histórico;
-  - [X] Tabela diária;
-  - [X] Tabela mensal.
-- [X] Trocar ponto por vírgula na atualização do odômetro das viaturas;
-- [X] Detectar mudança no localStorage;
-- [ ] Interceptar exceções das requisições com mensagem de erro no formato _string_;
-- [X] Adicionar botão de logout na tela de pendência;
-- [ ] Adicionar página customizada para status 404;
-- [X] Adicionar botão para limpar um registro específico do histórico;
-- [X] Adicionar botão para limpar um mês de registros;
-- [X] Adicionar botão para limpar definitivamente o histórico;
-- [ ] Pesquisar como exportar para PDF no Android.
-
-### Back-end
-
-- [ ] `BUG` Descobrir por que algumas viaturas não vêm com categoria;
-- [X] Retornar o militar em vez do identificador na rota de verificar token;
-- [X] Criar expressão regular na rota `/viaturas` [GET] para filtrar viaturas pelo prefixo; 
-- [X] Criar expressão regular na rota `/militares` [GET] para filtrar militares pela patente ou pelo nome;
-- [X] Criar expressão regular na rota `/historico` [GET] para filtrar militares pela patente ou pelo nome;
-- [ ] Criar expressão regular na rota `/historico` [GET] para filtrar militares por dia da semana e mês por extenso;
-- [X] Adicionar _endpoint_ para excluir registros de um mês.
+- [ ] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto.
 
 ## Motivação
 
 Este app foi desenvolvido para o 1º Subgrupamento de Bombeiros Militar Independente (1º SGBM/Ind) do município de Aquidauana - MS. Seu objetivo é inspecionar e gerar relatórios diários e mensais sobre as viaturas de combate ao incêndio, armazenando informações como prefixo, tipo de viatura (trem de S.O.S ou pátio), distância marcada pelo odômetro, nível de combustível e observações facultativas.
 
-Para o desenvolvimento do app, foi utilizada a página [Flat UI Colors](https://flatuicolors.com/) para composição da [paleta de cores](https://github.com/mdccg/controle-de-viaturas/blob/master/controle-de-viaturas-frontend/src/App.css), o editor gráfico [Figma](https://figma.com/) para prototipagem, a biblioteca [React.js](https://pt-br.reactjs.org/) para criação das interfaces visuais, o framework [Express.js](https://expressjs.com/pt-br/) para criação da API e o serviço de banco de dados em nuvem global [MongoDB Atlas](https://cloud.mongodb.com/) para gestão e hospedagem do banco de dados. O protótipo visual do app está disponível no endereço https://figma.fun/L1OsQL. O acesso ao app é protegido por meio de autenticação com login e senha. Assim, o acesso é restrito aos bombeiros smilitares do 1º SGBM/Ind, por meio da supervisão do _stakeholder_. Por conseguinte, o app oferece também a consulta aos formulários previamente preenchidos.
+Para o desenvolvimento do app, foi utilizada a página [Flat UI Colors](https://flatuicolors.com/) para composição da [paleta de cores](https://github.com/mdccg/controle-de-viaturas/blob/master/controle-de-viaturas-frontend/src/App.css), o editor gráfico [Figma](https://figma.com/) para prototipagem, a biblioteca [React.js](https://pt-br.reactjs.org/) para criação das interfaces visuais, o framework [Express.js](https://expressjs.com/pt-br/) para criação da API e o serviço de banco de dados em nuvem global [MongoDB Atlas](https://cloud.mongodb.com/) para gestão e hospedagem do banco de dados. O protótipo visual do app está disponível no endereço https://figma.fun/L1OsQL. O acesso ao app é protegido por meio de autenticação com login e senha. Assim, o acesso é restrito aos bombeiros militares do 1º SGBM/Ind, por meio da supervisão do _stakeholder_.
 
 Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva (do inglês _Progressive Web App_ – PWA) é um app web que, quando utilizado em dispositivo móvel como um _smartphone_, por exemplo, se comporta como um app nativo da plataforma do dispositivo - Android ou iOS, por exemplo. Por sua vez, quando visualizado em um dispositivo _desktop_, como um computador pessoal, por exemplo, se comporta como um web site. As vantagens de se implementar o app com esta abordagem é o baixo custo de implementação, associado a todos os benefícios que um app para dispositivos móveis oferece ao usuário. (PONTES, 2018)
 
-Para organização das datas de cada relatório, foi utilizada a [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601), uma norma internacional para representação de data e hora e a biblioteca [Moment.js](https://momentjs.com/), tanto no front-end como no back-end. Para disposição e conversão em PDF dos relatórios diários e mensais, foram utilizados os seguintes retalhos de código:
-
-```
-api.put('/relatorio', relatorio)
-  .then(() => window.open('/tabela-diaria', '_blank'))
-  .catch(err => console.error(err));
-```
-
-O código acima utiliza uma instância da dependência [axios](https://github.com/axios/axios) para enviar os dados contidos na variável `relatorio` ao servidor. Após a requisição bem-sucedida, a função ```window.open``` abre o relatório em uma nova guia. Após o relatório ser salvo ou a operação ser cancelada, o evento [`onafterprint`](https://www.w3schools.com/jsref/event_onafterprint.asp) é captado e a página se fecha, como instrui o retalho de código abaixo:
-
-```
-window.print();
-
-window.addEventListener('afterprint', function() {
-  this.close();
-});
-```
+<!-- ESCREVER AQUI SOBRE react-pdf https://react-pdf.org/ -->
 
 ## Galeria
 

@@ -38,7 +38,7 @@
   display: flex;
 
   max-width: 60vw;
-  width: 384px;
+  width: 256px;
 }
 
 .login .card > * {

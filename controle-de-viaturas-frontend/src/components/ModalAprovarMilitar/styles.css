@@ -1,0 +1,77 @@
+.modal-aprovar-militar {
+  font-size: 90%;
+  color: var(--dracula-orchid);
+
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.modal-aprovar-militar .nome-militar {
+  font-family: 'OswaldBold';
+
+  text-transform: uppercase;
+}
+
+.modal-aprovar-militar .sudo-switch .MuiSwitch-colorSecondary.Mui-checked {
+  color: var(--sun-flower) !important;
+}
+
+.modal-aprovar-militar .sudo-switch .MuiSwitch-track {
+  background-color: var(--sun-flower) !important;
+}
+
+.modal-aprovar-militar .sudo-switch.desativado .MuiSwitch-track {
+  background-color: var(--soothing-breeze) !important;
+}
+
+.modal-aprovar-militar .termos {
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  align-items: flex-start;
+  flex-direction: row;
+  display: flex;
+}
+
+.modal-aprovar-militar .termos .texto > span {
+  color: var(--american-river);
+  font-size: 80%;
+
+  line-height: 1.15;
+}
+
+.modal-aprovar-militar .botoes {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.modal-aprovar-militar .botoes .diastema {
+  width: 16px;
+}
+
+.modal-aprovar-militar .botao {
+  border-radius: 2px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+
+  height: 32px;
+}
+
+.modal-aprovar-militar .botao span {
+  font-family: 'OswaldBold';
+  color: white;
+  font-size: 85%;
+
+  text-transform: uppercase;
+}
+
+.modal-aprovar-militar .botao svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}

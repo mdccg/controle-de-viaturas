@@ -3,6 +3,7 @@ import './styles.css';
 
 import Clipboard from './../../assets/icons/Clipboard';
 import Delete from './../../assets/icons/Delete';
+import Spinner from './../../assets/icons/Spinner';
 
 import Header from './../../components/Header';
 import Footer from './../../components/Footer';
@@ -14,10 +15,12 @@ import { meses } from './../../config/default.json';
 
 import api from './../../services/api';
 
-import { toast } from 'react-toastify';
-
 function Historico() {
   const [reload, setReload] = useState(false);
+
+  const [buscandoHistorico, setBuscandoHistorico] = useState(false);
+  const [limpandoHistorico, setLimpandoHistorico] = useState(false);
+  const [deletandoRegistrosMensais, setDeletandoRegistrosMensais] = useState(false);
 
   const [categorias, setCategorias] = useState([]);
   const [historico, setHistorico] = useState({});
@@ -35,9 +38,12 @@ function Historico() {
   }
 
   function buscarHistorico() {
+    setBuscandoHistorico(true);
+
     api.get(`/historico?patente=${pesquisa}&nome=${pesquisa}&data=${pesquisa}`)
       .then(res => setHistorico(res.data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => setBuscandoHistorico(false));
   }
 
   function exportarPdfMensal(mes) {
@@ -52,6 +58,8 @@ function Historico() {
   }
 
   function deletarRegistrosMensais(data) {
+    setDeletandoRegistrosMensais(true);
+
     let [mes, , ano] = data.split(' ');
 
     mes = `${meses.indexOf(mes) + 1}`.split('');
@@ -62,16 +70,18 @@ function Historico() {
     mes = mes.join('');
 
     api.delete(`/registros/mensais/${mes}/${ano}`)
-      .then(res => toast.success(res.data))
+      .then(() => recarregar())
       .catch(err => console.error(err))
-      .finally(() => recarregar());
+      .finally(() => setDeletandoRegistrosMensais(false));
   }
 
   function limparHistorico() {
+    setLimpandoHistorico(true);
+
     api.delete('/registros')
-      .then(res => toast.success(res.data))
+      .then(res => recarregar())
       .catch(err => console.error(err))
-      .finally(() => recarregar());
+      .finally(() => setLimpandoHistorico(false));
   }
 
   useEffect(() => {
@@ -91,7 +101,9 @@ function Historico() {
           setPesquisa={setPesquisa}
           placeholder="Militar ou data" /> 
 
-        {JSON.stringify(historico) !== '{}' ? Object.keys(historico).map(mes => {
+        {buscandoHistorico ? <Spinner className="loader" /> : <></>}
+
+        {!buscandoHistorico && JSON.stringify(historico) !== '{}' ? Object.keys(historico).map(mes => {
           const registrosMensais = historico[mes];
           
           return (
@@ -118,11 +130,15 @@ function Historico() {
               </div>
 
               <div className="botao-deletar mensal" onClick={() => deletarRegistrosMensais(mes)}>
-                <div className="icone">
-                  <Delete />
-                </div>
-                
-                <span>Deletar registros de {mes}</span>
+                {deletandoRegistrosMensais ? <Spinner /> : (
+                  <>
+                    <div className="icone">
+                      <Delete />
+                    </div>
+                    
+                    <span>Deletar registros de {mes}</span>
+                  </>
+                )}
               </div>
 
               <div className="divider"></div>
@@ -132,11 +148,15 @@ function Historico() {
 
         {Object.keys(historico).join('') !== '' ? (
           <div className="botao-deletar total" onClick={limparHistorico}>
-            <div className="icone">
-              <Delete />
-            </div>
-            
-            <span>Limpar histórico</span>
+            {limpandoHistorico ? <Spinner /> : (
+              <>
+                <div className="icone">
+                  <Delete />
+                </div>
+                
+                <span>Limpar histórico</span>
+              </>
+            )}
           </div>
         ) : <></>}
       </div>

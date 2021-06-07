@@ -4,6 +4,7 @@ import './styles.css';
 import ArrowDownSignToNavigate from './../../assets/icons/ArrowDownSignToNavigate';
 import Clipboard from './../../assets/icons/Clipboard';
 import Delete from './../../assets/icons/Delete';
+import Spinner from './../../assets/icons/Spinner';
 
 import Vazio from './../Vazio';
 
@@ -12,8 +13,6 @@ import { diasSemana } from './../../config/default.json';
 import api from './../../services/api';
 
 import moment from 'moment';
-
-import { toast } from 'react-toastify';
 
 function ViaturaTextual({ _id, prefixo, km, nivelCombustivel, comentario = '' }) {
   return (
@@ -27,6 +26,8 @@ function ViaturaTextual({ _id, prefixo, km, nivelCombustivel, comentario = '' })
 }
 
 function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data, categorias = [], recarregar }) {
+  const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
+  
   const [aberto, setAberto] = useState(false);
   
   const diaSemana     = diasSemana[moment(data).isoWeekday() - 1];
@@ -53,10 +54,12 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
   }
 
   function deletarRegistro() {
+    setEfetuandoRequisicao(true);
+
     api.delete(`/registros/${_id}`)
-      .then(res => toast.success(res.data))
+      .then(() => recarregar())
       .catch(err => console.error(err))
-      .finally(() => recarregar());
+      .finally(() => setEfetuandoRequisicao(false));
   }
 
   return (
@@ -104,11 +107,15 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
             ) : <></>}
 
             <div className="botao-deletar" onClick={deletarRegistro}>
-              <div className="icone">
-                <Delete />
-              </div>
-              
-              <span>Deletar registro atual</span>
+              {efetuandoRequisicao ? <Spinner /> : (
+                <>
+                  <div className="icone">
+                    <Delete />
+                  </div>
+                  
+                  <span>Deletar registro atual</span>
+                </>
+              )}
             </div>
           </div>
           </div>

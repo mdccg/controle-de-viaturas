@@ -49,7 +49,7 @@ function Login() {
         putUsuario(militar);
         putToken(token);
       })
-      .catch(err => toast.error(err.response.data))
+      .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));
   }
 

@@ -3,11 +3,13 @@ import './styles.css';
 
 import Add from './../../assets/icons/Add';
 import GasStation from './../../assets/icons/GasStation';
+import Spinner from './../../assets/icons/Spinner';
 
 import Header from './../../components/Header';
 import Footer from './../../components/Footer';
 import SearchBar from './../../components/SearchBar';
 import Categoria from './../../components/Categoria';
+import Vazio from './../../components/Vazio';
 import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
 import ModalEditarCategoria from './../../components/ModalEditarCategoria';
 import ModalAdicionarViatura from './../../components/ModalAdicionarViatura';
@@ -23,13 +25,14 @@ import moment from 'moment';
 
 function Viaturas() {
   const [reload, setReload] = useState(false);
-  const [registrando, setRegistrando] = useState(false);
-
+  
   const [pesquisa, setPesquisa] = useState('');
 
-  const [viaturas, setViaturas] = useState([]);
+  const [registrando, setRegistrando] = useState(false);
+  const [buscandoViaturas, setBuscandoViaturas] = useState(false);
 
   const [viatura, setViatura] = useState({});
+  const [viaturas, setViaturas] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
   const [ultimoRegistro, setUltimoRegistro] = useState({ signatario: {}, data: '' });
@@ -40,7 +43,7 @@ function Viaturas() {
   }
 
   const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
-  const [editandoCategoria, setEditandoCategoria] = useState(false);
+  const [editandoCategoria, setEditandoCategoria]   = useState(false);
   const [adicionandoViatura, setAdicionandoViatura] = useState(false);
   const [deletandoViatura, setDeletandoViatura] = useState(false);
 
@@ -71,35 +74,44 @@ function Viaturas() {
   
   function buscarUltimoRegistro() {
     api.get('/historico')
-      .then(res => {
-        let historico = res.data;
-        let ultimoMes = Object.keys(historico).shift();
-        let { signatario, createdAt } = historico[ultimoMes].shift();
-        
-        let dia     = moment(createdAt).format('DD [de] MMMM [de] YYYY')
-        let horario = moment(createdAt).format('HH[:]mm');
+      .then(({ data: historico }) => {
+        try {
+          let ultimoMes = Object.keys(historico).shift();
+          
+          let { signatario, createdAt: data } = historico[ultimoMes].shift() || {};
 
-        let ultimoRegistro = { signatario, horario, dia };
-        setUltimoRegistro(ultimoRegistro);
+          let dia     = moment(data).format('DD [de] MMMM [de] YYYY')
+          let horario = moment(data).format('HH[:]mm');
+  
+          let ultimoRegistro = { signatario, horario, dia };
+          setUltimoRegistro(ultimoRegistro);
+        
+        } catch(err) {
+          let signatario = { patente: 'A atualizar' };
+
+          let dia     = moment().format('DD [de] MMMM [de] YYYY')
+          let horario = moment().format('HH[:]mm');
+  
+          let ultimoRegistro = { signatario, horario, dia };
+          setUltimoRegistro(ultimoRegistro);
+        }
       })
       .catch(err => console.error(err));
   }
 
   function buscarViaturas() {
+    setBuscandoViaturas(true);
+
     api.get(`/viaturas?prefixo=${pesquisa}`)
       .then(res => setViaturas(res.data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => setBuscandoViaturas(false));
   }
 
   function buscarCategorias() {
     api.get('/categorias')
       .then(res => setCategorias(res.data))
       .catch(err => console.error(err));
-  }
-
-  function pesquisarViaturas(pesquisa) {
-    console.log(pesquisa);
-    setPesquisa(pesquisa);
   }
 
   function abrirModalAdicionarViatura() {
@@ -109,10 +121,7 @@ function Viaturas() {
   function enviarRegistro() {
     let usuario = getUsuario();
 
-    const registro = {
-      signatario: usuario._id,
-      viaturas
-    };
+    const registro = { signatario: usuario._id, viaturas };
 
     api.post('/registros', registro)
       .then(() => console.log('Registro criado.'))
@@ -171,8 +180,12 @@ function Viaturas() {
 
           <SearchBar 
             pesquisa={pesquisa}
-            setPesquisa={pesquisarViaturas}
+            setPesquisa={setPesquisa}
             placeholder="Prefixo da viatura" />
+
+          {buscandoViaturas ? <Spinner className="loader" /> : <></>}
+
+          {!buscandoViaturas && viaturas.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
 
           {categorias.map(categoria => (
             <Categoria

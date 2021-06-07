@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 import FireTruck from './../../assets/icons/FireTruck';
-import User from './../../assets/icons/User';
+import User      from './../../assets/icons/User';
 import Clipboard from './../../assets/icons/Clipboard';
-import Bell from './../../assets/icons/Bell';
-import _Bell from './../../assets/icons/_Bell';
+import  Bell     from './../../assets/icons/Bell';
+import _Bell     from './../../assets/icons/_Bell';
 import Firefighter from './../../assets/icons/Firefighter';
 import OnOffButton from './../../assets/icons/OnOffButton';
 
@@ -21,7 +21,7 @@ var rotas = [
 ];
 
 var sudoRotas = solicitando => ([
-  { icone: Clipboard, tela: 'Histórico de formulários', rota: '/historico' },
+  { icone: Clipboard, tela: 'Histórico de edições', rota: '/historico' },
   { icone: solicitando ? _Bell : Bell, tela: 'Solicitações', rota: '/solicitacoes' },
   { icone: Firefighter, tela: 'Militares', rota: '/usuarios' }
 ]);

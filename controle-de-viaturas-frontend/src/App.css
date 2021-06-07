@@ -135,6 +135,11 @@ button.botao-form {
   cursor: pointer;
 }
 
+button.botao-form.desabilitado {
+  background-color: var(--soothing-breeze);
+  cursor: default;
+}
+
 button.botao-form svg {
   width:  24px;
   height: 24px;
@@ -149,4 +154,11 @@ button.botao-form svg {
   flex-direction: column;
   align-self: center;
   display: flex;
+}
+
+svg.loader {
+  width:  256px;
+  height: 256px;
+
+  fill: var(--soothing-breeze);
 }

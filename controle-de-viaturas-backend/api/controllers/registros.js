@@ -39,13 +39,20 @@ module.exports = app => {
 
         var { data: dataEsperada } = req.query;
 
+        var diasSemana = ["segunda-feira", "terça-feira",  "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"];
+
         var dataObtida    = moment(registro.createdAt).format('DD/MM/YYYY');
         var horarioObtido = moment(registro.createdAt).format('HH[:]mm');
+        var diaSemanaObtido  = diasSemana[moment(registro.createdAt).isoWeekday() - 1];
+        var mesExtensoObtido = moment(registro.createdAt).format('MMMM [de] YYYY');
 
         if(dataEsperada) {
-          let regExp = new RegExp(`\\b${dataEsperada}`, 'gm');
+          let regExp = new RegExp(`\\b${dataEsperada}`, 'gim');
           
-          encontrado = regExp.test(dataObtida) || regExp.test(horarioObtido);
+          encontrado = regExp.test(dataObtida)
+            || regExp.test(horarioObtido) 
+            || regExp.test(diaSemanaObtido)
+            || regExp.test(mesExtensoObtido);
         }
 
         for(let chave of Object.keys(req.query)) {

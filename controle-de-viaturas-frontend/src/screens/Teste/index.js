@@ -87,6 +87,7 @@ function Teste() {
   }
 
   useEffect(() => {
+    document.title = 'TESTE ― 1º SGBM/IND';
     buscarViaturas();
     buscarCategorias();
   }, []);

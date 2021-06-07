@@ -1,0 +1,45 @@
+.solicitacoes .militares {
+  min-height: 75vh;
+}
+
+.solicitacoes .militar {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.solicitacoes .militar .icone,
+.solicitacoes .militar .corpo {
+  height: 64px;
+}
+
+.solicitacoes .militar .icone {
+  width:  64px;
+
+  fill: var(--soothing-breeze);
+}
+
+.solicitacoes .militar .corpo {
+  margin-left: 16px;
+
+  justify-content: space-evenly;
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+
+  line-height: 1.5;
+}
+
+.solicitacoes .militar .nome {
+  font-family: 'OswaldBold';
+  font-size: 120%;
+  color: var(--american-river);
+}
+
+.solicitacoes .militar .email {
+  font-family: 'OswaldLight';
+  font-size: 90%;
+  color: var(--soothing-breeze);
+}

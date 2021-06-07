@@ -13,8 +13,6 @@ import Tag from './../../assets/icons/Tag';
 
 import api from './../../services/api';
 
-import { toast } from 'react-toastify';
-
 function Viatura(props) {
   const _id = props._id;
   const [prefixo, setPrefixo] = useState(props.prefixo);
@@ -48,9 +46,7 @@ function Viatura(props) {
         let viatura = { prefixo, km: Number(_km), nivelCombustivel, comentario, categoria: categoria._id };
         
         api.put(`/viaturas/${_id}`, viatura)
-          .then(async res => {
-            toast.success(res.data);
-            
+          .then(async () => {
             let viatura = { _id, prefixo, km: Number(_km), nivelCombustivel, comentario, categoria };
             await atualizarViatura(viatura);
 

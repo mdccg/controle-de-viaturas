@@ -13,4 +13,7 @@ module.exports = app => {
   app.route('/api/v1/login')
     .get(controller.validarToken)
     .post(controller.autenticarMilitar);
+
+  app.route('/api/v1/atualizar-senha/:id')
+    .put(controller.atualizarSenha);
 }

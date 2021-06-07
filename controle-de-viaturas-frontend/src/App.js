@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
-import encerrarSessao from './functions/encerrarSessao';
+import getToken   from './functions/getToken';
 import getUsuario from './functions/getUsuario';
 import putUsuario from './functions/putUsuario';
-import getToken   from './functions/getToken';
+import encerrarSessao from './functions/encerrarSessao';
+import setApiInterceptor from './functions/setApiInterceptor';
 
 import api from './services/api';
 
@@ -14,7 +15,6 @@ import { useLocation } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 function App() {
   const [buscandoDados, setBuscandoDados] = useState(true);
@@ -105,9 +105,17 @@ function App() {
       .catch(() => encerrarSessao());
   }
 
+  function aquecerHeroku() {
+    api.get('/customer-wallets')
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err));
+  }
+
   useEffect(() => {
+    aquecerHeroku();
     verificarToken();
     atualizarUsuario();
+    setApiInterceptor();
     detectarMudancaLocalStorage();
     // eslint-disable-next-line
   }, []);

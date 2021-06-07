@@ -1,0 +1,20 @@
+.perfil form {
+  margin-bottom: 32px;
+}
+
+.perfil form .titulo {
+  font-size: 150%;
+  color: var(--dracula-orchid);
+}
+
+.perfil form > * {
+  box-sizing: border-box;
+  width: 100%;
+
+  margin-bottom: 16px;
+}
+
+.perfil form > *:last-child {
+  margin-top: 24px;
+  margin-bottom: 0;
+}

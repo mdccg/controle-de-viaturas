@@ -1,0 +1,56 @@
+.modal-intitulado {
+  outline: none;
+
+  width: 384px;
+  max-width: 75vw;
+}
+
+.modal-intitulado .cabecalho {
+  background-color: var(--chi-gong);
+
+  border-top-left-radius:  16px;
+  border-top-right-radius: 16px;
+
+  flex-direction: column;
+  display: flex;
+
+  padding: 16px;
+}
+
+.modal-intitulado .cabecalho .icone {
+  width:  32px;
+  height: 32px;
+
+  justify-content: center;
+  align-self: flex-end;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+
+  margin-bottom: 8px;
+}
+
+.modal-intitulado .cabecalho .icone svg {
+  width:  16px;
+  height: 16px;
+
+  fill: white;
+}
+
+.modal-intitulado .cabecalho span {
+  font-family: 'OswaldRegular';
+  color: white;
+  font-size: 125%;
+
+  text-transform: uppercase;
+}
+
+.modal-intitulado .corpo {
+  background-color: white;
+
+  border-bottom-left-radius:  16px;
+  border-bottom-right-radius: 16px;
+
+  padding: 16px;
+}

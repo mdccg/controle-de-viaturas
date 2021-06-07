@@ -69,8 +69,16 @@
   display: flex;
 }
 
-.historico .botao-deletar svg,
-.historico .botao-exportar svg {
+.historico .botao-deletar > svg,
+.historico .botao-exportar > svg {
+  width:  64px;
+  height: 64px;
+
+  fill: white;
+}
+
+.historico .botao-deletar .icone svg,
+.historico .botao-exportar .icone svg {
   width:  32px;
   height: 32px;
 

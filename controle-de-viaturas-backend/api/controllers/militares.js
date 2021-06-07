@@ -34,7 +34,7 @@ module.exports = app => {
        *   ||
        *   \/
        */
-      if(['ativo'].includes(chave)) {
+      if(['_id', 'ativo'].includes(chave)) {
         let objeto = { [chave]: req.query[chave] };
         filtro.push(objeto);
         continue;
@@ -123,6 +123,20 @@ module.exports = app => {
       if(err) return res.status(500).json(err);
 
       return res.status(200).send('Militar atualizado com sucesso.');
+    });
+  }
+
+  controller.atualizarSenha = async (req, res) => {
+    const { id } = req.params;
+    const options = { useFindAndModify: false };
+
+    const { senha } = req.body;
+    const hash = await bcrypt.hash(senha, 10);
+
+    Militar.findByIdAndUpdate(id, { $set: { senha: hash } }, options, function(err) {
+      if(err) return res.status(500).json(err);
+
+      return res.status(200).send('Senha atualizada com sucesso.');
     });
   }
 

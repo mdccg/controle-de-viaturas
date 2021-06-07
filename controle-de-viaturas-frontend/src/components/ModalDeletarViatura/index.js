@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import './styles.css';
 
-import Cancel from './../../assets/icons/Cancel';
 import Spinner from './../../assets/icons/Spinner';
 
-import TransitionsModal from './../TransitionsModal';
+import ModalIntitulado from './../ModalIntitulado';
 
 import api from './../../services/api';
-
-import { toast } from 'react-toastify';
 
 function ModalDeletarViatura({ registrar, recarregar, desencarrilharViatura, viatura = {}, aberto, setAberto }) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
@@ -17,9 +14,7 @@ function ModalDeletarViatura({ registrar, recarregar, desencarrilharViatura, via
     setEfetuandoRequisicao(true);
 
     api.delete(`/viaturas/${viatura._id}`)
-      .then(async res => {
-        toast.success(res.data);
-
+      .then(async () => {
         await desencarrilharViatura(viatura._id);
 
         setAberto(false);
@@ -31,41 +26,36 @@ function ModalDeletarViatura({ registrar, recarregar, desencarrilharViatura, via
   }
   
   return (
-    <TransitionsModal open={aberto} setOpen={setAberto}>
+    <ModalIntitulado
+      aberto={aberto}
+      setAberto={setAberto}
+      cor="var(--chi-gong)"
+      titulo={`Deletar viatura ${viatura.prefixo}`}>
+        
       <div className="modal-deletar-viatura">
-        <div className="cabecalho">
-          <div className="icone" onClick={() => setAberto(false)}>
-            <Cancel />
+        <span style={{ fontFamily: 'OswaldLight' }}>
+          Tem certeza que deseja deletar definitivamente a viatura <span className="prefixo-viatura">{viatura.prefixo}</span>?
+        </span>
+
+        <div className="botoes">
+          <div
+            onClick={deletarViatura}
+            className="botao"
+            style={{ backgroundColor: 'var(--chi-gong)' }}>
+            {efetuandoRequisicao ? <Spinner /> : <span>Deletar</span>}
           </div>
+          
+          <div className="diastema"></div>
 
-          <span>Deletar viatura {viatura.prefixo}</span>
-        </div>
-
-        <div className="corpo">
-          <span style={{ fontFamily: 'OswaldLight' }}>
-            Tem certeza que deseja deletar definitivamente a viatura <span className="prefixo-viatura">{viatura.prefixo}</span>?
-          </span>
-
-          <div className="botoes">
-            <div
-              onClick={deletarViatura}
-              className="botao"
-              style={{ backgroundColor: 'var(--chi-gong)' }}>
-              {efetuandoRequisicao ? <Spinner /> : <span>Deletar</span>}
-            </div>
-            
-            <div className="diastema"></div>
-
-            <div
-              onClick={() => setAberto(false)}
-              className="botao"
-              style={{ backgroundColor: 'var(--american-river)' }}>
-              <span>Cancelar</span>
-            </div>
+          <div
+            onClick={() => setAberto(false)}
+            className="botao"
+            style={{ backgroundColor: 'var(--american-river)' }}>
+            <span>Cancelar</span>
           </div>
         </div>
       </div>
-    </TransitionsModal>
+    </ModalIntitulado>
   );
 }
 
