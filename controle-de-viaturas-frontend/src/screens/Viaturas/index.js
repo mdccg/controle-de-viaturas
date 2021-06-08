@@ -185,7 +185,7 @@ function Viaturas() {
 
           {buscandoViaturas ? <Spinner className="loader" /> : <></>}
 
-          {!buscandoViaturas && viaturas.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
+          {categorias.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
 
           {categorias.map(categoria => (
             <Categoria

@@ -7,6 +7,7 @@ import Perfil from './screens/Perfil';
 
 import Teste from './screens/Teste';
 import Historico from './screens/Historico';
+import Militares from './screens/Militares';
 import Solicitacoes from './screens/Solicitacoes';
 import TabelaDiaria from './screens/TabelaDiaria';
 import TabelaMensal from './screens/TabelaMensal';
@@ -30,6 +31,7 @@ function Routes({ usuario = {}, token = '' }) {
       {/* Apenas administradores */}
       <Route exact path="/teste" component={sudo ? Teste : Negado} />
       <Route exact path="/historico" component={sudo ? Historico : Negado} />
+      <Route exact path="/militares" component={sudo ? Militares : Negado} />
       <Route exact path="/solicitacoes" component={sudo ? Solicitacoes : Negado} />
       <Route exact path="/tabela-diaria" component={sudo ? TabelaDiaria : Negado} />
       <Route exact path="/tabela-mensal" component={sudo ? TabelaMensal : Negado} />

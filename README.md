@@ -3,7 +3,8 @@
 ## _To-do list_
 
 ### Front-end
-- [ ] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto.
+- [ ] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto;
+- [ ] Alinhar todos os rodapés.
 
 ## Motivação
 

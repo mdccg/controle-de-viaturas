@@ -23,7 +23,7 @@ var rotas = [
 var sudoRotas = solicitando => ([
   { icone: Clipboard, tela: 'Histórico de edições', rota: '/historico' },
   { icone: solicitando ? _Bell : Bell, tela: 'Solicitações', rota: '/solicitacoes' },
-  { icone: Firefighter, tela: 'Militares', rota: '/usuarios' }
+  { icone: Firefighter, tela: 'Militares', rota: '/militares' }
 ]);
 
 function Rota({ icone: Icone, tela, rota }) {

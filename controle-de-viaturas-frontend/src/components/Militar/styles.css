@@ -1,0 +1,56 @@
+.componente-militar {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.componente-militar .corpo,
+.componente-militar .icone {
+  height: 64px;
+}
+
+.componente-militar .icone {
+  width:  64px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.componente-militar .cabeca svg,
+.componente-militar .rabo svg {
+  fill: var(--soothing-breeze);
+}
+
+.componente-militar .cabeca svg {
+  width:  48px;
+  height: 48px;
+}
+
+.componente-militar .rabo svg {
+  width:  32px;
+  height: 32px;
+}
+
+.componente-militar .corpo {
+  justify-content: space-evenly;
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+
+  height: 64px;
+}
+
+.componente-militar .corpo .nome-militar {
+  font-family: 'OswaldBold';
+  color: var(--american-river);
+  font-size: 120%;
+}
+
+.componente-militar .corpo .email {
+  font-family: 'OswaldLight';
+  color: var(--soothing-breeze);
+  font-size: 80%;
+}

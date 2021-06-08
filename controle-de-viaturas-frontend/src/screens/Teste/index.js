@@ -55,7 +55,7 @@ function Teste() {
     const registro = {};
 
     let militares = [
-      '60bacf22cd73ff3ac49db70a' // admin admin
+      '60be998f10344a0015ea8155' // admin admin
     ];
     
     let indiceMilitares = Math.floor(Math.random() * militares.length);

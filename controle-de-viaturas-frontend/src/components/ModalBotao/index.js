@@ -9,7 +9,7 @@ function ModalBotao({ variavel, setVariavel, variavelSelecionada, setVariavelSel
   }
 
   return (
-    <div onClick={selecionar} className={'modal-botao ' + (selecionada ? 'selecionada' : '')}>
+    <div onClick={selecionar} className={'modal-botao ' + (selecionada ? 'selecionado' : '')}>
       <span>{variavel}</span>
     </div>
   );

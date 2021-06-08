@@ -1,0 +1,43 @@
+.tela-militares .lista-militares {
+  min-height: 61.5vh;
+}
+
+.tela-militares .lista-militares .tipo-militar > * {
+  margin-bottom: 16px;
+}
+
+.tela-militares .lista-militares .tipo-militar .titulo {
+  margin-bottom: 32px;
+
+  padding-left:  16px;
+  padding-right: 16px;
+
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  height: 48px;
+
+  cursor: pointer;
+}
+
+.tela-militares .lista-militares .tipo-militar .titulo span {
+  font-family: 'OswaldBold';
+  font-size: 170%;
+  color: var(--dracula-orchid);
+  
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.tela-militares .lista-militares .tipo-militar .titulo svg {
+  width:  16px;
+  height: 16px;
+
+  fill: var(--soothing-breeze);
+}
+
+.tela-militares .lista-militares .tipo-militar .titulo svg.aberto {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,14 @@
+.modal-atualizar-militar > * {
+  margin-bottom: 8px;
+}
+
+.modal-atualizar-militar > *:last-child {
+  margin-bottom: 0;
+}
+
+.modal-atualizar-militar svg {
+  width:  32px;
+  height: 32px;
+
+  fill: var(--american-river);
+}
