@@ -47,8 +47,8 @@
 }
 
 .pendente .logout {
-  margin-top:    30px;
-  margin-bottom: 20px;
+  margin-top:    16px;
+  margin-bottom: 32px;
   
   flex-direction: row;
   align-items: center;

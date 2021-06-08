@@ -162,3 +162,7 @@ svg.loader {
 
   fill: var(--soothing-breeze);
 }
+
+.Toastify__toast--success {
+  background-color: var(--emerald) !important;
+}

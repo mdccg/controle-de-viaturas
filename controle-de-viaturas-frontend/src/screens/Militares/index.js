@@ -39,11 +39,10 @@ function TipoMilitar({ titulo, militares = [], setMilitar, setAtualizandoMilitar
         <ArrowDownSignToNavigate className={aberto ? 'aberto' : ''} />
       </div>
 
-      {aberto ? militares.map(administrador => (
-        <div>
+      {aberto ? militares.map(militar => (
+        <div key={militar._id}>
           <Militar
-            {...administrador}
-            key={administrador._id}
+            {...militar}
             setMilitar={setMilitar}
             setAtualizandoMilitar={setAtualizandoMilitar} />
         </div>
@@ -74,7 +73,7 @@ function Militares() {
   function buscarMilitares() {
     setBuscandoMilitares(true);
 
-    api.get(`/militares?patente=${pesquisa}&nome=${pesquisa}`)
+    api.get(`/militares?patente=${pesquisa}&nome=${pesquisa}&ativo=true`)
       .then(({ data: militares }) => {
         setMilitares(() => {
           return militares.filter(militar => militar._id !== eu._id);
@@ -85,6 +84,7 @@ function Militares() {
   }
 
   useEffect(() => {
+    document.title = 'MILITARES ― 1º SGBM/IND';
     buscarMilitares();
     // eslint-disable-next-line
   }, [pesquisa, reload]);

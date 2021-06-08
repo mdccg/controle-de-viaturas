@@ -41,9 +41,10 @@
 .modal-intitulado .cabecalho span {
   font-family: 'OswaldRegular';
   color: white;
-  font-size: 125%;
+  font-size: 115%;
 
   text-transform: uppercase;
+  line-height: 1.5;
 }
 
 .modal-intitulado .corpo {

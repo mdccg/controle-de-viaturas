@@ -81,15 +81,9 @@ function App() {
     let usuario = getUsuario();
     let token   = getToken();
 
-    let usuarioEncontrado = JSON.stringify(usuario) !== '{}';
-
-    // eslint-disable-next-line
-    if(!token && usuarioEncontrado || !usuarioEncontrado && token) {
-      encerrarSessao();
+    if(!token) {
       return;
-    }
-
-    if(!token) return;
+    };
 
     const config = { headers: { authorization: `Bearer ${token}` } };
 

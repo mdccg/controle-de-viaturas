@@ -4,7 +4,8 @@
 
 ### Front-end
 - [ ] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto;
-- [ ] Alinhar todos os rodapés.
+- [X] Alinhar todos os rodapés;
+- [ ] Descobrir por que o mesmo _toast_ está sendo exibido mais de uma vez para a mesma requisição.
 
 ## Motivação
 

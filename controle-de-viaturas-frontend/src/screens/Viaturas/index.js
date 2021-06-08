@@ -187,33 +187,35 @@ function Viaturas() {
 
           {categorias.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
 
-          {categorias.map(categoria => (
-            <Categoria
-              {...categoria}
-              key={categoria._id}
-              registrar={registrar}
-              recarregar={recarregar}
-              setViatura={setViatura}
-              atualizarViatura={atualizarViatura}
-              setDeletandoViatura={setDeletandoViatura}
-              setEditandoCategoria={setEditandoCategoria}
-              setEditandoNivelCombustivel={setEditandoNivelCombustivel} 
-              viaturas={viaturas.filter(viatura => {
-                try {
-                  if(!viatura.categoria)
-                    return false;
+          <div className="lista-categorias">
+            {categorias.map(categoria => (
+              <Categoria
+                {...categoria}
+                key={categoria._id}
+                registrar={registrar}
+                recarregar={recarregar}
+                setViatura={setViatura}
+                atualizarViatura={atualizarViatura}
+                setDeletandoViatura={setDeletandoViatura}
+                setEditandoCategoria={setEditandoCategoria}
+                setEditandoNivelCombustivel={setEditandoNivelCombustivel} 
+                viaturas={viaturas.filter(viatura => {
+                  try {
+                    if(!viatura.categoria)
+                      return false;
 
-                  return viatura.categoria._id === categoria._id
-                    && (filtro ? viatura.nivelCombustivel === filtro : true);
+                    return viatura.categoria._id === categoria._id
+                      && (filtro ? viatura.nivelCombustivel === filtro : true);
 
-                } catch(err) {
-                  console.table(viaturas);
-                  console.table(viatura);
+                  } catch(err) {
+                    console.table(viaturas);
+                    console.table(viatura);
 
-                  return [];
-                }
-              })} />
-          ))}
+                    return [];
+                  }
+                })} />
+            ))}
+          </div>
 
           <Footer />
         </div>
