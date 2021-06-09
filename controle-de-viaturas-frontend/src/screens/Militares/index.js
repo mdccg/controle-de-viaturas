@@ -73,10 +73,10 @@ function Militares() {
   function buscarMilitares() {
     setBuscandoMilitares(true);
 
-    api.get(`/militares?patente=${pesquisa}&nome=${pesquisa}&ativo=true`)
+    api.get(`/militares?patente=${pesquisa}&nome=${pesquisa}`)
       .then(({ data: militares }) => {
         setMilitares(() => {
-          return militares.filter(militar => militar._id !== eu._id);
+          return militares.filter(({ _id, ativo }) => _id !== eu._id && ativo);
         });
       })
       .catch(err => console.error(err))

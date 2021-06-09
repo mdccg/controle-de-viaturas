@@ -67,11 +67,11 @@ function Solicitacoes() {
         <Header />
 
         <div className="container">
-          {buscandoMilitares ? <Spinner className="loader" /> : <></>}
-          
+          <div className="militares">
           {!buscandoMilitares && militares.length === 0 ? <Vazio>Sem solicitações</Vazio> : <></>}
           
-          <div className="militares">
+          {buscandoMilitares ? <Spinner className="loader" /> : <></>}
+
             {militares.map(militar => (
               <Militar
                 {...militar}

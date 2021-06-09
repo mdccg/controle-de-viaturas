@@ -56,6 +56,12 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
 
         await encarrilharViatura(res.data);
 
+        setPrefixo('');
+        setKm('');
+        setNivelCombustivel('');
+        setComentario('');
+        setCategoria('');
+
         setAberto(false);
         recarregar();
         registrar();
@@ -112,7 +118,7 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
           onChange={event => setCategoria(event.target.value)}
           ref={categoriaRef}>
 
-          <option value="">Categoria</option>
+          <option value="">Tipo de viatura</option>
           {categorias.map(categoria => (
             <option key={categoria._id} value={JSON.stringify(categoria)}>{categoria.nome}</option>
           ))}

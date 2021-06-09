@@ -1,5 +1,5 @@
 .solicitacoes .militares {
-  min-height: 42.5vh;
+  min-height: 440px;
 }
 
 .solicitacoes .militar {
@@ -42,4 +42,8 @@
   font-family: 'OswaldLight';
   font-size: 90%;
   color: var(--soothing-breeze);
+}
+
+.solicitacoes .footer {
+  margin-top: 32px;
 }
