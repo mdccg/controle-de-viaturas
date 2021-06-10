@@ -23,17 +23,30 @@ Para geração dos arquivos PDF e disponibilização dos mesmos, foi utilizada a
 ## Galeria
 
 <div style="flex-direction: row; display: flex;">
-  <img width="216px" src="https://i.imgur.com/QWWvAyv.png" alt="Boas-vindas" />
-  <img width="216px" src="https://i.imgur.com/93sSK2j.png" alt="Login" />
-  <img width="216px" src="https://i.imgur.com/2xrKPNp.png" alt="Cadastro" />
-  <img width="216px" src="https://i.imgur.com/8Y84SmU.png" alt="Pendente" />
-  <img width="216px" src="https://i.imgur.com/cW0DzTq.png" alt="Formulário das viaturas"  />
-  <img width="216px" src="https://i.imgur.com/dJImAxA.png" alt="Histórico de edição do formulário"  />
-  <img width="216px" src="https://i.imgur.com/qUFSd0n.png" alt="Menu lateral" />
-  <img width="216px" src="https://i.imgur.com/JThhmCX.png" alt="Modal de adicionar viatura" />
-  <img width="216px" src="https://i.imgur.com/ulsqc1K.png" alt="Modal de editar nível de combustível" />
-  <img width="216px" src="https://i.imgur.com/HJ1Pigt.png" alt="Modal de editar tipo de viatura" />
-  
+  <img width="216px" src="https://i.imgur.com/npKhaQ6.png" alt="Boas-vindas" />
+  <img width="216px" src="https://i.imgur.com/orYU7Hh.png" alt="Login" />
+  <img width="216px" src="https://i.imgur.com/8mxy6GP.png" alt="Cadastro" />
+  <img width="216px" src="https://i.imgur.com/VZ9lIH4.png" alt="Pendente" />
+  <img width="216px" src="https://i.imgur.com/T9qEGpe.png" alt="Tipos de viatura" />
+  <img width="216px" src="https://i.imgur.com/OqwkzYb.png" alt="Formulário das viaturas" />
+  <img width="216px" src="https://i.imgur.com/EmLKdFv.png" alt="Filtro do nível de combustível" />
+  <img width="216px" src="https://i.imgur.com/zBc22Lw.png" alt="Modal de adicionar uma viatura" />
+  <img width="216px" src="https://i.imgur.com/PGip8c1.png" alt="Edição de uma viatura" />
+  <img width="216px" src="https://i.imgur.com/JmbHgOc.png" alt="Modal de editar o nível de combustível" />
+  <img width="216px" src="https://i.imgur.com/E8xoGsX.png" alt="Modal de editar o tipo de viatura" />
+  <img width="216px" src="https://i.imgur.com/SVzovZJ.png" alt="Modal de deletar uma viatura" />
+  <img width="216px" src="https://i.imgur.com/ClqmSa9.png" alt="Edição das credenciais" />
+  <img width="216px" src="https://i.imgur.com/tHmWSsi.png" alt="Histórico sem registros" />
+  <img width="216px" src="https://i.imgur.com/rLwwMCQ.png" alt="Registro listado minimizado" />
+  <img width="216px" src="https://i.imgur.com/TAYbxS0.png" alt="Registro listado maximizado" />
+  <img width="216px" src="https://i.imgur.com/B869Bvz.png" alt="Sem solicitações" />
+  <img width="216px" src="https://i.imgur.com/ycvKoY9.png" alt="Solicitação listada" />
+  <img width="216px" src="https://i.imgur.com/PFrRC0T.png" alt="Modal de aprovar um usuário" />
+  <img width="216px" src="https://i.imgur.com/eTWKzKl.png" alt="Usuário listado" />
+  <img width="216px" src="https://i.imgur.com/UyaxxUs.png" alt="Administrador listado" />
+  <img width="216px" src="https://i.imgur.com/cLP1WEO.png" alt="Modal de editar as permissões de um usuário" />
+  <img width="216px" src="https://i.imgur.com/UkFAWew.png" alt="Modal de editar as permissões de um administrador" />
+  <img width="216px" src=https://i.imgur.com/Qn94Dmy.png"" alt="Menu lateral com solicitações pendentes" />
 </div>
 
 ---
