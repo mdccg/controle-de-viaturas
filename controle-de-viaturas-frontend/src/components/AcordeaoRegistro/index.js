@@ -31,7 +31,7 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
   const [aberto, setAberto] = useState(false);
   
   const diaSemana     = diasSemana[moment(data).isoWeekday() - 1];
-  const dataFormatada = moment(data).format('DD/MM/YYYY HH[:]mm');
+  const dataFormatada = moment(data).format('DD/MM/YYYY [às] HH[:]mm');
   const nomeMilitar   = `${signatario.patente} ${signatario.nome}`;
 
   function abrir() {
@@ -71,7 +71,7 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
           borderBottomRightRadius: !aberto ? '4px' : '0',
         }} 
         onClick={abrir}>
-        <span>{diaSemana}, {dataFormatada} &bull; {nomeMilitar.toUpperCase()}</span>
+        <span>{diaSemana}, <strong>{dataFormatada}</strong> &bull; {nomeMilitar.toUpperCase()}</span>
         <ArrowDownSignToNavigate className={aberto ? 'aberto' : ''} />
       </div>
 

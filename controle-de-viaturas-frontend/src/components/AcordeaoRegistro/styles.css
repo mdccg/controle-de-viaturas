@@ -23,6 +23,10 @@
   cursor: pointer;
 }
 
+.acordeao-registro-header strong {
+  font-family: 'OswaldBold';
+}
+
 .acordeao-registro-header svg {
   margin-left: 8px;
 

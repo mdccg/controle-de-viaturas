@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer';
+import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
 import styles from './styles';
 
 import { diasSemana } from './../../config/default.json';
+
+import parseKehabCase from './../../functions/parseKehabCase';
 
 import api from './../../services/api';
 
@@ -49,29 +51,32 @@ function TabelaMensal() {
     buscarRegistro();
   }, []);
 
-  return (
-    <PDFViewer style={{ height: document.body.offsetHeight }}>
-      <Document title={mes}>
-        <Page size="A4" style={styles.abnt}>
+  const Pdf = () => (
+    <Document title={mes}>
+      <Page wrap={false} size="A4" style={styles.abnt}>
+        <View fixed>
           <Text style={styles.titulo}>CONTROLE DE VTR &#8213; 1º SGBM/Ind</Text>
           <Text style={styles.subtitulo}>{mes}</Text>
-          {registros.map(({ createdAt: data, signatario = {}, viaturas = [] }) => {
-            const diaSemana = diasSemana[moment(data).isoWeekday() - 1];
-            const dia = moment(data).format('DD[.]MM[.]YYYY');
-            const nomeMilitar = `${signatario.patente} ${signatario.nome}`;
-            const titulo = `${diaSemana}, ${dia} - ${nomeMilitar}`;
+        </View>
 
-            return (
-              categorias.map(({ _id, nome }) => {
+        {registros.map(({ createdAt: data, signatario = {}, viaturas = [] }) => {
+          const diaSemana = diasSemana[moment(data).isoWeekday() - 1];
+          const dia = moment(data).format('DD[.]MM[.]YYYY');
+          const nomeMilitar = `${signatario.patente} ${signatario.nome}`;
+          const titulo = `${diaSemana}, ${dia} - ${nomeMilitar}`;
+
+          return (
+            <View break>
+              <Text style={styles.subtitulo}>{titulo}</Text>
+
+              {categorias.map(({ _id, nome }) => {
                 const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
     
                 return viaturasFiltradas.length > 0 ? (
                   <View key={_id}>
-                    <Text style={styles.subtitulo}>{titulo}</Text>
-
                     <Text style={styles.tituloCategoria}>{nome}</Text>
     
-                    <View style={styles.tabela}>
+                    <View wrap={false} style={styles.tabela}>
                       <Linha>
                         <Coluna>Prefixo</Coluna>
                         <Coluna>KM</Coluna>
@@ -88,15 +93,28 @@ function TabelaMensal() {
                       ))}
                     </View>
 
-                    <View style={styles.divisor} />
+                    <View style={{ height: 32 }} />
                   </View>
                 ) : <></>;
-              })
-            );
-          })}
-        </Page>
-      </Document>
-    </PDFViewer>
+              })}
+            </View>
+          );
+        })}
+      </Page>
+    </Document>
+  );
+
+  return (
+    <PDFDownloadLink
+      document={<Pdf />}
+      style={styles.pdfDownloadLink}
+      fileName={`${parseKehabCase(mes)}.pdf`}>
+      {({ blob, url, loading, error }) =>
+        loading
+          ? 'Gerando arquivo PDF do relatório...'
+          : 'Clique aqui para baixar o relatório.'
+      }
+    </PDFDownloadLink>
   );
 }
 

@@ -12,6 +12,17 @@ Font.register({
 const ESCALA = 8;
 
 const styles = StyleSheet.create({
+  pdfDownloadLink: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    flex: 1,
+
+    fontSize: 32,
+    
+    textAlign: 'center',
+  },
+  
   abnt: {
     backgroundColor: 'white',
 

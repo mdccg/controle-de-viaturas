@@ -5,8 +5,10 @@
 ### Front-end
 - [X] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto;
 - [X] Alinhar o maldito _footer_ da tela de solicitações;
-- [ ] Disponibilizar PDF para baixar em vez de exibi-lo na página;
-- [ ] Descobrir por que o mesmo _toast_ está sendo exibido mais de uma vez para a mesma requisição.
+- [X] Disponibilizar PDF para baixar em vez de exibi-lo na página;
+- [ ] Descobrir por que a mesma mensagem de requisição bem-sucedida está sendo exibido mais de uma vez para a mesma requisição nas telas [`Perfil`](./controle-de-viaturas-frontend/src/screens/Perfil/index.js) e [`Historico`](./controle-de-viaturas-frontend/src/screens/Historico/index.js);
+- [ ] Mudar o ícone do componente [`Vazio`](./controle-de-viaturas-frontend/src/components/Vazio/index.js) de acordo com cada tela (sugestão);
+- [ ] `BUG` Remover a primeira página vazia dos PDFs gerados.
 
 ## Motivação
 
@@ -16,7 +18,7 @@ Para o desenvolvimento do app, foi utilizada a página [Flat UI Colors](https://
 
 Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva (do inglês _Progressive Web App_ – PWA) é um app web que, quando utilizado em dispositivo móvel como um _smartphone_, por exemplo, se comporta como um app nativo da plataforma do dispositivo - Android ou iOS, por exemplo. Por sua vez, quando visualizado em um dispositivo _desktop_, como um computador pessoal, por exemplo, se comporta como um web site. As vantagens de se implementar o app com esta abordagem é o baixo custo de implementação, associado a todos os benefícios que um app para dispositivos móveis oferece ao usuário. (PONTES, 2018)
 
-<!-- ESCREVER AQUI SOBRE react-pdf https://react-pdf.org/ -->
+Para geração dos arquivos PDF e disponibilização dos mesmos, foi utilizada a dependência [`@react-pdf/renderer`](https://react-pdf.org/), a qual os gera utilizando a mesma sintaxe de código do React Native e os disponibiliza para _download_. Os arquivos baixados são enviados para a pasta selecionada como padrão pelo navegador do usuário.
 
 ## Galeria
 
@@ -52,4 +54,4 @@ Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva 
 - [dbdiagram.io - Database Relationship Diagrams Design Tool](https://dbdiagram.io/home)
 - [react-toastify - npm](https://www.npmjs.com/package/react-toastify)
 
-Outros créditos disponívels em [`controle-de-viaturas-frontend/src/assets/README.md`](https://github.com/mdccg/controle-de-viaturas/tree/master/controle-de-viaturas-frontend/src/assets).
+Outros créditos disponívels em [`controle-de-viaturas-frontend/src/assets/README.md`](./controle-de-viaturas-frontend/src/assets/README.md).

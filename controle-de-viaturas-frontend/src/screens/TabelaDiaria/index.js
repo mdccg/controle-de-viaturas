@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer';
+import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
 import styles from './styles';
 
 import { diasSemana } from './../../config/default.json';
+
+import parseKehabCase from './../../functions/parseKehabCase';
 
 import api from './../../services/api';
 
@@ -56,41 +58,55 @@ function TabelaDiaria() {
     buscarRegistro();
   }, []);
 
-  return (
-    <PDFViewer style={{ height: document.body.offsetHeight }}>
-      <Document title={titulo}>
-        <Page size="A4" style={styles.abnt}>
+  const Pdf = () => (
+    <Document title={titulo}>
+      <Page wrap={false} size="A4" style={styles.abnt}>
+        <View fixed>
           <Text style={styles.titulo}>CONTROLE DE VTR &#8213; 1º SGBM/Ind</Text>
           <Text style={styles.subtitulo}>{titulo}</Text>
-          {categorias.map(({ _id, nome }) => {
-            const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
+        </View>
 
-            return viaturasFiltradas.length > 0 ? (
-              <View key={_id}>
-                <Text style={styles.tituloCategoria}>{nome}</Text>
+        {categorias.map(({ _id, nome }) => {
+          const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
 
-                <View style={styles.tabela}>
-                  <Linha>
-                    <Coluna>Prefixo</Coluna>
-                    <Coluna>KM</Coluna>
-                    <Coluna>Nível de combustível</Coluna>
-                    <Coluna>Observação</Coluna>
+          return viaturasFiltradas.length > 0 ? (
+            <View break key={_id}>
+              <Text style={styles.tituloCategoria}>{nome}</Text>
+
+              <View wrap={false} style={styles.tabela}>
+                <Linha>
+                  <Coluna>Prefixo</Coluna>
+                  <Coluna>KM</Coluna>
+                  <Coluna>Nível de combustível</Coluna>
+                  <Coluna>Observação</Coluna>
+                </Linha>
+                {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
+                  <Linha key={idViatura}>
+                    <Coluna>{prefixo}</Coluna>
+                    <Coluna>{km}</Coluna>
+                    <Coluna>{nivelCombustivel}</Coluna>
+                    <Coluna>{comentario}</Coluna>
                   </Linha>
-                  {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
-                    <Linha key={idViatura}>
-                      <Coluna>{prefixo}</Coluna>
-                      <Coluna>{km}</Coluna>
-                      <Coluna>{nivelCombustivel}</Coluna>
-                      <Coluna>{comentario}</Coluna>
-                    </Linha>
-                  ))}
-                </View>
+                ))}
               </View>
-            ) : <></>;
-          })}
-        </Page>
-      </Document>
-    </PDFViewer>
+            </View>
+          ) : <></>;
+        })}
+      </Page>
+    </Document>
+  );
+
+  return (
+    <PDFDownloadLink
+      document={<Pdf />}
+      style={styles.pdfDownloadLink}
+      fileName={`${parseKehabCase(titulo)}.pdf`}>
+      {({ blob, url, loading, error }) =>
+        loading
+          ? 'Gerando arquivo PDF do relatório...'
+          : 'Clique aqui para baixar o relatório.'
+      }
+    </PDFDownloadLink>
   );
 }
 
