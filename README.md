@@ -3,8 +3,9 @@
 ## _To-do list_
 
 ### Front-end
-- [ ] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto;
+- [X] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto;
 - [X] Alinhar o maldito _footer_ da tela de solicitações;
+- [ ] Disponibilizar PDF para baixar em vez de exibi-lo na página;
 - [ ] Descobrir por que o mesmo _toast_ está sendo exibido mais de uma vez para a mesma requisição.
 
 ## Motivação

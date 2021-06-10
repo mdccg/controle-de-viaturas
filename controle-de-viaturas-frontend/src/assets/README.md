@@ -1,4 +1,8 @@
-# Ícones
+[Voltar para a raiz do projeto.](https://github.com/mdccg/controle-de-viaturas)
+
+# Mídias
+
+## Ícones
 
 - [Pen - Free edit tools icons](https://www.flaticon.com/free-icon/pen_1659764)
 - [Check - Free interface icons](https://www.flaticon.com/free-icon/check_1828743)
@@ -27,12 +31,16 @@
 - [Tag - Free commerce and shopping icons](https://www.flaticon.com/free-icon/tag_617418)
 - [Magnifying glass - Free miscellaneous icons](https://www.flaticon.com/free-icon/magnifying-glass_1086933)
 
-# Imagens
+## Imagens
 
 - [RV trailer on road photo – Free Vehicle Image on Unsplash](https://unsplash.com/photos/QK6Iwzd5MhE)
 - [red and white truck on road during daytime photo – Free Vehicle Image on Unsplash](https://unsplash.com/photos/gYUcz34aQ6A)
 
-# Bibliotecas
+## Bibliotecas
 
 - [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
 - [Componente React Drawer - Material-UI](https://material-ui.com/pt/components/drawers/)
+
+## Fontes tipográficas
+
+- [Times New Roman Fonte gratis | MaisFontes.com](https://br.maisfontes.com/times-new-roman-14)

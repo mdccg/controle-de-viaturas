@@ -1,0 +1,66 @@
+[
+  {
+    "prefixo": "ABT 39",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c4aa12743d1bacc490"
+  },
+  {
+    "prefixo": "UR 114",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c4aa12743d1bacc490"
+  },
+  {
+    "prefixo": "UR 87",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c4aa12743d1bacc490"
+  },
+  
+  {
+    "prefixo": "AS 33",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c9aa12743d1bacc491"
+  },
+  {
+    "prefixo": "AS 26",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c9aa12743d1bacc491"
+  },
+  {
+    "prefixo": "AC 65",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c9aa12743d1bacc491"
+  },
+  {
+    "prefixo": "AC 111",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c9aa12743d1bacc491"
+  },
+  {
+    "prefixo": "UR 65",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c9aa12743d1bacc491"
+  },
+  {
+    "prefixo": "UR 45",
+    "km": 0,
+    "nivelCombustivel": "Reserva",
+    "comentario": "",
+    "categoria": "60b593c9aa12743d1bacc491"
+  }
+]

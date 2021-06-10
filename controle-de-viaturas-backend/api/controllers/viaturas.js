@@ -17,6 +17,16 @@ module.exports = app => {
     });
   }
 
+  controller.adicionarViaturas = (req, res) => {
+    for(const viatura of req.body) {
+      Viatura.create(viatura, function(err, result) {
+        if(err) return res.status(500).json(err);
+      });
+    }
+    
+    res.status(200).send('Viaturas cadastradas com sucesso.');
+  }
+
   controller.listarViaturas = (req, res) => {
     var filtro = [];
     var chaves = Object.keys(req.query);

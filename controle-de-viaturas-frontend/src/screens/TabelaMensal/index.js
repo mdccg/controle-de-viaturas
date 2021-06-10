@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import './styles.css';
+import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer';
+import styles from './styles';
 
 import { diasSemana } from './../../config/default.json';
 
@@ -7,54 +8,18 @@ import api from './../../services/api';
 
 import moment from 'moment';
 
-function RegistroTextual({ signatario = {}, viaturas = [], createdAt: data, categorias = [] }) {
-  const diaSemana = diasSemana[moment(data).isoWeekday() - 1];
-  const dataFormatada = moment(data).format('DD.MM.YYYY');
-  const nomeMilitar = signatario.patente + ' ' + signatario.nome;
-
-  return (
-    <div className="registro">
-      <h3 className="data-militar">{diaSemana}, {dataFormatada} - {nomeMilitar}</h3>
-      
-      {categorias.map(({ _id, nome }) => {
-        const viaturasFiltradas = viaturas.filter(viatura => viatura.categoria._id === _id);
-
-        return viaturasFiltradas.length > 0 ? (
-          <div key={_id}>
-            <h4>{nome}</h4>
-            
-            <table>
-              <thead>
-                <tr>
-                  <th>Prefixo</th>
-                  <th>KM</th>
-                  <th>Nível de combustível</th>
-                  <th>Observação</th>
-                </tr>
-              </thead>
-              <tbody>
-                {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
-                  <tr key={idViatura}>
-                    <td>{prefixo}</td>
-                    <td>{km}</td>
-                    <td>{nivelCombustivel}</td>
-                    <td>{comentario}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="divider"></div>
-          </div>
-        ) : <></>;
-      })}
-    </div>
-  );
-}
+const Linha = ({ children }) =>  <View style={styles.linha}>{children}</View>;
+const Coluna = ({ children }) => (
+  <View style={styles.coluna}>
+    <Text style={styles.colunaTexto}>{children}</Text>
+  </View>
+);
 
 function TabelaMensal() {
-  const [categorias, setCategorias] = useState([]);
-  const [registros, setRegistros] = useState([]);
   const [mes, setMes] = useState('');
+  const [registros, setRegistros] = useState([]);
+
+  const [categorias, setCategorias] = useState([]);
 
   function buscarCategorias() {
     api.get('/categorias')
@@ -62,43 +27,76 @@ function TabelaMensal() {
       .catch(err => console.error(err));
   }
 
-  function montarRegistros() {
-    window.addEventListener('afterprint', function() {
-      this.close();
-    });
-    
+  function buscarRegistro() {
     api.get('/relatorio')
-      .then(async res => {
-        if(res.data.tipo === 'diario')
+      .then(res => {
+        let { tipo, relatorio } = res.data;
+
+        if(tipo === 'diario')
           window.close();
 
-        let { mes, registros } = res.data.relatorio;
-
-        await setMes(mes);
-        await setRegistros(registros);
-        await buscarCategorias();
-
-        document.title = `${mes.toUpperCase()} - 1.o SGBM-IND`;
+        let { mes, registros } = relatorio;
+        
+        setMes(mes);
+        setRegistros(registros);
+        // {  }
       })
-      .catch(err => console.error(err))
-      .finally(() => setTimeout(() => window.print(), 5e2));
+      .catch(err => console.error(err));
   }
 
   useEffect(() => {
-    montarRegistros();
-    // eslint-disable-next-line
+    buscarCategorias();
+    buscarRegistro();
   }, []);
 
   return (
-    <div className="tabela mensal">
-      <h1>CONTROLE DE VTR ― 1º SGBM/IND</h1>
-      
-      <h2 className="mes">{mes}</h2>
-      
-      {registros.map((registro, index) => (
-        <RegistroTextual key={index} {...registro} categorias={categorias} />
-      ))}
-    </div>
+    <PDFViewer style={{ height: document.body.offsetHeight }}>
+      <Document title={mes}>
+        <Page size="A4" style={styles.abnt}>
+          <Text style={styles.titulo}>CONTROLE DE VTR &#8213; 1º SGBM/Ind</Text>
+          <Text style={styles.subtitulo}>{mes}</Text>
+          {registros.map(({ createdAt: data, signatario = {}, viaturas = [] }) => {
+            const diaSemana = diasSemana[moment(data).isoWeekday() - 1];
+            const dia = moment(data).format('DD[.]MM[.]YYYY');
+            const nomeMilitar = `${signatario.patente} ${signatario.nome}`;
+            const titulo = `${diaSemana}, ${dia} - ${nomeMilitar}`;
+
+            return (
+              categorias.map(({ _id, nome }) => {
+                const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
+    
+                return viaturasFiltradas.length > 0 ? (
+                  <View key={_id}>
+                    <Text style={styles.subtitulo}>{titulo}</Text>
+
+                    <Text style={styles.tituloCategoria}>{nome}</Text>
+    
+                    <View style={styles.tabela}>
+                      <Linha>
+                        <Coluna>Prefixo</Coluna>
+                        <Coluna>KM</Coluna>
+                        <Coluna>Nível de combustível</Coluna>
+                        <Coluna>Observação</Coluna>
+                      </Linha>
+                      {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
+                        <Linha key={_id}>
+                          <Coluna>{prefixo}</Coluna>
+                          <Coluna>{km}</Coluna>
+                          <Coluna>{nivelCombustivel}</Coluna>
+                          <Coluna>{comentario}</Coluna>
+                        </Linha>
+                      ))}
+                    </View>
+
+                    <View style={styles.divisor} />
+                  </View>
+                ) : <></>;
+              })
+            );
+          })}
+        </Page>
+      </Document>
+    </PDFViewer>
   );
 }
 

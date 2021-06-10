@@ -163,7 +163,7 @@ function Perfil() {
             className="input-form"
             ref={emailRef} />
 
-          <button className={'botao-form ' + (JSON.stringify({ patente, nome, email }) === militarDesatualizado ? 'desabilitado' : '')}>
+          <button disabled={salvandoDados} className={'botao-form ' + (JSON.stringify({ patente, nome, email }) === militarDesatualizado ? 'desabilitado' : '')}>
             {salvandoDados ? <Spinner /> : <span>Salvar dados</span>}
           </button>
         </form>
@@ -197,7 +197,7 @@ function Perfil() {
             className="input-form"
             ref={novaSenha1Ref} />
 
-          <button className="botao-form">
+          <button disabled={salvandoSenha} className="botao-form">
             {salvandoSenha ? <Spinner /> : <span>Mudar senha</span>}
           </button>
         </form>

@@ -7,8 +7,11 @@ import randomDate from './../../functions/randomDate';
 
 import api from './../../services/api';
 
+import viaturasMock from './../../tmp/viaturas.json';
+
 function Teste() {
   const [viaturas, setViaturas] = useState([]);
+  const [militares, setMilitares] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
   function cadastrarViaturaAleatoria() {
@@ -54,13 +57,11 @@ function Teste() {
   function cadastrarRegistroAleatoria() {
     const registro = {};
 
-    let militares = [
-      '60be998f10344a0015ea8155' // admin admin
-    ];
+    let _militares = [militares[0]._id];
     
-    let indiceMilitares = Math.floor(Math.random() * militares.length);
+    let indiceMilitares = Math.floor(Math.random() * _militares.length);
 
-    registro.signatario = militares[indiceMilitares];
+    registro.signatario = _militares[indiceMilitares];
 
     registro.viaturas = viaturas;
 
@@ -74,9 +75,21 @@ function Teste() {
       .catch(err => console.error(err));
   }
 
+  function cadastrarViaturasReais() {
+    api.post('/carreata', viaturasMock)
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err));
+  }
+
   function buscarViaturas() {
     api.get('/viaturas')
       .then(res => setViaturas(res.data))
+      .catch(err => console.error(err));
+  }
+
+  function buscarMilitares() {
+    api.get('/militares')
+      .then(res => setMilitares(res.data))
       .catch(err => console.error(err));
   }
 
@@ -89,6 +102,7 @@ function Teste() {
   useEffect(() => {
     document.title = 'TESTE ― 1º SGBM/IND';
     buscarViaturas();
+    buscarMilitares();
     buscarCategorias();
   }, []);
 
@@ -96,7 +110,8 @@ function Teste() {
     <div className="teste">
       <button onClick={cadastrarViaturaAleatoria}>Cadastrar viatura randômica</button>
       <button onClick={cadastrarRegistroAleatoria}>Cadastrar registro randômico</button>
-      
+      <button onClick={cadastrarViaturasReais}>Cadastrar viaturas reais</button>
+
       {categorias.map(({ _id, nome }) => {
         const viaturasFiltradas = viaturas.filter(viatura => viatura.categoria._id === _id);
         

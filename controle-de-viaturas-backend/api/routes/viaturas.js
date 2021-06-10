@@ -9,4 +9,7 @@ module.exports = app => {
   app.route('/api/v1/viaturas/:id')
     .put(controller.atualizarViatura)
     .delete(controller.deletarViatura);
+
+  app.route('/api/v1/carreata')
+    .post(controller.adicionarViaturas);
 }
