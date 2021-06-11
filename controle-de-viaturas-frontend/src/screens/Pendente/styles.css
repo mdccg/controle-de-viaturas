@@ -15,6 +15,7 @@
   border: 1px solid var(--soothing-breeze);
 
   max-width: 70vw;
+  width: 256px;
 
   padding: 32px;
 }

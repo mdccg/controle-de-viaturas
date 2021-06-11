@@ -79,7 +79,7 @@ function Historico() {
     setLimpandoHistorico(true);
 
     api.delete('/registros')
-      .then(res => recarregar())
+      .then(() => recarregar())
       .catch(err => console.error(err))
       .finally(() => setLimpandoHistorico(false));
   }

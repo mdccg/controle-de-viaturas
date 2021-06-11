@@ -1,15 +1,5 @@
 # controle-de-viaturas
 
-## _To-do list_
-
-- [ ] Descobrir por que a mesma mensagem de requisição bem-sucedida está sendo exibido mais de uma vez para a mesma requisição nas telas [`Perfil`](./controle-de-viaturas-frontend/src/screens/Perfil/index.js) e [`Historico`](./controle-de-viaturas-frontend/src/screens/Historico/index.js);
-
-- [X] Mudar o ícone do componente [`Vazio`](./controle-de-viaturas-frontend/src/components/Vazio/index.js) de acordo com cada tela (sugestão);
-
-- [X] Sincronizar cada _loader_ aos componentes [`Vazio`](./controle-de-viaturas-frontend/src/components/Vazio/index.js);
-
-- [ ] Realinhar todos os rodapés.
-
 ## Motivação
 
 Este app foi desenvolvido para o 1º Subgrupamento de Bombeiros Militar Independente (1º SGBM/Ind) do município de Aquidauana - MS. Seu objetivo é inspecionar e gerar relatórios diários e mensais sobre as viaturas de combate ao incêndio, armazenando informações como prefixo, tipo de viatura (trem de S.O.S ou pátio), distância marcada pelo odômetro, nível de combustível e observações facultativas.

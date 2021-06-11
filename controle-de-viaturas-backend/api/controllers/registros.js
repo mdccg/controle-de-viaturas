@@ -33,7 +33,7 @@ module.exports = app => {
       var registros = [];
 
       for(var registro of docs) {
-        var militar = await Militar.findById(registro.signatario);
+        var militar = await Militar.findById(registro.signatario) || {};
         
         var encontrado = Object.values(req.query).join('') === '';
 

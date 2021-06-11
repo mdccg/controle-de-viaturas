@@ -30,9 +30,11 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
   
   const [aberto, setAberto] = useState(false);
   
+  const apocrifo = JSON.stringify(signatario) === '{}';
+
   const diaSemana     = diasSemana[moment(data).isoWeekday() - 1];
   const dataFormatada = moment(data).format('DD [de] MMMM [de] YYYY[,] [às] HH[:]mm');
-  const nomeMilitar   = `${signatario.patente} ${signatario.nome}`;
+  const nomeMilitar   =  !apocrifo ? `${signatario.patente} ${signatario.nome}` : 'Militar deletado';
 
   function abrir() {
     setAberto(!aberto);
@@ -43,7 +45,7 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
       tipo: 'diario',
       relatorio: {
         data,
-        signatario,
+        signatario: !apocrifo ? signatario : ({ patente: 'Militar', nome: 'deletado' }),
         viaturas
       }
     };

@@ -59,6 +59,8 @@
   flex: 1;
 
   height: 32px;
+
+  cursor: pointer;
 }
 
 .modal-aprovar-militar .botao span {
