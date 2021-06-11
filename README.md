@@ -24,17 +24,17 @@ Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva 
   <img width="216px" src="https://i.imgur.com/E8xoGsX.png" alt="Modal de editar o tipo de viatura" />
   <img width="216px" src="https://i.imgur.com/SVzovZJ.png" alt="Modal de deletar uma viatura" />
   <img width="216px" src="https://i.imgur.com/ClqmSa9.png" alt="Edição das credenciais" />
-  <img width="216px" src="https://i.imgur.com/tHmWSsi.png" alt="Histórico sem registros" />
+  <img width="216px" src="https://i.imgur.com/6vn4V6M.png" alt="Histórico sem registros" />
   <img width="216px" src="https://i.imgur.com/rLwwMCQ.png" alt="Registro listado minimizado" />
   <img width="216px" src="https://i.imgur.com/TAYbxS0.png" alt="Registro listado maximizado" />
-  <img width="216px" src="https://i.imgur.com/B869Bvz.png" alt="Sem solicitações" />
+  <img width="216px" src="https://i.imgur.com/U0pQifB.png" alt="Sem solicitações" />
   <img width="216px" src="https://i.imgur.com/ycvKoY9.png" alt="Solicitação listada" />
   <img width="216px" src="https://i.imgur.com/PFrRC0T.png" alt="Modal de aprovar um usuário" />
   <img width="216px" src="https://i.imgur.com/eTWKzKl.png" alt="Usuário listado" />
   <img width="216px" src="https://i.imgur.com/UyaxxUs.png" alt="Administrador listado" />
   <img width="216px" src="https://i.imgur.com/cLP1WEO.png" alt="Modal de editar as permissões de um usuário" />
   <img width="216px" src="https://i.imgur.com/UkFAWew.png" alt="Modal de editar as permissões de um administrador" />
-  <img width="216px" src=https://i.imgur.com/Qn94Dmy.png"" alt="Menu lateral com solicitações pendentes" />
+  <img width="216px" src="https://i.imgur.com/Qn94Dmy.png" alt="Menu lateral com solicitações pendentes" />
 </div>
 
 ---
@@ -53,5 +53,6 @@ Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva 
 - [CloudConvert](https://cloudconvert.com/)
 - [dbdiagram.io - Database Relationship Diagrams Design Tool](https://dbdiagram.io/home)
 - [react-toastify - npm](https://www.npmjs.com/package/react-toastify)
+- [Imgur: The magic of the Internet](https://imgur.com/)
 
 Outros créditos disponívels em [`controle-de-viaturas-frontend/src/assets/README.md`](./controle-de-viaturas-frontend/src/assets/README.md).
