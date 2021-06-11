@@ -16,7 +16,7 @@ import moment from 'moment';
 
 function ViaturaTextual({ _id, prefixo, km, nivelCombustivel, comentario = '' }) {
   return (
-    <div className="viatura-textual" key={_id}>
+    <div className="viatura-textual">
       <span>{prefixo}</span>
       <span>KM {km}</span>
       <span className="nivelCombustivel">{nivelCombustivel}</span>
@@ -63,7 +63,7 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
   }
 
   return (
-    <div className="acordeao-registro" key={_id}>
+    <div className="acordeao-registro">
       <div
         className="acordeao-registro-header"
         style={{
@@ -77,7 +77,11 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
 
       {aberto ? (
         <div className="acordeao-registro-body">
-          {viaturas.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
+          {viaturas.length === 0 ? (
+            <Vazio
+              icone="viatura"
+              cor="var(--american-river)">Sem viaturas</Vazio>
+          ) : null}
 
           {categorias.map(({ _id, nome }) => {
             let tuplas = viaturas.filter(viatura => {

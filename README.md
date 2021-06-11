@@ -2,14 +2,13 @@
 
 ## _To-do list_
 
-### Front-end
-- [X] Adicionar a dependência [`@react-pdf/renderer`](https://react-pdf.org/) ao projeto;
-- [X] Alinhar o maldito _footer_ da tela de solicitações;
-- [X] Disponibilizar PDF para baixar em vez de exibi-lo na página;
 - [ ] Descobrir por que a mesma mensagem de requisição bem-sucedida está sendo exibido mais de uma vez para a mesma requisição nas telas [`Perfil`](./controle-de-viaturas-frontend/src/screens/Perfil/index.js) e [`Historico`](./controle-de-viaturas-frontend/src/screens/Historico/index.js);
-- [ ] Mudar o ícone do componente [`Vazio`](./controle-de-viaturas-frontend/src/components/Vazio/index.js) de acordo com cada tela (sugestão);
-- [X] `BUG` Remover a primeira página vazia dos PDFs gerados;
-- [ ] Sincronizar cada _loader_ aos componentes [`Vazio`](./controle-de-viaturas-frontend/src/components/Vazio/index.js).
+
+- [X] Mudar o ícone do componente [`Vazio`](./controle-de-viaturas-frontend/src/components/Vazio/index.js) de acordo com cada tela (sugestão);
+
+- [X] Sincronizar cada _loader_ aos componentes [`Vazio`](./controle-de-viaturas-frontend/src/components/Vazio/index.js);
+
+- [ ] Realinhar todos os rodapés.
 
 ## Motivação
 
@@ -17,7 +16,7 @@ Este app foi desenvolvido para o 1º Subgrupamento de Bombeiros Militar Independ
 
 Para o desenvolvimento do app, foi utilizada a página [Flat UI Colors](https://flatuicolors.com/) para composição da [paleta de cores](./controle-de-viaturas-frontend/src/App.css), o editor gráfico [Figma](https://figma.com/) para criação do [protótipo visual](https://figma.fun/L1OsQL), a biblioteca [React.js](https://pt-br.reactjs.org/) para criação das interfaces visuais, o framework [Express.js](https://expressjs.com/pt-br/) para criação da API e o serviço de banco de dados em nuvem global [MongoDB Atlas](https://cloud.mongodb.com/) para hospedagem e gestão do banco de dados. Ora, para geração dos arquivos PDF e disponibilização dos mesmos, foi utilizada a dependência [`@react-pdf/renderer`](https://react-pdf.org/), a qual os gera utilizando a mesma sintaxe de código da biblioteca React Native e os disponibiliza para _download_. Os arquivos baixados são enviados para a pasta selecionada como padrão pelo navegador do usuário.
 
-Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva (do inglês _Progressive Web App_ – PWA) é um app web que, quando utilizado em dispositivo móvel como um _smartphone_, por exemplo, se comporta como um app nativo da plataforma do dispositivo - Android ou iOS, por exemplo. Por sua vez, quando visualizado em um dispositivo _desktop_, como um computador pessoal, por exemplo, se comporta como um web site. As vantagens de se implementar o app com esta abordagem é o baixo custo de implementação, associado a todos os benefícios que um app para dispositivos móveis oferece ao usuário. (PONTES, 2018) Além disso, o acesso ao app é protegido por meio de autenticação com login e senha. Assim, o acesso é restrito aos bombeiros militares do 1º SGBM/Ind, por meio da supervisão do _stakeholder_.
+Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva (do inglês _Progressive Web App_ – PWA) é um app web que, quando utilizado em dispositivo móvel como um _smartphone_, por exemplo, se comporta como um app nativo da plataforma do dispositivo - Android ou iOS, por exemplo. Por sua vez, quando visualizado em um dispositivo _desktop_, como um computador pessoal, por exemplo, se comporta como um web site. As vantagens de se implementar o app com esta abordagem é o baixo custo de implementação, associado a todos os benefícios que um app para dispositivos móveis oferece ao usuário (PONTES, 2018). Além disso, o acesso ao app é protegido por meio de autenticação com login e senha. Assim, o acesso é restrito aos bombeiros militares do 1º SGBM/Ind, por meio da supervisão dos stakeholders.
 
 ## Galeria
 
@@ -54,7 +53,6 @@ Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva 
 
 - [Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons](https://www.flaticon.com/)
 - [Playground - SVGR](https://react-svgr.com/playground/)
-- [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
 - [Timestamp Converter](https://www.timestamp-converter.com/)
 - [Firebase](https://firebase.google.com/?hl=pt-br)
 - [MongoDB Cloud | MongoDB](https://www.mongodb.com/cloud)

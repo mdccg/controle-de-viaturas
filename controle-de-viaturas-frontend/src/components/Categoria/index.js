@@ -50,7 +50,7 @@ function Categoria({
             setEditandoNivelCombustivel={setEditandoNivelCombustivel} />
         ))
       ) : aberto && listaVazia ? (
-        <Vazio>Sem viaturas</Vazio>
+        <Vazio icone="viatura">Sem viaturas</Vazio>
       ) : <></>}
     </div>
   );

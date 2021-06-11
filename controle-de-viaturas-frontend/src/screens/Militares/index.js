@@ -48,7 +48,7 @@ function TipoMilitar({ titulo, militares = [], setMilitar, setAtualizandoMilitar
         </div>
       )) : <></>}
 
-      {aberto && vazio ? <Vazio>Sem militares</Vazio> : <></>}
+      {aberto && vazio ? <Vazio icone="militar">Sem {titulo}</Vazio> : <></>}
     </div>
   );
 }

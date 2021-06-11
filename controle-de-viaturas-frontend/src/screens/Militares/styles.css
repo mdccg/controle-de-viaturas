@@ -41,3 +41,7 @@
 .tela-militares .lista-militares .tipo-militar .titulo svg.aberto {
   transform: rotate(180deg);
 }
+
+.tela-militares .componente-vazio {
+  padding-bottom: 32px;
+}

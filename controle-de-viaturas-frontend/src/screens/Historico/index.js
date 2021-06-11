@@ -144,7 +144,7 @@ function Historico() {
               <div className="divider"></div>
             </div>
           );
-        }) : <Vazio>Histórico vazio</Vazio>}
+        }) : <Vazio icone="registro">Histórico vazio</Vazio>}
 
         {Object.keys(historico).join('') !== '' ? (
           <div className="botao-deletar total" onClick={limparHistorico}>

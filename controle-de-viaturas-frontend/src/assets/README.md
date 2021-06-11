@@ -1,4 +1,4 @@
-[Voltar para a raiz do projeto.](https://github.com/mdccg/controle-de-viaturas)
+[Voltar para a raiz do projeto.](./../../../README.md)
 
 # Mídias
 
@@ -14,7 +14,6 @@
 - [Chat - Free interface icons](https://www.flaticon.com/free-icon/chat_134718)
 - [Cancel - Free signs icons](https://www.flaticon.com/free-icon/cancel_271203)
 - [Arrow down sign to navigate - Free arrows icons](https://www.flaticon.com/free-icon/arrow-down-sign-to-navigate_32195)
-- [Empty - Free education icons](https://www.flaticon.com/free-icon/empty_2039083)
 - [Down arrow - Free arrows icons](https://www.flaticon.com/free-icon/down-arrow_626013)
 - [Clipboard - Free interface icons](https://www.flaticon.com/free-icon/clipboard_446977)
 - [Visibility - Free medical icons](https://www.flaticon.com/free-icon/visibility_633865)
@@ -30,11 +29,15 @@
 - [On/off button - Free technology icons](https://www.flaticon.com/free-icon/onoff-button_1228#)
 - [Tag - Free commerce and shopping icons](https://www.flaticon.com/free-icon/tag_617418)
 - [Magnifying glass - Free miscellaneous icons](https://www.flaticon.com/free-icon/magnifying-glass_1086933)
+- [Ban - Free marketing icons](https://www.flaticon.com/free-icon/ban_564617)
+- [Firetruck - Free security icons](https://www.flaticon.com/free-icon/firetruck_2820482)
+- [Paper - Free education icons](https://www.flaticon.com/free-icon/paper_2541984)
+- [Firefighter - Free people icons](https://www.flaticon.com/free-icon/firefighter_122492)
+- [Notification - Free interface icons](https://www.flaticon.com/free-icon/notification_1827370)
 
 ## Imagens
 
 - [RV trailer on road photo – Free Vehicle Image on Unsplash](https://unsplash.com/photos/QK6Iwzd5MhE)
-- [red and white truck on road during daytime photo – Free Vehicle Image on Unsplash](https://unsplash.com/photos/gYUcz34aQ6A)
 
 ## Bibliotecas
 

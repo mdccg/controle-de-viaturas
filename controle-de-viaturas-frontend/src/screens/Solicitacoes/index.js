@@ -68,7 +68,7 @@ function Solicitacoes() {
 
         <div className="container">
           <div className="militares">
-          {!buscandoMilitares && militares.length === 0 ? <Vazio>Sem solicitações</Vazio> : <></>}
+          {!buscandoMilitares && militares.length === 0 ? <Vazio icone="solicitacao">Sem solicitações</Vazio> : <></>}
           
           {buscandoMilitares ? <Spinner className="loader" /> : <></>}
 

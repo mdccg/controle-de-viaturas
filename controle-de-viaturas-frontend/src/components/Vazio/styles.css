@@ -1,28 +1,42 @@
 .componente-vazio {
-  margin-top: 16px;
+  margin-top:    32px;
+  margin-bottom: 32px;
 
   flex-direction: column;
   align-items: center;
   display: flex;
 }
 
-.componente-vazio svg {
-  max-width: 100%;
+.componente-vazio .icones {
+  width:  192px;
+  height: 192px;
 
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.componente-vazio .icones > * { position: absolute; }
+
+.componente-vazio .icones > *:first-child {
+  z-index: 1;
+
+  width:  192px;
+  height: 192px;
+}
+
+.componente-vazio .icones svg {
   width:  128px;
   height: 128px;
-
-  fill: var(--soothing-breeze);
 }
 
 .componente-vazio span {
   margin-top: 16px;
-  margin-bottom: 16px;
+
+  font-family: 'OswaldBold';
+  font-size: 200%;
 
   text-transform: uppercase;
-  letter-spacing: 1px;
   text-align: center;
-  font-size: x-large;
-
-  color: var(--soothing-breeze);
+  line-height: 1.5;
 }

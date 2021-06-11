@@ -183,9 +183,10 @@ function Viaturas() {
             setPesquisa={setPesquisa}
             placeholder="Prefixo da viatura" />
 
-          {buscandoViaturas ? <Spinner className="loader" /> : <></>}
+          {buscandoViaturas ? <Spinner className="loader" /> : null}
 
-          {categorias.length === 0 ? <Vazio>Sem viaturas</Vazio> : <></>}
+          {!buscandoViaturas && categorias.length === 0
+            ? <Vazio icone="viatura">Sem viaturas</Vazio> : null}
 
           <div className="lista-categorias">
             {categorias.map(categoria => (
