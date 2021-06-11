@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
 import styles from './styles';
 
@@ -60,7 +60,7 @@ function TabelaDiaria() {
 
   const Pdf = () => (
     <Document title={titulo}>
-      <Page wrap={false} size="A4" style={styles.abnt}>
+      <Page size="A4" style={styles.abnt}>
         <View fixed>
           <Text style={styles.titulo}>CONTROLE DE VTR &#8213; 1º SGBM/Ind</Text>
           <Text style={styles.subtitulo}>{titulo}</Text>
@@ -70,27 +70,31 @@ function TabelaDiaria() {
           const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
 
           return viaturasFiltradas.length > 0 ? (
-            <View break key={_id}>
-              <Text style={styles.tituloCategoria}>{nome}</Text>
+            <Fragment key={_id}>
+              <View>
+                <Text style={styles.tituloCategoria}>{nome}</Text>
 
-              <View wrap={false} style={styles.tabela}>
-                <Linha>
-                  <Coluna>Prefixo</Coluna>
-                  <Coluna>KM</Coluna>
-                  <Coluna>Nível de combustível</Coluna>
-                  <Coluna>Observação</Coluna>
-                </Linha>
-                {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
-                  <Linha key={idViatura}>
-                    <Coluna>{prefixo}</Coluna>
-                    <Coluna>{km}</Coluna>
-                    <Coluna>{nivelCombustivel}</Coluna>
-                    <Coluna>{comentario}</Coluna>
+                <View style={styles.tabela}>
+                  <Linha>
+                    <Coluna>Prefixo</Coluna>
+                    <Coluna>KM</Coluna>
+                    <Coluna>Nível de combustível</Coluna>
+                    <Coluna>Observação</Coluna>
                   </Linha>
-                ))}
+                  {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
+                    <Linha key={idViatura}>
+                      <Coluna>{prefixo}</Coluna>
+                      <Coluna>{km}</Coluna>
+                      <Coluna>{nivelCombustivel}</Coluna>
+                      <Coluna>{comentario}</Coluna>
+                    </Linha>
+                  ))}
+                </View>
               </View>
-            </View>
-          ) : <></>;
+
+              <View break />
+            </Fragment>
+          ) : null;
         })}
       </Page>
     </Document>
@@ -104,7 +108,7 @@ function TabelaDiaria() {
       {({ blob, url, loading, error }) =>
         loading
           ? 'Gerando arquivo PDF do relatório...'
-          : 'Clique aqui para baixar o relatório.'
+          : 'Clique aqui para baixar o relatório'
       }
     </PDFDownloadLink>
   );

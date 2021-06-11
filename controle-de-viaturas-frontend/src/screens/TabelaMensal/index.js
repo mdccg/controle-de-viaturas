@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
 import styles from './styles';
 
@@ -53,7 +53,7 @@ function TabelaMensal() {
 
   const Pdf = () => (
     <Document title={mes}>
-      <Page wrap={false} size="A4" style={styles.abnt}>
+      <Page size="A4" style={styles.abnt}>
         <View fixed>
           <Text style={styles.titulo}>CONTROLE DE VTR &#8213; 1º SGBM/Ind</Text>
           <Text style={styles.subtitulo}>{mes}</Text>
@@ -66,38 +66,44 @@ function TabelaMensal() {
           const titulo = `${diaSemana}, ${dia} - ${nomeMilitar}`;
 
           return (
-            <View break>
-              <Text style={styles.subtitulo}>{titulo}</Text>
+            <Fragment key={data}>
+              <View>
+                {categorias.map(({ _id, nome }) => {
+                  const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
+      
+                  return viaturasFiltradas.length > 0 ? (
+                    <Fragment key={_id}>
+                      <View>
+                        <Text style={styles.subtitulo}>{titulo}</Text>
 
-              {categorias.map(({ _id, nome }) => {
-                const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
-    
-                return viaturasFiltradas.length > 0 ? (
-                  <View key={_id}>
-                    <Text style={styles.tituloCategoria}>{nome}</Text>
-    
-                    <View wrap={false} style={styles.tabela}>
-                      <Linha>
-                        <Coluna>Prefixo</Coluna>
-                        <Coluna>KM</Coluna>
-                        <Coluna>Nível de combustível</Coluna>
-                        <Coluna>Observação</Coluna>
-                      </Linha>
-                      {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
-                        <Linha key={_id}>
-                          <Coluna>{prefixo}</Coluna>
-                          <Coluna>{km}</Coluna>
-                          <Coluna>{nivelCombustivel}</Coluna>
-                          <Coluna>{comentario}</Coluna>
-                        </Linha>
-                      ))}
-                    </View>
+                        <Text style={styles.tituloCategoria}>{nome}</Text>
+        
+                        <View style={styles.tabela}>
+                          <Linha>
+                            <Coluna>Prefixo</Coluna>
+                            <Coluna>KM</Coluna>
+                            <Coluna>Nível de combustível</Coluna>
+                            <Coluna>Observação</Coluna>
+                          </Linha>
+                          {viaturasFiltradas.map(({ _id: idViatura, prefixo, km, nivelCombustivel, comentario }) => (
+                            <Linha key={_id}>
+                              <Coluna>{prefixo}</Coluna>
+                              <Coluna>{km}</Coluna>
+                              <Coluna>{nivelCombustivel}</Coluna>
+                              <Coluna>{comentario}</Coluna>
+                            </Linha>
+                          ))}
+                        </View>
+                      </View>
 
-                    <View style={{ height: 32 }} />
-                  </View>
-                ) : <></>;
-              })}
-            </View>
+                      <View break />
+                    </Fragment>
+                  ) : null;
+                })}
+              </View>
+
+              <View break />
+            </Fragment>
           );
         })}
       </Page>
@@ -112,7 +118,7 @@ function TabelaMensal() {
       {({ blob, url, loading, error }) =>
         loading
           ? 'Gerando arquivo PDF do relatório...'
-          : 'Clique aqui para baixar o relatório.'
+          : 'Clique aqui para baixar o relatório'
       }
     </PDFDownloadLink>
   );
