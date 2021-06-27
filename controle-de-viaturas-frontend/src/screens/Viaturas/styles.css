@@ -74,8 +74,47 @@
   display: flex;
 }
 
+.viaturas .botao-imprimir-pdf {
+  margin-top: 48px;
+
+  background-color: var(--emerald);
+  border-radius: 2px;
+
+  padding-right: 16px;
+  padding-left:  16px;
+
+  width: 384px;
+  max-width: 80%;
+  min-height: 64px;
+
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.viaturas .botao-imprimir-pdf svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}
+
+.viaturas .botao-imprimir-pdf span {
+  margin-left: 16px;
+
+  font-family: 'OswaldSemiBold';
+  font-size: 125%;
+  color: white;
+
+  text-transform: uppercase;
+}
+
 .viaturas .footer {
-  margin-top: 110px;
+  margin-top: 60px;
 }
 
 .btn-adicionar-nova-viatura {

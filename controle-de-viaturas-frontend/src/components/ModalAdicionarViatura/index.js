@@ -11,7 +11,7 @@ import api from './../../services/api';
 
 import { toast } from 'react-toastify';
 
-function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, categorias = [], aberto, setAberto }) {
+function ModalAdicionarViatura({ enviarRegistro, atualizarViaturas, encarrilharViatura, categorias = [], aberto, setAberto }) {
   const [prefixo, setPrefixo] = useState('');
   const [km, setKm] = useState('');
   const [nivelCombustivel, setNivelCombustivel] = useState('');
@@ -30,10 +30,8 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
     setEfetuandoRequisicao(true);
 
     let obrigatorios = [
-      { valor: prefixo, ref: prefixoRef, msg: 'Prefixo' },
-      { valor: km, ref: kmRef, msg: 'KM' },
-      { valor: nivelCombustivel, ref: nivelCombustivelRef, msg: 'Nível de combustível' },
-      { valor: categoria, ref: categoriaRef, msg: 'Categoria' },
+      { valor: prefixo,   ref: prefixoRef,   msg: 'Prefixo' },
+      { valor: categoria, ref: categoriaRef, msg: 'Categoria' }
     ];
 
     for(let { valor, ref, msg } of obrigatorios) {
@@ -51,10 +49,11 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
     console.table(viatura);
 
     api.post('/viaturas', viatura)
-      .then(async res => {
+      .then(res => {
         toast.success(`Viatura ${prefixo} adicionada com sucesso.`);
 
-        await encarrilharViatura(res.data);
+        enviarRegistro(atualizarViaturas(res.data, 'C'));
+        encarrilharViatura(res.data);
 
         setPrefixo('');
         setKm('');
@@ -63,8 +62,6 @@ function ModalAdicionarViatura({ registrar, recarregar, encarrilharViatura, cate
         setCategoria('');
 
         setAberto(false);
-        recarregar();
-        registrar();
       })
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));

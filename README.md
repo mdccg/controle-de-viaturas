@@ -1,12 +1,50 @@
 # controle-de-viaturas
 
+## _To-do list_
+
+- [X] Substituir a função de salvar dados da [Viatura](./controle-de-viaturas-frontend/src/components/Viatura/index.js) por um listener que salvará os dados após determinado tempo _AFK_
+- [X] Adicionar categoria 'Baixada'
+- [X] Adicionar botão de imprimir na tela do formulário das viaturas
+- [X] `BUG` Contornar exceção `Range Error: Array buffer allocation failed` <sup id="observacao-1"><sub>[1](#nota-rodape-1)</sub></sup>
+- [ ] Tornar todos os atributos (com exceção do prefixo) facultativos
+  - [X] Mudar o [`schema`](./controle-de-viaturas-backend/api/models/Viatura.js) das viaturas
+  - [ ] Adaptar o componente [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
+- [X] `BUG` Atualizar o array das viaturas por meio de uma função ativada com [`onblur`](w3schools.com/jsref/event_onblur.asp)
+- [ ] Sobrescrever registros feitos no mesmo dia
+- [ ] Adicionar opção de mudar a ordem das viaturas (arrastando-as)
+- [ ] Prototipar e adicionar telas para mudar as categorias (trem de socorro, pátio e baixada)
+- [ ] Renomear app Heroku
+
+<sup id="nota-rodape-1">
+  <sub>
+    <a href="#observacao-1">1</a>
+  </sub>
+</sup>
+O problema foi contornado por meio de uma medida paliativa, mas não resolvido. Caso persista, será utilizada alguma dependência para gerar o PDF pela API (por meio de LaTeX, por exemplo) e retorná-lo ao front-end.
+
+---
+
+## Tecnologias
+
+| Artefato                                     | Tecnologia                                      |
+|----------------------------------------------|-------------------------------------------------|
+| [Protótipo visual](https://figma.fun/L1OsQL) | Figma                                           |
+| Front-end                                    | React                                           |
+| Back-end                                     | Express                                         |
+| Banco de dados                               | MongoDB                                         |
+| PDFs                                         | [`@react-pdf/renderer`](https://react-pdf.org/) |
+
+---
+
 ## Motivação
 
 Este app foi desenvolvido para o 1º Subgrupamento de Bombeiros Militar Independente (1º SGBM/Ind) do município de Aquidauana - MS. Seu objetivo é inspecionar e gerar relatórios diários e mensais sobre as viaturas de combate ao incêndio, armazenando informações como prefixo, tipo de viatura (trem de S.O.S ou pátio), distância marcada pelo odômetro, nível de combustível e observações facultativas.
 
-Para o desenvolvimento do app, foi utilizada a página [Flat UI Colors](https://flatuicolors.com/) para composição da [paleta de cores](./controle-de-viaturas-frontend/src/App.css), o editor gráfico [Figma](https://figma.com/) para criação do [protótipo visual](https://figma.fun/L1OsQL), a biblioteca [React.js](https://pt-br.reactjs.org/) para criação das interfaces visuais, o framework [Express.js](https://expressjs.com/pt-br/) para criação da API e o serviço de banco de dados em nuvem global [MongoDB Atlas](https://cloud.mongodb.com/) para hospedagem e gestão do banco de dados. Ora, para geração dos arquivos PDF e disponibilização dos mesmos, foi utilizada a dependência [`@react-pdf/renderer`](https://react-pdf.org/), a qual os gera utilizando a mesma sintaxe de código da biblioteca React Native e os disponibiliza para _download_. Os arquivos baixados são enviados para a pasta selecionada como padrão pelo navegador do usuário.
+Para geração dos arquivos PDF e disponibilização dos mesmos, foi utilizada a dependência [`@react-pdf/renderer`](https://react-pdf.org/), a qual os gera utilizando a mesma sintaxe de código da biblioteca React Native e os disponibiliza para _download_. Os arquivos baixados são enviados para a pasta selecionada como padrão pelo navegador do usuário.
 
 Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva (do inglês _Progressive Web App_ – PWA) é um app web que, quando utilizado em dispositivo móvel como um _smartphone_, por exemplo, se comporta como um app nativo da plataforma do dispositivo - Android ou iOS, por exemplo. Por sua vez, quando visualizado em um dispositivo _desktop_, como um computador pessoal, por exemplo, se comporta como um web site. As vantagens de se implementar o app com esta abordagem é o baixo custo de implementação, associado a todos os benefícios que um app para dispositivos móveis oferece ao usuário (PONTES, 2018). Além disso, o acesso ao app é protegido por meio de autenticação com login e senha. Assim, o acesso é restrito aos bombeiros militares do 1º SGBM/Ind, por meio da supervisão dos stakeholders.
+
+---
 
 ## Galeria
 
@@ -56,4 +94,4 @@ Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva 
 - [react-toastify - npm](https://www.npmjs.com/package/react-toastify)
 - [Imgur: The magic of the Internet](https://imgur.com/)
 
-Outros créditos disponívels em [`controle-de-viaturas-frontend/src/assets/README.md`](./controle-de-viaturas-frontend/src/assets/README.md).
+[Mais créditos disponívels em aqui →](./controle-de-viaturas-frontend/src/assets/README.md)

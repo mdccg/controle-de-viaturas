@@ -12,6 +12,8 @@ Font.register({
 const ESCALA = 8;
 
 const styles = StyleSheet.create({
+  pdfViewer: { minHeight: document.body.offsetHeight },
+
   pdfDownloadLink: {
     justifyContent: 'center',
     alignItems: 'center',

@@ -29,11 +29,6 @@
   line-height: 1.5;
 }
 
-.viatura .cabecalho input,
-.viatura .cabecalho textarea {
-  background-color: var(--clouds);
-}
-
 .viatura .cabecalho {
   justify-content: space-between;
 

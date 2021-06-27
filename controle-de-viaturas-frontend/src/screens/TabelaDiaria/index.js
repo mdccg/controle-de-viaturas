@@ -1,16 +1,14 @@
 import { useState, useEffect, Fragment } from 'react';
-import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
+import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer';
 import styles from './styles';
 
 import { diasSemana } from './../../config/default.json';
-
-import parseKehabCase from './../../functions/parseKehabCase';
 
 import api from './../../services/api';
 
 import moment from 'moment';
 
-const Linha = ({ children }) =>  <View style={styles.linha}>{children}</View>;
+const Linha  = ({ children }) =>  <View style={styles.linha}>{children}</View>;
 const Coluna = ({ children }) => (
   <View style={styles.coluna}>
     <Text style={styles.colunaTexto}>{children}</Text>
@@ -101,16 +99,9 @@ function TabelaDiaria() {
   );
 
   return (
-    <PDFDownloadLink
-      document={<Pdf />}
-      style={styles.pdfDownloadLink}
-      fileName={`${parseKehabCase(titulo)}.pdf`}>
-      {({ blob, url, loading, error }) =>
-        loading
-          ? 'Gerando arquivo PDF do relatório...'
-          : 'Clique aqui para baixar o relatório'
-      }
-    </PDFDownloadLink>
+    <PDFViewer style={styles.pdfViewer}>
+      <Pdf />
+    </PDFViewer>
   );
 }
 

@@ -1,17 +1,17 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './styles.css';
 
-import FireTruck from './../../assets/icons/FireTruck';
-import Edit from './../../assets/icons/Edit';
-import Check from './../../assets/icons/Check';
-import Spinner from './../../assets/icons/Spinner';
-import Delete from './../../assets/icons/Delete';
-import Speedometer from './../../assets/icons/Speedometer';
-import GasStation from './../../assets/icons/GasStation';
-import Chat from './../../assets/icons/Chat';
 import Tag from './../../assets/icons/Tag';
+import Chat from './../../assets/icons/Chat';
+import Delete from './../../assets/icons/Delete';
+import Spinner from './../../assets/icons/Spinner';
+import FireTruck from './../../assets/icons/FireTruck';
+import GasStation from './../../assets/icons/GasStation';
+import Speedometer from './../../assets/icons/Speedometer';
 
 import api from './../../services/api';
+
+import { delay } from './../../config/default.json';
 
 function Viatura(props) {
   const _id = props._id;
@@ -25,41 +25,35 @@ function Viatura(props) {
   const kmRef = useRef();
   const comentarioRef = useRef();
 
-  const [editandoViatura, setEditandoViatura] = useState(false);
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
-  const [viaturaDesatualizada, setViaturaDesatualizada] = useState(JSON.stringify({ prefixo, km, nivelCombustivel, comentario, categoria }));
+  function atualizarViatura() {
+    const { viaturas, setViaturas } = props;
+    
+    let _viaturas = [...viaturas];
+    let indice = _viaturas.map(({ _id }) => _id).indexOf(_id);
+    
+    _viaturas[indice] = { _id, prefixo, km, nivelCombustivel, comentario, categoria };
+    
+    setViaturas(_viaturas);
+  }
 
-  async function editarViatura() {
-    const { atualizarViatura, registrar, recarregar } = props;
+  async function registrarViatura() {
+    const { enviarRegistro, atualizarViaturas } = props;
 
-    await setEditandoViatura(!editandoViatura);
+    setEfetuandoRequisicao(true);
+    
+    var _km = `${km}`.replace(/\./g, '').replace(/,/g, '.');
 
-    if(editandoViatura) {
-      var viaturaAtualizada = JSON.stringify({ prefixo, km, nivelCombustivel, comentario, categoria });
-      
-      if(viaturaDesatualizada !== viaturaAtualizada) {
-        setEfetuandoRequisicao(true);
-        
-        var _km = `${km}`.replace(/\./g, '').replace(/,/g, '.');
-
-        let viatura = { prefixo, km: Number(_km), nivelCombustivel, comentario, categoria: categoria._id };
-        
-        api.put(`/viaturas/${_id}`, viatura)
-          .then(async () => {
-            let viatura = { _id, prefixo, km: Number(_km), nivelCombustivel, comentario, categoria };
-            await atualizarViatura(viatura);
-
-            setViaturaDesatualizada(viaturaAtualizada);
-            recarregar();
-            registrar();
-          })
-          .catch(err => console.error(err))
-          .finally(() => setEfetuandoRequisicao(false));
-      }
-
-    } else
-      kmRef.current.focus();
+    let viatura = { prefixo, km: Number(_km), nivelCombustivel, comentario, categoria: categoria._id };
+    
+    api.put(`/viaturas/${_id}`, viatura)
+      .then(() => {
+        let viatura = { _id, prefixo, km: Number(_km), nivelCombustivel, comentario, categoria };
+        enviarRegistro(atualizarViaturas(viatura, 'U'));
+      })
+      .catch(err => console.error(err))
+      .finally(() => setEfetuandoRequisicao(false));
   }
 
   async function editarNivelCombustivel() {
@@ -89,6 +83,24 @@ function Viatura(props) {
     setDeletandoViatura(true);
   }
 
+  const didMountRef = useRef(false);
+
+  useEffect(() => {
+    if (didMountRef.current) {
+      atualizarViatura();
+
+      var detectorAfk = setTimeout(() => {
+        registrarViatura();
+      }, delay * 1e3);
+      
+      return () => clearTimeout(detectorAfk);
+      
+    } else {
+      didMountRef.current = true;
+    }
+
+  }, [prefixo, km, nivelCombustivel, comentario, categoria]);
+
   return (
     <div className="viatura">
       <div className="cabecalho">
@@ -98,23 +110,22 @@ function Viatura(props) {
           </div>
 
           <div className="prefixo">
-            {editandoViatura ? (
-              <input
-                type="text"
-                value={prefixo}
-                onChange={event => setPrefixo(event.target.value)}
-                placeholder="Prefixo"
-                ref={prefixoRef} />
-            ) : <span>{prefixo}</span>}
+            <input
+              disabled={efetuandoRequisicao}
+              type="text"
+              value={prefixo}
+              onChange={event => setPrefixo(event.target.value)}
+              placeholder="Prefixo"
+              ref={prefixoRef} />
           </div>
         </div>
 
         <div className="painel">
-          <div className="icone clicavel" onClick={efetuandoRequisicao ? undefined : editarViatura}>
-            {efetuandoRequisicao ? <Spinner /> :  editandoViatura ? <Check /> : <Edit />}
+          <div className="icone clicavel">
+            {efetuandoRequisicao ? <Spinner /> :  null}
           </div>
 
-          <div className="icone clicavel" onClick={efetuandoRequisicao ? undefined : deletarViatura}>
+          <div className="icone clicavel" onClick={!efetuandoRequisicao ? deletarViatura : undefined}>
             <Delete />
           </div>
         </div>
@@ -131,20 +142,19 @@ function Viatura(props) {
               <span>KM</span>
               <span>&nbsp;</span>
               
-              {editandoViatura ? (
-                <input
-                  value={km}
-                  onChange={event => setKm(event.target.value)}
-                  placeholder="KM"
-                  inputMode="numeric"
-                  ref={kmRef} />
-              ) : <span>{km}</span>}
+              <input
+                disabled={efetuandoRequisicao}
+                value={km}
+                onChange={event => setKm(event.target.value)}
+                placeholder="KM"
+                inputMode="numeric"
+                ref={kmRef} />
             </div>
           </div>
 
           <div
-            className={editandoViatura ? 'clicavel' : ''}
-            onClick={editandoViatura ? editarNivelCombustivel : undefined}>
+            className="clicavel"
+            onClick={!efetuandoRequisicao ? editarNivelCombustivel : undefined}>
             <div className="icone">
               <GasStation />
             </div>
@@ -155,39 +165,33 @@ function Viatura(props) {
           </div>
         </div>
 
-        {/* eslint-disable-next-line */}
-        {editandoViatura || !editandoViatura && comentario !== '' ? (
-          <div key={_id + '-segunda-linha'}>
-            <div className="icone">
-              <Chat />
-            </div>
-
-            <div className="comentario">
-              {editandoViatura ? (
-                <textarea
-                  value={comentario}
-                  onChange={event => setComentario(event.target.value)}
-                  placeholder="Observação"
-                  ref={comentarioRef}></textarea>
-              ) : <span>{comentario}</span>}
-            </div>
+        <div key={_id + '-segunda-linha'}>
+          <div className="icone">
+            <Chat />
           </div>
-        ) : <></>}
 
-        {editandoViatura ? (
-          <div
-            key={_id + '-terceira-linha'}
-            className={editandoViatura ? 'clicavel' : ''}
-            onClick={editandoViatura ? editarCategoria : undefined}>
-            <div className="icone">
-              <Tag />
-            </div>
-
-            <div className="categoria-label">
-              <span>{categoria.nome}</span>
-            </div>
+          <div className="comentario">
+            <textarea
+              disabled={efetuandoRequisicao}
+              value={comentario}
+              onChange={event => setComentario(event.target.value)}
+              placeholder="Observação"
+              ref={comentarioRef}></textarea>
           </div>
-        ) : <></>}
+        </div>
+
+        <div
+          key={_id + '-terceira-linha'}
+          className="clicavel"
+          onClick={!efetuandoRequisicao ? editarCategoria : undefined}>
+          <div className="icone">
+            <Tag />
+          </div>
+
+          <div className="categoria-label">
+            <span>{categoria.nome}</span>
+          </div>
+        </div>
       </div>
 
       <div className="rodape"></div>

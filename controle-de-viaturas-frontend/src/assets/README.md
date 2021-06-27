@@ -1,6 +1,10 @@
-[Voltar para a raiz do projeto.](./../../../README.md)
+[← Voltar para a raiz do projeto](./../../../README.md)
 
 # Mídias
+
+## Paleta de cores
+
+- [Palettes | Flat UI Colors 🎨 280 handpicked colors ready for COPY & PASTE](https://flatuicolors.com/)
 
 ## Ícones
 

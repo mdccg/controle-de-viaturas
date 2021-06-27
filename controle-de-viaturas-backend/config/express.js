@@ -14,9 +14,14 @@ module.exports = () => {
   // SETANDO VARIÁVEIS DA APLICAÇÃO
   app.set('port', process.env.PORT || config.get('server.port'));
 
+  const corsOptions = {
+    origin: 'http://192.168.2.8:3000',
+    optionsSuccessStatus: 200
+  }
+
   // MIDDLEWARES
   app.use(bodyParser.json());
-  app.use(cors());
+  app.use(cors(corsOptions));
 
   // ENDPOINTS
   consign({ cwd: 'api' })

@@ -7,19 +7,18 @@ import ModalIntitulado from './../ModalIntitulado';
 
 import api from './../../services/api';
 
-function ModalDeletarViatura({ registrar, recarregar, desencarrilharViatura, viatura = {}, aberto, setAberto }) {
+function ModalDeletarViatura({ enviarRegistro, atualizarViaturas, desencarrilharViatura, viatura = {}, aberto, setAberto }) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
   function deletarViatura() {
     setEfetuandoRequisicao(true);
 
     api.delete(`/viaturas/${viatura._id}`)
-      .then(async () => {
-        await desencarrilharViatura(viatura._id);
+      .then(() => {
+        enviarRegistro(atualizarViaturas(viatura, 'D'));
+        desencarrilharViatura(viatura._id);
 
         setAberto(false);
-        recarregar();
-        registrar();
       })
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));

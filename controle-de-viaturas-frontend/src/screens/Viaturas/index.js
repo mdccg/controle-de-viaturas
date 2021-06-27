@@ -1,21 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import './styles.css';
 
-import Add from './../../assets/icons/Add';
+import Add     from './../../assets/icons/Add';
+import Spinner  from './../../assets/icons/Spinner';
+import Clipboard from './../../assets/icons/Clipboard';
 import GasStation from './../../assets/icons/GasStation';
-import Spinner from './../../assets/icons/Spinner';
 
-import Header from './../../components/Header';
-import Footer from './../../components/Footer';
+import Vazio  from './../../components/Vazio';
+import Header  from './../../components/Header';
+import Footer   from './../../components/Footer';
 import SearchBar from './../../components/SearchBar';
-import Categoria from './../../components/Categoria';
-import Vazio from './../../components/Vazio';
+import Categoria  from './../../components/Categoria';
+import ModalDeletarViatura      from './../../components/ModalDeletarViatura';
+import ModalEditarCategoria      from './../../components/ModalEditarCategoria';
+import ModalAdicionarViatura      from './../../components/ModalAdicionarViatura';
 import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
-import ModalEditarCategoria from './../../components/ModalEditarCategoria';
-import ModalAdicionarViatura from './../../components/ModalAdicionarViatura';
-import ModalDeletarViatura from './../../components/ModalDeletarViatura';
 
-import { filtroNiveisCombustivel } from './../../config/default.json';
+import { filtroNiveisCombustivel }  from './../../config/default.json';
 
 import getUsuario from './../../functions/getUsuario';
 
@@ -24,11 +25,8 @@ import api from './../../services/api';
 import moment from 'moment';
 
 function Viaturas() {
-  const [reload, setReload] = useState(false);
-  
   const [pesquisa, setPesquisa] = useState('');
 
-  const [registrando, setRegistrando] = useState(false);
   const [buscandoViaturas, setBuscandoViaturas] = useState(false);
 
   const [viatura, setViatura] = useState({});
@@ -47,14 +45,6 @@ function Viaturas() {
   const [adicionandoViatura, setAdicionandoViatura] = useState(false);
   const [deletandoViatura, setDeletandoViatura] = useState(false);
 
-  function recarregar() {
-    setReload(!reload);
-  }
-
-  function registrar() {
-    setRegistrando(!registrando);
-  }
-
   function encarrilharViatura(viatura) {
     setViaturas(state => {
       return [...state, viatura];
@@ -67,9 +57,19 @@ function Viaturas() {
     });
   }
 
-  function atualizarViatura(viatura) {
-    desencarrilharViatura(viatura._id);
-    encarrilharViatura(viatura);
+  function atualizarViaturas(viatura, operacao) {
+    if(operacao === 'C')
+      return [...viaturas, viatura];
+
+    if(operacao === 'U') {
+      let indexOf = viaturas.map(({ _id }) => _id).indexOf(viatura._id);
+      let _viaturas = [...viaturas];
+      _viaturas[indexOf] = viatura;
+      return _viaturas;
+    }
+
+    if(operacao === 'D')
+      return [...viaturas].filter(({ _id }) => _id !== viatura._id);
   }
   
   function buscarUltimoRegistro() {
@@ -102,6 +102,19 @@ function Viaturas() {
       .catch(err => console.error(err));
   }
 
+  function exportarPdfAtual() {
+    let { data, signatario } = ultimoRegistro;
+    
+    const relatorio = {
+      tipo: 'diario',
+      relatorio: { data, signatario, viaturas }
+    };
+
+    api.put('/relatorio', relatorio)
+      .then(() => window.open('/tabela-diaria', '_blank'))
+      .catch(err => console.error(err));
+  }
+
   function buscarViaturas() {
     setBuscandoViaturas(true);
 
@@ -121,7 +134,7 @@ function Viaturas() {
     setAdicionandoViatura(true);
   }
 
-  function enviarRegistro() {
+  function enviarRegistro(viaturas) {
     let usuario = getUsuario();
 
     const registro = { signatario: usuario._id, viaturas };
@@ -131,24 +144,13 @@ function Viaturas() {
       .catch(err => console.error(err));
   }
 
-  const isInitialMount = useRef(true);
-
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      enviarRegistro();
-    }
-    // eslint-disable-next-line
-  }, [registrando]);
-
   useEffect(() => {
     document.title = 'FORMULÁRIO ― 1º SGBM/IND';
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
     // eslint-disable-next-line
-  }, [reload, pesquisa]);
+  }, [pesquisa]);
 
   return (
     <>
@@ -196,14 +198,15 @@ function Viaturas() {
               <Categoria
                 {...categoria}
                 key={categoria._id}
-                registrar={registrar}
-                recarregar={recarregar}
+                viaturas={viaturas}
                 setViatura={setViatura}
-                atualizarViatura={atualizarViatura}
+                setViaturas={setViaturas}
+                enviarRegistro={enviarRegistro}
+                atualizarViaturas={atualizarViaturas}
                 setDeletandoViatura={setDeletandoViatura}
                 setEditandoCategoria={setEditandoCategoria}
                 setEditandoNivelCombustivel={setEditandoNivelCombustivel} 
-                viaturas={viaturas.filter(viatura => {
+                viaturasFiltradas={viaturas.filter(viatura => {
                   try {
                     if(!viatura.categoria)
                       return false;
@@ -212,13 +215,17 @@ function Viaturas() {
                       && (filtro ? viatura.nivelCombustivel === filtro : true);
 
                   } catch(err) {
-                    console.table(viaturas);
                     console.table(viatura);
 
                     return [];
                   }
                 })} />
             ))}
+          </div>
+
+          <div className="botao-imprimir-pdf" onClick={exportarPdfAtual}>
+            <Clipboard />
+            <span className="noselect">Exportar para PDF</span>
           </div>
 
           <Footer />
@@ -241,16 +248,16 @@ function Viaturas() {
         setAberto={setEditandoCategoria} />
 
       <ModalAdicionarViatura
-        registrar={registrar}
-        recarregar={recarregar}
+        enviarRegistro={enviarRegistro}
+        atualizarViaturas={atualizarViaturas}
         encarrilharViatura={encarrilharViatura}
         categorias={categorias}
         aberto={adicionandoViatura}
         setAberto={setAdicionandoViatura} />
 
       <ModalDeletarViatura
-        registrar={registrar}
-        recarregar={recarregar}
+        enviarRegistro={enviarRegistro}
+        atualizarViaturas={atualizarViaturas}
         desencarrilharViatura={desencarrilharViatura}
         viatura={viatura}
         aberto={deletandoViatura}

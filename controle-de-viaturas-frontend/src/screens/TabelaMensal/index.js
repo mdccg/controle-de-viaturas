@@ -1,10 +1,8 @@
 import { useState, useEffect, Fragment } from 'react';
-import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
+import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer';
 import styles from './styles';
 
 import { diasSemana } from './../../config/default.json';
-
-import parseKehabCase from './../../functions/parseKehabCase';
 
 import api from './../../services/api';
 
@@ -41,7 +39,6 @@ function TabelaMensal() {
         
         setMes(mes);
         setRegistros(registros);
-        // {  }
       })
       .catch(err => console.error(err));
   }
@@ -111,16 +108,9 @@ function TabelaMensal() {
   );
 
   return (
-    <PDFDownloadLink
-      document={<Pdf />}
-      style={styles.pdfDownloadLink}
-      fileName={`${parseKehabCase(mes)}.pdf`}>
-      {({ blob, url, loading, error }) =>
-        loading
-          ? 'Gerando arquivo PDF do relatório...'
-          : 'Clique aqui para baixar o relatório'
-      }
-    </PDFDownloadLink>
+    <PDFViewer style={styles.pdfViewer}>
+      <Pdf />
+    </PDFViewer>
   );
 }
 

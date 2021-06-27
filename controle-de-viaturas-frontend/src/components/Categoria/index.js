@@ -9,42 +9,44 @@ import Viatura from './../Viatura';
 function Categoria({
   _id,
   nome,
-  registrar,
-  recarregar,
+  viaturas,
   setViatura,
-  atualizarViatura,
+  setViaturas,
+  enviarRegistro,
+  atualizarViaturas,
   setDeletandoViatura,
   setEditandoCategoria,
   setEditandoNivelCombustivel,
-  viaturas = []
+  viaturasFiltradas = []
 }) {
 
-  const listaVazia = viaturas.length === 0;
-  const [aberto, setAberto] = useState(viaturas.length !== 0);
+  const listaVazia = viaturasFiltradas.length === 0;
+  const [aberto, setAberto] = useState(viaturasFiltradas.length !== 0);
 
   useEffect(() => {
-    setAberto(viaturas.length !== 0);    
-  }, [viaturas]);
+    setAberto(viaturasFiltradas.length !== 0);    
+  }, [viaturasFiltradas]);
 
   return (
     <div className="lista-viaturas" key={_id}>
       <div className="categoria" onClick={() => setAberto(!aberto)}>
         <div></div>
-        <span>{nome}</span>
+        <span className="noselect">{nome}</span>
         <div className={'icone ' + (aberto ? 'aberto' : '')}>
           <ArrowDownSignToNavigate />
         </div>
       </div>
 
       {aberto && !listaVazia ? (
-        viaturas.map(viatura => (
+        viaturasFiltradas.map(viatura => (
           <Viatura
             {...viatura}
             key={viatura._id}
-            registrar={registrar}
-            recarregar={recarregar}
+            viaturas={viaturas}
             setViatura={setViatura}
-            atualizarViatura={atualizarViatura}
+            setViaturas={setViaturas}
+            enviarRegistro={enviarRegistro}
+            atualizarViaturas={atualizarViaturas}
             setDeletandoViatura={setDeletandoViatura}
             setEditandoCategoria={setEditandoCategoria}
             setEditandoNivelCombustivel={setEditandoNivelCombustivel} />
