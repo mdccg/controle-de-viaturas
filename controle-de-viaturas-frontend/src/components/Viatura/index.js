@@ -30,12 +30,13 @@ function Viatura(props) {
   function atualizarViatura() {
     const { viaturas, setViaturas } = props;
     
-    let _viaturas = [...viaturas];
-    let indice = _viaturas.map(({ _id }) => _id).indexOf(_id);
+    let viaturas_ = [...viaturas];
+    let indice = viaturas_.map(({ _id }) => _id).indexOf(_id);
+    let viatura = { _id, prefixo, km, nivelCombustivel, comentario, categoria };
+
+    viaturas_[indice] = viatura;
     
-    _viaturas[indice] = { _id, prefixo, km, nivelCombustivel, comentario, categoria };
-    
-    setViaturas(_viaturas);
+    setViaturas(viaturas_);
   }
 
   async function registrarViatura() {
@@ -51,6 +52,7 @@ function Viatura(props) {
       .then(() => {
         let viatura = { _id, prefixo, km: Number(_km), nivelCombustivel, comentario, categoria };
         enviarRegistro(atualizarViaturas(viatura, 'U'));
+        atualizarViatura();
       })
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));
@@ -83,21 +85,29 @@ function Viatura(props) {
     setDeletandoViatura(true);
   }
 
-  const didMountRef = useRef(false);
+  const atualizarViaturaRef = useRef(false);
+  const detectorAfkRef = useRef(false);
 
   useEffect(() => {
-    if (didMountRef.current) {
+    if(atualizarViaturaRef.current)
       atualizarViatura();
+    else
+      atualizarViaturaRef.current = true;
+
+  }, [prefixo, km, nivelCombustivel, comentario]);
+
+  useEffect(() => {
+    if (detectorAfkRef.current) {
 
       var detectorAfk = setTimeout(() => {
         registrarViatura();
+
       }, delay * 1e3);
       
       return () => clearTimeout(detectorAfk);
       
-    } else {
-      didMountRef.current = true;
-    }
+    } else
+      detectorAfkRef.current = true;
 
   }, [prefixo, km, nivelCombustivel, comentario, categoria]);
 
@@ -139,8 +149,8 @@ function Viatura(props) {
             </div>
             
             <div className="km">
-              <span>KM</span>
-              <span>&nbsp;</span>
+              <span className="noselect">KM</span>
+              <span className="noselect">&nbsp;</span>
               
               <input
                 disabled={efetuandoRequisicao}
@@ -160,7 +170,7 @@ function Viatura(props) {
             </div>
             
             <div className="nivel-combustivel">
-              <span>{nivelCombustivel}</span>
+              <span>{nivelCombustivel ? nivelCombustivel : 'Nível de combustível'}</span>
             </div>
           </div>
         </div>

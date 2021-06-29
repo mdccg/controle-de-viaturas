@@ -2,18 +2,18 @@
 
 ## _To-do list_
 
-- [X] Substituir a função de salvar dados da [Viatura](./controle-de-viaturas-frontend/src/components/Viatura/index.js) por um listener que salvará os dados após determinado tempo _AFK_
-- [X] Adicionar categoria 'Baixada'
-- [X] Adicionar botão de imprimir na tela do formulário das viaturas
 - [X] `BUG` Contornar exceção `Range Error: Array buffer allocation failed` <sup id="observacao-1"><sub>[1](#nota-rodape-1)</sub></sup>
-- [ ] Tornar todos os atributos (com exceção do prefixo) facultativos
+- [X] Tornar todos os atributos (com exceção do prefixo) facultativos
   - [X] Mudar o [`schema`](./controle-de-viaturas-backend/api/models/Viatura.js) das viaturas
-  - [ ] Adaptar o componente [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
-- [X] `BUG` Atualizar o array das viaturas por meio de uma função ativada com [`onblur`](w3schools.com/jsref/event_onblur.asp)
-- [ ] Sobrescrever registros feitos no mesmo dia
-- [ ] Adicionar opção de mudar a ordem das viaturas (arrastando-as)
+  - [X] Adaptar o componente [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
+- [ ] `API` Sobrescrever registros feitos no mesmo dia
+- [ ] `API` Renomear app Heroku
+- [ ] Concluir a refatoração \([#1](https://github.com/mdccg/controle-de-viaturas/issues/1)\)
+- [ ] Atualizar o array das viaturas por meio de uma função ativada com [`onblur`](w3schools.com/jsref/event_onblur.asp)
+- [ ] Atualizar nível de combustível e categoria imediatamente (sem o delay)
+- [ ] Adicionar logotipo do GitHub nos rodapés dos PDFs
 - [ ] Prototipar e adicionar telas para mudar as categorias (trem de socorro, pátio e baixada)
-- [ ] Renomear app Heroku
+- [ ] Adicionar opção de mudar a ordem das viaturas (arrastando-as)
 
 <sup id="nota-rodape-1">
   <sub>

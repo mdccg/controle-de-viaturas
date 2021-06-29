@@ -31,7 +31,7 @@ function ModalAdicionarViatura({ enviarRegistro, atualizarViaturas, encarrilharV
 
     let obrigatorios = [
       { valor: prefixo,   ref: prefixoRef,   msg: 'Prefixo' },
-      { valor: categoria, ref: categoriaRef, msg: 'Categoria' }
+      { valor: categoria, ref: categoriaRef, msg: 'Tipo de viatura' }
     ];
 
     for(let { valor, ref, msg } of obrigatorios) {

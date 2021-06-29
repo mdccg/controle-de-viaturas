@@ -1,11 +1,17 @@
 import './styles.css';
 
-function ModalBotao({ variavel, setVariavel, variavelSelecionada, setVariavelSelecionada }) {
+function ModalBotao({ variavel, setVariavel, variavelSelecionada, setVariavelSelecionada, nulo }) {
   const selecionada = variavel === variavelSelecionada;
 
   function selecionar() {
-    setVariavel(variavel);
-    setVariavelSelecionada(variavel);
+    if(nulo) { 
+      setVariavel(selecionada ? '' : variavel);
+      setVariavelSelecionada(selecionada ? '' : variavel);
+
+    } else {
+      setVariavel(variavel);
+      setVariavelSelecionada(variavel);
+    }
   }
 
   return (

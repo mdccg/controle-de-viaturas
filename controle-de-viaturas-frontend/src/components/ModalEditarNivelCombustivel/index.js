@@ -18,6 +18,7 @@ function ModalEditarNivelCombustivel({ viatura = {}, aberto, setAberto }) {
       <div className="modal-botoes">
         {niveisCombustivel.map(nivelCombustivel => (
           <ModalBotao
+            nulo
             key={nivelCombustivel}
             variavel={nivelCombustivel}
             setVariavel={viatura.setNivelCombustivel}
