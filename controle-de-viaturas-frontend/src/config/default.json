@@ -11,7 +11,7 @@
     "3/4": "Combustível acima de ¾",
     "1/2": "Combustível acima de ½",
     "1/4": "Combustível acima de ¼",
-    "0/4": "Reserva"
+    "R": "Reserva"
   },
   "diasSemana": ["segunda-feira", "terça-feira",  "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"],
   "meses": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],

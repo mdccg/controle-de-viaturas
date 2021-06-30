@@ -6,14 +6,12 @@
 - [X] Tornar todos os atributos (com exceção do prefixo) facultativos
   - [X] Mudar o [`schema`](./controle-de-viaturas-backend/api/models/Viatura.js) das viaturas
   - [X] Adaptar o componente [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
-- [ ] `API` Sobrescrever registros feitos no mesmo dia
-- [ ] `API` Renomear app Heroku
+- [X] `API` Sobrescrever registros feitos no mesmo dia
+- [X] `API` Renomear app Heroku
 - [ ] Concluir a refatoração \([#1](https://github.com/mdccg/controle-de-viaturas/issues/1)\)
-- [ ] Atualizar o array das viaturas por meio de uma função ativada com [`onblur`](w3schools.com/jsref/event_onblur.asp)
-- [ ] Atualizar nível de combustível e categoria imediatamente (sem o delay)
+- [X] `BUG` Descobrir por que os registros não estão salvando as viaturas
 - [ ] Adicionar logotipo do GitHub nos rodapés dos PDFs
-- [ ] Prototipar e adicionar telas para mudar as categorias (trem de socorro, pátio e baixada)
-- [ ] Adicionar opção de mudar a ordem das viaturas (arrastando-as)
+- [ ] Adicionar opção de mudar a ordem das viaturas, arrastando-as
 
 <sup id="nota-rodape-1">
   <sub>

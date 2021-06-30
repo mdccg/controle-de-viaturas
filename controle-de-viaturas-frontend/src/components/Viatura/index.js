@@ -40,7 +40,7 @@ function Viatura(props) {
   }
 
   async function registrarViatura() {
-    const { enviarRegistro, atualizarViaturas } = props;
+    const { enviarRegistro } = props;
 
     setEfetuandoRequisicao(true);
     
@@ -50,8 +50,7 @@ function Viatura(props) {
     
     api.put(`/viaturas/${_id}`, viatura)
       .then(() => {
-        let viatura = { _id, prefixo, km: Number(_km), nivelCombustivel, comentario, categoria };
-        enviarRegistro(atualizarViaturas(viatura, 'U'));
+        enviarRegistro();
         atualizarViatura();
       })
       .catch(err => console.error(err))
@@ -85,16 +84,7 @@ function Viatura(props) {
     setDeletandoViatura(true);
   }
 
-  const atualizarViaturaRef = useRef(false);
   const detectorAfkRef = useRef(false);
-
-  useEffect(() => {
-    if(atualizarViaturaRef.current)
-      atualizarViatura();
-    else
-      atualizarViaturaRef.current = true;
-
-  }, [prefixo, km, nivelCombustivel, comentario]);
 
   useEffect(() => {
     if (detectorAfkRef.current) {

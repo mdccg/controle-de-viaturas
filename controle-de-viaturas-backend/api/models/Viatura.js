@@ -7,6 +7,6 @@ const viatura = new Schema({
   nivelCombustivel: { type: String },
   comentario: String,
   categoria: { type: Schema.Types.ObjectId, ref: 'Categoria', required: true },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Viatura', viatura);

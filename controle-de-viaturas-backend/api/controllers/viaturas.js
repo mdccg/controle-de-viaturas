@@ -50,6 +50,10 @@ module.exports = app => {
         viaturas.push(viatura);
       }
 
+      viaturas.sort(function(a, b) {
+        return (a.createdAt < b.createdAt) ? - 1 : ((a.createdAt > b.createdAt) ? 1 : 0);
+      })
+
       return res.status(200).json(viaturas);
     });
   };

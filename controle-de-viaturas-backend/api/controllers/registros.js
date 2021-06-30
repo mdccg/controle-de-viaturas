@@ -1,6 +1,8 @@
-const Registro = require('./../models/Registro');
+const Registro  = require('./../models/Registro');
 
-const Militar = require('./../models/Militar');
+const Categoria = require('./../models/Categoria');
+const Viatura   = require('./../models/Viatura');
+const Militar   = require('./../models/Militar');
 
 const capitalize = require('./../functions/capitalize');
 
@@ -88,19 +90,56 @@ module.exports = app => {
   }
 
   controller.registrar = (req, res) => {
-    Registro.create(req.body, async function(err, result) {
+    var viaturas = [];
+    
+    Viatura.find({}, async function(err, result) {
       if(err) return res.status(500).json(err);
 
-      var signatario;
-      
-      await Militar.findById(result.signatario, function(err, result) {
-        if(err) return res.status(500).json(err);
-        signatario = result;
-      });
-      
-      result.signatario = signatario;
+      for(const viatura of result) {
+        var categoria = await Categoria.findById(viatura.categoria, function(err, result) {});
+        viatura.categoria = categoria;
+        viaturas.push(viatura);
+      }
 
-      return res.status(200).json(result);
+      const hoje = moment().startOf('day');
+  
+      const query = {
+        createdAt: {
+          $gte: hoje.toDate(),
+          $lte: moment(hoje).endOf('day').toDate()
+        }
+      };
+  
+      const registroExistente = await Registro.findOne(query) || false;
+  
+      if(!registroExistente) {
+        Registro.create({ ...req.body, viaturas }, async function(err, result) {
+          if(err) return res.status(500).json(err);
+    
+          var signatario;
+          
+          await Militar.findById(result.signatario, function(err, result) {
+            if(err) return res.status(500).json(err);
+            signatario = result;
+          });
+          
+          result.signatario = signatario;
+    
+          return res.status(200).json(result);
+        });
+      } else {
+        const { _id } = registroExistente;
+        const update = {
+          $set: { ...req.body, viaturas }
+        };
+        const options = { useFindAndModify: false };
+  
+        Registro.findByIdAndUpdate(_id, update, options, function(err, result) {
+          if(err) return res.status(500).json(err);
+  
+          return res.status(200).json(result);
+        });
+      }
     });
   }
 

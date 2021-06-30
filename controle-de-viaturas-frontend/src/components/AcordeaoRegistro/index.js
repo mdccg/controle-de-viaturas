@@ -17,15 +17,15 @@ import moment from 'moment';
 function ViaturaTextual({ _id, prefixo, km, nivelCombustivel, comentario = '' }) {
   return (
     <div className="viatura-textual">
-      <span>{prefixo}</span>
-      <span>KM {km}</span>
-      <span className="nivelCombustivel">{nivelCombustivel}</span>
-      {comentario ? <span>{comentario}</span> : <div></div>}
+      <span style={{ width: '20%' }}>{prefixo}</span>
+      <span style={{ width: '15%' }}>KM {km}</span>
+      <span style={{ width: '30%' }} className="nivelCombustivel">{nivelCombustivel}</span>
+      {comentario ? <span style={{ width: '45%' }}>{comentario}</span> : <div></div>}
     </div>
   );
 }
 
-function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data, categorias = [], recarregar }) {
+function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, updatedAt: data, categorias = [], recarregar }) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
   
   const [aberto, setAberto] = useState(false);
@@ -90,12 +90,14 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, createdAt: data
               if(!viatura.categoria)
                 return false;
 
-              return viatura.categoria._id === _id;
+              return viatura.categoria === _id;
             });
 
             return tuplas.length > 0 ? (
               <div key={_id}>
-                <span className="categoria">{nome}</span>
+                <div className="categoria">
+                  <span>{nome}</span>
+                </div>
                 {tuplas.map(tupla => <ViaturaTextual key={tupla._id} {...tupla} />)}
               </div>
             ) : <></>;

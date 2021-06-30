@@ -52,16 +52,25 @@
   padding: 32px;
 }
 
+.acordeao-registro-body > * {
+  margin-top: 24px;
+}
+
+.acordeao-registro-body > :first-child { margin-top: 0; }
+
 .acordeao-registro-body .categoria {
+  align-self: center;
+  display: flex;
+  
+  margin-bottom: 16px;
+}
+
+.acordeao-registro-body .categoria span {
   color: var(--dracula-orchid);
   font-size: 175%;
   
   text-transform: uppercase;
   text-align: center;
-  align-self: center;
-  display: flex;
-  
-  margin-bottom: 16px;
 }
 
 .viatura-textual {
@@ -83,7 +92,7 @@
 
 .viatura-textual > * {
   display: flex;
-  flex: 1;
+  padding: 8px;
 }
 
 .viatura-textual svg {
@@ -112,8 +121,6 @@
   }
 
   .viatura-textual { font-size: 80%; }
-
-  .viatura-textual .nivelCombustivel { font-size: 70%; }
 
   .acordeao-registro-body .botoes { flex-direction: column; }
 

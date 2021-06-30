@@ -13,7 +13,6 @@ function Categoria({
   setViatura,
   setViaturas,
   enviarRegistro,
-  atualizarViaturas,
   setDeletandoViatura,
   setEditandoCategoria,
   setEditandoNivelCombustivel,
@@ -46,7 +45,6 @@ function Categoria({
             setViatura={setViatura}
             setViaturas={setViaturas}
             enviarRegistro={enviarRegistro}
-            atualizarViaturas={atualizarViaturas}
             setDeletandoViatura={setDeletandoViatura}
             setEditandoCategoria={setEditandoCategoria}
             setEditandoNivelCombustivel={setEditandoNivelCombustivel} />

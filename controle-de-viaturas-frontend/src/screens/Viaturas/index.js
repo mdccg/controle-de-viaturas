@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
 import Add     from './../../assets/icons/Add';
@@ -41,8 +41,8 @@ function Viaturas() {
   }
 
   const [editandoNivelCombustivel, setEditandoNivelCombustivel] = useState(false);
-  const [editandoCategoria, setEditandoCategoria]   = useState(false);
   const [adicionandoViatura, setAdicionandoViatura] = useState(false);
+  const [editandoCategoria, setEditandoCategoria] = useState(false);
   const [deletandoViatura, setDeletandoViatura] = useState(false);
 
   function encarrilharViatura(viatura) {
@@ -57,21 +57,6 @@ function Viaturas() {
     });
   }
 
-  function atualizarViaturas(viatura, operacao) {
-    if(operacao === 'C')
-      return [...viaturas, viatura];
-
-    if(operacao === 'U') {
-      let indexOf = viaturas.map(({ _id }) => _id).indexOf(viatura._id);
-      let _viaturas = [...viaturas];
-      _viaturas[indexOf] = viatura;
-      return _viaturas;
-    }
-
-    if(operacao === 'D')
-      return [...viaturas].filter(({ _id }) => _id !== viatura._id);
-  }
-  
   function buscarUltimoRegistro() {
     api.get('/historico')
       .then(({ data: historico }) => {
@@ -134,10 +119,10 @@ function Viaturas() {
     setAdicionandoViatura(true);
   }
 
-  function enviarRegistro(viaturas) {
+  function enviarRegistro() {
     let usuario = getUsuario();
 
-    const registro = { signatario: usuario._id, viaturas };
+    const registro = { signatario: usuario._id };
 
     api.post('/registros', registro)
       .then(() => console.log('Registro criado.'))
@@ -202,7 +187,6 @@ function Viaturas() {
                 setViatura={setViatura}
                 setViaturas={setViaturas}
                 enviarRegistro={enviarRegistro}
-                atualizarViaturas={atualizarViaturas}
                 setDeletandoViatura={setDeletandoViatura}
                 setEditandoCategoria={setEditandoCategoria}
                 setEditandoNivelCombustivel={setEditandoNivelCombustivel} 
@@ -249,7 +233,6 @@ function Viaturas() {
 
       <ModalAdicionarViatura
         enviarRegistro={enviarRegistro}
-        atualizarViaturas={atualizarViaturas}
         encarrilharViatura={encarrilharViatura}
         categorias={categorias}
         aberto={adicionandoViatura}
@@ -257,7 +240,6 @@ function Viaturas() {
 
       <ModalDeletarViatura
         enviarRegistro={enviarRegistro}
-        atualizarViaturas={atualizarViaturas}
         desencarrilharViatura={desencarrilharViatura}
         viatura={viatura}
         aberto={deletandoViatura}

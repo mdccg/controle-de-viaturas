@@ -70,6 +70,8 @@ const styles = StyleSheet.create({
 
     borderColor: 'black',
     borderWidth: 1,
+
+    marginBottom: 16,
   },
 
   divisor: {

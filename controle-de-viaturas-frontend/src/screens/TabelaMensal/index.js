@@ -66,8 +66,10 @@ function TabelaMensal() {
             <Fragment key={data}>
               <View>
                 {categorias.map(({ _id, nome }) => {
-                  const viaturasFiltradas = viaturas.filter(({ categoria }) => categoria._id === _id);
-      
+                  const viaturasFiltradas = viaturas.filter(({ categoria }) => {
+                    return (typeof categoria === 'object' ? categoria._id : categoria) === _id;
+                  });
+
                   return viaturasFiltradas.length > 0 ? (
                     <Fragment key={_id}>
                       <View>
