@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 
   linha: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
 
   coluna: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
 
-    height: 32,
+    minHeight: 32,
   },
 
   colunaTexto: {

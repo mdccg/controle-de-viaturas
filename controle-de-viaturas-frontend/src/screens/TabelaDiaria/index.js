@@ -1,8 +1,10 @@
 import { useState, useEffect, Fragment } from 'react';
-import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer';
+import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
 import styles from './styles';
 
 import { diasSemana } from './../../config/default.json';
+
+import parseKehabCase from './../../functions/parseKehabCase';
 
 import api from './../../services/api';
 
@@ -65,8 +67,16 @@ function TabelaDiaria() {
         </View>
 
         {categorias.map(({ _id, nome }) => {
-          const viaturasFiltradas = viaturas.filter(({ categoria }) => {
-            return (typeof categoria === 'object' ? categoria._id : categoria) === _id;
+          var viaturasFiltradas = [];
+          
+          viaturasFiltradas = viaturas.filter(viatura => {
+            var idCategoria;
+
+            if(!viatura.categoria) return ({});
+            if(typeof viatura.categoria === 'object') idCategoria = viatura.categoria._id;
+            if(typeof viatura.categoria === 'string') idCategoria = viatura.categoria;
+
+            return idCategoria === _id;
           });
 
           return viaturasFiltradas.length > 0 ? (
@@ -101,9 +111,13 @@ function TabelaDiaria() {
   );
 
   return (
-    <PDFViewer style={styles.pdfViewer}>
-      <Pdf />
-    </PDFViewer>
+    <div className="link">
+      <PDFDownloadLink document={<Pdf />} fileName={parseKehabCase(titulo) + '.pdf'}>
+        {({ blob, url, loading, error }) =>
+          loading ? 'Carregando relatório...' : 'Clique aqui para baixar o relatório'
+        }
+      </PDFDownloadLink>
+    </div>
   );
 }
 

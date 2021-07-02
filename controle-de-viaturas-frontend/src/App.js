@@ -96,7 +96,13 @@ function App() {
           putUsuario(militar);
         }
       })
-      .catch(() => encerrarSessao());
+      .catch(err => {
+        if(typeof err.response.data === 'string')
+          if(err.response.data === 'Network Error')
+            return;
+            
+        encerrarSessao();
+      });
   }
 
   function aquecerHeroku() {

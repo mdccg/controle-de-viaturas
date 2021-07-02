@@ -71,7 +71,7 @@ function Viaturas() {
           if(signatario === null)
             signatario = { patente: 'Militar', nome: 'deletado' };
 
-          let ultimoRegistro = { signatario, horario, dia };
+          let ultimoRegistro = { signatario, horario, dia, data };
           setUltimoRegistro(ultimoRegistro);
         
         } catch(err) {
@@ -79,8 +79,9 @@ function Viaturas() {
 
           let dia     = moment().format('DD [de] MMMM [de] YYYY')
           let horario = moment().format('HH[:]mm');
+          let data    = moment().toDate();
   
-          let ultimoRegistro = { signatario, horario, dia };
+          let ultimoRegistro = { signatario, horario, dia, data };
           setUltimoRegistro(ultimoRegistro);
         }
       })
@@ -96,7 +97,9 @@ function Viaturas() {
     };
 
     api.put('/relatorio', relatorio)
-      .then(() => window.open('/tabela-diaria', '_blank'))
+      .then(() => {
+        window.location.pathname = '/tabela-diaria';
+      })
       .catch(err => console.error(err));
   }
 

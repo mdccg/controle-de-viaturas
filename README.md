@@ -2,23 +2,17 @@
 
 ## _To-do list_
 
-- [X] `BUG` Contornar exceção `Range Error: Array buffer allocation failed` <sup id="observacao-1"><sub>[1](#nota-rodape-1)</sub></sup>
-- [X] Tornar todos os atributos (com exceção do prefixo) facultativos
-  - [X] Mudar o [`schema`](./controle-de-viaturas-backend/api/models/Viatura.js) das viaturas
-  - [X] Adaptar o componente [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
-- [X] `API` Sobrescrever registros feitos no mesmo dia
-- [X] `API` Renomear app Heroku
-- [ ] Concluir a refatoração \([#1](https://github.com/mdccg/controle-de-viaturas/issues/1)\)
-- [X] `BUG` Descobrir por que os registros não estão salvando as viaturas
-- [ ] Adicionar logotipo do GitHub nos rodapés dos PDFs
-- [ ] Adicionar opção de mudar a ordem das viaturas, arrastando-as
-
-<sup id="nota-rodape-1">
-  <sub>
-    <a href="#observacao-1">1</a>
-  </sub>
-</sup>
-O problema foi contornado por meio de uma medida paliativa, mas não resolvido. Caso persista, será utilizada alguma dependência para gerar o PDF pela API (por meio de LaTeX, por exemplo) e retorná-lo ao front-end.
+- [ ] Aumentar `<textarea>` do comentário conforme o usuário digita na [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
+- [X] Consertar largura de cada informação dos acordeões de registro
+- [X] Substituir `window.open` por `window.location.pathname`
+- [ ] Mudar o título do arquivo das tabelas diárias
+- [X] Ilimitar tamanho dos comentários no PDF
+- [X] Manter o usuário logado sem Wi-Fi
+- [ ] Criar uma tela para _feedbacks_
+- [ ] `SUGESTÃO` Criar telas para gerenciar as categorias
+- [ ] `SUGESTÃO` Renderizar PDF pela API e devolver ao front-end
+- [ ] `SUGESTÃO` Adicionar logotipo do GitHub nos rodapés dos PDFs
+- [ ] `SUGESTÃO` Adicionar opção de mudar a ordem das viaturas, arrastando-as
 
 ---
 

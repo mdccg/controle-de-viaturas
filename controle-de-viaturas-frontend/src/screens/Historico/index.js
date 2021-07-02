@@ -53,7 +53,9 @@ function Historico() {
     };
 
     api.put('/relatorio', relatorio)
-      .then(() => window.open('/tabela-mensal', '_blank'))
+      .then(() => {
+        window.location.pathname = '/tabela-mensal';
+      })
       .catch(err => console.error(err));
   }
 

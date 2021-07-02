@@ -17,10 +17,21 @@ import moment from 'moment';
 function ViaturaTextual({ _id, prefixo, km, nivelCombustivel, comentario = '' }) {
   return (
     <div className="viatura-textual">
-      <span style={{ width: '20%' }}>{prefixo}</span>
-      <span style={{ width: '15%' }}>KM {km}</span>
-      <span style={{ width: '30%' }} className="nivelCombustivel">{nivelCombustivel}</span>
-      {comentario ? <span style={{ width: '45%' }}>{comentario}</span> : <div></div>}
+      <div style={{ width: '15%' }}>
+        <span>{prefixo}</span>
+      </div>
+      
+      <div style={{ width: '20%' }}>
+        <span>KM {km}</span>
+      </div>
+      
+      <div style={{ width: '30%' }}>
+        <span>{nivelCombustivel}</span>
+      </div>
+
+      <div style={{ width: '45%' }}>
+        {comentario ? <span>{comentario}</span> : <div></div>}
+      </div>
     </div>
   );
 }
@@ -51,7 +62,9 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, updatedAt: data
     };
 
     api.put('/relatorio', relatorio)
-      .then(() => window.open('/tabela-diaria', '_blank'))
+      .then(() => {
+        window.location.pathname = '/tabela-diaria';
+      })
       .catch(err => console.error(err));
   }
 

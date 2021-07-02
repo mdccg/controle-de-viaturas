@@ -33,10 +33,10 @@ function Routes({ usuario = {}, token = '' }) {
       <Route exact path="/historico" component={sudo ? Historico : Negado} />
       <Route exact path="/militares" component={sudo ? Militares : Negado} />
       <Route exact path="/solicitacoes" component={sudo ? Solicitacoes : Negado} />
-      <Route exact path="/tabela-diaria" component={sudo ? TabelaDiaria : Negado} />
-      <Route exact path="/tabela-mensal" component={sudo ? TabelaMensal : Negado} />
 
       <Route exact path="/perfil" component={logado ? Perfil : Negado} />
+      <Route exact path="/tabela-diaria" component={logado ? TabelaDiaria : Negado} />
+      <Route exact path="/tabela-mensal" component={logado ? TabelaMensal : Negado} />
       
       <Route exact path="/cadastro" component={!logado ? Cadastro : Negado} />
 
