@@ -1,0 +1,54 @@
+[
+  {
+    "titulo": "Visão geral da viatura",
+    "descricao": "Verificar as condições gerais da viatura observando a lataria, pintura, estofamentos, portas, etc."
+  },
+  {
+    "titulo": "Limpeza da viatura",
+    "descricao": "A limpeza deve ser interna e externa, apenas nos componentes sujos, não sendo necessário uma lavagem completa."
+  },
+  {
+    "titulo": "Nível de água do radiador",
+    "descricao": "Verificar e completar se necessário. Se for necessário completar, utilizar sempre água limpa."
+  },
+  {
+    "titulo": "Nível de óleo do cárter",
+    "descricao": "Verificar o nível e completar se necessário. Atentar para as trocas especificadas pelo fabricante."
+  },
+  {
+    "titulo": "Verificação dos pneus",
+    "descricao": "Verificar se todos pneus estão cheios, inclusive o estepe, e também se existem avarias que possam comprometer o funcionamento da viatura."
+  },
+  {
+    "titulo": "Nível de combustível",
+    "descricao": "As viaturas deverão sempre que possível estar com o tanque de combustível cheio ou no mínimo pela metade."
+  },
+  {
+    "titulo": "Sistema de iluminação",
+    "descricao": "A verificação desse item compreende a conferência do funcionamento e estado de conservação (vidro quebrado,trincado, sujo ou obstruído) dos faróis, piscas, luzes de freio, luz de ré, luzes do painel e luzes de emergência (giroflex)."
+  },
+  {
+    "titulo": "Buzina e sirene (alarme sonoro)",
+    "descricao": "Acioná-los e constatar se estão funcionando adequadamente."
+  },
+  {
+    "titulo": "Vazamentos",
+    "descricao": "De preferência antes de executar a limpeza, deve-se fazer uma inspeção geral na viatura, verificando se não há vazamentos de fluidos no motor, caixa de mudanças, eixos, caixa de direção, sistema de arrefecimento, sistema de lubrificação, amortecedores, freios, etc."
+  },
+  {
+    "titulo": "Limpador de pára-brisas",
+    "descricao": "Verificar o funcionamento e o estado de conservação de todo sistema, observando se as palhetas estão rasgadas, soltas, tortas ou danificadas, se o borrifador de água está regulado e funcionando e se a fixação da palheta à haste do braço está firme. É necessário também verificar nível de água do reservatório e completar se necessário."
+  },
+  {
+    "titulo": "Funcionamento do motor e rodagem da viatura",
+    "descricao": "O motorista deve ficar atento e perceber se existem ruídos anormais no motor, bem como se o seu funcionamento apresenta alguma irregularidade. Durante a rodagem o motorista pode perceber o adequado funcionamento de vários sistemas como o sistema de freios, transmissão e suspensão. Qualquer irregularidade ou ruído constatado deve ser imediatamente verificado e diagnosticado."
+  },
+  {
+    "titulo": "Freios",
+    "descricao": "A verificação completa será durante a rodagem da viatura, na qual o motorista pode perceber ruídos, trepidações, perda de eficiência e pedal duro, sendo que esses indicativos significam que o sistema requer manutenção."
+  },
+  {
+    "titulo": "Outros",
+    "descricao": "Qualquer alteração constatada que não está prevista nos itens sobrescritos deve ser descrita com detalhes."
+  }
+]

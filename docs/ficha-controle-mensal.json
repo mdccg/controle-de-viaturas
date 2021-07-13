@@ -1,0 +1,38 @@
+[
+  {
+    "titulo": "Lubrificação geral",
+    "descricao": "Lubrificar a suspensão dianteira e traseira; na árvore de transmissão a luva deslizante e juntas universáis; no eixo dianteiro lubrificar os pinos-mestre; na coluna de direção lubrificar junta universal; e nos freios de serviço e estacionamento lubrificar eixos came e ajustadores. Os graxeiros devem ser limpos cuidadosamente antes e após a lubrificação."
+  },
+  {
+    "titulo": "Parafusos e porcas",
+    "descricao": "Todas as porcas e parafusos que são visíveis ou de fácil acesso devem ser verificados quanto ao seu aperto e reapertados se for o caso."
+  },
+  {
+    "titulo": "Nível de fluido da caixa de cambio",
+    "descricao": "Verificar e completar se necessário."
+  },
+  {
+    "titulo": "Nível de fluido da direção hidráulica",
+    "descricao": "Verificar e completar se necessário."
+  },
+  {
+    "titulo": "Nível de fluido da embreagem",
+    "descricao": "Verificar e completar se necessário."
+  },
+  {
+    "titulo": "Suspensão",
+    "descricao": "Examinar as molas e\\ou feixes de molas e todos os demais componentes da suspensão da viatura, através de exame visual, verificando se existem defeitos como fixações comprometidas, rachaduras, vazamentos ou deformações, principalmente nos amortecedores."
+  },
+  {
+    "titulo": "Lavagem completa",
+    "descricao": "Lavagem completa, ou seja, abrangendo motor, chassis, estofamentos, compartimentos de acondicionamento de materiais, etc."
+  },
+  {
+    "titulo": "Enceramento ou polimento",
+    "descricao": "A viatura deve ser ecerada ou polida."
+  },
+  {
+    "titulo": "Outros",
+    "descricao": "Qualquer alteração constatada que não está prevista nos itens sobrescritos, deve ser descrita com detalhes."
+  }
+]

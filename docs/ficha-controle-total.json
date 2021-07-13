@@ -1,0 +1,114 @@
+[
+  {
+    "titulo": "Visão geral da viatura",
+    "descricao": "Verificar as condições gerais da viatura observando a lataria, pintura, estofamentos, portas, etc."
+  },
+  {
+    "titulo": "Limpeza da viatura",
+    "descricao": "A limpeza deve ser interna e externa, apenas nos componentes sujos, não sendo necessário uma lavagem completa."
+  },
+  {
+    "titulo": "Nível de água do radiador",
+    "descricao": "Verificar e completar se necessário. Se for necessário completar, utilizar sempre água limpa."
+  },
+  {
+    "titulo": "Nível de óleo do cárter",
+    "descricao": "Verificar o nível e completar se necessário. Atentar para as trocas especificadas pelo fabricante."
+  },
+  {
+    "titulo": "Verificação dos pneus",
+    "descricao": "Verificar se todos pneus estão cheios, inclusive o estepe, e também se existem avarias que possam comprometer o funcionamento da viatura."
+  },
+  {
+    "titulo": "Nível de combustível",
+    "descricao": "As viaturas deverão sempre que possível estar com o tanque de combustível cheio ou no mínimo pela metade."
+  },
+  {
+    "titulo": "Sistema de iluminação",
+    "descricao": "A verificação desse item compreende a conferência do funcionamento e estado de conservação (vidro quebrado,trincado, sujo ou obstruído) dos faróis, piscas, luzes de freio, luz de ré, luzes do painel e luzes de emergência (giroflex)."
+  },
+  {
+    "titulo": "Buzina e sirene (alarme sonoro)",
+    "descricao": "Acioná-los e constatar se estão funcionando adequadamente."
+  },
+  {
+    "titulo": "Vazamentos",
+    "descricao": "De preferência antes de executar a limpeza, deve-se fazer uma inspeção geral na viatura, verificando se não há vazamentos de fluidos no motor, caixa de mudanças, eixos, caixa de direção, sistema de arrefecimento, sistema de lubrificação, amortecedores, freios, etc."
+  },
+  {
+    "titulo": "Limpador de pára-brisas",
+    "descricao": "Verificar o funcionamento e o estado de conservação de todo sistema, observando se as palhetas estão rasgadas, soltas, tortas ou danificadas, se o borrifador de água está regulado e funcionando e se a fixação da palheta à haste do braço está firme. É necessário também verificar nível de água do reservatório e completar se necessário."
+  },
+  {
+    "titulo": "Funcionamento do motor e rodagem da viatura",
+    "descricao": "O motorista deve ficar atento e perceber se existem ruídos anormais no motor, bem como se o seu funcionamento apresenta alguma irregularidade. Durante a rodagem o motorista pode perceber o adequado funcionamento de vários sistemas como o sistema de freios, transmissão e suspensão. Qualquer irregularidade ou ruído constatado deve ser imediatamente verificado e diagnosticado."
+  },
+  {
+    "titulo": "Freios",
+    "descricao": "A verificação completa será durante a rodagem da viatura, na qual o motorista pode perceber ruídos, trepidações, perda de eficiência e pedal duro, sendo que esses indicativos significam que o sistema requer manutenção."
+  },
+  {
+    "titulo": "Lubrificação geral",
+    "descricao": "Lubrificar a suspensão dianteira e traseira; na árvore de transmissão a luva deslizante e juntas universáis; no eixo dianteiro lubrificar os pinos-mestre; na coluna de direção lubrificar junta universal; e nos freios de serviço e estacionamento lubrificar eixos came e ajustadores. Os graxeiros devem ser limpos cuidadosamente antes e após a lubrificação."
+  },
+  {
+    "titulo": "Parafusos e porcas",
+    "descricao": "Todas as porcas e parafusos que são visíveis ou de fácil acesso devem ser verificados quanto ao seu aperto e reapertados se for o caso."
+  },
+  {
+    "titulo": "Nível de fluido da caixa de cambio",
+    "descricao": "Verificar e completar se necessário."
+  },
+  {
+    "titulo": "Nível de fluido da direção hidráulica",
+    "descricao": "Verificar e completar se necessário."
+  },
+  {
+    "titulo": "Nível de fluido da embreagem",
+    "descricao": "Verificar e completar se necessário."
+  },
+  {
+    "titulo": "Suspensão",
+    "descricao": "Examinar as molas e\\ou feixes de molas e todos os demais componentes da suspensão da viatura, através de exame visual, verificando se existem defeitos como fixações comprometidas, rachaduras, vazamentos ou deformações, principalmente nos amortecedores."
+  },
+  {
+    "titulo": "Lavagem completa",
+    "descricao": "Lavagem completa, ou seja, abrangendo motor, chassis, estofamentos, compartimentos de acondicionamento de materiais, etc."
+  },
+  {
+    "titulo": "Enceramento ou polimento",
+    "descricao": "A viatura deve ser ecerada ou polida."
+  },
+  {
+    "titulo": "Calibragem dos pneus",
+    "descricao": "Os pneus devem ser calibrados, sendo que a pressão deve ser a indicada pelo fabricante. Além da calibragem, deve ser realizada uma verificação mais minuciosa que na manutenção diária, analisando também se os pneus estão muito desgastados, se existem deformações nas carcaças, etc."
+  },
+  {
+    "titulo": "Estado e tensão das correias",
+    "descricao": "Todas as correias do veículo precisam ser inspecionadas, observando se existem trincas, desgaste lateral ou desgaste nos dentes. Também é necessário verificar e regular a tensão das correias. Como exemplo, nos veículos da General Motors, as correias devem estar firmes de modo que a aplicação de uma força de 6 Newtons (6kgf) movimente a correia em 10mm."
+  },
+  {
+    "titulo": "Porcas das rodas",
+    "descricao": "Verificar e reapertar se necessário."
+  },
+  {
+    "titulo": "Mangueiras e cabos",
+    "descricao": "Constatar se todas as mangueiras, cabos e fios visíveis estão devidamente conectados. Além disso, é importante visualizar se esses componenentes não estão danificados ou apresentam desgastes que possam vir a prejudicar a sua função como rachaduras, ressecamento, furos e desgastes acentuados."
+  },
+  {
+    "titulo": "Bateria",
+    "descricao": "Limpar e apertar os terminais, além de verificar se o eletrólito cobre as placas em cerca de 10mm de sobrenível, acrescentando-se água destilada se necessário. Após realizar a limpeza, deve-se untar os terminais com graxa neutra ou vaselina sólida."
+  },
+  {
+    "titulo": "Drenagem do filtro de combustível",
+    "descricao": "Realizar a drenagem do pré-filtro de diesel, retirando a água e os eventuais resíduos acumulados junto com ela."
+  },
+  {
+    "titulo": "Reservatório de ar dos freios",
+    "descricao": "Drenar a água."
+  },
+  {
+    "titulo": "Outros",
+    "descricao": "Qualquer alteração constatada que não está prevista nos itens sobrescritos, deve ser descrita com detalhes."
+  }
+]

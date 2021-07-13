@@ -39,6 +39,13 @@
 - [Firefighter - Free people icons](https://www.flaticon.com/free-icon/firefighter_122492)
 - [Notification - Free interface icons](https://www.flaticon.com/free-icon/notification_1827370)
 
+- [Minus Circle Icon | Font Awesome](https://fontawesome.com/v5.15/icons/minus-circle?style=solid)
+- [Calendar Day Icon | Font Awesome](https://fontawesome.com/v5.15/icons/calendar-day?style=solid)
+- [Clipboard Check Icon | Font Awesome](https://fontawesome.com/v5.15/icons/clipboard-check?style=solid)
+- [Wrench Icon | Font Awesome](https://fontawesome.com/v5.15/icons/wrench?style=solid)
+- [Check Square Icon - Regular | Font Awesome](https://fontawesome.com/v5.15/icons/check-square?style=regular)
+- [Arrow Left Icon | Font Awesome](https://fontawesome.com/v5.15/icons/arrow-left?style=solid)
+
 ## Imagens
 
 - [RV trailer on road photo – Free Vehicle Image on Unsplash](https://unsplash.com/photos/QK6Iwzd5MhE)

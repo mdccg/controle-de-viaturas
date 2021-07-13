@@ -9,10 +9,13 @@ import api from './../../services/api';
 
 import viaturasMock from './../../tmp/viaturas.json';
 
+import moment from 'moment';
+
 function Teste() {
   const [viaturas, setViaturas] = useState([]);
   const [militares, setMilitares] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  const [manutencao, setManutencao] = useState(null);
 
   function cadastrarViaturaAleatoria() {
     const viatura = {};
@@ -75,6 +78,12 @@ function Teste() {
       .catch(err => console.error(err));
   }
 
+  function handleChange(event) {
+    let manutencao = event.target.value;
+    console.log(moment(manutencao).toDate());
+    setManutencao(manutencao);
+  }
+
   function cadastrarViaturasReais() {
     api.post('/carreata', viaturasMock)
       .then(res => console.log(res.data))
@@ -108,6 +117,12 @@ function Teste() {
 
   return (
     <div className="teste">
+      <input
+        value={manutencao}
+        onChange={handleChange}
+        placeholder="Lacrimosa"
+        type="date" />
+
       <button onClick={cadastrarViaturaAleatoria}>Cadastrar viatura randômica</button>
       <button onClick={cadastrarRegistroAleatoria}>Cadastrar registro randômico</button>
       <button onClick={cadastrarViaturasReais}>Cadastrar viaturas reais</button>

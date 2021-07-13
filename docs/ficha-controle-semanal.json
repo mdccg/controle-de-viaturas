@@ -1,0 +1,34 @@
+[
+  {
+    "titulo": "Calibragem dos pneus",
+    "descricao": "Os pneus devem ser calibrados, sendo que a pressão deve ser a indicada pelo fabricante. Além da calibragem, deve ser realizada uma verificação mais minuciosa que na manutenção diária, analisando também se os pneus estão muito desgastados, se existem deformações nas carcaças, etc."
+  },
+  {
+    "titulo": "Estado e tensão das correias",
+    "descricao": "Todas as correias do veículo precisam ser inspecionadas, observando se existem trincas, desgaste lateral ou desgaste nos dentes. Também é necessário verificar e regular a tensão das correias. Como exemplo, nos veículos da General Motors, as correias devem estar firmes de modo que a aplicação de uma força de 6 Newtons (6kgf) movimente a correia em 10mm."
+  },
+  {
+    "titulo": "Porcas das rodas",
+    "descricao": "Verificar e reapertar se necessário."
+  },
+  {
+    "titulo": "Mangueiras e cabos",
+    "descricao": "Constatar se todas as mangueiras, cabos e fios visíveis estão devidamente conectados. Além disso, é importante visualizar se esses componenentes não estão danificados ou apresentam desgastes que possam vir a prejudicar a sua função como rachaduras, ressecamento, furos e desgastes acentuados."
+  },
+  {
+    "titulo": "Bateria",
+    "descricao": "Limpar e apertar os terminais, além de verificar se o eletrólito cobre as placas em cerca de 10mm de sobrenível, acrescentando-se água destilada se necessário. Após realizar a limpeza, deve-se untar os terminais com graxa neutra ou vaselina sólida."
+  },
+  {
+    "titulo": "Drenagem do filtro de combustível",
+    "descricao": "Realizar a drenagem do pré-filtro de diesel, retirando a água e os eventuais resíduos acumulados junto com ela."
+  },
+  {
+    "titulo": "Reservatório de ar dos freios",
+    "descricao": "Drenar a água."
+  },
+  {
+    "titulo": "Outros",
+    "descricao": "Qualquer alteração constatada que não está prevista nos itens sobrescritos, deve ser descrita com detalhes."
+  }
+]

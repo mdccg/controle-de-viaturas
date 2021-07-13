@@ -97,11 +97,13 @@ function App() {
         }
       })
       .catch(err => {
-        if(typeof err.response.data === 'string')
-          if(err.response.data === 'Network Error')
-            return;
-            
-        encerrarSessao();
+        try {
+          if(typeof err.response.data === 'string')
+            if(err.response.data === 'Network Error')
+              return;
+              
+          encerrarSessao();
+        } catch(err) {}
       });
   }
 

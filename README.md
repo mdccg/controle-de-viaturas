@@ -3,16 +3,15 @@
 ## _To-do list_
 
 - [ ] Aumentar `<textarea>` do comentário conforme o usuário digita na [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
-- [X] Consertar largura de cada informação dos acordeões de registro
-- [X] Substituir `window.open` por `window.location.pathname`
+- [ ] Fazer com que a requisição dos modais aconteça ao fechá-los
 - [ ] Mudar o título do arquivo das tabelas diárias
-- [X] Ilimitar tamanho dos comentários no PDF
-- [X] Manter o usuário logado sem Wi-Fi
 - [ ] Criar uma tela para _feedbacks_
 - [ ] `SUGESTÃO` Criar telas para gerenciar as categorias
 - [ ] `SUGESTÃO` Renderizar PDF pela API e devolver ao front-end
 - [ ] `SUGESTÃO` Adicionar logotipo do GitHub nos rodapés dos PDFs
 - [ ] `SUGESTÃO` Adicionar opção de mudar a ordem das viaturas, arrastando-as
+- [ ] `BUG` Descobrir por que senhas complexas não são gravadas com JWT
+- [ ] `BUG` Deslogar do administrador temporário e logar em outra conta
 
 ---
 
@@ -86,4 +85,4 @@ Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva 
 - [react-toastify - npm](https://www.npmjs.com/package/react-toastify)
 - [Imgur: The magic of the Internet](https://imgur.com/)
 
-[Mais créditos disponívels em aqui →](./controle-de-viaturas-frontend/src/assets/README.md)
+[Mais créditos disponívels aqui →](./controle-de-viaturas-frontend/src/assets/README.md)
