@@ -1,0 +1,138 @@
+.gerenciador-topicos .titulo {
+  justify-content: center;
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.gerenciador-topicos .titulo span {
+  font-family: 'OswaldBold';
+  color: var(--dracula-orchid);
+  font-size: 200%;
+
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.gerenciador-topicos span.subtitulo {
+  color: var(--american-river);
+
+  line-height: 1.5;
+}
+
+.gerenciador-topicos .dias-manutencao {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.gerenciador-topicos .dias-manutencao > * {
+  margin-bottom: 8px;
+}
+
+.gerenciador-topicos .dias-manutencao > *:last-child {
+  margin-bottom: 0;
+}
+
+.gerenciador-topicos .dia-manutencao {
+  background-color: var(--city-lights);
+  border-radius: 2px;
+
+  padding-left: 16px;
+  min-height: 48px;
+
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.gerenciador-topicos .dia-manutencao span {
+  color: var(--dracula-orchid);
+  font-size: 120%;
+}
+
+.gerenciador-topicos .dia-manutencao .icone {
+  width:  48px;
+  height: 48px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.gerenciador-topicos .dia-manutencao .icone svg {
+  width:  16px;
+  height: 16px;
+
+  color: var(--american-river);
+}
+
+.gerenciador-topicos .btn-adicionar-dia {
+  margin-bottom: 32px;
+
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  min-height: 48px;
+
+  cursor: pointer;
+}
+
+.gerenciador-topicos .btn-adicionar-dia .icone {
+  margin-right: 8px;
+
+  width:  32px;
+  height: 32px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.gerenciador-topicos .btn-adicionar-dia .icone svg {
+  width:  24px;
+  height: 24px;
+
+  color: var(--dracula-orchid);
+}
+
+.gerenciador-topicos .btn-adicionar-dia span {
+  color: var(--dracula-orchid);
+  font-size: 120%;
+}
+
+.gerenciador-topicos .topicos-searchbar {
+  margin-top: 16px;
+
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.btn-adicionar-novo-topico {
+  position: fixed;
+
+  right:  32px;
+  bottom: 32px;
+
+  width:  64px;
+  height: 64px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  background-color: var(--chi-gong);
+  border-radius: 64px;
+
+  cursor: pointer;
+}
+
+.btn-adicionar-novo-topico svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}

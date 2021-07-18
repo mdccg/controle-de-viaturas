@@ -5,6 +5,7 @@ import styles from './styles';
 import { diasSemana } from './../../config/default.json';
 
 import parseKehabCase from './../../functions/parseKehabCase';
+import toCapitalizeCase from './../../functions/toCapitalizeCase';
 
 import api from './../../services/api';
 
@@ -39,6 +40,8 @@ function TabelaMensal() {
 
         let { mes, registros } = relatorio;
         
+        document.title = toCapitalizeCase(mes);
+
         setMes(mes);
         setRegistros(registros);
       })
@@ -61,8 +64,12 @@ function TabelaMensal() {
         {registros.map(({ createdAt: data, signatario = {}, viaturas = [] }) => {
           const diaSemana = diasSemana[moment(data).isoWeekday() - 1];
           const dia = moment(data).format('DD[.]MM[.]YYYY');
-          const nomeMilitar = `${signatario.patente} ${signatario.nome}`;
-          const titulo = `${diaSemana}, ${dia} - ${nomeMilitar}`;
+
+          const nomeMilitar = JSON.stringify(signatario) !== '{}'
+            ? `${signatario.patente} ${signatario.nome}`
+            :  'Militar deletado';
+          
+          const titulo = `${toCapitalizeCase(diaSemana)}, ${dia} - ${nomeMilitar}`;
 
           return (
             <Fragment key={data}>

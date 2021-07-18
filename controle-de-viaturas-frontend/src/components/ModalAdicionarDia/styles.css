@@ -1,0 +1,11 @@
+.modal-adicionar-dia {
+  max-height: 60vh;
+  max-width:  60vw;
+  width: 256px;
+
+  overflow-y: scroll;
+}
+
+.modal-adicionar-dia .selecionado {
+  background-color: var(--chi-gong);
+}

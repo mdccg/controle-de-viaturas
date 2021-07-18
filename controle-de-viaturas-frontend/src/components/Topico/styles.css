@@ -1,0 +1,91 @@
+.topico {
+  margin-bottom: 24px;
+}
+
+.topico .topico-cabecalho {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  min-height: 48px;
+}
+
+.topico .topico-cabecalho .icone {
+  width:  32px;
+  height: 32px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.topico .topico-cabecalho .icone svg {
+  width:  24px;
+  height: 24px;
+
+  color: var(--dracula-orchid);
+}
+
+.topico .topico-cabecalho .icone.lixeira {
+  cursor: pointer;
+}
+
+.topico .topico-cabecalho .icone.lixeira svg {
+  width:  16px;
+  height: 16px;
+
+  fill: var(--american-river);
+}
+
+.topico .topico-cabecalho input {
+  outline: none;
+  border: none;
+
+  font-family: 'OswaldRegular';
+  color: var(--american-river);
+  font-size: 130%;
+
+  padding-right: 16px;
+  padding-left:  16px;
+
+  display: flex;
+  flex: 1;
+
+  min-height: 32px;
+}
+
+.topico .topico-cabecalho input::placeholder {
+  color: var(--soothing-breeze);
+}
+
+.topico .topico-corpo {
+  display: flex;
+  flex: 1;
+}
+
+.topico .topico-corpo textarea {
+  outline: none;
+  border:  none;
+  resize: vertical;
+
+  background-color: var(--city-lights);
+  border-radius: 2px;
+
+  font-family: 'OswaldRegular';
+  color: var(--american-river);
+  font-size: 100%;
+
+  text-align: justify;
+
+  padding: 12px;
+
+  display: flex;
+  flex: 1;
+
+  min-height: 48px;
+}
+
+.topico .topico-corpo textarea::placeholder {
+  color: var(--soothing-breeze);
+}

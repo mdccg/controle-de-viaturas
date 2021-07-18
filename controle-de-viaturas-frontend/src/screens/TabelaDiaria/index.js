@@ -5,6 +5,7 @@ import styles from './styles';
 import { diasSemana } from './../../config/default.json';
 
 import parseKehabCase from './../../functions/parseKehabCase';
+import toCapitalizeCase from './../../functions/toCapitalizeCase';
 
 import api from './../../services/api';
 
@@ -42,7 +43,7 @@ function TabelaDiaria() {
         let diaSemana = diasSemana[moment(data).isoWeekday() - 1];
         let dia = moment(data).format('DD[.]MM[.]YYYY');
         let nomeMilitar = `${signatario.patente} ${signatario.nome}`;
-        let titulo = `${diaSemana}, ${dia} - ${nomeMilitar}`;
+        let titulo = `${toCapitalizeCase(diaSemana)}, ${dia} - ${nomeMilitar}`;
 
         document.title = titulo;
 

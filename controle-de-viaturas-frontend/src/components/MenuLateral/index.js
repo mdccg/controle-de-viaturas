@@ -2,28 +2,30 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-import FireTruck from './../../assets/icons/FireTruck';
-import User      from './../../assets/icons/User';
-import Clipboard from './../../assets/icons/Clipboard';
-import  Bell     from './../../assets/icons/Bell';
-import _Bell     from './../../assets/icons/_Bell';
+import FireTruck   from './../../assets/icons/FireTruck';
+import User        from './../../assets/icons/User';
+import Clipboard   from './../../assets/icons/Clipboard';
+import WrenchSolid from './../../assets/icons/WrenchSolid';
+import  Bell       from './../../assets/icons/Bell';
+import _Bell       from './../../assets/icons/_Bell';
 import Firefighter from './../../assets/icons/Firefighter';
 import OnOffButton from './../../assets/icons/OnOffButton';
 
-import getUsuario from './../../functions/getUsuario';
+import getUsuario   from './../../functions/getUsuario';
 import encerrarSessao from './../../functions/encerrarSessao';
 
 import api from './../../services/api';
 
 var rotas = [
-  { icone: FireTruck, tela: 'Viaturas', rota: '/' },
-  { icone: User, tela: 'Meu perfil', rota: '/perfil' }
+  { icone: FireTruck, tela: 'Viaturas',   rota: '/' },
+  { icone: User,      tela: 'Meu perfil', rota: '/perfil' }
 ];
 
 var sudoRotas = solicitando => ([
-  { icone: Clipboard, tela: 'Histórico de edições', rota: '/historico' },
+  { icone: Clipboard,   tela: 'Histórico de edições',        rota: '/historico' },
+  { icone: WrenchSolid, tela: 'Manutenção',                  rota: '/topicos' },
   { icone: solicitando ? _Bell : Bell, tela: 'Solicitações', rota: '/solicitacoes' },
-  { icone: Firefighter, tela: 'Militares', rota: '/militares' }
+  { icone: Firefighter, tela: 'Militares',                   rota: '/militares' }
 ]);
 
 function Rota({ icone: Icone, tela, rota }) {

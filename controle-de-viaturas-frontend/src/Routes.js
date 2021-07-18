@@ -11,6 +11,7 @@ import Militares from './screens/Militares';
 import Solicitacoes from './screens/Solicitacoes';
 import TabelaDiaria from './screens/TabelaDiaria';
 import TabelaMensal from './screens/TabelaMensal';
+import GerenciadorTopicos  from './screens/GerenciadorTopicos';
 
 import Cadastro from './screens/Cadastro';
 
@@ -25,20 +26,23 @@ function Routes({ usuario = {}, token = '' }) {
     <Switch>
       <Route exact path="/" component={
         logado &&  ativo ? Viaturas :
-        logado && !ativo ? Pendente : Login
+        logado && !ativo ? Pendente :
+        Login
       } />
 
       {/* Apenas administradores */}
-      <Route exact path="/teste" component={sudo ? Teste : Negado} />
-      <Route exact path="/historico" component={sudo ? Historico : Negado} />
-      <Route exact path="/militares" component={sudo ? Militares : Negado} />
-      <Route exact path="/solicitacoes" component={sudo ? Solicitacoes : Negado} />
+      <Route exact path="/teste"         component={sudo ? Teste : Negado} />
+      <Route exact path="/historico"     component={sudo ? Historico : Negado} />
+      <Route exact path="/militares"     component={sudo ? Militares : Negado} />
+      <Route exact path="/solicitacoes"  component={sudo ? Solicitacoes : Negado} />
+      <Route exact path="/tabela-mensal" component={sudo ? TabelaMensal : Negado} />
+      <Route exact path="/topicos"       component={sudo ? GerenciadorTopicos : Negado} />
 
-      <Route exact path="/perfil" component={logado ? Perfil : Negado} />
+      {/* Todos os usuários */}
+      <Route exact path="/perfil"        component={logado ? Perfil : Negado} />
       <Route exact path="/tabela-diaria" component={logado ? TabelaDiaria : Negado} />
-      <Route exact path="/tabela-mensal" component={logado ? TabelaMensal : Negado} />
-      
-      <Route exact path="/cadastro" component={!logado ? Cadastro : Negado} />
+
+      <Route exact path="/cadastro"      component={!logado ? Cadastro : Negado} />
 
       <Redirect to="/" />
     </Switch>

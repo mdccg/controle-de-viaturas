@@ -1,0 +1,53 @@
+.modal-deletar-topico {
+
+}
+
+.modal-deletar-topico span {
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+
+  line-height: 1.5;
+}
+
+.modal-deletar-topico span.titulo-topico {
+  font-family: 'OswaldRegular';
+}
+
+.modal-deletar-topico .botoes {
+  margin-top: 16px;
+
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.modal-deletar-topico .diastema {
+  width: 16px;
+}
+
+.modal-deletar-topico .botao {
+  border-radius: 2px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+
+  height: 32px;
+
+  cursor: pointer;
+}
+
+.modal-deletar-topico .botao svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}
+
+.modal-deletar-topico .botao span {
+  color: white;
+  font-size: 90%;
+
+  text-transform: uppercase;
+}

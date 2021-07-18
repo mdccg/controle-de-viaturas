@@ -68,7 +68,7 @@ function Viaturas() {
           let dia     = moment(data).format('DD [de] MMMM [de] YYYY')
           let horario = moment(data).format('HH[:]mm');
   
-          if(signatario === null)
+          if(JSON.stringify(signatario) === '{}' || !signatario)
             signatario = { patente: 'Militar', nome: 'deletado' };
 
           let ultimoRegistro = { signatario, horario, dia, data };

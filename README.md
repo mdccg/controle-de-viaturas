@@ -2,16 +2,10 @@
 
 ## _To-do list_
 
-- [ ] Aumentar `<textarea>` do comentário conforme o usuário digita na [`Viatura`](./controle-de-viaturas-frontend/src/components/Viatura/index.js)
-- [ ] Fazer com que a requisição dos modais aconteça ao fechá-los
-- [ ] Mudar o título do arquivo das tabelas diárias
+- [X] Mudar o título do arquivo das tabelas diárias
 - [ ] Criar uma tela para _feedbacks_
-- [ ] `SUGESTÃO` Criar telas para gerenciar as categorias
-- [ ] `SUGESTÃO` Renderizar PDF pela API e devolver ao front-end
-- [ ] `SUGESTÃO` Adicionar logotipo do GitHub nos rodapés dos PDFs
-- [ ] `SUGESTÃO` Adicionar opção de mudar a ordem das viaturas, arrastando-as
 - [ ] `BUG` Descobrir por que senhas complexas não são gravadas com JWT
-- [ ] `BUG` Deslogar do administrador temporário e logar em outra conta
+- [X] `BUG` Deslogar do administrador temporário e logar em outra conta
 
 ---
 
