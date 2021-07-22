@@ -34,6 +34,21 @@ module.exports = app => {
     for(let chave of chaves) {
       var objeto = {};
       
+      /* 
+       * Quaisquer atributos
+       * que não precisem de
+       *   expressão regular
+       * 
+       *   ||
+       *   ||
+       *   \/
+       */
+      if(['_id'].includes(chave)) {
+        let objeto = { [chave]: req.query[chave] };
+        filtro.push(objeto);
+        continue;
+      }
+
       objeto[chave] = new RegExp(`\\b${req.query[chave]}`, 'gim');
       filtro.push(objeto);
     }

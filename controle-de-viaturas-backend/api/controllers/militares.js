@@ -26,9 +26,9 @@ module.exports = app => {
       var objeto = {};
 
       /* 
-       * Quaisquer atributos booleanos
-       * que não precisem de expressão
-       * regular
+       * Quaisquer atributos
+       * que não precisem de
+       *   expressão regular
        * 
        *   ||
        *   ||

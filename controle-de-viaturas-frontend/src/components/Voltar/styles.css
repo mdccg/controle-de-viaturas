@@ -1,27 +1,36 @@
-a.voltar-tela {
-  text-decoration: none;
+.menu-voltar,
+.menu-voltar-hitbox {
+  height: 64px;
+  width:  100%;
+
+  margin-bottom: 16px;
+
+  z-index: 3;
 }
 
-.voltar-tela {
-  flex-direction: row;
+.menu-voltar {
+  position: fixed;
+
+  background-color: white;
+
+  align-items: center;
+  display: flex;
+}
+
+.menu-voltar .icone {
+  width:  64px;
+  height: 64px;
+
+  justify-content: center;
   align-items: center;
   display: flex;
 
-  margin-bottom: 16px;
+  cursor: pointer;
 }
 
-.voltar-tela svg {
+.menu-voltar .icone svg {
   width:  32px;
   height: 32px;
-  
-  fill: var(--soothing-breeze);
 
-  transform: rotate(90deg);
-}
-
-.voltar-tela span {
-  margin-left: 16px;
-
-  color: var(--american-river);
-  font-size: x-large;
+  color: var(--soothing-breeze);
 }

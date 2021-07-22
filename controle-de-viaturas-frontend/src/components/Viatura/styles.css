@@ -103,6 +103,43 @@
   flex: 1;
 }
 
+.viatura a.btn-revisar {
+  text-decoration: none;
+}
+
+.viatura .btn-revisar {
+  margin-top: 8px;
+
+  background-color: var(--emerald);
+
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+
+  min-height: 64px;
+
+  cursor: pointer;
+}
+
+.viatura .btn-revisar span {
+  color: white;
+
+  line-height: 1.25;
+}
+
+.viatura .btn-revisar span.btn-revisar-label {
+  font-family: 'OswaldBold';
+  font-size: 145%;
+
+  text-transform: uppercase;
+}
+
+.viatura .btn-revisar span.contador {
+  font-family: 'OswaldLight';
+  font-size: 80%;
+}
+
 .viatura .rodape {
   background-color: var(--city-lights);
   

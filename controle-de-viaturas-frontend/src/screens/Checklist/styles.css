@@ -1,0 +1,157 @@
+.checklist .container { min-height: 472px; }
+
+.checklist svg.loading { fill: var(--soothing-breeze); }
+
+.checklist .aviso {
+  min-height: 32px;
+}
+
+.checklist .aviso span {
+  font-family: 'OswaldLight';
+  color: var(--soothing-breeze);
+  font-size: 100%;
+}
+
+.checklist .titulo {
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+  font-size: 140%;
+
+  margin-bottom: 8px;
+}
+
+.checklist .titulo .prefixo { font-family: 'OswaldRegular'; }
+
+.checklist .subtitulo {
+  font-family: 'OswaldLight';
+  color: var(--american-river);
+  font-size: 100%;
+
+  line-height: 1.5;
+}
+
+.checklist .lista {
+  margin-top: 16px;
+}
+
+.checklist .confirmar-conclusao {
+  margin-top: 16px;
+
+  flex-direction: column;
+  display: flex;
+}
+
+.checklist .confirmar-conclusao span {
+  font-family: 'OswaldLight';
+  color: var(--american-river);
+  font-size: 100%;
+
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.checklist .confirmar-conclusao strong {
+  font-family: 'OswaldRegular';
+}
+
+.checklist .confirmar-conclusao .btn-concluir {
+  margin-top: 16px;
+  margin-bottom: 32px;
+
+  background-color: var(--emerald);
+  border-radius: 2px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  min-height: 64px;
+  
+  cursor: pointer;
+}
+
+.checklist .confirmar-conclusao .btn-concluir svg {
+  width:  64px;
+  height: 64px;
+
+  fill: white;
+}
+
+.checklist .confirmar-conclusao .btn-concluir span {
+  font-family: 'OswaldBold';
+  color: white;
+  font-size: 150%;
+
+  text-transform: uppercase;
+}
+
+.checklist .checkitem {
+  margin-bottom: 24px;
+}
+
+.checklist .checkitem .cabecalho {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.checklist .checkitem .cabecalho .checkbox {
+  margin-right: 8px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  z-index: 1;
+}
+
+.checklist .checkitem .cabecalho .checkbox .MuiCheckbox-root {
+  color: var(--soothing-breeze);
+}
+
+.checklist .checkitem .cabecalho .checkbox .Mui-checked {
+  color: var(--emerald);
+}
+
+.checklist .checkitem .cabecalho > span {
+  font-family: 'OswaldBold';
+  color: var(--dracula-orchid);
+  font-size: 130%;
+}
+
+.checklist .checkitem .corpo {
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.checklist .checkitem .corpo span {
+  font-family: 'OswaldLight';
+  color: var(--american-river);
+  font-size: 110%;
+
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.checklist .checkitem .rodape {
+  flex-direction: column;
+  display: flex;
+}
+
+.checklist .checkitem .rodape input {
+  border:  none;
+  outline: none;
+
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+  font-size: 100%;
+
+  border-bottom: 1px solid var(--soothing-breeze);
+
+  min-height: 32px;
+}
+
+.checklist .checkitem .rodape input::placeholder {
+  color: var(--soothing-breeze);
+}

@@ -1,0 +1,20 @@
+.modal-adicionar-topico {
+  max-width: 60vw;
+
+  flex-direction: column;
+  display: flex;
+}
+
+.modal-adicionar-topico > * {
+  margin-bottom: 16px;
+}
+
+.modal-adicionar-topico > *:last-child {
+  margin-bottom: 0;
+}
+
+.modal-adicionar-topico span {
+  font-size: 110%;
+
+  line-height: 1.5;
+}

@@ -1,3 +1,7 @@
+.gerenciador-topicos svg.loading {
+  fill: var(--soothing-breeze);
+}
+
 .gerenciador-topicos .titulo {
   justify-content: center;
   display: flex;

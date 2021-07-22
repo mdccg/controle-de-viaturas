@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 import Tag from './../../assets/icons/Tag';
@@ -26,6 +27,10 @@ function Viatura(props) {
   const comentarioRef = useRef();
 
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
+
+  const [revisao, setRevisao] = useState({});
+  const [pendentes, setPendentes] = useState([]);
+  const [revisando, setRevisando] = useState(false);
 
   function atualizarViatura() {
     const { viaturas, setViaturas } = props;
@@ -57,6 +62,21 @@ function Viatura(props) {
       .finally(() => setEfetuandoRequisicao(false));
   }
 
+  function buscarRevisao() {
+    let { revisao } = props;
+
+    if(JSON.stringify(revisao) === '{}')
+      return;
+    else
+      setRevisando(true);
+
+    let { checklist } = revisao;
+    let pendentes = checklist.filter(({ revisado }) => !revisado);
+
+    setRevisao(revisao);
+    setPendentes(pendentes);
+  }
+
   async function editarNivelCombustivel() {
     const { setViatura, setEditandoNivelCombustivel } = props;
 
@@ -83,6 +103,10 @@ function Viatura(props) {
     await setViatura(viatura);
     setDeletandoViatura(true);
   }
+
+  useEffect(() => {
+    buscarRevisao();
+  }, []);
 
   const detectorAfkRef = useRef(false);
 
@@ -193,6 +217,16 @@ function Viatura(props) {
           </div>
         </div>
       </div>
+
+      {revisando ? (
+        <Link className="btn-revisar" to={`/checklist?_id=${revisao._id}`}>
+          <span className="btn-revisar-label">Revisar</span>
+
+          <span className="contador">
+            {pendentes.length === 1 ? '(1 item restante)' : `(${pendentes.length} itens restantes)`}
+          </span>
+        </Link>
+      ) : null}
 
       <div className="rodape"></div>
     </div>

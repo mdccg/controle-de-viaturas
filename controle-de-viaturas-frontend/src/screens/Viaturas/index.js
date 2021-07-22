@@ -3,8 +3,9 @@ import './styles.css';
 
 import Add     from './../../assets/icons/Add';
 import Spinner  from './../../assets/icons/Spinner';
-import Clipboard from './../../assets/icons/Clipboard';
-import GasStation from './../../assets/icons/GasStation';
+import Roadblock from './../../assets/icons/Roadblock';
+import Clipboard  from './../../assets/icons/Clipboard';
+import GasStation  from './../../assets/icons/GasStation';
 
 import Vazio  from './../../components/Vazio';
 import Header  from './../../components/Header';
@@ -22,9 +23,13 @@ import getUsuario from './../../functions/getUsuario';
 
 import api from './../../services/api';
 
+import { dias as diasMock, revisoes as revisoesMock } from './../../tmp/mock.json';
+
 import moment from 'moment';
 
 function Viaturas() {
+  const eu = getUsuario();
+
   const [pesquisa, setPesquisa] = useState('');
 
   const [buscandoViaturas, setBuscandoViaturas] = useState(false);
@@ -32,6 +37,9 @@ function Viaturas() {
   const [viatura, setViatura] = useState({});
   const [viaturas, setViaturas] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  
+  const [revisoes, setRevisoes] = useState([]);
+  const [diaManutencao, setDiaManutencao] = useState(false);
 
   const [ultimoRegistro, setUltimoRegistro] = useState({ signatario: {}, data: '' });
 
@@ -55,6 +63,21 @@ function Viaturas() {
     setViaturas(state => {
       return state.filter(value => value._id !== _id);
     });
+  }
+
+  function exportarPdfAtual() {
+    let { data, signatario } = ultimoRegistro;
+    
+    const relatorio = {
+      tipo: 'diario',
+      relatorio: { data, signatario, viaturas }
+    };
+
+    api.put('/relatorio', relatorio)
+      .then(() => {
+        window.location.pathname = '/tabela-diaria';
+      })
+      .catch(err => console.error(err));
   }
 
   function buscarUltimoRegistro() {
@@ -88,18 +111,9 @@ function Viaturas() {
       .catch(err => console.error(err));
   }
 
-  function exportarPdfAtual() {
-    let { data, signatario } = ultimoRegistro;
-    
-    const relatorio = {
-      tipo: 'diario',
-      relatorio: { data, signatario, viaturas }
-    };
-
-    api.put('/relatorio', relatorio)
-      .then(() => {
-        window.location.pathname = '/tabela-diaria';
-      })
+  function buscarCategorias() {
+    api.get('/categorias')
+      .then(res => setCategorias(res.data))
       .catch(err => console.error(err));
   }
 
@@ -112,10 +126,23 @@ function Viaturas() {
       .finally(() => setBuscandoViaturas(false));
   }
 
-  function buscarCategorias() {
-    api.get('/categorias')
-      .then(res => setCategorias(res.data))
-      .catch(err => console.error(err));
+  function buscarRevisoes() {
+    // TODO back-end aqui
+
+    setRevisoes(revisoesMock);
+  }
+
+  function buscarAgenda() {
+    // TODO back-end aqui
+    let diasManutencao = [...diasMock];
+    let hoje = Number(moment().format('D'));
+    let diaManutencao = diasManutencao.includes(hoje);
+
+    if(diaManutencao) {
+      // TODO cadastrar novas revisões aqui
+    }
+
+    setDiaManutencao(diaManutencao);
   }
 
   function abrirModalAdicionarViatura() {
@@ -123,9 +150,7 @@ function Viaturas() {
   }
 
   function enviarRegistro() {
-    let usuario = getUsuario();
-
-    const registro = { signatario: usuario._id };
+    const registro = { signatario: eu._id };
 
     api.post('/registros', registro)
       .then(() => console.log('Registro criado.'))
@@ -137,6 +162,8 @@ function Viaturas() {
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
+    buscarRevisoes();
+    buscarAgenda();
     // eslint-disable-next-line
   }, [pesquisa]);
 
@@ -146,6 +173,23 @@ function Viaturas() {
         <Header />
 
         <div className="container">
+          {diaManutencao ? (
+            <div className="card-manutencao">
+              <Roadblock />
+
+              <span className="card-titulo">Dia de manutenção</span>
+            
+              <span className="card-descricao">
+                Boa tarde, <span className="card-destaque">{eu.patente} {eu.nome}</span>!
+                Seja bem-vindo(a) de volta.
+                
+                Hoje, dia <span className="card-destaque">{moment().format('D [de] MMMM')}</span>,
+                você fará a manutenção nas viaturas. Cada viatura abaixo ganhou um botão que
+                abrirá uma lista de tópicos a serem conferidos em cada viatura.
+              </span>
+            </div>
+          ) : null}
+          
           <div className="checkpoint">
             <span style={{ fontFamily: 'OswaldLight' }}>
               Último militar a atualizar:  <span className="signatario">{ultimoRegistro.signatario.patente} {ultimoRegistro.signatario.nome}</span>
@@ -186,6 +230,7 @@ function Viaturas() {
               <Categoria
                 {...categoria}
                 key={categoria._id}
+                revisoes={revisoes}
                 viaturas={viaturas}
                 setViatura={setViatura}
                 setViaturas={setViaturas}

@@ -22,10 +22,14 @@ var rotas = [
 ];
 
 var sudoRotas = solicitando => ([
-  { icone: Clipboard,   tela: 'Histórico de edições',        rota: '/historico' },
-  { icone: WrenchSolid, tela: 'Manutenção',                  rota: '/topicos' },
-  { icone: solicitando ? _Bell : Bell, tela: 'Solicitações', rota: '/solicitacoes' },
-  { icone: Firefighter, tela: 'Militares',                   rota: '/militares' }
+  { icone: Clipboard,   tela: 'Histórico de edições',     rota: '/historico'    },
+  { icone: Clipboard,   tela: 'Histórico de manutenções', rota: '/manutencoes'  },
+  { icone: WrenchSolid, tela: 'Manutenção',               rota: '/topicos'      },
+  { icone: solicitando ? _Bell : Bell,
+    tela: 'Solicitações',
+    rota: '/solicitacoes'
+  },
+  { icone: Firefighter, tela: 'Militares', rota: '/militares' }
 ]);
 
 function Rota({ icone: Icone, tela, rota }) {

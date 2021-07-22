@@ -54,6 +54,7 @@
 
 - [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
 - [Componente React Drawer - Material-UI](https://material-ui.com/pt/components/drawers/)
+- [Componente React para Caixa de seleção - Material-UI](https://material-ui.com/pt/components/checkboxes/)
 
 ## Fontes tipográficas
 

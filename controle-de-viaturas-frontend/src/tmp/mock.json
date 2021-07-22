@@ -1,148 +1,314 @@
 {
-  "dias": [
-    15,
-    32
-  ],
+  "dias": [15, 22, 32],
   "topicos": [
     {
+      "_id": "60f1bda2bd56b0a250e533a6",
       "titulo": "Visão geral da viatura",
-      "descricao": "Verificar as condições gerais da viatura observando a lataria, pintura, estofamentos, portas, etc.",
-      "_id": "60f1bda2bd56b0a250e533a6"
+      "descricao": "Verificar as condições gerais da viatura observando a lataria, pintura, estofamentos, portas, etc."
     },
     {
+      "_id": "60f1bda22e2ba1569935d50d",
       "titulo": "Limpeza da viatura",
-      "descricao": "A limpeza deve ser interna e externa, apenas nos componentes sujos, não sendo necessário uma lavagem completa.",
-      "_id": "60f1bda22e2ba1569935d50d"
+      "descricao": "A limpeza deve ser interna e externa, apenas nos componentes sujos, não sendo necessário uma lavagem completa."
     },
     {
+      "_id": "60f1bda2d946777c498a5fd6",
       "titulo": "Nível de água do radiador",
-      "descricao": "Verificar e completar se necessário. Se for necessário completar, utilizar sempre água limpa.",
-      "_id": "60f1bda2d946777c498a5fd6"
+      "descricao": "Verificar e completar se necessário. Se for necessário completar, utilizar sempre água limpa."
     },
     {
+      "_id": "60f1bda2349189f3cbd65c45",
       "titulo": "Nível de óleo do cárter",
-      "descricao": "Verificar o nível e completar se necessário. Atentar para as trocas especificadas pelo fabricante.",
-      "_id": "60f1bda2349189f3cbd65c45"
+      "descricao": "Verificar o nível e completar se necessário. Atentar para as trocas especificadas pelo fabricante."
     },
     {
+      "_id": "60f1bda2b710639dcd48812d",
       "titulo": "Verificação dos pneus",
-      "descricao": "Verificar se todos pneus estão cheios, inclusive o estepe, e também se existem avarias que possam comprometer o funcionamento da viatura.",
-      "_id": "60f1bda2b710639dcd48812d"
+      "descricao": "Verificar se todos pneus estão cheios, inclusive o estepe, e também se existem avarias que possam comprometer o funcionamento da viatura."
     },
     {
+      "_id": "60f1bda2160d74fbc03fb0ec",
       "titulo": "Nível de combustível",
-      "descricao": "As viaturas deverão sempre que possível estar com o tanque de combustível cheio ou no mínimo pela metade.",
-      "_id": "60f1bda2160d74fbc03fb0ec"
+      "descricao": "As viaturas deverão sempre que possível estar com o tanque de combustível cheio ou no mínimo pela metade."
     },
     {
+      "_id": "60f1bda242756cb1f4b525d0",
       "titulo": "Sistema de iluminação",
-      "descricao": "A verificação desse item compreende a conferência do funcionamento e estado de conservação (vidro quebrado,trincado, sujo ou obstruído) dos faróis, piscas, luzes de freio, luz de ré, luzes do painel e luzes de emergência (giroflex).",
-      "_id": "60f1bda242756cb1f4b525d0"
+      "descricao": "A verificação desse item compreende a conferência do funcionamento e estado de conservação (vidro quebrado,trincado, sujo ou obstruído) dos faróis, piscas, luzes de freio, luz de ré, luzes do painel e luzes de emergência (giroflex)."
     },
     {
+      "_id": "60f1bda2c8f73b3c6d4acdbf",
       "titulo": "Buzina e sirene (alarme sonoro)",
-      "descricao": "Acioná-los e constatar se estão funcionando adequadamente.",
-      "_id": "60f1bda2c8f73b3c6d4acdbf"
+      "descricao": "Acioná-los e constatar se estão funcionando adequadamente."
     },
     {
+      "_id": "60f1bda2f7dddb050357c3b7",
       "titulo": "Vazamentos",
-      "descricao": "De preferência antes de executar a limpeza, deve-se fazer uma inspeção geral na viatura, verificando se não há vazamentos de fluidos no motor, caixa de mudanças, eixos, caixa de direção, sistema de arrefecimento, sistema de lubrificação, amortecedores, freios, etc.",
-      "_id": "60f1bda2f7dddb050357c3b7"
+      "descricao": "De preferência antes de executar a limpeza, deve-se fazer uma inspeção geral na viatura, verificando se não há vazamentos de fluidos no motor, caixa de mudanças, eixos, caixa de direção, sistema de arrefecimento, sistema de lubrificação, amortecedores, freios, etc."
     },
     {
+      "_id": "60f1bda2e30bb28d48a1a002",
       "titulo": "Limpador de pára-brisas",
-      "descricao": "Verificar o funcionamento e o estado de conservação de todo sistema, observando se as palhetas estão rasgadas, soltas, tortas ou danificadas, se o borrifador de água está regulado e funcionando e se a fixação da palheta à haste do braço está firme. É necessário também verificar nível de água do reservatório e completar se necessário.",
-      "_id": "60f1bda2e30bb28d48a1a002"
+      "descricao": "Verificar o funcionamento e o estado de conservação de todo sistema, observando se as palhetas estão rasgadas, soltas, tortas ou danificadas, se o borrifador de água está regulado e funcionando e se a fixação da palheta à haste do braço está firme. É necessário também verificar nível de água do reservatório e completar se necessário."
     },
     {
+      "_id": "60f1bda2015fa912c2e96843",
       "titulo": "Funcionamento do motor e rodagem da viatura",
-      "descricao": "O motorista deve ficar atento e perceber se existem ruídos anormais no motor, bem como se o seu funcionamento apresenta alguma irregularidade. Durante a rodagem o motorista pode perceber o adequado funcionamento de vários sistemas como o sistema de freios, transmissão e suspensão. Qualquer irregularidade ou ruído constatado deve ser imediatamente verificado e diagnosticado.",
-      "_id": "60f1bda2015fa912c2e96843"
+      "descricao": "O motorista deve ficar atento e perceber se existem ruídos anormais no motor, bem como se o seu funcionamento apresenta alguma irregularidade. Durante a rodagem o motorista pode perceber o adequado funcionamento de vários sistemas como o sistema de freios, transmissão e suspensão. Qualquer irregularidade ou ruído constatado deve ser imediatamente verificado e diagnosticado."
     },
     {
+      "_id": "60f1bda2bb86823faa822180",
       "titulo": "Freios",
-      "descricao": "A verificação completa será durante a rodagem da viatura, na qual o motorista pode perceber ruídos, trepidações, perda de eficiência e pedal duro, sendo que esses indicativos significam que o sistema requer manutenção.",
-      "_id": "60f1bda2bb86823faa822180"
+      "descricao": "A verificação completa será durante a rodagem da viatura, na qual o motorista pode perceber ruídos, trepidações, perda de eficiência e pedal duro, sendo que esses indicativos significam que o sistema requer manutenção."
     },
     {
+      "_id": "60f1bda2d14b5ab58f3e6dc1",
       "titulo": "Lubrificação geral",
-      "descricao": "Lubrificar a suspensão dianteira e traseira; na árvore de transmissão a luva deslizante e juntas universáis; no eixo dianteiro lubrificar os pinos-mestre; na coluna de direção lubrificar junta universal; e nos freios de serviço e estacionamento lubrificar eixos came e ajustadores. Os graxeiros devem ser limpos cuidadosamente antes e após a lubrificação.",
-      "_id": "60f1bda2d14b5ab58f3e6dc1"
+      "descricao": "Lubrificar a suspensão dianteira e traseira; na árvore de transmissão a luva deslizante e juntas universáis; no eixo dianteiro lubrificar os pinos-mestre; na coluna de direção lubrificar junta universal; e nos freios de serviço e estacionamento lubrificar eixos came e ajustadores. Os graxeiros devem ser limpos cuidadosamente antes e após a lubrificação."
     },
     {
+      "_id": "60f1bda2ff3fcad064527a7b",
       "titulo": "Parafusos e porcas",
-      "descricao": "Todas as porcas e parafusos que são visíveis ou de fácil acesso devem ser verificados quanto ao seu aperto e reapertados se for o caso.",
-      "_id": "60f1bda2ff3fcad064527a7b"
+      "descricao": "Todas as porcas e parafusos que são visíveis ou de fácil acesso devem ser verificados quanto ao seu aperto e reapertados se for o caso."
     },
     {
+      "_id": "60f1bda28ab10e22131db573",
       "titulo": "Nível de fluido da caixa de cambio",
-      "descricao": "Verificar e completar se necessário.",
-      "_id": "60f1bda28ab10e22131db573"
+      "descricao": "Verificar e completar se necessário."
     },
     {
+      "_id": "60f1bda29e359f864e27cbf1",
       "titulo": "Nível de fluido da direção hidráulica",
-      "descricao": "Verificar e completar se necessário.",
-      "_id": "60f1bda29e359f864e27cbf1"
+      "descricao": "Verificar e completar se necessário."
     },
     {
+      "_id": "60f1bda232b25a67d06e71b2",
       "titulo": "Nível de fluido da embreagem",
-      "descricao": "Verificar e completar se necessário.",
-      "_id": "60f1bda232b25a67d06e71b2"
+      "descricao": "Verificar e completar se necessário."
     },
     {
+      "_id": "60f1bda2bd1bd17626a169c9",
       "titulo": "Suspensão",
-      "descricao": "Examinar as molas e\\ou feixes de molas e todos os demais componentes da suspensão da viatura, através de exame visual, verificando se existem defeitos como fixações comprometidas, rachaduras, vazamentos ou deformações, principalmente nos amortecedores.",
-      "_id": "60f1bda2bd1bd17626a169c9"
+      "descricao": "Examinar as molas e\\ou feixes de molas e todos os demais componentes da suspensão da viatura, através de exame visual, verificando se existem defeitos como fixações comprometidas, rachaduras, vazamentos ou deformações, principalmente nos amortecedores."
     },
     {
+      "_id": "60f1bda24cfcff26dccc7ddc",
       "titulo": "Lavagem completa",
-      "descricao": "Lavagem completa, ou seja, abrangendo motor, chassis, estofamentos, compartimentos de acondicionamento de materiais, etc.",
-      "_id": "60f1bda24cfcff26dccc7ddc"
+      "descricao": "Lavagem completa, ou seja, abrangendo motor, chassis, estofamentos, compartimentos de acondicionamento de materiais, etc."
     },
     {
+      "_id": "60f1bda25a8f0a4bdef14ef2",
       "titulo": "Enceramento ou polimento",
-      "descricao": "A viatura deve ser ecerada ou polida.",
-      "_id": "60f1bda25a8f0a4bdef14ef2"
+      "descricao": "A viatura deve ser ecerada ou polida."
     },
     {
+      "_id": "60f1bda205c23f34a8ea11fe",
       "titulo": "Calibragem dos pneus",
-      "descricao": "Os pneus devem ser calibrados, sendo que a pressão deve ser a indicada pelo fabricante. Além da calibragem, deve ser realizada uma verificação mais minuciosa que na manutenção diária, analisando também se os pneus estão muito desgastados, se existem deformações nas carcaças, etc.",
-      "_id": "60f1bda205c23f34a8ea11fe"
+      "descricao": "Os pneus devem ser calibrados, sendo que a pressão deve ser a indicada pelo fabricante. Além da calibragem, deve ser realizada uma verificação mais minuciosa que na manutenção diária, analisando também se os pneus estão muito desgastados, se existem deformações nas carcaças, etc."
     },
     {
+      "_id": "60f1bda2cb1cf0a7b02148a5",
       "titulo": "Estado e tensão das correias",
-      "descricao": "Todas as correias do veículo precisam ser inspecionadas, observando se existem trincas, desgaste lateral ou desgaste nos dentes. Também é necessário verificar e regular a tensão das correias. Como exemplo, nos veículos da General Motors, as correias devem estar firmes de modo que a aplicação de uma força de 6 Newtons (6kgf) movimente a correia em 10mm.",
-      "_id": "60f1bda2cb1cf0a7b02148a5"
+      "descricao": "Todas as correias do veículo precisam ser inspecionadas, observando se existem trincas, desgaste lateral ou desgaste nos dentes. Também é necessário verificar e regular a tensão das correias. Como exemplo, nos veículos da General Motors, as correias devem estar firmes de modo que a aplicação de uma força de 6 Newtons (6kgf) movimente a correia em 10mm."
     },
     {
+      "_id": "60f1bda2a5dd2194bc57e46b",
       "titulo": "Porcas das rodas",
-      "descricao": "Verificar e reapertar se necessário.",
-      "_id": "60f1bda2a5dd2194bc57e46b"
+      "descricao": "Verificar e reapertar se necessário."
     },
     {
+      "_id": "60f1bda244735e3ecddf5b15",
       "titulo": "Mangueiras e cabos",
-      "descricao": "Constatar se todas as mangueiras, cabos e fios visíveis estão devidamente conectados. Além disso, é importante visualizar se esses componenentes não estão danificados ou apresentam desgastes que possam vir a prejudicar a sua função como rachaduras, ressecamento, furos e desgastes acentuados.",
-      "_id": "60f1bda244735e3ecddf5b15"
+      "descricao": "Constatar se todas as mangueiras, cabos e fios visíveis estão devidamente conectados. Além disso, é importante visualizar se esses componenentes não estão danificados ou apresentam desgastes que possam vir a prejudicar a sua função como rachaduras, ressecamento, furos e desgastes acentuados."
     },
     {
+      "_id": "60f1bda2fae57954988666c2",
       "titulo": "Bateria",
-      "descricao": "Limpar e apertar os terminais, além de verificar se o eletrólito cobre as placas em cerca de 10mm de sobrenível, acrescentando-se água destilada se necessário. Após realizar a limpeza, deve-se untar os terminais com graxa neutra ou vaselina sólida.",
-      "_id": "60f1bda2fae57954988666c2"
+      "descricao": "Limpar e apertar os terminais, além de verificar se o eletrólito cobre as placas em cerca de 10mm de sobrenível, acrescentando-se água destilada se necessário. Após realizar a limpeza, deve-se untar os terminais com graxa neutra ou vaselina sólida."
     },
     {
+      "_id": "60f1bda23021088e2e13c5bf",
       "titulo": "Drenagem do filtro de combustível",
-      "descricao": "Realizar a drenagem do pré-filtro de diesel, retirando a água e os eventuais resíduos acumulados junto com ela.",
-      "_id": "60f1bda23021088e2e13c5bf"
+      "descricao": "Realizar a drenagem do pré-filtro de diesel, retirando a água e os eventuais resíduos acumulados junto com ela."
     },
     {
+      "_id": "60f1bda2ae2825576bb7b9d7",
       "titulo": "Reservatório de ar dos freios",
-      "descricao": "Drenar a água.",
-      "_id": "60f1bda2ae2825576bb7b9d7"
+      "descricao": "Drenar a água."
     },
     {
+      "_id": "60f1bda2403a456d751443d7",
       "titulo": "Outros",
-      "descricao": "Qualquer alteração constatada que não está prevista nos itens sobrescritos, deve ser descrita com detalhes.",
-      "_id": "60f1bda2403a456d751443d7"
+      "descricao": "Qualquer alteração constatada que não está prevista nos itens sobrescritos, deve ser descrita com detalhes."
     }
-  ]
+  ],
+  "revisoes": [
+    {
+      "_id": "60f5ec473ec05c574be2dfa9",
+      "viatura": {
+        "_id": "60dc7768127f4116feaed9d2",
+        "prefixo": "Arsène Lupin",
+        "km": 1024,
+        "nivelCombustivel": "Tanque cheio",
+        "comentario": "",
+        "categoria": {
+          "_id": "60b593c4aa12743d1bacc490",
+          "nome": "Trem de S.O.S",
+          "__v": 0
+        },
+        "createdAt": "2021-06-30T13:53:44.771Z",
+        "updatedAt": "2021-07-20T18:31:17.430Z",
+        "__v": 0
+      },
+      "concluida": false,
+      "checklist": [
+        {
+          "topico": {
+            "_id": "60f1bda2bd56b0a250e533a6",
+            "titulo": "Visão geral da viatura",
+            "descricao": "Verificar as condições gerais da viatura observando a lataria, pintura, estofamentos, portas, etc."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda22e2ba1569935d50d",
+            "titulo": "Limpeza da viatura",
+            "descricao": "A limpeza deve ser interna e externa, apenas nos componentes sujos, não sendo necessário uma lavagem completa."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2d946777c498a5fd6",
+            "titulo": "Nível de água do radiador",
+            "descricao": "Verificar e completar se necessário. Se for necessário completar, utilizar sempre água limpa."
+          },
+          "revisado": false,
+          "comentario": "Alguém pôs um cubo de gelo no radiador."
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2349189f3cbd65c45",
+            "titulo": "Nível de óleo do cárter",
+            "descricao": "Verificar o nível e completar se necessário. Atentar para as trocas especificadas pelo fabricante."
+          },
+          "revisado": false,
+          "comentario": "Alguém preencheu o cárter com óleo de oliva."
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2b710639dcd48812d",
+            "titulo": "Verificação dos pneus",
+            "descricao": "Verificar se todos pneus estão cheios, inclusive o estepe, e também se existem avarias que possam comprometer o funcionamento da viatura."
+          },
+          "revisado": true,
+          "comentario": ""
+        }
+      ],
+      "createdAt": "2021-07-15T04:00:00.000Z"
+    }
+  ],
+  "quinzenas": {
+    "15 de julho de 2021": {
+      "Arsène Lupin": [
+        {
+          "topico": {
+            "_id": "60f1bda2bd56b0a250e533a6",
+            "titulo": "Visão geral da viatura",
+            "descricao": "Verificar as condições gerais da viatura observando a lataria, pintura, estofamentos, portas, etc."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda22e2ba1569935d50d",
+            "titulo": "Limpeza da viatura",
+            "descricao": "A limpeza deve ser interna e externa, apenas nos componentes sujos, não sendo necessário uma lavagem completa."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2d946777c498a5fd6",
+            "titulo": "Nível de água do radiador",
+            "descricao": "Verificar e completar se necessário. Se for necessário completar, utilizar sempre água limpa."
+          },
+          "revisado": false,
+          "comentario": "Alguém pôs um cubo de gelo no radiador."
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2349189f3cbd65c45",
+            "titulo": "Nível de óleo do cárter",
+            "descricao": "Verificar o nível e completar se necessário. Atentar para as trocas especificadas pelo fabricante."
+          },
+          "revisado": false,
+          "comentario": "Alguém preencheu o cárter com óleo de oliva."
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2b710639dcd48812d",
+            "titulo": "Verificação dos pneus",
+            "descricao": "Verificar se todos pneus estão cheios, inclusive o estepe, e também se existem avarias que possam comprometer o funcionamento da viatura."
+          },
+          "revisado": true,
+          "comentario": ""
+        }
+      ],
+      "Paul Sernine": [
+        {
+          "topico": {
+            "_id": "60f1bda2bd56b0a250e533a6",
+            "titulo": "Visão geral da viatura",
+            "descricao": "Verificar as condições gerais da viatura observando a lataria, pintura, estofamentos, portas, etc."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda22e2ba1569935d50d",
+            "titulo": "Limpeza da viatura",
+            "descricao": "A limpeza deve ser interna e externa, apenas nos componentes sujos, não sendo necessário uma lavagem completa."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2d946777c498a5fd6",
+            "titulo": "Nível de água do radiador",
+            "descricao": "Verificar e completar se necessário. Se for necessário completar, utilizar sempre água limpa."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2349189f3cbd65c45",
+            "titulo": "Nível de óleo do cárter",
+            "descricao": "Verificar o nível e completar se necessário. Atentar para as trocas especificadas pelo fabricante."
+          },
+          "revisado": true,
+          "comentario": ""
+        },
+        {
+          "topico": {
+            "_id": "60f1bda2b710639dcd48812d",
+            "titulo": "Verificação dos pneus",
+            "descricao": "Verificar se todos pneus estão cheios, inclusive o estepe, e também se existem avarias que possam comprometer o funcionamento da viatura."
+          },
+          "revisado": true,
+          "comentario": ""
+        }
+      ]
+    },
+    "30 de junho de 2021": {},
+    "15 de junho de 2021": {}
+  }
 }

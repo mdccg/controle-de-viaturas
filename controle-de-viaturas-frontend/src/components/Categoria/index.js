@@ -9,6 +9,7 @@ import Viatura from './../Viatura';
 function Categoria({
   _id,
   nome,
+  revisoes = [],
   viaturas,
   setViatura,
   setViaturas,
@@ -41,6 +42,9 @@ function Categoria({
           <Viatura
             {...viatura}
             key={viatura._id}
+            revisao={[...revisoes].filter(revisao => {
+              return revisao.viatura._id === viatura._id && !revisao.concluida;
+            }).pop() || {}}
             viaturas={viaturas}
             setViatura={setViatura}
             setViaturas={setViaturas}

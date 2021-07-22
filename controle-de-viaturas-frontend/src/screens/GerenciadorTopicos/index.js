@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './styles.css';
 
 import Add from './../../assets/icons/Add';
+import Spinner from './../../assets/icons/Spinner';
 import MinusCircleSolid from './../../assets/icons/MinusCircleSolid';
 import CalendarDaySolid from './../../assets/icons/CalendarDaySolid';
 
@@ -45,10 +46,13 @@ function GerenciadorTopicos() {
   
   const [pesquisa, setPesquisa] = useState('');
 
+  const [buscandoAgenda, setBuscandoAgenda] = useState(false);
   const [adicionandoDia, setAdicionandoDia] = useState(false);
+  const [buscandoTopicos, setBuscandoTopicos] = useState(false);
   const [deletandoTopico, setDeletandoTopico] = useState(false);
   const [adicionandoTopico, setAdicionandoTopico] = useState(false);
   
+
   function abrirModalAdicionarDia() {
     setAdicionandoDia(true);
   }
@@ -60,6 +64,12 @@ function GerenciadorTopicos() {
   function atualizarAgenda() {
     // TODO back-end aqui
     console.log(dias);
+  }
+
+  function adicionarTopico(topico) {
+    setTopicos(state => {
+      return [...state, topico];
+    });
   }
 
   function atualizarTopico(topico) {
@@ -77,28 +87,39 @@ function GerenciadorTopicos() {
   }
 
   function buscarTopicos() {
+    setBuscandoTopicos(true);
     // TODO back-end aqui
-    setTopicos(topicosMock);
+    
+    setTimeout(() => {
+      setTopicos(topicosMock);
+      setBuscandoTopicos(false);
+    }, 3e3);
   }
 
   function buscarAgenda() {
+    setBuscandoAgenda(true);
     // TODO back-end aqui
-    setDias(diasMock);
+
+    setTimeout(() => {
+      setDias(diasMock);
+      setBuscandoAgenda(false);
+    }, 3e3);
   }
 
   const detectorAfkRef = useRef(false);
 
   useEffect(() => {
-    if (detectorAfkRef.current) {
+    document.title = 'MANUTENÇÃO - 1º SGBM/IND';
 
+    if(detectorAfkRef.current) {
       var detectorAfk = setTimeout(() => {
         atualizarAgenda();
-
       }, delay * 1e3);
       
       return () => clearTimeout(detectorAfk);
-      
-    } else
+    }
+
+    if(JSON.stringify(dias) !== '[]')
       detectorAfkRef.current = true;
 
   }, [dias]);
@@ -122,11 +143,13 @@ function GerenciadorTopicos() {
             A manutenção acontecerá nos dias selecionados abaixo de todos os meses do ano.
           </span>
 
-          <div className="dias-manutencao">
-            {dias.map(dia => (
-              <Dia key={dia} setDias={setDias}>{dia}</Dia>
-            ))}
-          </div>
+          {buscandoAgenda ? <Spinner className="loading" /> : (
+            <div className="dias-manutencao">
+              {dias.map(dia => (
+                <Dia key={dia} setDias={setDias}>{dia}</Dia>
+              ))}
+            </div>
+          )}
 
           <div className="btn-adicionar-dia" onClick={abrirModalAdicionarDia}>
             <div className="icone">
@@ -147,20 +170,21 @@ function GerenciadorTopicos() {
               placeholder="Tópico" />
           </div>
 
-          <div className="topicos">
-            {topicos.filter(({ titulo, descricao }) => {
-              let regExp = new RegExp(`${pesquisa}`, 'gim');
-              return regExp.test(titulo) || regExp.test(descricao);
-            
-            }).map(topico => (
-              <Topico
-                {...topico}
-                key={topico._id}
-                setTopico={setTopico}
-                atualizarTopico={atualizarTopico}
-                setDeletandoTopico={setDeletandoTopico} />
-            ))}
-          </div>
+          {buscandoTopicos ? <Spinner className="loading" /> : (
+            <div className="topicos">
+              {topicos.filter(({ titulo, descricao }) => {
+                const regExp = new RegExp(`${pesquisa}`, 'gim');
+                return regExp.test(titulo) || regExp.test(descricao);
+              }).map(topico => (
+                <Topico
+                  {...topico}
+                  key={topico._id}
+                  setTopico={setTopico}
+                  atualizarTopico={atualizarTopico}
+                  setDeletandoTopico={setDeletandoTopico} />
+              ))}
+            </div>
+          )}
         </div>
     
         <div className="footer">
@@ -179,6 +203,7 @@ function GerenciadorTopicos() {
         setAberto={setAdicionandoDia} />
 
       <ModalAdicionarTopico
+        adicionarTopico={adicionarTopico}
         aberto={adicionandoTopico}
         setAberto={setAdicionandoTopico} />
 

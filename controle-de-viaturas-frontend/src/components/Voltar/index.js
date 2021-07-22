@@ -1,14 +1,21 @@
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './styles.css';
 
-import DownArrow from './../../assets/icons/DownArrow';
+import ArrowLeftSolid from './../../assets/icons/ArrowLeftSolid';
 
-function Voltar({ para = '/' }) {
+function Voltar() {
+  const history = useHistory();
+
   return (
-    <Link to={para} className="voltar-tela">
-      <DownArrow />
-      <span>Voltar</span>
-    </Link>
+    <>
+      <div className="menu-voltar">
+        <div className="icone" onClick={history.goBack}>
+          <ArrowLeftSolid />
+        </div>
+      </div>
+      
+      <div className="menu-voltar-hitbox"></div>
+    </>
   );
 }
 

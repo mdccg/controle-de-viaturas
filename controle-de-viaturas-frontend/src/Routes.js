@@ -1,9 +1,10 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Login from './screens/Login';
-import Pendente from './screens/Pendente';
-import Viaturas from './screens/Viaturas';
+import Login  from './screens/Login';
 import Perfil from './screens/Perfil';
+import Pendente  from './screens/Pendente';
+import Viaturas  from './screens/Viaturas';
+import Checklist from './screens/Checklist';
 
 import Teste from './screens/Teste';
 import Historico from './screens/Historico';
@@ -11,7 +12,8 @@ import Militares from './screens/Militares';
 import Solicitacoes from './screens/Solicitacoes';
 import TabelaDiaria from './screens/TabelaDiaria';
 import TabelaMensal from './screens/TabelaMensal';
-import GerenciadorTopicos  from './screens/GerenciadorTopicos';
+import GerenciadorTopicos   from './screens/GerenciadorTopicos';
+import HistoricoManutencoes from './screens/HistoricoManutencoes';
 
 import Cadastro from './screens/Cadastro';
 
@@ -37,9 +39,11 @@ function Routes({ usuario = {}, token = '' }) {
       <Route exact path="/solicitacoes"  component={sudo ? Solicitacoes : Negado} />
       <Route exact path="/tabela-mensal" component={sudo ? TabelaMensal : Negado} />
       <Route exact path="/topicos"       component={sudo ? GerenciadorTopicos : Negado} />
+      <Route exact path="/manutencoes"   component={sudo ? HistoricoManutencoes : Negado} />
 
       {/* Todos os usuários */}
       <Route exact path="/perfil"        component={logado ? Perfil : Negado} />
+      <Route exact path="/checklist"     component={logado ? Checklist : Negado} />
       <Route exact path="/tabela-diaria" component={logado ? TabelaDiaria : Negado} />
 
       <Route exact path="/cadastro"      component={!logado ? Cadastro : Negado} />

@@ -93,6 +93,26 @@ input.input-form::placeholder {
   color: var(--soothing-breeze);
 }
 
+textarea.input-form {
+  outline: none;
+
+  border: 1px solid var(--soothing-breeze);
+  min-height: 32px;
+
+  padding-left:  8px;
+  padding-right: 8px;
+
+  display: flex;
+  flex: 1;
+
+  font-family: 'OswaldLight';
+  font-size: 90%;
+}
+
+textarea.input-form::placeholder {
+  color: var(--soothing-breeze);
+}
+
 button.botao-form {
   border: none;
 

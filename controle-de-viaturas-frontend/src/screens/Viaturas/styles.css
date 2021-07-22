@@ -1,3 +1,47 @@
+.viaturas .card-manutencao {
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  display: flex;
+
+  padding: 16px;
+
+  border: 1px solid var(--soothing-breeze);
+
+  margin-bottom: 32px;
+}
+
+.viaturas .card-manutencao > * { margin-bottom: 24px; }
+
+.viaturas .card-manutencao > *:last-child { margin-bottom: 0; }
+
+.viaturas .card-manutencao svg {
+  width:  64px;
+  height: 64px;
+}
+
+.viaturas .card-manutencao .card-titulo {
+  font-family: 'OswaldBold';
+  color: var(--american-river);
+  font-size: 165%;
+
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.viaturas .card-manutencao .card-descricao {
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.viaturas .card-manutencao .card-destaque {
+  font-family: 'OswaldRegular';
+  color: var(--dracula-orchid);
+}
+
 .viaturas .checkpoint {
   margin-bottom: 32px;
 

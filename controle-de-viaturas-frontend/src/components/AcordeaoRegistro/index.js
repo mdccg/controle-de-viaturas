@@ -44,7 +44,7 @@ function AcordeaoRegistro({ _id, viaturas = [], signatario = {}, updatedAt: data
   const apocrifo = JSON.stringify(signatario) === '{}';
 
   const diaSemana     = diasSemana[moment(data).isoWeekday() - 1];
-  const dataFormatada = moment(data).format('DD [de] MMMM [de] YYYY[,] [às] HH[:]mm');
+  const dataFormatada = moment(data).format('D [de] MMMM [de] YYYY[,] [às] HH[:]mm');
   const nomeMilitar   =  !apocrifo ? `${signatario.patente} ${signatario.nome}` : 'Militar deletado';
 
   function abrir() {
