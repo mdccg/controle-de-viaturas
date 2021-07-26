@@ -1,12 +1,46 @@
 import { useState } from 'react';
 import './styles.css';
 
+import Chat from './../../assets/icons/Chat';
 import ArrowDownSignToNavigate from './../../assets/icons/ArrowDownSignToNavigate';
+
+function TopicoTextual({
+  topico: { _id, titulo, descricao },
+  revisado,
+  comentario
+}) {
+  return (
+    <div className="topico-textual">
+      <div className="topico-cabecalho">
+        <div className="titulo">
+          <span>{titulo}</span>
+        </div>
+
+        <div className="descricao">
+          <span>{descricao}</span>
+        </div>
+      </div>
+
+      {comentario ? (
+        <div className="comentario">
+          <div className="icone">
+           <Chat />
+          </div>
+          
+          <span>{comentario}</span>
+        </div>
+      ) : null}
+
+      <div className="divider"></div>
+    </div>
+  );
+}
 
 function AcordeaoManutencao({ viatura = {}, checklist = [] }) {
   const [aberto, setAberto] = useState(false);
 
-  const pendentes = checklist.filter(({ revisado }) => !revisado);
+  const  pendentes = checklist.filter(({ revisado }) => !revisado);
+  const resolvidos = checklist.filter(({ revisado }) =>  revisado);
 
   function alohomora() {
     setAberto(!aberto);
@@ -34,7 +68,29 @@ function AcordeaoManutencao({ viatura = {}, checklist = [] }) {
 
       {aberto ? (
         <div className="corpo">
-          <span>Lacrimosa</span>
+          {pendentes.length ? (
+            <div className="tabela">
+              <span className="titulo">Pendentes</span>
+
+              {pendentes.map(pendente => (
+                <TopicoTextual
+                  {...pendente}
+                  key={pendente.topico._id} />
+              ))}
+            </div>
+          ) : null}
+
+          {resolvidos.length ? (
+            <div className="tabela">
+              <span className="titulo">Resolvidos</span>
+
+              {resolvidos.map(resolvido => (
+                <TopicoTextual
+                  {...resolvido}
+                  key={resolvido.topico._id} />
+              ))}
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>

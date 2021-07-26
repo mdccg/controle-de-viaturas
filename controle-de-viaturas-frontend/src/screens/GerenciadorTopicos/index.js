@@ -6,6 +6,7 @@ import Spinner from './../../assets/icons/Spinner';
 import MinusCircleSolid from './../../assets/icons/MinusCircleSolid';
 import CalendarDaySolid from './../../assets/icons/CalendarDaySolid';
 
+import Vazio  from './../../components/Vazio';
 import Header from './../../components/Header';
 import Topico from './../../components/Topico';
 import Footer from './../../components/Footer';
@@ -125,6 +126,7 @@ function GerenciadorTopicos() {
   }, [dias]);
 
   useEffect(() => {
+    document.title = `MANUTENÇÃO ― 1º SGBM/IND`;
     buscarTopicos();
     buscarAgenda();
   }, []);
@@ -142,6 +144,8 @@ function GerenciadorTopicos() {
           <span className="subtitulo">
             A manutenção acontecerá nos dias selecionados abaixo de todos os meses do ano.
           </span>
+
+          {!buscandoAgenda && !dias.length ? <Vazio icone="registro">Sem manutenção</Vazio> : null}
 
           {buscandoAgenda ? <Spinner className="loading" /> : (
             <div className="dias-manutencao">
@@ -169,6 +173,8 @@ function GerenciadorTopicos() {
               setPesquisa={setPesquisa}
               placeholder="Tópico" />
           </div>
+
+          {!buscandoTopicos && !topicos.length ? <Vazio icone="registro">Sem tópicos</Vazio> : null}
 
           {buscandoTopicos ? <Spinner className="loading" /> : (
             <div className="topicos">

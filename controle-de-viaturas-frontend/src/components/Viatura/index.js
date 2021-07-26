@@ -2,13 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-import Tag from './../../assets/icons/Tag';
-import Chat from './../../assets/icons/Chat';
-import Delete from './../../assets/icons/Delete';
-import Spinner from './../../assets/icons/Spinner';
+import Tag   from './../../assets/icons/Tag';
+import Chat   from './../../assets/icons/Chat';
+import Delete  from './../../assets/icons/Delete';
+import Spinner  from './../../assets/icons/Spinner';
 import FireTruck from './../../assets/icons/FireTruck';
 import GasStation from './../../assets/icons/GasStation';
 import Speedometer from './../../assets/icons/Speedometer';
+import WrenchSolid  from './../../assets/icons/WrenchSolid';
 
 import api from './../../services/api';
 
@@ -216,14 +217,25 @@ function Viatura(props) {
             <span>{categoria.nome}</span>
           </div>
         </div>
+
+        <Link
+          to={'/revisoes?_id=' + _id}
+          key={_id + '-quarta-linha'}
+          className="link-manutencao">
+          <div className="icone">
+            <WrenchSolid />
+          </div>
+
+          <div className="manutencao">
+            <span>Manutenções</span>
+          </div>
+        </Link>
       </div>
 
       {revisando ? (
         <Link className="btn-revisar" to={`/checklist?_id=${revisao._id}`}>
-          <span className="btn-revisar-label">Revisar</span>
-
-          <span className="contador">
-            {pendentes.length === 1 ? '(1 item restante)' : `(${pendentes.length} itens restantes)`}
+          <span className="btn-revisar-label">
+            Revisar ({pendentes.length})
           </span>
         </Link>
       ) : null}

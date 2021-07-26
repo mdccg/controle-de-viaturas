@@ -19,7 +19,7 @@ function ModalBotao({ setDias, selecionado, children }) {
   return (
     <div
       onClick={selecionar}
-      className={'modal-botao ' + (selecionado ? 'selecionado' : '')}>
+      className={'noselect modal-botao ' + (selecionado ? 'selecionado' : '')}>
       {dia}
     </div>
   );

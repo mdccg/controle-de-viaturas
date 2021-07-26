@@ -29,6 +29,7 @@ function HistoricoManutencoes() {
   }
 
   useEffect(() => {
+    document.title = `HISTÓRICO DE MANUTENÇÕES ― 1º SGBM/IND`;
     buscarQuinzenas();
   }, [pesquisa]);
 
@@ -50,7 +51,7 @@ function HistoricoManutencoes() {
               const acordeoes = quinzenas[quinzena];
 
               return (
-                <div className="quinzena">
+                <div className="quinzena" key={quinzena}>
                   <div className="quinzena-label">
                     <span>{quinzena}</span>
                     <div className="divider"></div>

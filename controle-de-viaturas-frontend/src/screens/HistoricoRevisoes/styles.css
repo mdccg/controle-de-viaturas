@@ -1,0 +1,22 @@
+.historico-revisoes .container { min-height: 472px; }
+
+.historico-revisoes .titulo span {
+  font-family: 'OswaldLight';
+  color: var(--american-river);
+  font-size: 120%;
+}
+
+.historico-revisoes .titulo .prefixo {
+  font-family: 'OswaldRegular';
+  font-size: 120%;
+}
+
+.historico-revisoes .quinzena .dia {
+  margin-top: 32px;
+  margin-bottom: 24px;
+}
+
+.historico-revisoes .quinzena .dia span {
+  color: var(--dracula-orchid);
+  font-size: 200%;
+}

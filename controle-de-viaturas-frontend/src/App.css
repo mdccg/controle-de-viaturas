@@ -162,3 +162,74 @@ svg.loader {
 .Toastify__toast--success {
   background-color: var(--emerald) !important;
 }
+
+.checkitem {
+  margin-bottom: 24px;
+}
+
+.checkitem .cabecalho {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.checkitem .cabecalho .checkbox {
+  margin-right: 8px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  z-index: 1;
+}
+
+.checkitem .cabecalho .checkbox .MuiCheckbox-root {
+  color: var(--soothing-breeze);
+}
+
+.checkitem .cabecalho .checkbox .Mui-checked {
+  color: var(--emerald);
+}
+
+.checkitem .cabecalho > span {
+  font-family: 'OswaldBold';
+  color: var(--dracula-orchid);
+  font-size: 130%;
+}
+
+.checkitem .corpo {
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.checkitem .corpo span {
+  font-family: 'OswaldLight';
+  color: var(--american-river);
+  font-size: 110%;
+
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.checkitem .rodape {
+  flex-direction: column;
+  display: flex;
+}
+
+.checkitem .rodape input {
+  border:  none;
+  outline: none;
+
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+  font-size: 100%;
+
+  border-bottom: 1px solid var(--soothing-breeze);
+
+  min-height: 32px;
+}
+
+.checkitem .rodape input::placeholder {
+  color: var(--soothing-breeze);
+}

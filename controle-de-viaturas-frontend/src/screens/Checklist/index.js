@@ -165,7 +165,7 @@ function Checklist(props) {
       <Voltar />
 
       <div className="container">
-        {buscandoRevisao ? <Spinner className="loading" /> : (
+        {buscandoRevisao ? <Spinner className="loader" /> : (
           <>
             <div className="aviso">
               <span>{aviso}</span>

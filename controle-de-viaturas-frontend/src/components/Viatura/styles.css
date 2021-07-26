@@ -52,12 +52,15 @@
 .viatura .km,
 .viatura .nivel-combustivel,
 .viatura .comentario,
-.viatura .categoria-label {
+.viatura .categoria-label,
+.viatura .manutencao {
   margin-left: 8px;
 
   display: flex;
   flex: 1;
 }
+
+.viatura a.link-manutencao { text-decoration: none; }
 
 .viatura .icone {
   width:  48px;
@@ -77,7 +80,8 @@
   width:  32px;
   height: 32px;
 
-  fill: var(--american-river);
+  fill:  var(--american-river);
+  color: var(--american-river);
 }
 
 .viatura .corpo {

@@ -12,6 +12,7 @@ import Militares from './screens/Militares';
 import Solicitacoes from './screens/Solicitacoes';
 import TabelaDiaria from './screens/TabelaDiaria';
 import TabelaMensal from './screens/TabelaMensal';
+import HistoricoRevisoes    from './screens/HistoricoRevisoes';
 import GerenciadorTopicos   from './screens/GerenciadorTopicos';
 import HistoricoManutencoes from './screens/HistoricoManutencoes';
 
@@ -38,7 +39,8 @@ function Routes({ usuario = {}, token = '' }) {
       <Route exact path="/militares"     component={sudo ? Militares : Negado} />
       <Route exact path="/solicitacoes"  component={sudo ? Solicitacoes : Negado} />
       <Route exact path="/tabela-mensal" component={sudo ? TabelaMensal : Negado} />
-      <Route exact path="/topicos"       component={sudo ? GerenciadorTopicos : Negado} />
+      <Route exact path="/revisoes"      component={sudo ? HistoricoRevisoes    : Negado} />
+      <Route exact path="/topicos"       component={sudo ? GerenciadorTopicos   : Negado} />
       <Route exact path="/manutencoes"   component={sudo ? HistoricoManutencoes : Negado} />
 
       {/* Todos os usuários */}
