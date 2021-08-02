@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Redirect } from 'react-router-dom';
 import './styles.css';
 
 import Spinner from './../../assets/icons/Spinner';
@@ -10,9 +11,11 @@ import { delay } from './../../config/default.json';
 
 import useUpdateEffect from './../../functions/useUpdateEffect';
 
-import { revisoes as revisoesMock } from './../../tmp/mock.json';
+import api from './../../services/api';
 
 import Checkbox from '@material-ui/core/Checkbox';
+
+import { toast } from 'react-toastify';
 
 function Check({
   topico: { _id, titulo, descricao },
@@ -33,10 +36,6 @@ function Check({
     };
 
     atualizarCheckitem(checkitem, index);
-    
-    // TODO back-end aqui
-    console.table(checkitem);
-    setAviso('Alterações salvas.');
   }
 
   useUpdateEffect(() => {
@@ -94,6 +93,7 @@ function Checklist(props) {
   const [checklist, setChecklist] = useState([]);
   const [concluida, setConcluida] = useState(false);
 
+  const [redirecionando, setRedirecionando] = useState(false);
   const [buscandoRevisao, setBuscandoRevisao] = useState(false);
   const [concluindoRevisao, setConcluindoRevisao] = useState(false);
   
@@ -104,15 +104,13 @@ function Checklist(props) {
   function concluir() {
     setConcluindoRevisao(true);
 
-    // TODO back-end aqui
-    console.log(revisao._id);
-
-    setTimeout(() => {
-      setConcluindoRevisao(false);
-      window.location.href = '/';
-
-    }, 2e3);
-
+    api.delete(`/revisoes/${viatura._id}`)
+      .then(() => {
+        toast.success(`Revisão concluída com sucesso.`);
+        setRedirecionando(true);
+      })
+      .catch(() => toast.error('Erro ao concluir revisão.'))
+      .finally(() => setConcluindoRevisao(false));
   }
 
   function atualizarCheckitem(checkitem, index) {
@@ -124,32 +122,37 @@ function Checklist(props) {
     let _revisao = { ...revisao };
     _revisao.checklist = _checklist;
 
-    setChecklist(_checklist);
-    setConcluida(concluida);
-    setRevisao(_revisao);
+    api.put(`/revisoes/${viatura._id}`, { checklist: _checklist })
+      .then(() => {
+        setChecklist(_checklist);
+        setConcluida(concluida);
+        setRevisao(_revisao);
+        
+        // TODO criar nova manutenção (revisão imutável) com identificador
+        setAviso('Alterações salvas.');
+      })
+      .catch(() => toast.error('Erro ao atualizar checklist.'));
   }
 
   async function buscarRevisao() {
     setBuscandoRevisao(true);
 
     const { search } = props.location;
+    const idViatura = search.split('=').pop();
     
-    // TODO back-end aqui
-    const idRevisao = search.split('=').pop();
-    const indice = revisoesMock.map(({ _id }) => _id).indexOf(idRevisao);
-    
-    let revisao = revisoesMock[indice];
-    let { viatura, checklist } = revisao;
-    let concluida = getConcluida(checklist);
-    
-    setTimeout(() => {
-      setRevisao(revisao);
-      setViatura(viatura);
-      setChecklist(checklist);
-      setConcluida(concluida);
-  
-      setBuscandoRevisao(false);
-    }, 2e3);
+    api.get(`/revisoes/${idViatura}`)
+      .then(res => {
+        let revisao = res.data;
+        let { viatura, checklist } = revisao;
+        let concluida = getConcluida(checklist);
+
+        setRevisao(revisao);
+        setViatura(viatura);
+        setChecklist(checklist);
+        setConcluida(concluida);
+      })
+      .catch(err => console.error(err))
+      .finally(() => setBuscandoRevisao(false));
   }
 
   useEffect(() => {
@@ -160,7 +163,7 @@ function Checklist(props) {
     document.title = `${viatura.prefixo} ― 1º SGBM/IND`;
   }, [viatura]);
 
-  return (
+  return redirecionando ? <Redirect to="/" /> : (
     <div className="checklist">
       <Voltar />
 

@@ -6,6 +6,9 @@
 - [ ] Criar uma tela para _feedbacks_
 - [ ] `BUG` Descobrir por que senhas complexas não são gravadas com JWT
 - [X] `BUG` Deslogar do administrador temporário e logar em outra conta
+- [ ] Criar endpoint `/quinzena/:viatura` para filtrar por data as manutenções de uma determinada viatura
+- [ ] Registrar cada modificação em uma revisão por meio da tabela de manutenções
+- [ ] `API` Impedir de criar uma revisão na mesma data
 
 ---
 

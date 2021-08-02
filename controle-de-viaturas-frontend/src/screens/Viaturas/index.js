@@ -23,8 +23,6 @@ import getUsuario from './../../functions/getUsuario';
 
 import api from './../../services/api';
 
-import { dias as diasMock, revisoes as revisoesMock } from './../../tmp/mock.json';
-
 import moment from 'moment';
 
 function Viaturas() {
@@ -126,20 +124,21 @@ function Viaturas() {
       .finally(() => setBuscandoViaturas(false));
   }
 
-  function buscarRevisoes() {
-    // TODO back-end aqui
-
-    setRevisoes(revisoesMock);
+  async function buscarRevisoes() {
+    let revisoes = (await api.get('/revisoes')).data;
+    setRevisoes(revisoes);
   }
 
-  function buscarAgenda() {
-    // TODO back-end aqui
-    let diasManutencao = [...diasMock];
+  async function buscarAgenda() {
+    let diasManutencao = (await api.get('/agenda')).data;
     let hoje = Number(moment().format('D'));
     let diaManutencao = diasManutencao.includes(hoje);
 
     if(diaManutencao) {
-      // TODO cadastrar novas revisões aqui
+      for(let { _id } of viaturas)
+        await api.post(`/revisoes/${_id}`);
+
+      buscarRevisoes();
     }
 
     setDiaManutencao(diaManutencao);

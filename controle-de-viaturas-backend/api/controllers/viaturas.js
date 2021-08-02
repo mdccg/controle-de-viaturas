@@ -81,7 +81,7 @@ module.exports = app => {
       if(err) return res.status(500).json(err);
 
       return res.status(200).send('Viatura atualizada com sucesso.');
-    })
+    });
   }
 
   controller.truncate = (req, res) => {
@@ -91,7 +91,7 @@ module.exports = app => {
       if(err) return res.status(500).json(err);
 
       return res.status(200).send('Viaturas deletadas com sucesso.');
-    })
+    });
   }
 
   controller.deletarViatura = (req, res) => {
@@ -102,7 +102,7 @@ module.exports = app => {
       if(err) return res.status(500).json(err);
 
       return res.status(200).send('Viatura deletada com sucesso.');
-    })
+    });
   }
 
   return controller;

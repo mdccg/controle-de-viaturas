@@ -9,13 +9,10 @@ import api from './../../services/api';
 
 import viaturasMock from './../../tmp/viaturas.json';
 
-import moment from 'moment';
-
 function Teste() {
   const [viaturas, setViaturas] = useState([]);
   const [militares, setMilitares] = useState([]);
   const [categorias, setCategorias] = useState([]);
-  const [manutencao, setManutencao] = useState(null);
 
   function cadastrarViaturaAleatoria() {
     const viatura = {};
@@ -78,15 +75,46 @@ function Teste() {
       .catch(err => console.error(err));
   }
 
-  function handleChange(event) {
-    let manutencao = event.target.value;
-    console.log(moment(manutencao).toDate());
-    setManutencao(manutencao);
-  }
-
   function cadastrarViaturasReais() {
     api.post('/carreata', viaturasMock)
       .then(res => console.log(res.data))
+      .catch(err => console.error(err));
+  }
+
+  async function gerarChecklist() {
+    var checklist = [];
+
+    const topicos = (await api.get('/topicos')).data;
+
+    for(var topico of topicos) {
+      var revisado = !!Math.floor(Math.random() * 2);
+      var comentario = '';
+      var checklistItem = { topico, revisado, comentario };
+      
+      checklist.push(checklistItem);
+    }
+
+    return checklist;
+  }
+
+  async function cadastrarManutencaoRandomica() {
+    const viaturas = (await api.get('/viaturas')).data;
+    
+    let viatura = viaturas[0];
+    let checklist = await gerarChecklist();
+    const data = randomDate().toISOString();
+
+    let manutencao = { viatura, checklist, data };
+
+    api.post('/manutencoes', manutencao)
+      .then(async () => {
+        let viatura = viaturas[1];
+        let checklist = await gerarChecklist();
+
+        let manutencao = { viatura, checklist, data };
+
+        api.post('/manutencoes', manutencao);
+      })
       .catch(err => console.error(err));
   }
 
@@ -117,14 +145,9 @@ function Teste() {
 
   return (
     <div className="teste">
-      <input
-        value={manutencao}
-        onChange={handleChange}
-        placeholder="Lacrimosa"
-        type="date" />
-
       <button onClick={cadastrarViaturaAleatoria}>Cadastrar viatura randômica</button>
       <button onClick={cadastrarRegistroAleatoria}>Cadastrar registro randômico</button>
+      <button onClick={cadastrarManutencaoRandomica}>Cadastrar manutenção randômica</button>
       <button onClick={cadastrarViaturasReais}>Cadastrar viaturas reais</button>
 
       {categorias.map(({ _id, nome }) => {

@@ -6,6 +6,8 @@ import ClipboardCheckSolid from './../../assets/icons/ClipboardCheckSolid';
 
 import { delay } from './../../config/default.json';
 
+import api from './../../services/api';
+
 function Topico({
   _id,
   titulo: tituloInicial,
@@ -17,6 +19,15 @@ function Topico({
   const [titulo, setTitulo]       = useState(tituloInicial);
   const [descricao, setDescricao] = useState(descricaoInicial);
 
+  function atualizar() {
+    api.put(`/topicos/${_id}`, { titulo, descricao })
+    .then(() => {
+        let topico = { _id, titulo, descricao };
+        atualizarTopico(topico);
+      })
+      .catch(err => console.error(err));
+  }
+
   async function remover() {
     let topico = { _id, titulo, descricao };
     await setTopico(topico);
@@ -27,11 +38,8 @@ function Topico({
 
   useEffect(() => {
     if (detectorAfkRef.current) {
-
       var detectorAfk = setTimeout(() => {
-        let topico = { _id, titulo, descricao };
-        atualizarTopico(topico);
-
+        atualizar();
       }, delay * 1e3);
       
       return () => clearTimeout(detectorAfk);

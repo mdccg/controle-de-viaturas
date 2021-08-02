@@ -107,7 +107,7 @@ function Viatura(props) {
 
   useEffect(() => {
     buscarRevisao();
-  }, []);
+  }, [props.revisao]);
 
   const detectorAfkRef = useRef(false);
 
@@ -233,7 +233,7 @@ function Viatura(props) {
       </div>
 
       {revisando ? (
-        <Link className="btn-revisar" to={`/checklist?_id=${revisao._id}`}>
+        <Link className="btn-revisar" to={`/checklist?_id=${_id}`}>
           <span className="btn-revisar-label">
             Revisar ({pendentes.length})
           </span>

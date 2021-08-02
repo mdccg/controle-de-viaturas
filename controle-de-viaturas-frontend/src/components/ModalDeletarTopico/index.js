@@ -5,21 +5,22 @@ import Spinner from './../../assets/icons/Spinner';
 
 import ModalIntitulado from './../ModalIntitulado';
 
+import api from './../../services/api';
+
 function ModalDeletarTopico({ topico = {}, deletarTopico, aberto, setAberto }) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
 
   function remover() {
-    // TODO back-end aqui
     setEfetuandoRequisicao(true);
 
-    console.log(topico._id);
-    
-    setTimeout(() => {
-      deletarTopico(topico._id);
-      
-      setEfetuandoRequisicao(false);
-      setAberto(false);
-    }, 2e3);
+    api.delete(`/topicos/${topico._id}`)
+      .then(() => {
+        deletarTopico(topico._id);
+
+        setAberto(false);
+      })
+      .catch(err => console.error(err))
+      .finally(() => setEfetuandoRequisicao(false));
   }
 
   return (

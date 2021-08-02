@@ -17,13 +17,14 @@ import ModalAdicionarTopico from './../../components/ModalAdicionarTopico';
 
 import { delay } from './../../config/default.json';
 
-import { dias as diasMock, topicos as topicosMock } from './../../tmp/mock.json';
+import api from './../../services/api';
+
+import { toast } from 'react-toastify';
 
 function Dia({ setDias, children }) {
   const dia = children === 32 ? 'Último dia do mês' : `Dia ${children}`;
 
   function remover() {
-    // TODO back-end aqui
     setDias(state => {
       return state.filter(value => value !== children);
     });
@@ -63,8 +64,9 @@ function GerenciadorTopicos() {
   }
 
   function atualizarAgenda() {
-    // TODO back-end aqui
-    console.log(dias);
+    api.put('/agenda', dias)
+      .then(() => toast.success('Agenda atualizada com sucesso.'))
+      .catch(err => console.error(err));
   }
 
   function adicionarTopico(topico) {
@@ -89,22 +91,20 @@ function GerenciadorTopicos() {
 
   function buscarTopicos() {
     setBuscandoTopicos(true);
-    // TODO back-end aqui
     
-    setTimeout(() => {
-      setTopicos(topicosMock);
-      setBuscandoTopicos(false);
-    }, 3e3);
+    api.get('/topicos')
+      .then(res => setTopicos(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setBuscandoTopicos(false));
   }
 
-  function buscarAgenda() {
+  async function buscarAgenda() {
     setBuscandoAgenda(true);
-    // TODO back-end aqui
 
-    setTimeout(() => {
-      setDias(diasMock);
-      setBuscandoAgenda(false);
-    }, 3e3);
+    api.get('/agenda')
+      .then(res => setDias(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setBuscandoAgenda(false));
   }
 
   const detectorAfkRef = useRef(false);

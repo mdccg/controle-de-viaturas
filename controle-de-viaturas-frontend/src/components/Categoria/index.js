@@ -9,7 +9,7 @@ import Viatura from './../Viatura';
 function Categoria({
   _id,
   nome,
-  revisoes = [],
+  revisoes: revisoesIniciais = [],
   viaturas,
   setViatura,
   setViaturas,
@@ -22,10 +22,15 @@ function Categoria({
 
   const listaVazia = viaturasFiltradas.length === 0;
   const [aberto, setAberto] = useState(viaturasFiltradas.length !== 0);
+  const [revisoes, setRevisoes] = useState(revisoesIniciais);
 
   useEffect(() => {
     setAberto(viaturasFiltradas.length !== 0);    
   }, [viaturasFiltradas]);
+
+  useEffect(() => {
+    setRevisoes(revisoesIniciais);
+  }, [revisoesIniciais]);
 
   return (
     <div className="lista-viaturas" key={_id}>
@@ -38,21 +43,25 @@ function Categoria({
       </div>
 
       {aberto && !listaVazia ? (
-        viaturasFiltradas.map(viatura => (
-          <Viatura
-            {...viatura}
-            key={viatura._id}
-            revisao={[...revisoes].filter(revisao => {
-              return revisao.viatura._id === viatura._id && !revisao.concluida;
-            }).pop() || {}}
-            viaturas={viaturas}
-            setViatura={setViatura}
-            setViaturas={setViaturas}
-            enviarRegistro={enviarRegistro}
-            setDeletandoViatura={setDeletandoViatura}
-            setEditandoCategoria={setEditandoCategoria}
-            setEditandoNivelCombustivel={setEditandoNivelCombustivel} />
-        ))
+        viaturasFiltradas.map(viatura => {
+          const revisao = [...revisoes]
+            .filter(revisao => revisao.viatura._id === viatura._id && !revisao.concluida)
+            .pop();
+
+          return (
+            <Viatura
+              {...viatura}
+              key={viatura._id}
+              revisao={revisao || {}}
+              viaturas={viaturas}
+              setViatura={setViatura}
+              setViaturas={setViaturas}
+              enviarRegistro={enviarRegistro}
+              setDeletandoViatura={setDeletandoViatura}
+              setEditandoCategoria={setEditandoCategoria}
+              setEditandoNivelCombustivel={setEditandoNivelCombustivel} />
+          )
+        })
       ) : aberto && listaVazia ? (
         <Vazio icone="viatura">Sem viaturas</Vazio>
       ) : <></>}

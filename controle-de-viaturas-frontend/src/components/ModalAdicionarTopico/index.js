@@ -5,6 +5,8 @@ import Spinner from './../../assets/icons/Spinner';
 
 import ModalGenerico from './../ModalGenerico';
 
+import api from './../../services/api';
+
 import { toast } from 'react-toastify';
 
 function ModalAdicionarTopico({ adicionarTopico, aberto, setAberto }) {
@@ -26,24 +28,20 @@ function ModalAdicionarTopico({ adicionarTopico, aberto, setAberto }) {
       return;
     }
 
-    if(!descricao) {
-      setEfetuandoRequisicao(false);
-      descricaoRef.current.focus();
-      toast.error('Descrição é obrigatório.');
-      return;
-    }
+    api.post('/topicos', { titulo, descricao })
+      .then(res => {
+        let { _id } = res.data;
+        let topico = { _id, titulo, descricao };
+        adicionarTopico(topico);
+        
+        setTitulo('');
+        setDescricao('');
+        setAberto(false);
 
-    // TODO back-end aqui
-    setTimeout(() => {
-      let topico = { titulo, descricao };
-      adicionarTopico(topico);
-      
-      setEfetuandoRequisicao(false);
-      setAberto(false);
-
-      setTitulo('');
-      setDescricao('');
-    }, 2e3);
+        toast.success('Tópico cadastrado com sucesso.');
+      })
+      .catch(err => console.error(err.response.data))
+      .finally(() => setEfetuandoRequisicao(false));
   }
 
   return (
