@@ -34,15 +34,18 @@ module.exports = () => {
   }
 
   controller.adicionarManutencao = (req, res) => {
-    Manutencao.create(req.body, function(err, result) {
+    const { viatura, checklist, data, revisao } = req.body;
+    const manutencao = { viatura, checklist, data, revisao };
+
+    Manutencao.create(manutencao, function(err, result) {
       if(err) return res.status(500).json(err);
-      return res.status(200).send('Manutenção cadastrada com sucesso.');
+      return res.status(200).json(result);
     });
   }
 
-  controller.atualizarManutencaoPorViatura = async (req, res) => {
-    const { viatura } = req.params;
-    const manutencao = (await Manutencao.find({ "viatura._id": viatura }))[0];
+  controller.atualizarManutencaoPorRevisao = async (req, res) => {
+    const { revisao } = req.params;
+    const manutencao = (await Manutencao.find({ revisao }))[0];
     
     const update = { $set: { ...req.body } };
     const options = { useFindAndModify: false };

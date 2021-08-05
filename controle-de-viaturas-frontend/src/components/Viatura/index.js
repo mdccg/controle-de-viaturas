@@ -217,19 +217,6 @@ function Viatura(props) {
             <span>{categoria.nome}</span>
           </div>
         </div>
-
-        <Link
-          to={'/revisoes?_id=' + _id}
-          key={_id + '-quarta-linha'}
-          className="link-manutencao">
-          <div className="icone">
-            <WrenchSolid />
-          </div>
-
-          <div className="manutencao">
-            <span>Manutenções</span>
-          </div>
-        </Link>
       </div>
 
       {revisando ? (

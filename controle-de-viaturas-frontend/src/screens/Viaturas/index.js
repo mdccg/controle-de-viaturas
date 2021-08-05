@@ -131,15 +131,36 @@ function Viaturas() {
 
   async function buscarAgenda() {
     let diasManutencao = (await api.get('/agenda')).data;
-    let hoje = Number(moment().format('D'));
-    let diaManutencao = diasManutencao.includes(hoje);
+    let diaHoje = Number(moment().format('D'));
+    let diaManutencao = diasManutencao.includes(diaHoje);
+
+    var hojeIso = moment(moment().format('YYYY-MM-DD'));
 
     if(diaManutencao) {
-      for(let { _id } of viaturas)
-        await api.post(`/revisoes/${_id}`);
+      const idViaturas = viaturas.map(({ _id }) => _id);
 
-      buscarRevisoes();
+      for(const idViatura of idViaturas) {
+        api.post(`/revisoes/${idViatura}`)
+          .then(res => {
+            if(typeof res.data === 'string')
+              return;
+
+            let { viatura, checklist, _id: revisao } = res.data;
+            viatura = viaturas.filter(({ _id }) => _id === viatura)[0];
+
+            let data = hojeIso.toDate();
+            let manutencao = { viatura, checklist, revisao, data };
+
+            api.post('/manutencoes', manutencao)
+              .then(res => console.log(res.data))
+              .catch(err => console.error(err));
+          })
+          .catch(err => console.error(err));
+      }
     }
+
+    let revisoes = (await api.get('/revisoes')).data;
+    setRevisoes(revisoes);
 
     setDiaManutencao(diaManutencao);
   }
@@ -165,6 +186,10 @@ function Viaturas() {
     buscarAgenda();
     // eslint-disable-next-line
   }, [pesquisa]);
+
+  useEffect(() => {
+    buscarAgenda();
+  }, [viaturas]);
 
   return (
     <>

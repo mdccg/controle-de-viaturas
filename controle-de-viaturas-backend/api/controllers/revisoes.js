@@ -4,6 +4,9 @@ const getViatura = require('./../functions/getViatura');
 const atualizarChecklist = require('./../functions/atualizarChecklist');
 
 const Topico = require('./../models/Topico');
+const Manutencao = require('./../models/Manutencao');
+
+const moment = require('moment');
 
 module.exports = () => {
   const controller = {};
@@ -42,11 +45,23 @@ module.exports = () => {
 
   controller.adicionarRevisao = async (req, res) => {
     const { viatura } = req.params;
-    const revisoes = await Revisao.find({ viatura, concluida: false });
+    
+    var hojeIso = moment(moment().format('YYYY-MM-DD'));
+    var query = {
+      'viatura._id': `${viatura}`,
+      data: {
+        $gte: hojeIso.clone().toDate(),
+        $lte: hojeIso.clone().endOf('day').toDate()
+      }
+    };
 
-    if(revisoes.length) {
-      // Mesclar uma nova revisão com a revisão antiga
-      return res.status(200).send('Revisão já encontrada.');
+    const manutencoes = await Manutencao.find(query);
+    console.log(manutencoes);
+    console.log(hojeIso.toDate());
+
+    if(manutencoes.length) {
+      // TODO Cadastrar uma manutenção com o id de cada revisão
+      return res.status(200).send('Já foi cadastrada hoje!');
 
     } else {
       const concluida = false;
@@ -61,8 +76,7 @@ module.exports = () => {
       
       Revisao.create(revisao, function(err, result) {
         if(err) return res.status(500).json(err);
-        
-        return res.status(200).send('Revisão cadastrada com sucesso.');
+        return res.status(200).json(result);
       });
     }
   }
@@ -99,7 +113,7 @@ module.exports = () => {
 
     Revisao.deleteMany(update, options, function(err, result) {
       if(err) return res.status(500).json(err);
-      return res.status(200).send('Revisão deletada com sucesso.');
+      return res.status(200).json(result);
     });
   }
 

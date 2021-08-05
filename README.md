@@ -8,7 +8,9 @@
 - [X] `BUG` Deslogar do administrador temporário e logar em outra conta
 - [ ] Criar endpoint `/quinzena/:viatura` para filtrar por data as manutenções de uma determinada viatura
 - [ ] Registrar cada modificação em uma revisão por meio da tabela de manutenções
-- [ ] `API` Impedir de criar uma revisão na mesma data
+- [X] `API` Impedir de criar uma revisão na mesma data
+- [X] `BUG` Revisão duplicada
+  - Ao criar nova revisão, usar o identificador da viatura para buscar uma manutenção que tenha sido feita na data atual para evitar revisões duplicadas.
 
 ---
 
