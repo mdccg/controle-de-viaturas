@@ -12,6 +12,6 @@ module.exports = app => {
   app.route('/api/v1/manutencoes/:id')
     .delete(controller.deletarManutencao);
 
-  app.route('/api/v1/manutencoes/:viatura')
+  app.route('/api/v1/manutencoes/:revisao')
     .put(controller.atualizarManutencaoPorRevisao);
 }

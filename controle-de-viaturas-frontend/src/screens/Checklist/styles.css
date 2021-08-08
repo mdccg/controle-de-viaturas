@@ -10,6 +10,20 @@
   font-size: 100%;
 }
 
+.checklist .salvando.aviso span {
+  animation: blinker .5s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+}
+
+@keyframes blinker {  
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .checklist .titulo {
   font-family: 'OswaldLight';
   color: var(--dracula-orchid);

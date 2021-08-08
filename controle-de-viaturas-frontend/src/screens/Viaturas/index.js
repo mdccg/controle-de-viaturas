@@ -140,9 +140,9 @@ function Viaturas() {
       const idViaturas = viaturas.map(({ _id }) => _id);
 
       for(const idViatura of idViaturas) {
-        api.post(`/revisoes/${idViatura}`)
+        await api.post(`/revisoes/${idViatura}`)
           .then(res => {
-            if(typeof res.data === 'string')
+            if(res.data.cadastrado)
               return;
 
             let { viatura, checklist, _id: revisao } = res.data;

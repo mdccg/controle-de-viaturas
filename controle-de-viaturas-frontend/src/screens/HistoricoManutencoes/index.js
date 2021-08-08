@@ -9,7 +9,7 @@ import Footer from './../../components/Footer';
 import SearchBar from './../../components/SearchBar';
 import AcordeaoManutencao from './../../components/AcordeaoManutencao';
 
-import { quinzenas as quinzenasMock } from './../../tmp/mock.json';
+import api from './../../services/api';
 
 function HistoricoManutencoes() {
   const [pesquisa, setPesquisa] = useState('');
@@ -22,10 +22,10 @@ function HistoricoManutencoes() {
     setBuscandoQuinzenas(true);
     // TODO back-end aqui
 
-    setTimeout(() => {
-      setQuinzenas(quinzenasMock);
-      setBuscandoQuinzenas(false);
-    }, 2e3);
+    api.get(`/quinzenas?pesquisa=${pesquisa}`)
+      .then(res => setQuinzenas(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setBuscandoQuinzenas(false));
   }
 
   useEffect(() => {
@@ -38,10 +38,10 @@ function HistoricoManutencoes() {
       <Header />
 
       <div className="container">
-        <SearchBar
+        {/* <SearchBar
           pesquisa={pesquisa}
           setPesquisa={setPesquisa}
-          placeholder="Prefixo ou data" />
+          placeholder="Prefixo ou data" /> */}
 
         <div className="lista">
           {buscandoQuinzenas ? <Spinner className="loader" /> : null}

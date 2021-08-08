@@ -52,7 +52,7 @@ module.exports = () => {
     
     Manutencao.findByIdAndUpdate(manutencao._id, update, options, function(err, result) {
       if(err) return res.status(500).json(err);
-      return res.status(200).send('Manutenção atualizada com sucesso.');
+      return res.status(200).json(result);
     });
   }
 

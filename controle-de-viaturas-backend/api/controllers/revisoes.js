@@ -56,12 +56,9 @@ module.exports = () => {
     };
 
     const manutencoes = await Manutencao.find(query);
-    console.log(manutencoes);
-    console.log(hojeIso.toDate());
 
     if(manutencoes.length) {
-      // TODO Cadastrar uma manutenção com o id de cada revisão
-      return res.status(200).send('Já foi cadastrada hoje!');
+      return res.status(200).json({ cadastrado: true });
 
     } else {
       const concluida = false;

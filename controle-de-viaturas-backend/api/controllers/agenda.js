@@ -7,16 +7,15 @@ module.exports = () => {
     const agenda = await Agenda.find({});
     const agendaVazia = JSON.stringify(agenda) === '[]';
 
-    if(agendaVazia) 
-      await Agenda.create([], function(err, result) {
+    if(agendaVazia)
+      await Agenda.create({ dias: [] }, function(err, result) {
         if(err) return res.status(500).json(err);
+        return res.status(200).json([]);
       });
     else {
       const { dias } = agenda.pop();
       return res.status(200).json(dias);
     }
-
-    return res.status(200).json([]);
   }
 
   controller.atualizarDias = async (req, res) => {
@@ -32,10 +31,12 @@ module.exports = () => {
       const update = { $set: { dias } };
       const options = { useFindAndModify: false };
 
-      await Agenda.findByIdAndUpdate(_id, update, options);
-      
-      return res.status(200).json(dias);
+      await Agenda.findByIdAndUpdate(_id, update, options, function(err, result) {
+        if(err) return res.status(500).json(err);
+      });
     }
+
+    return res.status(200).json(dias);
   }
 
   return controller;

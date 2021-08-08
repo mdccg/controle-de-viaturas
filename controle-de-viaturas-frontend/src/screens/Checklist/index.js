@@ -23,12 +23,16 @@ function Check({
   comentario: comentarioInicial,
   index,
   setAviso,
+  setSalvandoAviso,
   atualizarCheckitem
 }) {
   const [revisado, setRevisado] = useState(revisadoInicial);
   const [comentario, setComentario] = useState(comentarioInicial);
 
   function atualizar() {
+    setAviso('* Salvando alterações...');
+    setSalvandoAviso(true);
+
     let checkitem = {
       topico: { _id, titulo, descricao },
       revisado,
@@ -47,6 +51,7 @@ function Check({
   useEffect(() => {
     if(detectorAfkRef.current) {
       setAviso('* Salvando alterações...');
+      setSalvandoAviso(true);
 
       var detectorAfk = setTimeout(() => {
         atualizar();
@@ -93,6 +98,7 @@ function Checklist(props) {
   const [checklist, setChecklist] = useState([]);
   const [concluida, setConcluida] = useState(false);
 
+  const [salvandoAviso, setSalvandoAviso] = useState(false);
   const [redirecionando, setRedirecionando] = useState(false);
   const [buscandoRevisao, setBuscandoRevisao] = useState(false);
   const [concluindoRevisao, setConcluindoRevisao] = useState(false);
@@ -128,8 +134,12 @@ function Checklist(props) {
         setConcluida(concluida);
         setRevisao(_revisao);
         
-        // TODO criar nova manutenção (revisão imutável) com identificador
-        setAviso('Alterações salvas.');
+        api.put(`/manutencoes/${revisao._id}`, { checklist: _checklist })
+          .then(() => {
+            setAviso('Alterações salvas.');
+            setSalvandoAviso(false);
+          })
+          .catch(err => console.error(err));
       })
       .catch(() => toast.error('Erro ao atualizar checklist.'));
   }
@@ -170,7 +180,7 @@ function Checklist(props) {
       <div className="container">
         {buscandoRevisao ? <Spinner className="loader" /> : (
           <>
-            <div className="aviso">
+            <div className={(salvandoAviso ? 'salvando' : '') + ' aviso'}>
               <span>{aviso}</span>
             </div>
 
@@ -187,6 +197,7 @@ function Checklist(props) {
                   {...check}
                   index={index}
                   setAviso={setAviso}
+                  setSalvandoAviso={setSalvandoAviso}
                   atualizarCheckitem={atualizarCheckitem} />
               ))}
             </div>

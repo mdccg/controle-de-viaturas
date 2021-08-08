@@ -2,15 +2,11 @@
 
 ## _To-do list_
 
-- [X] Mudar o título do arquivo das tabelas diárias
 - [ ] Criar uma tela para _feedbacks_
 - [ ] `BUG` Descobrir por que senhas complexas não são gravadas com JWT
-- [X] `BUG` Deslogar do administrador temporário e logar em outra conta
-- [ ] Criar endpoint `/quinzena/:viatura` para filtrar por data as manutenções de uma determinada viatura
-- [ ] Registrar cada modificação em uma revisão por meio da tabela de manutenções
-- [X] `API` Impedir de criar uma revisão na mesma data
-- [X] `BUG` Revisão duplicada
-  - Ao criar nova revisão, usar o identificador da viatura para buscar uma manutenção que tenha sido feita na data atual para evitar revisões duplicadas.
+- [X] Registrar cada modificação em uma revisão por meio da tabela de manutenções
+- [ ] `API` Desenvolver opção de pesquisar por viatura ou quinzena (no histórico de manutenções)
+- [X] Consertar endpoints da agenda
 
 ---
 

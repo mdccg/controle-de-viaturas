@@ -222,7 +222,7 @@ function Viatura(props) {
       {revisando ? (
         <Link className="btn-revisar" to={`/checklist?_id=${_id}`}>
           <span className="btn-revisar-label">
-            Revisar ({pendentes.length})
+            {pendentes.length ? `Revisar (${pendentes.length})` : 'Concluir revisão'}
           </span>
         </Link>
       ) : null}
