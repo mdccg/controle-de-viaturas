@@ -20,9 +20,8 @@ function HistoricoManutencoes() {
 
   function buscarQuinzenas() {
     setBuscandoQuinzenas(true);
-    // TODO back-end aqui
 
-    api.get(`/quinzenas?pesquisa=${pesquisa}`)
+    api.get(`/quinzenas?prefixo=${pesquisa}`)
       .then(res => setQuinzenas(res.data))
       .catch(err => console.error(err))
       .finally(() => setBuscandoQuinzenas(false));
@@ -38,10 +37,10 @@ function HistoricoManutencoes() {
       <Header />
 
       <div className="container">
-        {/* <SearchBar
+        <SearchBar
           pesquisa={pesquisa}
           setPesquisa={setPesquisa}
-          placeholder="Prefixo ou data" /> */}
+          placeholder="Prefixo ou data" />
 
         <div className="lista">
           {buscandoQuinzenas ? <Spinner className="loader" /> : null}

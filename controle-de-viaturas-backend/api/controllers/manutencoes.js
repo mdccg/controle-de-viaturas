@@ -6,13 +6,39 @@ module.exports = () => {
   const controller = {};
 
   controller.listarManutencoes = async (req, res) => {
-    const manutencoes = await Manutencao.find({});
+    const { prefixo, quinzena } = req.query;
+    
+    let regExp = new RegExp(`${prefixo}`, 'gim');
+    var query = { 'viatura.prefixo': regExp };
+    
+    var manutencoes = await Manutencao.find(prefixo ? query : {});
+
+    if(quinzena)
+      manutencoes = manutencoes.filter(({ data }) => {
+        const dataPorExtenso = moment(data).format('D [de] MMMM [de] YYYY');
+        let regExp = new RegExp(`${quinzena}`, 'gim');
+        return regExp.test(`${dataPorExtenso}`);
+      });
+
     return res.status(200).json(manutencoes);
   }
 
   controller.listarManutencoesPorQuinzena = async (req, res) => {
-    const manutencoes = await Manutencao.find({});
-    const datas = manutencoes.map(({ _id, data }) => ({ _id, data }));
+    const { prefixo } = req.query;
+    
+    let regExp = new RegExp(`${prefixo}`, 'gim');
+    var query = { 'viatura.prefixo': regExp };
+    
+    var manutencoes = await Manutencao.find(prefixo ? query : {});
+
+    var datas = manutencoes.map(({ _id, data }) => ({ _id, data }));
+
+    /*if(quinzena)
+      datas = datas.filter(({ data }) => {
+        const dataPorExtenso = moment(data).format('D [de] MMMM [de] YYYY');
+        let regExp = new RegExp(`${quinzena}`, 'gim');
+        return regExp.test(dataPorExtenso);
+      });*/
 
     datas.sort((a, b) => (a.data > b.data) ? - 1 : !!((a.data < b.data)));
 
