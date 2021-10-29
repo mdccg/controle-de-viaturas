@@ -7,6 +7,7 @@
 .viatura textarea {
   background-color: transparent;
   outline: none;
+  resize: none;
   border: none;
   padding: 0;
 
