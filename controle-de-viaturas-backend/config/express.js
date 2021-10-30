@@ -15,7 +15,7 @@ module.exports = () => {
   app.set('port', process.env.PORT || config.get('server.port'));
 
   const corsOptions = {
-    origin: 'http://192.168.0.106:3000',
+    origin: 'https://bombeiros-aquidauana.web.app',
     optionsSuccessStatus: 200
   }
 
