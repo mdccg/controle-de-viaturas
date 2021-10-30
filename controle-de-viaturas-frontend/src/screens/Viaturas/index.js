@@ -17,7 +17,7 @@ import ModalEditarCategoria      from './../../components/ModalEditarCategoria';
 import ModalAdicionarViatura      from './../../components/ModalAdicionarViatura';
 import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelCombustivel';
 
-import { filtroNiveisCombustivel }  from './../../config/default.json';
+import { filtroNiveisCombustivel, updateManutencao }  from './../../config/default.json';
 
 import getUsuario from './../../functions/getUsuario';
 
@@ -182,13 +182,16 @@ function Viaturas() {
     buscarUltimoRegistro();
     buscarCategorias();
     buscarViaturas();
-    buscarRevisoes();
-    buscarAgenda();
+
+    if(updateManutencao) {
+      buscarRevisoes();
+      buscarAgenda();
+    }
     // eslint-disable-next-line
   }, [pesquisa]);
 
   useEffect(() => {
-    buscarAgenda();
+    if(updateManutencao) buscarAgenda();
   }, [viaturas]);
 
   return (

@@ -11,6 +11,8 @@ import _Bell       from './../../assets/icons/_Bell';
 import Firefighter from './../../assets/icons/Firefighter';
 import OnOffButton from './../../assets/icons/OnOffButton';
 
+import { updateManutencao } from './../../config/default.json';
+
 import getUsuario   from './../../functions/getUsuario';
 import encerrarSessao from './../../functions/encerrarSessao';
 
@@ -22,25 +24,22 @@ var rotas = [
 ];
 
 var sudoRotas = solicitando => ([
-  { icone: Clipboard,   tela: 'Histórico de edições',     rota: '/historico'    },
-  { icone: Clipboard,   tela: 'Histórico de manutenções', rota: '/manutencoes'  },
-  { icone: WrenchSolid, tela: 'Manutenção',               rota: '/topicos'      },
-  { icone: solicitando ? _Bell : Bell,
-    tela: 'Solicitações',
-    rota: '/solicitacoes'
-  },
+  { icone: Clipboard, tela: 'Histórico de edições', rota: '/historico' },
+  updateManutencao ? ({ icone: Clipboard, tela: 'Histórico de manutenções', rota: '/manutencoes' }) : ({}),
+  updateManutencao ? ({ icone: WrenchSolid, tela: 'Manutenção', rota: '/topicos' }) : ({}),
+  { icone: solicitando ? _Bell : Bell, tela: 'Solicitações', rota: '/solicitacoes' },
   { icone: Firefighter, tela: 'Militares', rota: '/militares' }
 ]);
 
-function Rota({ icone: Icone, tela, rota }) {
-  return (
+function Rota({ icone: Icone, tela, rota = '' }) {
+  return rota.length ? (
     <li>
       <Link className="rota" to={rota}>
         <Icone />
         <span>{tela}</span>
       </Link>
     </li>
-  );
+  ) : <></>;
 }
 
 function MenuLateral() {

@@ -1,21 +1,24 @@
 {
   "niveisCombustivel": [
     "Tanque cheio",
-    "Quase cheio",
-    "Combustível acima de ½",
+    "Combustível acima de ¾",
+    "Combustível abaixo de ¾",
+    "Combustível em ½",
     "Combustível abaixo de ½",
     "Combustível em ¼",
     "Reserva"
   ],
   "filtroNiveisCombustivel": {
-    "TQ": "Tanque cheio",
-    "QC": "Quase cheio",
-    "↑ ½": "Combustível acima de ½",
-    "↓ ½": "Combustível abaixo de ½",
+    "TC": "Tanque cheio",
+    "↑¾": "Combustível acima de ¾",
+    "↓¾": "Combustível abaixo de ¾",
+    "½": "Combustível em ½",
+    "↓½": "Combustível abaixo de ½",
     "¼": "Combustível em ¼",
     "R": "Reserva"
   },
   "diasSemana": ["segunda-feira", "terça-feira",  "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"],
   "meses": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-  "delay": 3
+  "delay": 3,
+  "updateManutencao": false
 }
