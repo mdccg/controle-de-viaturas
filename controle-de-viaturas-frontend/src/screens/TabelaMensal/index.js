@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect, Fragment } from 'react';
 import { Page, Text, View, Document, PDFDownloadLink } from '@react-pdf/renderer';
 import styles from './styles';

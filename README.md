@@ -4,7 +4,7 @@
 
 - [ ] Criar uma tela para _feedbacks_
 - [ ] `BUG` Descobrir por que senhas complexas não são gravadas com JWT
-- [ ] Deploy na nova URL
+- [X] Deploy na nova URL
 - [X] Registrar cada modificação em uma revisão por meio da tabela de manutenções
 - [X] `API` Desenvolver opção de pesquisar por viatura ou quinzena (no histórico de manutenções)
 - [X] Consertar endpoints da agenda
@@ -15,7 +15,7 @@
 
 | Artefato                                     | Tecnologia                                      |
 |----------------------------------------------|-------------------------------------------------|
-| [Protótipo visual](https://figma.fun/L1OsQL) | Figma                                           |
+| [Protótipo visual](https://figma.fun/RYygjH) | Figma                                           |
 | Front-end                                    | React                                           |
 | Back-end                                     | Express                                         |
 | Banco de dados                               | MongoDB                                         |

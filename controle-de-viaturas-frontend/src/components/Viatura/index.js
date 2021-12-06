@@ -1,15 +1,18 @@
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-import Tag   from './../../assets/icons/Tag';
-import Chat   from './../../assets/icons/Chat';
-import Delete  from './../../assets/icons/Delete';
-import Spinner  from './../../assets/icons/Spinner';
-import FireTruck from './../../assets/icons/FireTruck';
-import GasStation from './../../assets/icons/GasStation';
-import Speedometer from './../../assets/icons/Speedometer';
-import WrenchSolid  from './../../assets/icons/WrenchSolid';
+import Tag    from './../../assets/icons/Tag';
+import Chat    from './../../assets/icons/Chat';
+import Delete   from './../../assets/icons/Delete';
+import Spinner   from './../../assets/icons/Spinner';
+import FireTruck  from './../../assets/icons/FireTruck';
+import GasStation  from './../../assets/icons/GasStation';
+import Speedometer   from './../../assets/icons/Speedometer';
+import ArrowsAltVSolid from './../../assets/icons/ArrowsAltVSolid';
+
+import MenuMoverViatura from './../../components/MenuMoverViatura';
 
 import api from './../../services/api';
 
@@ -32,6 +35,7 @@ function Viatura(props) {
   const [revisao, setRevisao] = useState({});
   const [pendentes, setPendentes] = useState([]);
   const [revisando, setRevisando] = useState(false);
+  const [movendoViatura, setMovendoViatura] = useState(null);
 
   function atualizarViatura() {
     const { viaturas, setViaturas } = props;
@@ -105,6 +109,10 @@ function Viatura(props) {
     setDeletandoViatura(true);
   }
 
+  function moverViatura(event) {
+    setMovendoViatura(event.currentTarget);
+  }
+
   useEffect(() => {
     buscarRevisao();
   }, [props.revisao]);
@@ -127,108 +135,118 @@ function Viatura(props) {
   }, [prefixo, km, nivelCombustivel, comentario, categoria]);
 
   return (
-    <div className="viatura">
-      <div className="cabecalho">
-        <div>
-          <div className="icone">
-            <FireTruck />
-          </div>
-
-          <div className="prefixo">
-            <input
-              disabled={efetuandoRequisicao}
-              type="text"
-              value={prefixo}
-              onChange={event => setPrefixo(event.target.value)}
-              placeholder="Prefixo"
-              ref={prefixoRef} />
-          </div>
-        </div>
-
-        <div className="painel">
-          <div className="icone clicavel">
-            {efetuandoRequisicao ? <Spinner /> :  null}
-          </div>
-
-          <div className="icone clicavel" onClick={!efetuandoRequisicao ? deletarViatura : undefined}>
-            <Delete />
-          </div>
-        </div>
-      </div>
-
-      <div className="corpo">
-        <div key={_id + '-primeira-linha'}>
+    <>
+      <div className="viatura">
+        <div className="cabecalho">
           <div>
             <div className="icone">
-              <Speedometer />
+              <FireTruck />
             </div>
-            
-            <div className="km">
-              <span className="noselect">KM</span>
-              <span className="noselect">&nbsp;</span>
-              
+
+            <div className="prefixo">
               <input
                 disabled={efetuandoRequisicao}
-                value={km}
-                onChange={event => setKm(event.target.value)}
-                placeholder="KM"
-                inputMode="numeric"
-                ref={kmRef} />
+                type="text"
+                value={prefixo}
+                onChange={event => setPrefixo(event.target.value)}
+                placeholder="Prefixo"
+                ref={prefixoRef} />
+            </div>
+          </div>
+
+          <div className="painel">
+            <div className="icone">
+              {efetuandoRequisicao ? <Spinner /> :  null}
+            </div>
+
+            <div className="icone clicavel" onClick={moverViatura}>
+              <ArrowsAltVSolid />
+            </div>
+
+            <div className="icone clicavel" onClick={!efetuandoRequisicao ? deletarViatura : undefined}>
+              <Delete />
+            </div>
+          </div>
+        </div>
+
+        <div className="corpo">
+          <div key={_id + '-primeira-linha'}>
+            <div>
+              <div className="icone">
+                <Speedometer />
+              </div>
+              
+              <div className="km">
+                <span className="noselect">KM</span>
+                <span className="noselect">&nbsp;</span>
+                
+                <input
+                  disabled={efetuandoRequisicao}
+                  value={km}
+                  onChange={event => setKm(event.target.value)}
+                  placeholder="KM"
+                  inputMode="numeric"
+                  ref={kmRef} />
+              </div>
+            </div>
+
+            <div
+              className="clicavel"
+              onClick={!efetuandoRequisicao ? editarNivelCombustivel : undefined}>
+              <div className="icone">
+                <GasStation />
+              </div>
+              
+              <div className="nivel-combustivel">
+                <span>{nivelCombustivel ? nivelCombustivel : 'Nível de combustível'}</span>
+              </div>
+            </div>
+          </div>
+
+          <div key={_id + '-segunda-linha'}>
+            <div className="icone">
+              <Chat />
+            </div>
+
+            <div className="comentario">
+              <textarea
+                disabled={efetuandoRequisicao}
+                value={comentario}
+                onChange={event => setComentario(event.target.value)}
+                placeholder="Observação"
+                ref={comentarioRef}></textarea>
             </div>
           </div>
 
           <div
+            key={_id + '-terceira-linha'}
             className="clicavel"
-            onClick={!efetuandoRequisicao ? editarNivelCombustivel : undefined}>
+            onClick={!efetuandoRequisicao ? editarCategoria : undefined}>
             <div className="icone">
-              <GasStation />
+              <Tag />
             </div>
-            
-            <div className="nivel-combustivel">
-              <span>{nivelCombustivel ? nivelCombustivel : 'Nível de combustível'}</span>
+
+            <div className="categoria-label">
+              <span>{categoria.nome}</span>
             </div>
           </div>
         </div>
 
-        <div key={_id + '-segunda-linha'}>
-          <div className="icone">
-            <Chat />
-          </div>
+        {revisando ? (
+          <Link className="btn-revisar" to={`/checklist?_id=${_id}`}>
+            <span className="btn-revisar-label">
+              {pendentes.length ? `Revisar (${pendentes.length})` : 'Concluir revisão'}
+            </span>
+          </Link>
+        ) : null}
 
-          <div className="comentario">
-            <textarea
-              disabled={efetuandoRequisicao}
-              value={comentario}
-              onChange={event => setComentario(event.target.value)}
-              placeholder="Observação"
-              ref={comentarioRef}></textarea>
-          </div>
-        </div>
-
-        <div
-          key={_id + '-terceira-linha'}
-          className="clicavel"
-          onClick={!efetuandoRequisicao ? editarCategoria : undefined}>
-          <div className="icone">
-            <Tag />
-          </div>
-
-          <div className="categoria-label">
-            <span>{categoria.nome}</span>
-          </div>
-        </div>
+        <div className="rodape"></div>
       </div>
 
-      {revisando ? (
-        <Link className="btn-revisar" to={`/checklist?_id=${_id}`}>
-          <span className="btn-revisar-label">
-            {pendentes.length ? `Revisar (${pendentes.length})` : 'Concluir revisão'}
-          </span>
-        </Link>
-      ) : null}
-
-      <div className="rodape"></div>
-    </div>
+      <MenuMoverViatura
+        aberto={movendoViatura}
+        setAberto={setMovendoViatura} />
+    </>
   );
 }
 

@@ -45,6 +45,7 @@
 - [Wrench Icon | Font Awesome](https://fontawesome.com/v5.15/icons/wrench?style=solid)
 - [Check Square Icon - Regular | Font Awesome](https://fontawesome.com/v5.15/icons/check-square?style=regular)
 - [Arrow Left Icon | Font Awesome](https://fontawesome.com/v5.15/icons/arrow-left?style=solid)
+- [Arrows Alt V Icon | Font Awesome](https://fontawesome.com/v5.15/icons/arrows-alt-v?style=solid)
 
 ## Imagens
 
@@ -55,6 +56,7 @@
 - [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
 - [Componente React Drawer - Material-UI](https://material-ui.com/pt/components/drawers/)
 - [Componente React para Caixa de seleção - Material-UI](https://material-ui.com/pt/components/checkboxes/)
+- [React Menu component - MUI](https://mui.com/components/menus/#main-content)
 
 ## Fontes tipográficas
 

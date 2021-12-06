@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import './styles.css';
 
@@ -120,9 +121,7 @@ function GerenciadorTopicos() {
       return () => clearTimeout(detectorAfk);
     }
 
-    if(JSON.stringify(dias) !== '[]')
-      detectorAfkRef.current = true;
-
+    if(JSON.stringify(dias) !== '[]') detectorAfkRef.current = true;
   }, [dias]);
 
   useEffect(() => {
