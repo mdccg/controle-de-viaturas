@@ -226,22 +226,24 @@ function Viaturas() {
             <span className="data">{ultimoRegistro.horario} &bull; {ultimoRegistro.dia}</span>
           </div>
 
-          <div className="filtro">
-            <GasStation />
-            {Object.keys(filtroNiveisCombustivel).map(filtroNivelCombustivel => {
-              const porExtenso = filtroNiveisCombustivel[filtroNivelCombustivel];
-              const selecionado = filtro === porExtenso;
+          {eu.tipo === 'Administrador' ? (
+            <div className="filtro">
+              <GasStation />
+              {Object.keys(filtroNiveisCombustivel).map(filtroNivelCombustivel => {
+                const porExtenso = filtroNiveisCombustivel[filtroNivelCombustivel];
+                const selecionado = filtro === porExtenso;
 
-              return (
-                <div
-                  key={filtroNivelCombustivel}
-                  className={'noselect fitro-nivel-combustivel ' + (selecionado ? 'selecionado' : '')}
-                  onClick={() => filtrar(porExtenso)}>
-                  <span>{filtroNivelCombustivel}</span>
-                </div>
-              );
-            })}
-          </div>
+                return (
+                  <div
+                    key={filtroNivelCombustivel}
+                    className={'noselect fitro-nivel-combustivel ' + (selecionado ? 'selecionado' : '')}
+                    onClick={() => filtrar(porExtenso)}>
+                    <span>{filtroNivelCombustivel}</span>
+                  </div>
+                );
+              })}
+            </div>
+          ) : <></>}
 
           <SearchBar 
             pesquisa={pesquisa}
