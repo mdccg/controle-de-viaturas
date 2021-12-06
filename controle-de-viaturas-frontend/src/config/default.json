@@ -2,17 +2,19 @@
   "niveisCombustivel": [
     "Tanque cheio",
     "Combustível acima de ¾",
+    "Combustível em ¾",
     "Combustível abaixo de ¾",
-    "Combustível em ½",
-    "Combustível abaixo de ½",
+    "Combustível em meio",
+    "Combustível abaixo de meio",
     "Combustível em ¼",
     "Reserva"
   ],
   "filtroNiveisCombustivel": {
     "TC": "Tanque cheio",
     "↑¾": "Combustível acima de ¾",
+    "¾": "Combustível em ¾",
     "↓¾": "Combustível abaixo de ¾",
-    "½": "Combustível em ½",
+    "½": "Combustível em meio",
     "↓½": "Combustível abaixo de ½",
     "¼": "Combustível em ¼",
     "R": "Reserva"
