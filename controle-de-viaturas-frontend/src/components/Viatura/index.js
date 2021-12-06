@@ -159,7 +159,7 @@ function Viatura(props) {
               {efetuandoRequisicao ? <Spinner /> :  null}
             </div>
 
-            <div className="icone clicavel" onClick={moverViatura}>
+            <div className="icone clicavel" onClick={moverViatura} style={{ display: 'none' }}>
               <ArrowsAltVSolid />
             </div>
 
