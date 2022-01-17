@@ -14,6 +14,12 @@
 - [ ] Apagar o banco de dados de teste da cluster do controle de viaturas;
 - [ ] Descobrir por que senhas com símbolos não são gravadas pelo padrão JSON Web Token.
 
+<sup id="nota-de-rodape-1">1</sup> Os índices por categoria das duas viaturas devem ser atualizados ao mesmo tempo pelo front-end.
+
+<sup id="nota-de-rodape-2">2</sup> Implementar nos métodos de atualizar e deletar uma viatura, no controller da API.
+
+---
+
 ## Tecnologias
 
 | Artefato                                     | Tecnologia                                      |
