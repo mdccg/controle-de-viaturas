@@ -10,6 +10,12 @@ module.exports = app => {
     .put(controller.atualizarViatura)
     .delete(controller.deletarViatura);
 
+  app.route('/api/v1/viaturas-especificas')
+    .get(controller.buscarViaturasEspecificas);
+
+  app.route('/api/v1/reidentificar-viaturas')
+    .put(controller.reidentificarViaturas);
+
   app.route('/api/v1/carreata')
     .post(controller.adicionarViaturas);
 }

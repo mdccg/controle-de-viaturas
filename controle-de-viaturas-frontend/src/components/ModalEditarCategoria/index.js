@@ -4,7 +4,12 @@ import './styles.css';
 
 import ModalGenerico from './../ModalGenerico';
 
-function ModalBotao({ variavel = {}, setVariavel, variavelSelecionada = {}, setVariavelSelecionada }) {
+function ModalBotao({
+  variavel = {},
+  setVariavel,
+  variavelSelecionada = {},
+  setVariavelSelecionada,
+}) {
   const selecionada = variavel._id === variavelSelecionada._id;
 
   function selecionar() {

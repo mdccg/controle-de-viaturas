@@ -25,6 +25,7 @@ function Viatura(props) {
   const [nivelCombustivel, setNivelCombustivel] = useState(props.nivelCombustivel);
   const [comentario, setComentario] = useState(props.comentario);
   const [categoria, setCategoria] = useState(props.categoria);
+  const [indiceCategoria, setIndiceCategoria] = useState(props.indiceCategoria);
 
   const prefixoRef = useRef();
   const kmRef = useRef();
@@ -50,7 +51,7 @@ function Viatura(props) {
   }
 
   async function registrarViatura() {
-    const { enviarRegistro } = props;
+    const { enviarRegistro, atualizarIndiceCategoria } = props;
 
     setEfetuandoRequisicao(true);
     
@@ -62,6 +63,7 @@ function Viatura(props) {
       .then(() => {
         enviarRegistro();
         atualizarViatura();
+        atualizarIndiceCategoria(_id, setIndiceCategoria);
       })
       .catch(err => console.error(err))
       .finally(() => setEfetuandoRequisicao(false));
@@ -132,7 +134,7 @@ function Viatura(props) {
     } else
       detectorAfkRef.current = true;
 
-  }, [prefixo, km, nivelCombustivel, comentario, categoria]);
+  }, [prefixo, km, nivelCombustivel, comentario, categoria, indiceCategoria]);
 
   return (
     <>
@@ -159,7 +161,7 @@ function Viatura(props) {
               {efetuandoRequisicao ? <Spinner /> :  null}
             </div>
 
-            <div className="icone clicavel" onClick={moverViatura} style={{ display: 'none' }}>
+            <div className="icone clicavel" onClick={moverViatura}>
               <ArrowsAltVSolid />
             </div>
 
