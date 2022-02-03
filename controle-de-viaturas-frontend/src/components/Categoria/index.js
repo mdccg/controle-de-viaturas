@@ -7,20 +7,9 @@ import ArrowDownSignToNavigate from './../../assets/icons/ArrowDownSignToNavigat
 import Vazio from './../Vazio';
 import Viatura from './../Viatura';
 
-import api from './../../services/api';
+import ordenarPorIndice from './../../functions/ordenarPorIndice';
 
-/* https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value */
-function ordenarPorIndice(a, b, atributo = 'indiceCategoria') {
-  if (a[atributo] < b[atributo]) {
-    return -1;
-  }
-  
-  if (a[atributo] > b[atributo]) {
-    return 1;
-  }
-  
-  return 0;
-}
+import api from './../../services/api';
 
 function Categoria({
   _id,
@@ -33,6 +22,7 @@ function Categoria({
   setDeletandoViatura,
   setEditandoCategoria,
   setEditandoNivelCombustivel,
+  puxarViaturasAposAtualizarIndiceCategoria,
   viaturasFiltradas: viaturasFiltradasInicial = []
 }) {
 
@@ -100,7 +90,9 @@ function Categoria({
               setDeletandoViatura={setDeletandoViatura}
               setEditandoCategoria={setEditandoCategoria}
               atualizarIndiceCategoria={atualizarIndiceCategoria}
-              setEditandoNivelCombustivel={setEditandoNivelCombustivel} />
+              quantidadeViaturasFitradas={viaturasFiltradas.length}
+              setEditandoNivelCombustivel={setEditandoNivelCombustivel}
+              puxarViaturasAposAtualizarIndiceCategoria={puxarViaturasAposAtualizarIndiceCategoria} />
           )
         })
       ) : aberto && listaVazia ? (

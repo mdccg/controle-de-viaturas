@@ -82,8 +82,10 @@ module.exports = app => {
     
     var viaturaAntiga = await Viatura.findById(id);
 
-    // quando a categoria for modificada
-    if (`${viaturaAntiga.categoria}` !== `${req.body.categoria}`) {
+    var indiceCategoriaModificado = `${viaturaAntiga.indiceCategoria}` !== `${req.body.indiceCategoria}` && req.body.indiceCategoria !== undefined;
+    var categoriaModificada = `${viaturaAntiga.categoria}` !== `${req.body.categoria}` && req.body.categoria !== undefined;
+
+    if (categoriaModificada) {
       var viaturasAntigaCategoria = (await Viatura.find({ "categoria": viaturaAntiga.categoria }));
       
       for (let i = viaturaAntiga.indiceCategoria; i < viaturasAntigaCategoria.length; ++i) {
@@ -100,7 +102,13 @@ module.exports = app => {
     Viatura.findByIdAndUpdate(id, { $set: req.body }, { useFindAndModify: false }, function(err, doc) {
       if(err) return res.status(500).json(err);
 
-      return res.status(200).send('Viatura atualizada com sucesso.');
+      var retorno = 'Viatura atualizada com sucesso.';
+      
+      if (indiceCategoriaModificado) {
+        retorno = { ok: true };
+      }
+
+      return res.status(200).send(retorno);
     });
   }
 

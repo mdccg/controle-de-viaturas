@@ -21,6 +21,7 @@ import ModalEditarNivelCombustivel from './../../components/ModalEditarNivelComb
 import { filtroNiveisCombustivel, updateManutencao }  from './../../config/default.json';
 
 import getUsuario from './../../functions/getUsuario';
+import useUpdateEffect from './../../functions/useUpdateEffect';
 
 import api from './../../services/api';
 
@@ -51,6 +52,7 @@ function Viaturas() {
   const [adicionandoViatura, setAdicionandoViatura] = useState(false);
   const [editandoCategoria, setEditandoCategoria] = useState(false);
   const [deletandoViatura, setDeletandoViatura] = useState(false);
+  const [viaturaDeletada, setViaturaDeletada] = useState(false);
 
   function encarrilharViatura(viatura) {
     setViaturas(state => {
@@ -62,6 +64,11 @@ function Viaturas() {
     setViaturas(state => {
       return state.filter(value => value._id !== _id);
     });
+  }
+
+  async function puxarViaturasAposAtualizarIndiceCategoria() {
+    let viaturas = (await api.get('/viaturas')).data;
+    setViaturas(viaturas);
   }
 
   function exportarPdfAtual() {
@@ -195,6 +202,10 @@ function Viaturas() {
     if(updateManutencao) buscarAgenda();
   }, [viaturas]);
 
+  useUpdateEffect(() => {
+    puxarViaturasAposAtualizarIndiceCategoria();
+  }, [viaturaDeletada]);
+
   return (
     <>
       <div className="viaturas">
@@ -268,6 +279,7 @@ function Viaturas() {
                 setDeletandoViatura={setDeletandoViatura}
                 setEditandoCategoria={setEditandoCategoria}
                 setEditandoNivelCombustivel={setEditandoNivelCombustivel} 
+                puxarViaturasAposAtualizarIndiceCategoria={puxarViaturasAposAtualizarIndiceCategoria}
                 viaturasFiltradas={viaturas.filter(viatura => {
                   try {
                     if(!viatura.categoria)
@@ -320,8 +332,11 @@ function Viaturas() {
         enviarRegistro={enviarRegistro}
         desencarrilharViatura={desencarrilharViatura}
         viatura={viatura}
+        viaturas={viaturas}
+        setViaturas={setViaturas}
         aberto={deletandoViatura}
-        setAberto={setDeletandoViatura} />
+        setAberto={setDeletandoViatura}
+        setViaturaDeletada={setViaturaDeletada} />
     </>
   );
 }

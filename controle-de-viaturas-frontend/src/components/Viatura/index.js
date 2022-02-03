@@ -14,6 +14,8 @@ import ArrowsAltVSolid from './../../assets/icons/ArrowsAltVSolid';
 
 import MenuMoverViatura from './../../components/MenuMoverViatura';
 
+import useUpdateEffect from './../../functions/useUpdateEffect';
+
 import api from './../../services/api';
 
 import { delay } from './../../config/default.json';
@@ -26,7 +28,7 @@ function Viatura(props) {
   const [comentario, setComentario] = useState(props.comentario);
   const [categoria, setCategoria] = useState(props.categoria);
   const [indiceCategoria, setIndiceCategoria] = useState(props.indiceCategoria);
-
+  
   const prefixoRef = useRef();
   const kmRef = useRef();
   const comentarioRef = useRef();
@@ -37,6 +39,9 @@ function Viatura(props) {
   const [pendentes, setPendentes] = useState([]);
   const [revisando, setRevisando] = useState(false);
   const [movendoViatura, setMovendoViatura] = useState(null);
+  const [atualizandoIndiceCategoria, setAtualizandoIndiceCategoria] = useState(false);
+
+  const quantidadeViaturasFitradas = props.quantidadeViaturasFitradas;
 
   function atualizarViatura() {
     const { viaturas, setViaturas } = props;
@@ -105,7 +110,7 @@ function Viatura(props) {
   async function deletarViatura() {
     const { setViatura, setDeletandoViatura } = props;
 
-    let viatura = { _id, prefixo };
+    let viatura = { _id, prefixo, categoria, indiceCategoria };
 
     await setViatura(viatura);
     setDeletandoViatura(true);
@@ -115,6 +120,11 @@ function Viatura(props) {
     setMovendoViatura(event.currentTarget);
   }
 
+  async function atualizaIndiceCategoria() {
+    await setAtualizandoIndiceCategoria(true);
+    setIndiceCategoria(props.indiceCategoria);
+  }
+
   useEffect(() => {
     buscarRevisao();
   }, [props.revisao]);
@@ -122,19 +132,26 @@ function Viatura(props) {
   const detectorAfkRef = useRef(false);
 
   useEffect(() => {
-    if (detectorAfkRef.current) {
-
-      var detectorAfk = setTimeout(() => {
-        registrarViatura();
-
-      }, delay * 1e3);
-      
-      return () => clearTimeout(detectorAfk);
-      
-    } else
-      detectorAfkRef.current = true;
+    if(!atualizandoIndiceCategoria) {
+      if (detectorAfkRef.current) {
+        var detectorAfk = setTimeout(() => {
+          registrarViatura();
+  
+        }, delay * 1e3);
+        return () => clearTimeout(detectorAfk);
+        
+      } else {
+        detectorAfkRef.current = true;
+      }
+    } else {
+      setAtualizandoIndiceCategoria(false);
+    }
 
   }, [prefixo, km, nivelCombustivel, comentario, categoria, indiceCategoria]);
+
+  useUpdateEffect(() => {
+    atualizaIndiceCategoria();
+  }, [props.indiceCategoria]);
 
   return (
     <>
@@ -144,6 +161,8 @@ function Viatura(props) {
             <div className="icone">
               <FireTruck />
             </div>
+
+            {/* REMOVER DEPOIS */} <span>{indiceCategoria} - </span>
 
             <div className="prefixo">
               <input
@@ -246,6 +265,10 @@ function Viatura(props) {
       </div>
 
       <MenuMoverViatura
+        categoria={categoria}
+        indiceCategoria={indiceCategoria}
+        puxarViaturasAposAtualizarIndiceCategoria={props.puxarViaturasAposAtualizarIndiceCategoria}
+        maximo={quantidadeViaturasFitradas}
         aberto={movendoViatura}
         setAberto={setMovendoViatura} />
     </>

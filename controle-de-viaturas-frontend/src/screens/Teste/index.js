@@ -119,6 +119,10 @@ function Teste() {
       .catch(err => console.error(err));
   }
 
+  function deletarViaturas() {
+    api.delete('/viaturas');
+  }
+
   function buscarViaturas() {
     api.get('/viaturas')
       .then(res => setViaturas(res.data))
@@ -150,6 +154,7 @@ function Teste() {
       <button onClick={cadastrarRegistroAleatoria}>Cadastrar registro randômico</button>
       <button onClick={cadastrarManutencaoRandomica}>Cadastrar manutenção randômica</button>
       <button onClick={cadastrarViaturasReais}>Cadastrar viaturas reais</button>
+      <button onClick={deletarViaturas}>Deletar todas as viaturas</button>
 
       {categorias.map(({ _id, nome }) => {
         const viaturasFiltradas = viaturas.filter(viatura => viatura.categoria._id === _id);

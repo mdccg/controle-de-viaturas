@@ -2,6 +2,8 @@
 
 ## _To-do list_
 
+### Mover viaturas
+
 - [X] Criar um endpoint para buscar uma lista de viaturas da mesma categoria e atribuir uma posição a cada viatura, de 1 a N;
 - [X] Criar um endpoint para buscar uma viatura pela posição dela na lista de viaturas de uma categoria;
 - [X] Criar um endpoint[<sup>1</sup>](#nota-de-rodape-1) para atualizar a posição de uma viatura ~~e tratar exceções, como posições inválidas~~;
@@ -10,9 +12,17 @@
 - [X] Adaptar os métodos CRUD na API para comportar o índice de categoria;
 - [X] Decrementar os índices \(i, N\] quando uma viatura de índice i for deletada ou tiver sua categoria modificada[<sup>2</sup>](#nota-de-rodape-2);
 - [X] Criar uma função no componente [`Categoria`](./controle-de-viaturas-frontend/src/components/Categoria/index.js) que receba o _id de uma viatura e um setter para atualizar o índice de categoria;
-- [ ] Desabilitar o botão de atualizar no menu de mover as viaturas quando a posição for igual a 1 ou N;
+- [X] Atualizar o índice de todas as viaturas posteriores a uma viatura deletada **pelo front-end**;
+- [ ] ~~Criar uma função para atualizar todas as viaturas de uma vez, uma a uma, internamente~~;
+- [X] Checar como os índices de categoria são adicionados na API;
+- [X] Desabilitar o botão de atualizar no menu de mover as viaturas quando a posição for igual a 1 ou N;
+- [ ] Testar a nova atualização de mover viaturas.
+
+### Miscelâneas
+
 - [ ] Apagar o banco de dados de teste da cluster do controle de viaturas;
-- [ ] Descobrir por que senhas com símbolos não são gravadas pelo padrão JSON Web Token.
+- [ ] Descobrir por que senhas com símbolos não são gravadas pelo padrão JSON Web Token;
+- [ ] Desenhar novas telas para a nova funcionalidade de esmiuçar o que está sendo consertado em uma viatura.
 
 <sup id="nota-de-rodape-1">1</sup> Os índices por categoria das duas viaturas devem ser atualizados ao mesmo tempo pelo front-end.
 

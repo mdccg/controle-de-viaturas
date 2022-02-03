@@ -6,10 +6,49 @@ import Spinner from './../../assets/icons/Spinner';
 
 import ModalIntitulado from './../ModalIntitulado';
 
+import ordenarPorIndice from './../../functions/ordenarPorIndice';
+
 import api from './../../services/api';
 
-function ModalDeletarViatura({ enviarRegistro, desencarrilharViatura, viatura = {}, aberto, setAberto }) {
+function ModalDeletarViatura({
+  enviarRegistro,
+  desencarrilharViatura, 
+  viatura = {},
+  viaturas = [],
+  setViaturas,
+  aberto,
+  setAberto,
+  setViaturaDeletada
+}) {
   const [efetuandoRequisicao, setEfetuandoRequisicao] = useState(false);
+
+  function decrementarIndicesCategoriaSubsequentes() {
+    var idCategoria = viatura.categoria._id;
+
+    var viaturasPorCategoria = viaturas
+      .filter(viatura => viatura.categoria._id === idCategoria)
+      .sort(ordenarPorIndice);
+
+    var viaturasAtualizadas = [];
+
+    for (let i = viatura.indiceCategoria; i < viaturasPorCategoria.length; ++i) {
+      console.log(viaturasPorCategoria[i].prefixo);
+      --viaturasPorCategoria[i].indiceCategoria;
+      viaturasAtualizadas.push(viaturasPorCategoria[i]);
+    }
+
+    let _viaturas = [...viaturas];
+
+    for (var viaturaAtualizada of viaturasAtualizadas) {
+      let indice = _viaturas.map(viatura => viatura._id).indexOf(viaturaAtualizada._id);
+      _viaturas[indice] = viaturaAtualizada;
+    }
+
+    var { _id: idViaturaDeletada } = viatura;
+
+    _viaturas = _viaturas.filter(viatura => viatura._id !== idViaturaDeletada);
+    setViaturas(_viaturas);
+  }
 
   function deletarViatura() {
     setEfetuandoRequisicao(true);
@@ -18,6 +57,8 @@ function ModalDeletarViatura({ enviarRegistro, desencarrilharViatura, viatura = 
       .then(() => {
         enviarRegistro();
         desencarrilharViatura(viatura._id);
+        // decrementarIndicesCategoriaSubsequentes();
+        setViaturaDeletada(value => !value);
 
         setAberto(false);
       })

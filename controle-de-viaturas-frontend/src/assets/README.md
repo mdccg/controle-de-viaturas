@@ -4,7 +4,7 @@
 
 ## Paleta de cores
 
-- [Palettes | Flat UI Colors 🎨 280 handpicked colors ready for COPY & PASTE](https://flatuicolors.com/)
+- [Flat UI Colors](https://flatuicolors.com/)
 
 ## Ícones
 
@@ -38,7 +38,6 @@
 - [Paper - Free education icons](https://www.flaticon.com/free-icon/paper_2541984)
 - [Firefighter - Free people icons](https://www.flaticon.com/free-icon/firefighter_122492)
 - [Notification - Free interface icons](https://www.flaticon.com/free-icon/notification_1827370)
-
 - [Minus Circle Icon | Font Awesome](https://fontawesome.com/v5.15/icons/minus-circle?style=solid)
 - [Calendar Day Icon | Font Awesome](https://fontawesome.com/v5.15/icons/calendar-day?style=solid)
 - [Clipboard Check Icon | Font Awesome](https://fontawesome.com/v5.15/icons/clipboard-check?style=solid)
@@ -53,11 +52,11 @@
 
 ## Bibliotecas
 
-- [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
-- [Componente React Drawer - Material-UI](https://material-ui.com/pt/components/drawers/)
-- [Componente React para Caixa de seleção - Material-UI](https://material-ui.com/pt/components/checkboxes/)
+- `deprecated` [Componente React Modal - Material-UI](https://material-ui.com/pt/components/modal/)
+- `deprecated` [Componente React Drawer - Material-UI](https://material-ui.com/pt/components/drawers/)
+- `deprecated` [Componente React para Caixa de seleção - Material-UI](https://material-ui.com/pt/components/checkboxes/)
 - [React Menu component - MUI](https://mui.com/components/menus/#main-content)
 
 ## Fontes tipográficas
 
-- [Times New Roman Fonte gratis | MaisFontes.com](https://br.maisfontes.com/times-new-roman-14)
+- [Oswald - Google Fonts](https://fonts.google.com/specimen/Oswald?query=Oswald)
