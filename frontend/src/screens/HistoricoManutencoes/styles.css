@@ -1,0 +1,76 @@
+.historico-quinzenas .lista {
+  flex-direction: column;
+  display: flex;
+
+  min-height: 394px;
+}
+
+.historico-quinzenas .quinzena {
+  margin-bottom: 16px;
+}
+
+.historico-quinzenas .quinzena-label {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+
+  margin-bottom: 16px;
+}
+
+.historico-quinzenas .quinzena-label .divider {
+  background-color: var(--soothing-breeze);
+
+  display: flex;
+  height: 1px;
+  flex: 1;
+}
+
+.historico-quinzenas .quinzena-label span {
+  font-family: 'OswaldRegular';
+  color: var(--american-river);
+  font-size: 150%;
+
+  padding-right: 16px;
+}
+
+.historico-quinzenas .quinzena-botao-deletar {
+  background-color: var(--chi-gong);
+  border-radius: 2px;
+  
+  max-width: 100%;
+  width: 384px;
+
+  align-items: center;
+  display: flex;
+  
+  margin: 32px auto;
+  padding: 16px;
+
+  cursor: pointer;
+}
+
+.historico-quinzenas .quinzena-botao-deletar .icone {
+  width:  32px;
+  height: 32px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  margin-right: 16px;
+}
+
+.historico-quinzenas .quinzena-botao-deletar .icone svg {
+  width:  24px;
+  height: 24px;
+
+  fill: white;
+}
+
+.historico-quinzenas .quinzena-botao-deletar span {
+  font-family: 'OswaldBold';
+  color: white;
+
+  text-transform: uppercase;
+  line-height: 1.5;
+}

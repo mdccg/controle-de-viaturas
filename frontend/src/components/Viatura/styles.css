@@ -1,0 +1,176 @@
+.viatura {
+  flex-direction: column;
+  display: flex;
+}
+
+.viatura input {
+  background-color: transparent;
+  outline: none;
+  resize: none;
+  border: none;
+  padding: 0;
+
+  width:  100%;
+  height: 32px;
+}
+
+.viatura input::placeholder {
+  color: var(--soothing-breeze);
+}
+
+.viatura input,
+.viatura textarea,
+.viatura span,
+.viatura .textarea-comentario {
+  font-family: 'OswaldRegular';
+  color: var(--dracula-orchid);
+  font-size: 125%;
+
+  line-height: 1.5;
+}
+
+.viatura .linha-comentario {
+  margin: 8px 0;
+}
+
+.viatura .textarea-comentario {
+  outline: none;
+
+  padding: 8px;
+
+  min-height: 32px;
+  max-height: 128px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.viatura .cabecalho {
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}
+
+.viatura .cabecalho,
+.viatura .cabecalho > * {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.viatura .km {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.viatura .prefixo,
+.viatura .km,
+.viatura .nivel-combustivel,
+.viatura .comentario,
+.viatura .categoria-label,
+.viatura .manutencao {
+  margin-left: 8px;
+
+  display: flex;
+  flex: 1;
+}
+
+.viatura a.link-manutencao { text-decoration: none; }
+
+.viatura .icone {
+  width:  48px;
+  height: 48px;
+
+  justify-content: center;
+  align-self: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.viatura .clicavel {
+  cursor: pointer;
+}
+
+.viatura .icone svg {
+  width:  32px;
+  height: 32px;
+
+  fill:  var(--american-river);
+  color: var(--american-river);
+}
+
+.viatura .corpo {
+  background-color: var(--clouds);
+  border-radius: 2px;
+
+  padding: 16px;
+}
+
+.viatura .corpo span {
+  color: var(--american-river);
+}
+
+.viatura .corpo > * {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.viatura .corpo > *:first-child > * {
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.viatura a.btn-revisar {
+  text-decoration: none;
+}
+
+.viatura .btn-revisar {
+  margin-top: 8px;
+
+  background-color: var(--emerald);
+
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+
+  min-height: 64px;
+
+  cursor: pointer;
+}
+
+.viatura .btn-revisar span {
+  color: white;
+
+  line-height: 1.25;
+}
+
+.viatura .btn-revisar span.btn-revisar-label {
+  font-family: 'OswaldBold';
+  font-size: 145%;
+
+  text-transform: uppercase;
+}
+
+.viatura .btn-revisar span.contador {
+  font-family: 'OswaldLight';
+  font-size: 80%;
+}
+
+.viatura .rodape {
+  background-color: var(--city-lights);
+  
+  margin-top: 8px;
+  margin-bottom: 16px;
+
+  height: 1px;
+}
+
+@media only screen and (max-width: 525px) {
+  .viatura .km,
+  .viatura .nivel-combustivel {
+    font-size: 80%;
+  }
+}

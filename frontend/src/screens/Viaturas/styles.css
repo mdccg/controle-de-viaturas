@@ -1,0 +1,203 @@
+.viaturas .card-manutencao {
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  display: flex;
+
+  padding: 16px;
+
+  border: 1px solid var(--soothing-breeze);
+
+  margin-bottom: 32px;
+}
+
+.viaturas .card-manutencao > * { margin-bottom: 24px; }
+
+.viaturas .card-manutencao > *:last-child { margin-bottom: 0; }
+
+.viaturas .card-manutencao svg {
+  width:  64px;
+  height: 64px;
+}
+
+.viaturas .card-manutencao .card-titulo {
+  font-family: 'OswaldBold';
+  color: var(--american-river);
+  font-size: 165%;
+
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.viaturas .card-manutencao .card-descricao {
+  font-family: 'OswaldLight';
+  color: var(--dracula-orchid);
+
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.viaturas .card-manutencao .card-destaque {
+  font-family: 'OswaldRegular';
+  color: var(--dracula-orchid);
+}
+
+.viaturas .checkpoint {
+  margin-bottom: 32px;
+
+  flex-direction: column;
+  display: flex;
+
+  color: var(--dracula-orchid);
+  font-size: 90%;
+
+  line-height: 1.5;
+}
+
+.viaturas .checkpoint .signatario {
+  font-family: 'OswaldRegular';
+
+  text-transform: uppercase;
+}
+
+.viaturas .checkpoint .data {
+  font-family: 'OswaldLight';
+  color: var(--soothing-breeze);
+}
+
+.viaturas .filtro {
+  justify-content: flex-start;
+  display: flex;
+
+  margin-bottom: 32px;
+}
+
+.viaturas .filtro #filtro-icone {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  width:  32px;
+  height: 32px;
+
+  margin-right: 16px;
+}
+
+.viaturas .filtro #filtro-icone svg {
+  width:  24px;
+  height: 24px;
+
+  fill: var(--soothing-breeze);
+}
+
+.viaturas .filtro .filtros-quadrados {
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+  flex: 1;
+}
+
+.viaturas .filtro .fitro-nivel-combustivel {
+  margin: 4px;
+
+  min-width:  32px;
+  height: 32px;
+
+  border: 1px solid var(--soothing-breeze);
+  background-color: white;
+  color: var(--dracula-orchid);
+
+  font-size: 90%;
+  
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  border-radius: 2px;
+
+  cursor: pointer;
+}
+
+.viaturas .filtro .fitro-nivel-combustivel.selecionado {
+  border: 1px solid var(--chi-gong);
+  background-color: var(--chi-gong);
+  color: white;
+}
+
+.viaturas .filtro .fitro-nivel-combustivel span {
+  font-size: 90%;
+}
+
+.viaturas .lista-viaturas {
+  flex-direction: column;
+  display: flex;
+}
+
+.viaturas .botao-imprimir-pdf {
+  margin-top: 48px;
+
+  background-color: var(--emerald);
+  border-radius: 2px;
+
+  padding-right: 16px;
+  padding-left:  16px;
+
+  width: 384px;
+  max-width: 80%;
+  min-height: 64px;
+
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  display: flex;
+
+  cursor: pointer;
+}
+
+.viaturas .botao-imprimir-pdf svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}
+
+.viaturas .botao-imprimir-pdf span {
+  margin-left: 16px;
+
+  font-family: 'OswaldSemiBold';
+  font-size: 125%;
+  color: white;
+
+  text-transform: uppercase;
+}
+
+.viaturas .footer {
+  margin-top: 60px;
+}
+
+.btn-adicionar-nova-viatura {
+  position: fixed;
+
+  right:  32px;
+  bottom: 32px;
+
+  width:  64px;
+  height: 64px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  background-color: var(--chi-gong);
+  border-radius: 64px;
+
+  cursor: pointer;
+}
+
+.btn-adicionar-nova-viatura svg {
+  width:  32px;
+  height: 32px;
+
+  fill: white;
+}

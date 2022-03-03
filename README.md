@@ -20,9 +20,16 @@
 
 ### Miscelâneas
 
+- [X] Ocultar a nova atualização de mover viaturas no front-end antes de dar qualquer deploy;
+- [X] Corrigir bug da atualização recursiva da viatura;
+- [X] Corrigir a largura do campo comentário;
+- [X] Corrigir o filtro de combustíveis com largura mínima e `flex-wrap`;
+- [X] Corrigir a "tabela" do histórico de edições quando houver comentários grandes;
+- [ ] ~~Adicionar uma fonte tipográfica para os textos normais~~;
+- [ ] Adicionar botões para deletar uma lista de viaturas manutenidas e todas as listas de manutenções;
 - [ ] Apagar o banco de dados de teste da cluster do controle de viaturas;
 - [ ] Descobrir por que senhas com símbolos não são gravadas pelo padrão JSON Web Token;
-- [ ] Desenhar novas telas para a nova funcionalidade de esmiuçar o que está sendo consertado em uma viatura.
+- [ ] Desenhar novas telas para a nova funcionalidade de processos.
 
 <sup id="nota-de-rodape-1">1</sup> Os índices por categoria das duas viaturas devem ser atualizados ao mesmo tempo pelo front-end.
 
