@@ -8,8 +8,6 @@ import randomDate from './../../functions/randomDate';
 
 import api from './../../services/api';
 
-import viaturasMock from './../../tmp/viaturas.json';
-
 function Teste() {
   const [viaturas, setViaturas] = useState([]);
   const [militares, setMilitares] = useState([]);
@@ -76,12 +74,6 @@ function Teste() {
       .catch(err => console.error(err));
   }
 
-  function cadastrarViaturasReais() {
-    api.post('/carreata', viaturasMock)
-      .then(res => console.log(res.data))
-      .catch(err => console.error(err));
-  }
-
   async function gerarChecklist() {
     var checklist = [];
 
@@ -123,6 +115,10 @@ function Teste() {
     api.delete('/viaturas');
   }
 
+  function atualizarIndicesCategoria() {
+    api.put('/reidentificar-viaturas');
+  }
+
   function buscarViaturas() {
     api.get('/viaturas')
       .then(res => setViaturas(res.data))
@@ -153,8 +149,8 @@ function Teste() {
       <button onClick={cadastrarViaturaAleatoria}>Cadastrar viatura randômica</button>
       <button onClick={cadastrarRegistroAleatoria}>Cadastrar registro randômico</button>
       <button onClick={cadastrarManutencaoRandomica}>Cadastrar manutenção randômica</button>
-      <button onClick={cadastrarViaturasReais}>Cadastrar viaturas reais</button>
       <button onClick={deletarViaturas}>Deletar todas as viaturas</button>
+      <button onClick={atualizarIndicesCategoria}>Atualizar os índices de categoria</button>
 
       {categorias.map(({ _id, nome }) => {
         const viaturasFiltradas = viaturas.filter(viatura => viatura.categoria._id === _id);

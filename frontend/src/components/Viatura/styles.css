@@ -40,6 +40,10 @@
 
   min-height: 32px;
   max-height: 128px;
+
+  display: flex;
+  flex: 1;
+
   overflow-x: hidden;
   overflow-y: auto;
 }
