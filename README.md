@@ -30,6 +30,7 @@
 - [ ] Adicionar botões para deletar uma lista de viaturas manutenidas e todas as listas de manutenções;
 - [ ] ~~Apagar o banco de dados de teste da cluster do controle de viaturas~~;
 - [X] Criar botão na página experimental para atualizar os índices de cada viatura;
+- [ ] Corrigir bug dos índices bagunçados ao colapsar categoria;
 - [ ] Descobrir por que senhas com símbolos não são gravadas pelo padrão JSON Web Token;
 - [ ] Desenhar novas telas para a nova funcionalidade de processos.
 
