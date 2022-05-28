@@ -2,41 +2,11 @@
 
 ## _To-do list_
 
-### Mover viaturas
-
-- [X] Criar um endpoint para buscar uma lista de viaturas da mesma categoria e atribuir uma posição a cada viatura, de 1 a N;
-- [X] Criar um endpoint para buscar uma viatura pela posição dela na lista de viaturas de uma categoria;
-- [X] Criar um endpoint[<sup>1</sup>](#nota-de-rodape-1) para atualizar a posição de uma viatura ~~e tratar exceções, como posições inválidas~~;
-- [X] Ordenar as viaturas de cada lista pelas posições em ordem crescente;
-- [X] Criar um endpoint para mover a viatura cuja categoria for atualizada para a última posição da fila;
-- [X] Adaptar os métodos CRUD na API para comportar o índice de categoria;
-- [X] Decrementar os índices \(i, N\] quando uma viatura de índice i for deletada ou tiver sua categoria modificada[<sup>2</sup>](#nota-de-rodape-2);
-- [X] Criar uma função no componente [`Categoria`](./frontend/src/components/Categoria/index.js) que receba o _id de uma viatura e um setter para atualizar o índice de categoria;
-- [X] Atualizar o índice de todas as viaturas posteriores a uma viatura deletada **pelo front-end**;
-- [ ] ~~Criar uma função para atualizar todas as viaturas de uma vez, uma a uma, internamente~~;
-- [X] Checar como os índices de categoria são adicionados na API;
-- [X] Desabilitar o botão de atualizar no menu de mover as viaturas quando a posição for igual a 1 ou N;
-- [X] Testar a nova atualização de mover viaturas;
-- [ ] Ordenar as viaturas no histórico de edições e nas tabelas diária e mensal.
-
-### Miscelâneas
-
-- [X] Ocultar a nova atualização de mover viaturas no front-end antes de dar qualquer deploy;
-- [X] Corrigir bug da atualização recursiva da viatura;
-- [X] Corrigir a largura do campo comentário;
-- [X] Corrigir o filtro de combustíveis com largura mínima e `flex-wrap`;
-- [X] Corrigir a "tabela" do histórico de edições quando houver comentários grandes;
-- [ ] ~~Adicionar uma fonte tipográfica para os textos normais~~;
+- [ ] Ordenar as viaturas no histórico de edições e nas tabelas diária e mensal;
 - [ ] Adicionar botões para deletar uma lista de viaturas manutenidas e todas as listas de manutenções;
-- [ ] ~~Apagar o banco de dados de teste da cluster do controle de viaturas~~;
-- [X] Criar botão na página experimental para atualizar os índices de cada viatura;
 - [ ] Corrigir bug dos índices bagunçados ao colapsar categoria;
-- [ ] Descobrir por que senhas com símbolos não são gravadas pelo padrão JSON Web Token;
-- [ ] Desenhar novas telas para a nova funcionalidade de processos.
-
-<sup id="nota-de-rodape-1">1</sup> Os índices por categoria das duas viaturas devem ser atualizados ao mesmo tempo pelo front-end.
-
-<sup id="nota-de-rodape-2">2</sup> Implementar nos métodos de atualizar e deletar uma viatura, no controller da API.
+- [ ] Desenhar novas telas para a nova funcionalidade de processos;
+- [ ] Reprototipar o app.
 
 ---
 
@@ -87,24 +57,5 @@ Este app foi desenvolvido como um PWA. Em suma, uma Aplicação Web Progressiva 
   <img width="216px" src="https://i.imgur.com/UkFAWew.png" alt="Modal de editar as permissões de um administrador" />
   <img width="216px" src="https://i.imgur.com/Qn94Dmy.png" alt="Menu lateral com solicitações pendentes" />
 </div>
-
-## Créditos
-
-- [Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons](https://www.flaticon.com/)
-- [Símbolos – CBMMS](https://www.bombeiros.ms.gov.br/simbolos/)
-- [dbdiagram.io - Database Relationship Diagrams Design Tool](https://dbdiagram.io/home)
-
-- [Playground - SVGR](https://react-svgr.com/playground/)
-- [Timestamp Converter](https://www.timestamp-converter.com/)
-- [PWA Manifest Generator | SimiCart](https://www.simicart.com/manifest-generator.html/)
-- [Convertio — Conversor de Ficheiros](https://convertio.co/pt/)
-- [CloudConvert](https://cloudconvert.com/)
-
-- [Firebase](https://firebase.google.com/?hl=pt-br)
-- [MongoDB Cloud | MongoDB](https://www.mongodb.com/cloud)
-- [Cloud Application Platform | Heroku](https://www.heroku.com/)
-- [Imgur: The magic of the Internet](https://imgur.com/)
-
-- [react-toastify - npm](https://www.npmjs.com/package/react-toastify)
 
 Créditos pelas mídias utilizadas disponíveis [aqui](./frontend/src/assets/README.md).

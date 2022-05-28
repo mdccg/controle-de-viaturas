@@ -60,3 +60,19 @@
 ## Fontes tipográficas
 
 - [Oswald - Google Fonts](https://fonts.google.com/specimen/Oswald?query=Oswald)
+
+## Miscelâneas
+
+- [Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons](https://www.flaticon.com/)
+- [Símbolos – CBMMS](https://www.bombeiros.ms.gov.br/simbolos/)
+- [dbdiagram.io - Database Relationship Diagrams Design Tool](https://dbdiagram.io/home)
+- [Playground - SVGR](https://react-svgr.com/playground/)
+- [Timestamp Converter](https://www.timestamp-converter.com/)
+- [PWA Manifest Generator | SimiCart](https://www.simicart.com/manifest-generator.html/)
+- [Convertio — Conversor de Ficheiros](https://convertio.co/pt/)
+- [CloudConvert](https://cloudconvert.com/)
+- [Firebase](https://firebase.google.com/?hl=pt-br)
+- [MongoDB Cloud | MongoDB](https://www.mongodb.com/cloud)
+- [Cloud Application Platform | Heroku](https://www.heroku.com/)
+- [Imgur: The magic of the Internet](https://imgur.com/)
+- [react-toastify - npm](https://www.npmjs.com/package/react-toastify)
